@@ -288,12 +288,21 @@ def run_benchmark(config: dict, model_names: list[str]) -> dict[str, dict]:
     X, y, groups = load_primary_data(config)
     folds = load_or_create_folds(y, groups, config)
     results = {name: run_model_benchmark(name, config, X, y, groups, folds) for name in model_names}
+    write_comparison(Path(config["output_dir"]))
+    return results
+
+
+def write_comparison(output_dir: Path) -> Path:
+    """Consolidate every completed model, including models run separately."""
     rows = []
-    for name, result in results.items():
+    for metrics_path in sorted(output_dir.glob("metrics_*.json")):
+        result = json.loads(metrics_path.read_text(encoding="utf-8"))
+        name = result["model"]
         row = {"model": name}
         row.update({f"patient_{key}": value for key, value in result["patient_metrics"].items() if isinstance(value, float)})
         row.update({f"beat_{key}": value for key, value in result["beat_metrics"].items() if isinstance(value, float)})
         rows.append(row)
-    pd.DataFrame(rows).sort_values("patient_macro_f1", ascending=False).to_csv(Path(config["output_dir"]) / "comparison.csv", index=False)
-    return results
+    destination = output_dir / "comparison.csv"
+    pd.DataFrame(rows).sort_values("patient_macro_f1", ascending=False).to_csv(destination, index=False)
+    return destination
 

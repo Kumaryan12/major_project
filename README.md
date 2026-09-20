@@ -44,6 +44,8 @@ The follow-on benchmark uses a fixed patient split and the six classes with at l
 
 The fixed outer assignments are stored in `configs/patient_folds.csv`; benchmark metrics and patient confusion matrices are written to `results/patient_benchmark/`.
 
+Completed results and interpretation are in [`BENCHMARK_RESULTS.md`](BENCHMARK_RESULTS.md).
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:

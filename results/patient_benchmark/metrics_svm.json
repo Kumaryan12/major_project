@@ -1,0 +1,605 @@
+{
+  "model": "svm",
+  "classes": [
+    "AMI",
+    "ALMI",
+    "ASMI",
+    "IMI",
+    "ILMI",
+    "HC"
+  ],
+  "n_beats": 55863,
+  "n_patients": 164,
+  "weighting": "equal classes, equal patients within class",
+  "selection_metric": "patient_macro_f1",
+  "patient_metrics": {
+    "accuracy": 0.43902439024390244,
+    "balanced_accuracy": 0.37179042506985155,
+    "macro_f1": 0.3660686122615872,
+    "macro_roc_auc_ovr": 0.7666855270438188,
+    "macro_average_precision": 0.3836584266183955,
+    "classification_report": {
+      "AMI": {
+        "precision": 0.18518518518518517,
+        "recall": 0.29411764705882354,
+        "f1-score": 0.22727272727272727,
+        "support": 17.0
+      },
+      "ALMI": {
+        "precision": 0.07692307692307693,
+        "recall": 0.0625,
+        "f1-score": 0.06896551724137931,
+        "support": 16.0
+      },
+      "ASMI": {
+        "precision": 0.3684210526315789,
+        "recall": 0.25925925925925924,
+        "f1-score": 0.30434782608695654,
+        "support": 27.0
+      },
+      "IMI": {
+        "precision": 0.5384615384615384,
+        "recall": 0.4827586206896552,
+        "f1-score": 0.509090909090909,
+        "support": 29.0
+      },
+      "ILMI": {
+        "precision": 0.3333333333333333,
+        "recall": 0.4782608695652174,
+        "f1-score": 0.39285714285714285,
+        "support": 23.0
+      },
+      "HC": {
+        "precision": 0.7391304347826086,
+        "recall": 0.6538461538461539,
+        "f1-score": 0.6938775510204082,
+        "support": 52.0
+      },
+      "accuracy": 0.43902439024390244,
+      "macro avg": {
+        "precision": 0.3735757702195535,
+        "recall": 0.37179042506985155,
+        "f1-score": 0.3660686122615872,
+        "support": 164.0
+      },
+      "weighted avg": {
+        "precision": 0.4636775590897374,
+        "recall": 0.43902439024390244,
+        "f1-score": 0.44552109296498865,
+        "support": 164.0
+      }
+    }
+  },
+  "beat_metrics": {
+    "accuracy": 0.35431323058195946,
+    "balanced_accuracy": 0.35087081793916247,
+    "macro_f1": 0.34198238695518124,
+    "macro_roc_auc_ovr": 0.7091665271244206,
+    "macro_average_precision": 0.3251410015684059,
+    "classification_report": {
+      "AMI": {
+        "precision": 0.23241916551061786,
+        "recall": 0.3439128375177641,
+        "f1-score": 0.27738155883851245,
+        "support": 6333.0
+      },
+      "ALMI": {
+        "precision": 0.18986905582356994,
+        "recall": 0.24212684927493774,
+        "f1-score": 0.21283718534732504,
+        "support": 6827.0
+      },
+      "ASMI": {
+        "precision": 0.3526276831976314,
+        "recall": 0.20732874923840194,
+        "f1-score": 0.2611269458452094,
+        "support": 11489.0
+      },
+      "IMI": {
+        "precision": 0.4800767099936075,
+        "recall": 0.36309427880741335,
+        "f1-score": 0.41347036153422645,
+        "support": 12410.0
+      },
+      "ILMI": {
+        "precision": 0.30438326390146714,
+        "recall": 0.4175673996769785,
+        "f1-score": 0.3521030852234037,
+        "support": 8049.0
+      },
+      "HC": {
+        "precision": 0.5388097708195794,
+        "recall": 0.5311947931194793,
+        "f1-score": 0.5349751849424104,
+        "support": 10755.0
+      },
+      "accuracy": 0.35431323058195946,
+      "macro avg": {
+        "precision": 0.3496976082077456,
+        "recall": 0.35087081793916247,
+        "f1-score": 0.34198238695518124,
+        "support": 55863.0
+      },
+      "weighted avg": {
+        "precision": 0.3763155938433667,
+        "recall": 0.35431323058195946,
+        "f1-score": 0.3567421619133353,
+        "support": 55863.0
+      }
+    }
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "best_params": {
+        "C": 0.01
+      },
+      "inner_patient_macro_f1": 0.35384219867722694,
+      "test_patient_accuracy": 0.35294117647058826,
+      "test_patient_macro_f1": 0.2638888888888889,
+      "train_patients": 147,
+      "test_patients": 17,
+      "patient_overlap": 0
+    },
+    {
+      "fold": 2,
+      "best_params": {
+        "C": 0.1
+      },
+      "inner_patient_macro_f1": 0.3234540599865678,
+      "test_patient_accuracy": 0.47058823529411764,
+      "test_patient_macro_f1": 0.3537037037037037,
+      "train_patients": 147,
+      "test_patients": 17,
+      "patient_overlap": 0
+    },
+    {
+      "fold": 3,
+      "best_params": {
+        "C": 0.1
+      },
+      "inner_patient_macro_f1": 0.34937963589494375,
+      "test_patient_accuracy": 0.35294117647058826,
+      "test_patient_macro_f1": 0.2657407407407407,
+      "train_patients": 147,
+      "test_patients": 17,
+      "patient_overlap": 0
+    },
+    {
+      "fold": 4,
+      "best_params": {
+        "C": 0.01
+      },
+      "inner_patient_macro_f1": 0.37141900021406665,
+      "test_patient_accuracy": 0.35294117647058826,
+      "test_patient_macro_f1": 0.2545454545454546,
+      "train_patients": 147,
+      "test_patients": 17,
+      "patient_overlap": 0
+    },
+    {
+      "fold": 5,
+      "best_params": {
+        "C": 0.1
+      },
+      "inner_patient_macro_f1": 0.4032734716255766,
+      "test_patient_accuracy": 0.3125,
+      "test_patient_macro_f1": 0.24206349206349206,
+      "train_patients": 148,
+      "test_patients": 16,
+      "patient_overlap": 0
+    },
+    {
+      "fold": 6,
+      "best_params": {
+        "C": 0.01
+      },
+      "inner_patient_macro_f1": 0.32875564085485437,
+      "test_patient_accuracy": 0.5625,
+      "test_patient_macro_f1": 0.47301587301587295,
+      "train_patients": 148,
+      "test_patients": 16,
+      "patient_overlap": 0
+    },
+    {
+      "fold": 7,
+      "best_params": {
+        "C": 0.01
+      },
+      "inner_patient_macro_f1": 0.3575745857230115,
+      "test_patient_accuracy": 0.375,
+      "test_patient_macro_f1": 0.2885281385281385,
+      "train_patients": 148,
+      "test_patients": 16,
+      "patient_overlap": 0
+    },
+    {
+      "fold": 8,
+      "best_params": {
+        "C": 0.01
+      },
+      "inner_patient_macro_f1": 0.358906805746331,
+      "test_patient_accuracy": 0.5,
+      "test_patient_macro_f1": 0.3878787878787879,
+      "train_patients": 148,
+      "test_patients": 16,
+      "patient_overlap": 0
+    },
+    {
+      "fold": 9,
+      "best_params": {
+        "C": 0.1
+      },
+      "inner_patient_macro_f1": 0.31545038894789773,
+      "test_patient_accuracy": 0.5,
+      "test_patient_macro_f1": 0.375,
+      "train_patients": 148,
+      "test_patients": 16,
+      "patient_overlap": 0
+    },
+    {
+      "fold": 10,
+      "best_params": {
+        "C": 0.01
+      },
+      "inner_patient_macro_f1": 0.3633845777317597,
+      "test_patient_accuracy": 0.625,
+      "test_patient_macro_f1": 0.5070707070707071,
+      "train_patients": 148,
+      "test_patients": 16,
+      "patient_overlap": 0
+    }
+  ],
+  "inner_tuning": {
+    "1": [
+      {
+        "params": {
+          "C": 0.01
+        },
+        "fold_scores": [
+          0.23221415607985482,
+          0.34380979444918064,
+          0.4855026455026455
+        ],
+        "mean_patient_macro_f1": 0.35384219867722694
+      },
+      {
+        "params": {
+          "C": 0.1
+        },
+        "fold_scores": [
+          0.23082526719096594,
+          0.34380979444918064,
+          0.4728835978835979
+        ],
+        "mean_patient_macro_f1": 0.34917288650791484
+      },
+      {
+        "params": {
+          "C": 1.0
+        },
+        "fold_scores": [
+          0.23082526719096594,
+          0.34380979444918064,
+          0.4728835978835979
+        ],
+        "mean_patient_macro_f1": 0.34917288650791484
+      }
+    ],
+    "2": [
+      {
+        "params": {
+          "C": 0.01
+        },
+        "fold_scores": [
+          0.3768656180420887,
+          0.2701058201058201,
+          0.32129588677576293
+        ],
+        "mean_patient_macro_f1": 0.32275577497455726
+      },
+      {
+        "params": {
+          "C": 0.1
+        },
+        "fold_scores": [
+          0.3789604730781202,
+          0.2701058201058201,
+          0.32129588677576293
+        ],
+        "mean_patient_macro_f1": 0.3234540599865678
+      },
+      {
+        "params": {
+          "C": 1.0
+        },
+        "fold_scores": [
+          0.3789604730781202,
+          0.2701058201058201,
+          0.32129588677576293
+        ],
+        "mean_patient_macro_f1": 0.3234540599865678
+      }
+    ],
+    "3": [
+      {
+        "params": {
+          "C": 0.01
+        },
+        "fold_scores": [
+          0.41424554977186556,
+          0.32870789341377576,
+          0.28361943067825424
+        ],
+        "mean_patient_macro_f1": 0.34219095795463184
+      },
+      {
+        "params": {
+          "C": 0.1
+        },
+        "fold_scores": [
+          0.43581158359280137,
+          0.32870789341377576,
+          0.28361943067825424
+        ],
+        "mean_patient_macro_f1": 0.34937963589494375
+      },
+      {
+        "params": {
+          "C": 1.0
+        },
+        "fold_scores": [
+          0.43581158359280137,
+          0.32870789341377576,
+          0.28361943067825424
+        ],
+        "mean_patient_macro_f1": 0.34937963589494375
+      }
+    ],
+    "4": [
+      {
+        "params": {
+          "C": 0.01
+        },
+        "fold_scores": [
+          0.28289760348583876,
+          0.4430325121501592,
+          0.3883268850062019
+        ],
+        "mean_patient_macro_f1": 0.37141900021406665
+      },
+      {
+        "params": {
+          "C": 0.1
+        },
+        "fold_scores": [
+          0.28289760348583876,
+          0.4430325121501592,
+          0.3883268850062019
+        ],
+        "mean_patient_macro_f1": 0.37141900021406665
+      },
+      {
+        "params": {
+          "C": 1.0
+        },
+        "fold_scores": [
+          0.28289760348583876,
+          0.4430325121501592,
+          0.3883268850062019
+        ],
+        "mean_patient_macro_f1": 0.37141900021406665
+      }
+    ],
+    "5": [
+      {
+        "params": {
+          "C": 0.01
+        },
+        "fold_scores": [
+          0.3482667430035851,
+          0.41737682252388136,
+          0.44338299329224923
+        ],
+        "mean_patient_macro_f1": 0.40300885293990524
+      },
+      {
+        "params": {
+          "C": 0.1
+        },
+        "fold_scores": [
+          0.34906059906059905,
+          0.41737682252388136,
+          0.44338299329224923
+        ],
+        "mean_patient_macro_f1": 0.4032734716255766
+      },
+      {
+        "params": {
+          "C": 1.0
+        },
+        "fold_scores": [
+          0.34906059906059905,
+          0.41737682252388136,
+          0.44338299329224923
+        ],
+        "mean_patient_macro_f1": 0.4032734716255766
+      }
+    ],
+    "6": [
+      {
+        "params": {
+          "C": 0.01
+        },
+        "fold_scores": [
+          0.3061751819465068,
+          0.32634680134680133,
+          0.35374493927125505
+        ],
+        "mean_patient_macro_f1": 0.32875564085485437
+      },
+      {
+        "params": {
+          "C": 0.1
+        },
+        "fold_scores": [
+          0.3061751819465068,
+          0.32634680134680133,
+          0.35374493927125505
+        ],
+        "mean_patient_macro_f1": 0.32875564085485437
+      },
+      {
+        "params": {
+          "C": 1.0
+        },
+        "fold_scores": [
+          0.3061751819465068,
+          0.32634680134680133,
+          0.35374493927125505
+        ],
+        "mean_patient_macro_f1": 0.32875564085485437
+      }
+    ],
+    "7": [
+      {
+        "params": {
+          "C": 0.01
+        },
+        "fold_scores": [
+          0.33833678398895795,
+          0.39391078270388613,
+          0.34047619047619043
+        ],
+        "mean_patient_macro_f1": 0.3575745857230115
+      },
+      {
+        "params": {
+          "C": 0.1
+        },
+        "fold_scores": [
+          0.33833678398895795,
+          0.3836601307189542,
+          0.34047619047619043
+        ],
+        "mean_patient_macro_f1": 0.3541577017280342
+      },
+      {
+        "params": {
+          "C": 1.0
+        },
+        "fold_scores": [
+          0.33833678398895795,
+          0.3836601307189542,
+          0.34047619047619043
+        ],
+        "mean_patient_macro_f1": 0.3541577017280342
+      }
+    ],
+    "8": [
+      {
+        "params": {
+          "C": 0.01
+        },
+        "fold_scores": [
+          0.4445475333633228,
+          0.36324377377008954,
+          0.2689291101055807
+        ],
+        "mean_patient_macro_f1": 0.358906805746331
+      },
+      {
+        "params": {
+          "C": 0.1
+        },
+        "fold_scores": [
+          0.4445475333633228,
+          0.3622691149006938,
+          0.2689291101055807
+        ],
+        "mean_patient_macro_f1": 0.35858191945653245
+      },
+      {
+        "params": {
+          "C": 1.0
+        },
+        "fold_scores": [
+          0.4445475333633228,
+          0.3622691149006938,
+          0.2689291101055807
+        ],
+        "mean_patient_macro_f1": 0.35858191945653245
+      }
+    ],
+    "9": [
+      {
+        "params": {
+          "C": 0.01
+        },
+        "fold_scores": [
+          0.34999008563999073,
+          0.32567688159793423,
+          0.26898836457659986
+        ],
+        "mean_patient_macro_f1": 0.3148851106048416
+      },
+      {
+        "params": {
+          "C": 0.1
+        },
+        "fold_scores": [
+          0.34999008563999073,
+          0.32567688159793423,
+          0.2706841996057682
+        ],
+        "mean_patient_macro_f1": 0.31545038894789773
+      },
+      {
+        "params": {
+          "C": 1.0
+        },
+        "fold_scores": [
+          0.34999008563999073,
+          0.32567688159793423,
+          0.2706841996057682
+        ],
+        "mean_patient_macro_f1": 0.31545038894789773
+      }
+    ],
+    "10": [
+      {
+        "params": {
+          "C": 0.01
+        },
+        "fold_scores": [
+          0.3833769874092455,
+          0.3742370632463512,
+          0.3325396825396825
+        ],
+        "mean_patient_macro_f1": 0.3633845777317597
+      },
+      {
+        "params": {
+          "C": 0.1
+        },
+        "fold_scores": [
+          0.3833769874092455,
+          0.3742370632463512,
+          0.3325396825396825
+        ],
+        "mean_patient_macro_f1": 0.3633845777317597
+      },
+      {
+        "params": {
+          "C": 1.0
+        },
+        "fold_scores": [
+          0.3833769874092455,
+          0.3742370632463512,
+          0.3325396825396825
+        ],
+        "mean_patient_macro_f1": 0.3633845777317597
+      }
+    ]
+  }
+}
