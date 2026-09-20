@@ -40,7 +40,7 @@ def download_file(url: str, destination: Path) -> None:
     raise RuntimeError(f"Could not download {url}") from last_error
 
 
-def prepare_database(base_url: str, raw_dir: Path) -> list[dict[str, str]]:
+def prepare_database(base_url: str, raw_dir: Path, excluded_patients: set[str] | None = None) -> list[dict[str, str]]:
     """Download headers and only the Frank XYZ signal files used by the paper."""
     raw_dir.mkdir(parents=True, exist_ok=True)
     records = fetch_text(f"{base_url.rstrip('/')}/RECORDS").split()
@@ -57,9 +57,12 @@ def prepare_database(base_url: str, raw_dir: Path) -> list[dict[str, str]]:
             future.result()
             if index % 50 == 0:
                 print(f"Downloaded {index}/{len(records)} headers", flush=True)
+    excluded_patients = excluded_patients or set()
     manifest: list[dict[str, str]] = []
     for record in records:
         relative = Path(record)
+        if relative.parent.name in excluded_patients:
+            continue
         header_path = raw_dir / relative.with_suffix(".hea")
         header_text = header_path.read_text(encoding="latin1")
         comments = [line for line in header_text.splitlines() if line.startswith("#")]
@@ -71,13 +74,11 @@ def prepare_database(base_url: str, raw_dir: Path) -> list[dict[str, str]]:
             "record": record,
             "patient_id": relative.parent.name,
             "label": label,
-            "label_source": (
-                "acute" if label_from_comments([f"# Reason for admission: Myocardial infarction", f"# Acute infarction (localization): {fields.get('acute infarction (localization)', '')}"]) else "former"
-            ) if label != "HC" else "healthy",
+            "label_source": "healthy" if label == "HC" else "acute",
             "acute_location": fields.get("acute infarction (localization)", ""),
             "former_location": fields.get("former infarction (localization)", ""),
         })
-    with ThreadPoolExecutor(max_workers=8) as pool:
+    with ThreadPoolExecutor(max_workers=24) as pool:
         jobs = {
             pool.submit(
                 download_file,

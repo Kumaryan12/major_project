@@ -1,6 +1,7 @@
 seed: 42
 data:
-  database_url: https://physionet.org/files/ptbdb/1.0.0
+  # Official public PhysioNet S3 mirror; avoids rate-limiting on the web UI.
+  database_url: https://physionet-open.s3.amazonaws.com/ptbdb/1.0.0
   raw_dir: data/raw/ptbdb
   processed_dir: data/processed
   leads: [vx, vy, vz]
@@ -8,6 +9,8 @@ data:
   before_r: 250
   after_r: 400
   max_beats_per_record: null
+  # Paper cohort: patient294 is excluded for excessive signal noise.
+  excluded_patients: [patient294]
 signal:
   denoise_wavelet: bior6.8
   denoise_level: 9
@@ -20,6 +23,7 @@ features:
   detail_levels: [3, 4, 5, 6, 7, 8, 9]
   time_rank: 3
   canonicalize_svd_sign: true
+  n_jobs: -1
 model:
   n_estimators: 500
   max_features: sqrt
@@ -27,4 +31,3 @@ model:
 evaluation:
   n_splits: 10
   modes: [beat, patient]
-

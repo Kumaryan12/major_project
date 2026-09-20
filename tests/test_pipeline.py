@@ -8,6 +8,8 @@ from mi_localization.signal import extract_beats
 def test_label_variants():
     assert location_to_class("antero-septo-lateral") == "ASLMI"
     assert location_to_class("infero-posterior") == "IPMI"
+    assert location_to_class("infero-poster-lateral") == "IPLMI"
+    assert location_to_class("infero-latera") == "ILMI"
     assert location_to_class("postero-lateral") == "PLMI"
 
 
@@ -26,4 +28,3 @@ def test_tensor_and_feature_shapes_are_paper_shapes():
     assert tensor.shape == (3, 651, 8)
     assert feature.shape == (72,)
     assert np.all(np.isfinite(feature))
-

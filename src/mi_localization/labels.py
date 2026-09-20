@@ -41,6 +41,8 @@ def _normalize_location(value: str) -> str:
     value = re.sub(r"\bseptum\b|\bsepto\b|\bsept\b", "septal", value)
     value = value.replace("antero", "anterior").replace("postero", "posterior")
     value = value.replace("infero", "inferior")
+    value = re.sub(r"\bposter\b", "posterior", value)
+    value = re.sub(r"\blatera\b", "lateral", value)
     return re.sub(r"[^a-z]+", " ", value).strip()
 
 
@@ -88,10 +90,6 @@ def label_from_comments(comments: list[str] | str) -> str | None:
         return "HC"
     if "myocardial infarction" not in reason and "myocardial infarction" not in diagnosis:
         return None
-    # Acute localization is the most specific label. Fall back to former MI only
-    # where no acute site exists; this decision is recorded in the manifest.
-    for key in ("acute infarction (localization)", "former infarction (localization)"):
-        label = location_to_class(fields.get(key, ""))
-        if label:
-            return label
-    return None
+    # The paper's 126 MI subjects match the subset with an acute localization.
+    # Falling back to former MI silently expands the cohort to 148 MI subjects.
+    return location_to_class(fields.get("acute infarction (localization)", ""))

@@ -29,9 +29,20 @@ def tensorize_beat(
     """Return X with shape (3 leads, 651 time samples, 8 subbands)."""
     if beat.ndim != 2 or beat.shape[0] != 3:
         raise ValueError(f"Expected beat shape (3, time), got {beat.shape}")
+    details_by_lead: list[list[np.ndarray]] = []
+    for row in beat:
+        with warnings.catch_warnings():
+            warnings.filterwarnings("ignore", message="Level value of .* is too high")
+            coeffs = pywt.wavedec(row, wavelet, level=level, mode="symmetric")
+        reconstructed = []
+        for detail in detail_levels:
+            selected = [np.zeros_like(c) for c in coeffs]
+            selected[1 + level - detail] = coeffs[1 + level - detail]
+            reconstructed.append(pywt.waverec(selected, wavelet, mode="symmetric")[: row.size])
+        details_by_lead.append(reconstructed)
     bands = [beat]
-    for detail in detail_levels:
-        bands.append(np.vstack([reconstruct_detail(row, wavelet, level, detail) for row in beat]))
+    for detail_index in range(len(detail_levels)):
+        bands.append(np.vstack([lead[detail_index] for lead in details_by_lead]))
     return np.stack(bands, axis=2)
 
 
@@ -58,7 +69,10 @@ def tucker_time_features(tensor: np.ndarray, rank: int = 3, canonicalize_sign: b
     if canonicalize_sign:
         basis = _canonicalize_columns(basis)
     core_unfolding = basis.T @ time_unfolding
-    return core_unfolding.reshape(-1, order="F").astype(np.float32)
+    # Convert mode-2 unfolding back to G(lead, compressed_time, subband)
+    # before MATLAB-compatible vec(G) column-major vectorization.
+    core = core_unfolding.reshape(rank, tensor.shape[0], tensor.shape[2], order="F").transpose(1, 0, 2)
+    return core.reshape(-1, order="F").astype(np.float32)
 
 
 def extract_features(beat: np.ndarray, **kwargs: object) -> np.ndarray:

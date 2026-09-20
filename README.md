@@ -47,11 +47,10 @@ Those choices are deterministic here and exposed in `configs/paper.yaml`. Conseq
 
 ## Paper target counts
 
-The paper reports 60,527 beats from 178 subjects (126 MI and 52 healthy): AMI 6,402; ALMI 6,628; ASMI 11,333; ASLMI 272; IMI 12,702; ILMI 8,158; IPMI 48; IPLMI 2,711; LMI 460; PMI 466; PLMI 781; HC 10,566. The generated `manifest.csv` and `beats.csv` make any count differences auditable.
+The paper reports 60,527 beats from 178 subjects (126 MI and 52 healthy): AMI 6,402; ALMI 6,628; ASMI 11,333; ASLMI 272; IMI 12,702; ILMI 8,158; IPMI 48; IPLMI 2,711; LMI 460; PMI 466; PLMI 781; HC 10,566. The paper's cohort excludes patient294 for excessive signal noise and excludes 21 MI subjects without acute-location annotations. The generated `manifest.csv` and `beats.csv` make any count differences auditable.
 
 ## Tests
 
 ```bash
 .venv/bin/pytest -q
 ```
-
