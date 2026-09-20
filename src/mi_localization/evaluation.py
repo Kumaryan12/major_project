@@ -70,6 +70,14 @@ def evaluate_cv(X: np.ndarray, y: np.ndarray, groups: np.ndarray, mode: str, con
     indices = [CLASS_ORDER.index(name) for name in present]
     binary = label_binarize(y, classes=CLASS_ORDER)
     report = classification_report(y, predictions, labels=present, output_dict=True, zero_division=0)
+    per_class_auc = {
+        name: float(roc_auc_score(binary[:, index], probabilities[:, index]))
+        for name, index in zip(present, indices, strict=True)
+    }
+    per_class_ap = {
+        name: float(average_precision_score(binary[:, index], probabilities[:, index]))
+        for name, index in zip(present, indices, strict=True)
+    }
     metrics = {
         "mode": mode,
         "accuracy": float(accuracy_score(y, predictions)),
@@ -78,6 +86,8 @@ def evaluate_cv(X: np.ndarray, y: np.ndarray, groups: np.ndarray, mode: str, con
         "n_beats": int(len(y)),
         "n_patients": int(len(np.unique(groups))),
         "classes": present,
+        "per_class_roc_auc": per_class_auc,
+        "per_class_average_precision": per_class_ap,
         "classification_report": report,
         "folds": fold_rows,
     }
@@ -96,4 +106,3 @@ def evaluate_cv(X: np.ndarray, y: np.ndarray, groups: np.ndarray, mode: str, con
     final_model.fit(X, y)
     joblib.dump(final_model, output_dir / f"model_{mode}.joblib")
     return metrics
-

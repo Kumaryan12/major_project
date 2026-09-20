@@ -32,6 +32,8 @@ The public data download is a few hundred MB because only `.hea` and `.xyz` file
 
 Outputs are written to `results/`: JSON metrics, out-of-fold predictions, confusion matrices, plots, and a final fitted model.
 
+The completed baseline and patient-independent findings are summarized in [`RESULTS.md`](RESULTS.md).
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:
@@ -44,6 +46,8 @@ The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3
 - SVD sign handling and vectorization order.
 
 Those choices are deterministic here and exposed in `configs/paper.yaml`. Consequently, matching the paper's 99.80% exactly is not guaranteed. More importantly, random beat folds contain beats from the same patients on both sides of the split. The `patient` mode removes this leakage and is the scientifically relevant extension.
+
+The Pan-Tompkins threshold scale is set to `0.06`, selected against the only detector target published by the paper: its class-wise beat-count table. On the matched cohort this implementation detects 60,507 beats versus the reported 60,527 (0.03% difference). This calibration is preprocessing reproduction, not classifier tuning; the choice is recorded to avoid presenting an undocumented threshold as independently derived.
 
 ## Paper target counts
 

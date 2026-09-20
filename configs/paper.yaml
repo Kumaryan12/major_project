@@ -16,7 +16,9 @@ signal:
   denoise_level: 9
   rpeak_refractory_ms: 250
   rpeak_integration_ms: 150
-  rpeak_threshold_scale: 0.35
+  # Paper omits the Pan-Tompkins threshold. 0.06 reproduces its total beat
+  # count within 0.04% (60,507 vs 60,527) on the matched cohort.
+  rpeak_threshold_scale: 0.06
 features:
   wavelet: bior6.8
   level: 9
