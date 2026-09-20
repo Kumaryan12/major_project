@@ -1,0 +1,30 @@
+seed: 42
+data:
+  database_url: https://physionet.org/files/ptbdb/1.0.0
+  raw_dir: data/raw/ptbdb
+  processed_dir: data/processed
+  leads: [vx, vy, vz]
+  sampling_rate: 1000
+  before_r: 250
+  after_r: 400
+  max_beats_per_record: null
+signal:
+  denoise_wavelet: bior6.8
+  denoise_level: 9
+  rpeak_refractory_ms: 250
+  rpeak_integration_ms: 150
+  rpeak_threshold_scale: 0.35
+features:
+  wavelet: bior6.8
+  level: 9
+  detail_levels: [3, 4, 5, 6, 7, 8, 9]
+  time_rank: 3
+  canonicalize_svd_sign: true
+model:
+  n_estimators: 500
+  max_features: sqrt
+  n_jobs: -1
+evaluation:
+  n_splits: 10
+  modes: [beat, patient]
+
