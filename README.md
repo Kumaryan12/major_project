@@ -46,6 +46,17 @@ The fixed outer assignments are stored in `configs/patient_folds.csv`; benchmark
 
 Completed results and interpretation are in [`BENCHMARK_RESULTS.md`](BENCHMARK_RESULTS.md).
 
+## Representation ablations
+
+Generate the shared feature bank, then evaluate every representation with a fixed XGBoost model and the frozen patient folds:
+
+```bash
+.venv/bin/mi-localization ablation-features
+.venv/bin/mi-localization ablation
+```
+
+The study compares Tucker ranks 1/2/3/5/8, original versus denoised signals, amplitude-normalized VCG, individual X/Y/Z leads, removal of wavelet subbands, and wavelet statistics without Tucker compression. These are exploratory comparisons on the frozen outer folds; the strongest candidate must subsequently be confirmed with nested tuning.
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:

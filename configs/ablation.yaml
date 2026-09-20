@@ -1,0 +1,32 @@
+seed: 42
+paper_config: configs/paper.yaml
+beats_path: data/processed/beats.csv
+feature_bank_path: data/processed/ablation_features.npz
+folds_path: configs/patient_folds.csv
+output_dir: results/ablation
+classes: [AMI, ALMI, ASMI, IMI, ILMI, HC]
+outer_splits: 10
+
+# Fixed exploratory model: the depth-6 setting selected in all ten nested
+# XGBoost folds of the baseline benchmark. No per-ablation tuning is performed.
+model:
+  n_estimators: 250
+  max_depth: 6
+  learning_rate: 0.05
+  subsample: 0.8
+  colsample_bytree: 0.8
+
+representations:
+  - tucker_clean_r1
+  - tucker_clean_r2
+  - tucker_clean_r3
+  - tucker_clean_r5
+  - tucker_clean_r8
+  - tucker_raw_r3
+  - tucker_vector_norm_r3
+  - tucker_x_r3
+  - tucker_y_r3
+  - tucker_z_r3
+  - tucker_no_wavelet_r3
+  - wavelet_statistics
+

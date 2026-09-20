@@ -27,8 +27,8 @@ def tensorize_beat(
     detail_levels: tuple[int, ...] = (3, 4, 5, 6, 7, 8, 9),
 ) -> np.ndarray:
     """Return X with shape (3 leads, 651 time samples, 8 subbands)."""
-    if beat.ndim != 2 or beat.shape[0] != 3:
-        raise ValueError(f"Expected beat shape (3, time), got {beat.shape}")
+    if beat.ndim != 2 or beat.shape[0] < 1:
+        raise ValueError(f"Expected beat shape (leads, time), got {beat.shape}")
     details_by_lead: list[list[np.ndarray]] = []
     for row in beat:
         with warnings.catch_warnings():
@@ -73,6 +73,50 @@ def tucker_time_features(tensor: np.ndarray, rank: int = 3, canonicalize_sign: b
     # before MATLAB-compatible vec(G) column-major vectorization.
     core = core_unfolding.reshape(rank, tensor.shape[0], tensor.shape[2], order="F").transpose(1, 0, 2)
     return core.reshape(-1, order="F").astype(np.float32)
+
+
+def tucker_time_features_multi(tensor: np.ndarray, ranks: tuple[int, ...], canonicalize_sign: bool = True) -> dict[int, np.ndarray]:
+    """Extract several time ranks from one SVD for efficient ablations."""
+    if not ranks or min(ranks) < 1:
+        raise ValueError("ranks must contain positive integers")
+    time_unfolding = np.transpose(tensor, (1, 0, 2)).reshape(tensor.shape[1], -1, order="F")
+    u, _, _ = svd(time_unfolding, full_matrices=False, lapack_driver="gesdd")
+    if max(ranks) > u.shape[1]:
+        raise ValueError(f"Rank {max(ranks)} exceeds maximum {u.shape[1]}")
+    result: dict[int, np.ndarray] = {}
+    for rank in ranks:
+        basis = u[:, :rank]
+        if canonicalize_sign:
+            basis = _canonicalize_columns(basis)
+        core_unfolding = basis.T @ time_unfolding
+        core = core_unfolding.reshape(rank, tensor.shape[0], tensor.shape[2], order="F").transpose(1, 0, 2)
+        result[rank] = core.reshape(-1, order="F").astype(np.float32)
+    return result
+
+
+def normalize_vector_rms(beat: np.ndarray) -> np.ndarray:
+    """Remove lead baselines and global beat amplitude while preserving XYZ ratios."""
+    centered = beat - np.median(beat, axis=1, keepdims=True)
+    scale = float(np.sqrt(np.mean(centered * centered)))
+    return centered / max(scale, np.finfo(np.float64).eps)
+
+
+def wavelet_statistical_features(tensor: np.ndarray) -> np.ndarray:
+    """Summarize every lead/subband without Tucker compression."""
+    from scipy.stats import kurtosis, skew
+
+    rows = np.transpose(tensor, (0, 2, 1)).reshape(-1, tensor.shape[1])
+    features = np.column_stack([
+        rows.mean(axis=1),
+        rows.std(axis=1),
+        np.sqrt(np.mean(rows * rows, axis=1)),
+        np.ptp(rows, axis=1),
+        np.mean(np.abs(rows), axis=1),
+        np.log1p(np.sum(rows * rows, axis=1)),
+        np.nan_to_num(skew(rows, axis=1, bias=False)),
+        np.nan_to_num(kurtosis(rows, axis=1, bias=False)),
+    ])
+    return features.reshape(-1).astype(np.float32)
 
 
 def extract_features(beat: np.ndarray, **kwargs: object) -> np.ndarray:
