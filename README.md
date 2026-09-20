@@ -34,6 +34,16 @@ Outputs are written to `results/`: JSON metrics, out-of-fold predictions, confus
 
 The completed baseline and patient-independent findings are summarized in [`RESULTS.md`](RESULTS.md).
 
+## Leakage-free model benchmark
+
+The follow-on benchmark uses a fixed patient split and the six classes with at least ten independent patients (`AMI`, `ALMI`, `ASMI`, `IMI`, `ILMI`, `HC`). Hyperparameters are selected inside each training fold using three-fold patient-grouped validation and patient-level macro F1. Beats are weighted so classes contribute equally and patients contribute equally within each class. Test predictions are averaged across all beats belonging to a patient before classification.
+
+```bash
+.venv/bin/mi-localization benchmark --models rf svm xgboost
+```
+
+The fixed outer assignments are stored in `configs/patient_folds.csv`; benchmark metrics and patient confusion matrices are written to `results/patient_benchmark/`.
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:

@@ -1,0 +1,37 @@
+seed: 42
+features_path: data/processed/paper_features.npz
+folds_path: configs/patient_folds.csv
+output_dir: results/patient_benchmark
+
+# Each retained class has at least 10 independent patients. The full 12-class
+# result remains in RESULTS.md as the rare-class limitation analysis.
+classes: [AMI, ALMI, ASMI, IMI, ILMI, HC]
+outer_splits: 10
+inner_splits: 3
+selection_metric: patient_macro_f1
+aggregation: mean_probability
+
+models:
+  rf:
+    - n_estimators: 300
+      max_features: sqrt
+      min_samples_leaf: 1
+    - n_estimators: 300
+      max_features: sqrt
+      min_samples_leaf: 5
+  svm:
+    - C: 0.01
+    - C: 0.1
+    - C: 1.0
+  xgboost:
+    - n_estimators: 250
+      max_depth: 3
+      learning_rate: 0.05
+      subsample: 0.8
+      colsample_bytree: 0.8
+    - n_estimators: 250
+      max_depth: 6
+      learning_rate: 0.05
+      subsample: 0.8
+      colsample_bytree: 0.8
+
