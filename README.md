@@ -4,6 +4,8 @@ This repository is an end-to-end, reproducible reimplementation of Zhang et al.,
 
 > Research code only. It is not a medical device and must not be used for clinical diagnosis.
 
+For a concise, professor-facing summary of the completed experiments and open work, see the [major-project progress report](output/pdf/mi_localization_progress_report.pdf). Rebuild it with `pip install -e '.[report]'` and `python scripts/build_professor_progress_report.py`.
+
 ## Implemented pipeline
 
 1. Download the open PTB Diagnostic ECG Database headers and Frank `vx`, `vy`, `vz` files (not the unused 12-lead files).
