@@ -77,6 +77,17 @@ The follow-on external test trains the PTB-selected wavelet-statistics/XGBoost m
 
 The audit downloads PTB-XL metadata and freezes a strict six-class test manifest. Feature generation downloads the 500 Hz waveforms for that manifest (about 1,185 records), converts them to 1,000 Hz, and caches the external feature matrix. The final command uses the previously generated PTB feature bank from `ablation-features`. All configuration is in [`configs/ptbxl_external.yaml`](configs/ptbxl_external.yaml); the cohort and results are in [`EXTERNAL_RESULTS.md`](EXTERNAL_RESULTS.md). Raw waveforms, feature archives, and the fitted model are intentionally not committed.
 
+## Paired acquisition-domain investigation
+
+PTB records contain simultaneous 12-lead ECG and measured Frank XYZ. A separate experiment converts each PTB ECG to Kors XYZ and extracts statistics at the **same R-peak positions** as measured XYZ. It uses the frozen PTB patient folds to compare measured→measured, measured→derived, and derived→derived performance without touching the PTB-XL test.
+
+```bash
+.venv/bin/mi-localization domain-features
+.venv/bin/mi-localization domain-evaluate
+```
+
+Configuration is in [`configs/domain_shift.yaml`](configs/domain_shift.yaml); findings and limitations are in [`DOMAIN_SHIFT_RESULTS.md`](DOMAIN_SHIFT_RESULTS.md). The additional PTB ECG downloads and paired feature archive are cached locally and not committed.
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:

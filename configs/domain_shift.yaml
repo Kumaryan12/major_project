@@ -1,0 +1,11 @@
+seed: 42
+paper_config: configs/paper.yaml
+external_config: configs/ptbxl_external.yaml
+beats_path: data/processed/beats.csv
+measured_features_path: data/processed/ablation_features.npz
+folds_path: configs/patient_folds.csv
+output_dir: results/domain_shift
+classes: [AMI, ALMI, ASMI, IMI, ILMI, HC]
+download_workers: 12
+feature_workers: 4
+rpeak_tolerance_ms: 100
