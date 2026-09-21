@@ -65,6 +65,18 @@ The wavelet-statistics candidate can be rerun with the benchmark's nested select
 
 Completed comparisons and their limitations are in [`ABLATION_RESULTS.md`](ABLATION_RESULTS.md).
 
+## Locked external validation on PTB-XL
+
+The follow-on external test trains the PTB-selected wavelet-statistics/XGBoost model on all 164 eligible PTB patients, then evaluates it **once** on PTB-XL's patient-disjoint recommended fold 10. PTB-XL has 12-lead ECG rather than measured Frank VCG, so the eight independent ECG leads are converted to estimated XYZ with the published Kors regression matrix before applying the same beat extraction and 192-feature representation. No PTB-XL record is used to select the representation, model, or hyperparameters.
+
+```bash
+.venv/bin/mi-localization ptbxl-audit
+.venv/bin/mi-localization ptbxl-features
+.venv/bin/mi-localization ptbxl-external
+```
+
+The audit downloads PTB-XL metadata and freezes a strict six-class test manifest. Feature generation downloads the 500 Hz waveforms for that manifest (about 1,185 records), converts them to 1,000 Hz, and caches the external feature matrix. The final command uses the previously generated PTB feature bank from `ablation-features`. All configuration is in [`configs/ptbxl_external.yaml`](configs/ptbxl_external.yaml); the cohort and results are in [`EXTERNAL_RESULTS.md`](EXTERNAL_RESULTS.md). Raw waveforms, feature archives, and the fitted model are intentionally not committed.
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:

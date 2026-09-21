@@ -12,6 +12,7 @@ from .ablation import build_feature_bank, run_ablation
 from .benchmark import run_benchmark
 from .pipeline import evaluate, featurize, prepare
 from .ptbxl import audit_labels
+from .external import make_external_features, evaluate_external
 
 
 def load_config(path: str) -> dict:
@@ -21,7 +22,7 @@ def load_config(path: str) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Reproduce the VCG Tucker MI-localization paper")
-    parser.add_argument("command", choices=["prepare", "features", "evaluate", "benchmark", "ablation-features", "ablation", "ptbxl-audit", "run"])
+    parser.add_argument("command", choices=["prepare", "features", "evaluate", "benchmark", "ablation-features", "ablation", "ptbxl-audit", "ptbxl-features", "ptbxl-external", "run"])
     parser.add_argument("--config", default="configs/paper.yaml")
     parser.add_argument("--benchmark-config", default="configs/patient_benchmark.yaml")
     parser.add_argument("--ablation-config", default="configs/ablation.yaml")
@@ -33,6 +34,13 @@ def main() -> None:
     config = load_config(args.config)
     if args.command == "ptbxl-audit":
         print(json.dumps(audit_labels(load_config(args.ptbxl_config)), indent=2))
+        return
+    if args.command in {"ptbxl-features", "ptbxl-external"}:
+        external = load_config(args.ptbxl_config)
+        if args.command == "ptbxl-features":
+            print(f"External features saved to {make_external_features(external)}")
+        else:
+            print(json.dumps(evaluate_external(external), indent=2))
         return
     if args.command in {"ablation-features", "ablation"}:
         ablation = load_config(args.ablation_config)

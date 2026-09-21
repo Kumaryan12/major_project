@@ -1,0 +1,141 @@
+{
+  "protocol": "PTB measured Frank XYZ training; PTB-XL fold-10 ECG transformed to Kors XYZ; zero PTB-XL tuning",
+  "representation": "wavelet_statistics",
+  "model_config": {
+    "n_estimators": 250,
+    "max_depth": 3,
+    "learning_rate": 0.05,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8
+  },
+  "test_fold": 10,
+  "classes": [
+    "AMI",
+    "ALMI",
+    "ASMI",
+    "IMI",
+    "ILMI",
+    "HC"
+  ],
+  "train_patients": 164,
+  "train_beats": 55863,
+  "test_patients": 1092,
+  "test_records": 1185,
+  "test_beats": 13564,
+  "patient_metrics": {
+    "accuracy": 0.5622710622710623,
+    "balanced_accuracy": 0.24213758876273941,
+    "macro_f1": 0.24198146470543758,
+    "macro_roc_auc_ovr": 0.6849890370025714,
+    "macro_average_precision": 0.25260524193911804,
+    "classification_report": {
+      "AMI": {
+        "precision": 0.045454545454545456,
+        "recall": 0.05263157894736842,
+        "f1-score": 0.04878048780487805,
+        "support": 19.0
+      },
+      "ALMI": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 5.0
+      },
+      "ASMI": {
+        "precision": 0.4533333333333333,
+        "recall": 0.3269230769230769,
+        "f1-score": 0.37988826815642457,
+        "support": 104.0
+      },
+      "IMI": {
+        "precision": 0.19367588932806323,
+        "recall": 0.3181818181818182,
+        "f1-score": 0.24078624078624078,
+        "support": 154.0
+      },
+      "ILMI": {
+        "precision": 0.022222222222222223,
+        "recall": 0.08333333333333333,
+        "f1-score": 0.03508771929824561,
+        "support": 24.0
+      },
+      "HC": {
+        "precision": 0.8421052631578947,
+        "recall": 0.6717557251908397,
+        "f1-score": 0.7473460721868365,
+        "support": 786.0
+      },
+      "accuracy": 0.5622710622710623,
+      "macro avg": {
+        "precision": 0.2594652089160098,
+        "recall": 0.24213758876273941,
+        "f1-score": 0.24198146470543758,
+        "support": 1092.0
+      },
+      "weighted avg": {
+        "precision": 0.6778978572914499,
+        "recall": 0.5622710622710623,
+        "f1-score": 0.609681692527155,
+        "support": 1092.0
+      }
+    }
+  },
+  "beat_metrics": {
+    "accuracy": 0.539958714243586,
+    "balanced_accuracy": 0.24534829340107187,
+    "macro_f1": 0.23943941973866975,
+    "macro_roc_auc_ovr": 0.6649820431841359,
+    "macro_average_precision": 0.24437614507275507,
+    "classification_report": {
+      "AMI": {
+        "precision": 0.049132947976878616,
+        "recall": 0.07623318385650224,
+        "f1-score": 0.05975395430579965,
+        "support": 223.0
+      },
+      "ALMI": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 54.0
+      },
+      "ASMI": {
+        "precision": 0.3956709956709957,
+        "recall": 0.3362766740250184,
+        "f1-score": 0.3635640413683373,
+        "support": 1359.0
+      },
+      "IMI": {
+        "precision": 0.19630925867006044,
+        "recall": 0.3144750254841998,
+        "f1-score": 0.24172380019588638,
+        "support": 1962.0
+      },
+      "ILMI": {
+        "precision": 0.02838221381267739,
+        "recall": 0.10416666666666667,
+        "f1-score": 0.04460966542750929,
+        "support": 288.0
+      },
+      "HC": {
+        "precision": 0.8397184242588331,
+        "recall": 0.6409382103740442,
+        "f1-score": 0.7269850571344858,
+        "support": 9678.0
+      },
+      "accuracy": 0.539958714243586,
+      "macro avg": {
+        "precision": 0.25153564006490753,
+        "recall": 0.24534829340107187,
+        "f1-score": 0.23943941973866975,
+        "support": 13564.0
+      },
+      "weighted avg": {
+        "precision": 0.668593429930804,
+        "recall": 0.539958714243586,
+        "f1-score": 0.5920288798735454,
+        "support": 13564.0
+      }
+    }
+  }
+}
