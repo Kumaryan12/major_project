@@ -104,8 +104,8 @@ def build_feature_bank(config: dict) -> Path:
     np.savez_compressed(
         destination,
         **{name: matrix for name, matrix in outputs.items() if matrix is not None},
-        y=beats.label.to_numpy(),
-        groups=beats.patient_id.to_numpy(),
+        y=beats.label.astype(str).to_numpy(dtype="U"),
+        groups=beats.patient_id.astype(str).to_numpy(dtype="U"),
     )
     return destination
 
@@ -176,4 +176,3 @@ def run_ablation(config: dict, representations: list[str] | None = None) -> pd.D
     comparison = pd.DataFrame(rows).sort_values("patient_macro_f1", ascending=False)
     comparison.to_csv(Path(config["output_dir"]) / "comparison.csv", index=False)
     return comparison
-

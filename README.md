@@ -57,6 +57,14 @@ Generate the shared feature bank, then evaluate every representation with a fixe
 
 The study compares Tucker ranks 1/2/3/5/8, original versus denoised signals, amplitude-normalized VCG, individual X/Y/Z leads, removal of wavelet subbands, and wavelet statistics without Tucker compression. These are exploratory comparisons on the frozen outer folds; the strongest candidate must subsequently be confirmed with nested tuning.
 
+The wavelet-statistics candidate can be rerun with the benchmark's nested selection protocol:
+
+```bash
+.venv/bin/mi-localization benchmark --benchmark-config configs/wavelet_statistics_confirm.yaml --models xgboost
+```
+
+Completed comparisons and their limitations are in [`ABLATION_RESULTS.md`](ABLATION_RESULTS.md).
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:

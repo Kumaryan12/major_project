@@ -1,0 +1,174 @@
+{
+  "representation": "tucker_raw_r3",
+  "feature_count": 72,
+  "n_patients": 164,
+  "patient_metrics": {
+    "accuracy": 0.47560975609756095,
+    "balanced_accuracy": 0.41020520879580324,
+    "macro_f1": 0.41110837221677016,
+    "macro_roc_auc_ovr": 0.7680359851154344,
+    "macro_average_precision": 0.39272041719205025,
+    "classification_report": {
+      "AMI": {
+        "precision": 0.23076923076923078,
+        "recall": 0.17647058823529413,
+        "f1-score": 0.2,
+        "support": 17.0
+      },
+      "ALMI": {
+        "precision": 0.5,
+        "recall": 0.3125,
+        "f1-score": 0.38461538461538464,
+        "support": 16.0
+      },
+      "ASMI": {
+        "precision": 0.35714285714285715,
+        "recall": 0.5555555555555556,
+        "f1-score": 0.43478260869565216,
+        "support": 27.0
+      },
+      "IMI": {
+        "precision": 0.3684210526315789,
+        "recall": 0.4827586206896552,
+        "f1-score": 0.417910447761194,
+        "support": 29.0
+      },
+      "ILMI": {
+        "precision": 0.375,
+        "recall": 0.2608695652173913,
+        "f1-score": 0.3076923076923077,
+        "support": 23.0
+      },
+      "HC": {
+        "precision": 0.7777777777777778,
+        "recall": 0.6730769230769231,
+        "f1-score": 0.7216494845360825,
+        "support": 52.0
+      },
+      "accuracy": 0.47560975609756095,
+      "macro avg": {
+        "precision": 0.43485181972024084,
+        "recall": 0.41020520879580324,
+        "f1-score": 0.41110837221677016,
+        "support": 164.0
+      },
+      "weighted avg": {
+        "precision": 0.4958511526627701,
+        "recall": 0.47560975609756095,
+        "f1-score": 0.47570168199087043,
+        "support": 164.0
+      }
+    }
+  },
+  "beat_metrics": {
+    "accuracy": 0.38180906861428854,
+    "balanced_accuracy": 0.35365272466562675,
+    "macro_f1": 0.3574653967540055,
+    "macro_roc_auc_ovr": 0.7415419556585113,
+    "macro_average_precision": 0.3520597093260492,
+    "classification_report": {
+      "AMI": {
+        "precision": 0.1355903935957305,
+        "recall": 0.12837517764092846,
+        "f1-score": 0.13188417552112905,
+        "support": 6333.0
+      },
+      "ALMI": {
+        "precision": 0.32894736842105265,
+        "recall": 0.27098286216493334,
+        "f1-score": 0.29716488635450966,
+        "support": 6827.0
+      },
+      "ASMI": {
+        "precision": 0.33161461402474957,
+        "recall": 0.39185307685612325,
+        "f1-score": 0.35922601236784363,
+        "support": 11489.0
+      },
+      "IMI": {
+        "precision": 0.3966992665036675,
+        "recall": 0.4183722804190169,
+        "f1-score": 0.4072476272648835,
+        "support": 12410.0
+      },
+      "ILMI": {
+        "precision": 0.30863282697295297,
+        "recall": 0.3104733507267984,
+        "f1-score": 0.3095503530286139,
+        "support": 8049.0
+      },
+      "HC": {
+        "precision": 0.682661885678127,
+        "recall": 0.60185960018596,
+        "f1-score": 0.6397193259870534,
+        "support": 10755.0
+      },
+      "accuracy": 0.38180906861428854,
+      "macro avg": {
+        "precision": 0.3640243925327134,
+        "recall": 0.35365272466562675,
+        "f1-score": 0.3574653967540055,
+        "support": 55863.0
+      },
+      "weighted avg": {
+        "precision": 0.38779854374929207,
+        "recall": 0.38180906861428854,
+        "f1-score": 0.3833809501044874,
+        "support": 55863.0
+      }
+    }
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "patient_accuracy": 0.5294117647058824,
+      "patient_macro_f1": 0.38690476190476186
+    },
+    {
+      "fold": 2,
+      "patient_accuracy": 0.5882352941176471,
+      "patient_macro_f1": 0.49523809523809526
+    },
+    {
+      "fold": 3,
+      "patient_accuracy": 0.4117647058823529,
+      "patient_macro_f1": 0.302020202020202
+    },
+    {
+      "fold": 4,
+      "patient_accuracy": 0.17647058823529413,
+      "patient_macro_f1": 0.10833333333333334
+    },
+    {
+      "fold": 5,
+      "patient_accuracy": 0.375,
+      "patient_macro_f1": 0.40873015873015867
+    },
+    {
+      "fold": 6,
+      "patient_accuracy": 0.625,
+      "patient_macro_f1": 0.617063492063492
+    },
+    {
+      "fold": 7,
+      "patient_accuracy": 0.3125,
+      "patient_macro_f1": 0.21296296296296294
+    },
+    {
+      "fold": 8,
+      "patient_accuracy": 0.625,
+      "patient_macro_f1": 0.5222222222222223
+    },
+    {
+      "fold": 9,
+      "patient_accuracy": 0.5,
+      "patient_macro_f1": 0.4126984126984126
+    },
+    {
+      "fold": 10,
+      "patient_accuracy": 0.625,
+      "patient_macro_f1": 0.46341991341991345
+    }
+  ],
+  "protocol": "exploratory fixed XGBoost on frozen outer folds; no ablation-specific tuning"
+}

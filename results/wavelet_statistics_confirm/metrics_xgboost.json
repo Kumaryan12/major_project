@@ -1,0 +1,615 @@
+{
+  "model": "xgboost",
+  "classes": [
+    "AMI",
+    "ALMI",
+    "ASMI",
+    "IMI",
+    "ILMI",
+    "HC"
+  ],
+  "n_beats": 55863,
+  "n_patients": 164,
+  "weighting": "equal classes, equal patients within class",
+  "selection_metric": "patient_macro_f1",
+  "patient_metrics": {
+    "accuracy": 0.5487804878048781,
+    "balanced_accuracy": 0.48375184998417503,
+    "macro_f1": 0.487177317446643,
+    "macro_roc_auc_ovr": 0.8166188790759424,
+    "macro_average_precision": 0.4794862246546708,
+    "classification_report": {
+      "AMI": {
+        "precision": 0.45454545454545453,
+        "recall": 0.29411764705882354,
+        "f1-score": 0.35714285714285715,
+        "support": 17.0
+      },
+      "ALMI": {
+        "precision": 0.4444444444444444,
+        "recall": 0.5,
+        "f1-score": 0.47058823529411764,
+        "support": 16.0
+      },
+      "ASMI": {
+        "precision": 0.34375,
+        "recall": 0.4074074074074074,
+        "f1-score": 0.3728813559322034,
+        "support": 27.0
+      },
+      "IMI": {
+        "precision": 0.4,
+        "recall": 0.4827586206896552,
+        "f1-score": 0.4375,
+        "support": 29.0
+      },
+      "ILMI": {
+        "precision": 0.5294117647058824,
+        "recall": 0.391304347826087,
+        "f1-score": 0.45,
+        "support": 23.0
+      },
+      "HC": {
+        "precision": 0.8431372549019608,
+        "recall": 0.8269230769230769,
+        "f1-score": 0.8349514563106796,
+        "support": 52.0
+      },
+      "accuracy": 0.5487804878048781,
+      "macro avg": {
+        "precision": 0.5025481530996238,
+        "recall": 0.48375184998417503,
+        "f1-score": 0.487177317446643,
+        "support": 164.0
+      },
+      "weighted avg": {
+        "precision": 0.5593856200092749,
+        "recall": 0.5487804878048781,
+        "f1-score": 0.5495342236247517,
+        "support": 164.0
+      }
+    }
+  },
+  "beat_metrics": {
+    "accuracy": 0.45505969962229026,
+    "balanced_accuracy": 0.435145264815837,
+    "macro_f1": 0.43402177593608854,
+    "macro_roc_auc_ovr": 0.7942640696179315,
+    "macro_average_precision": 0.4488842671420455,
+    "classification_report": {
+      "AMI": {
+        "precision": 0.28936170212765955,
+        "recall": 0.2684351807989894,
+        "f1-score": 0.27850589777195284,
+        "support": 6333.0
+      },
+      "ALMI": {
+        "precision": 0.34576222572780724,
+        "recall": 0.3531565841511645,
+        "f1-score": 0.34942028985507245,
+        "support": 6827.0
+      },
+      "ASMI": {
+        "precision": 0.3924413700016872,
+        "recall": 0.40490904343284884,
+        "f1-score": 0.398577732082423,
+        "support": 11489.0
+      },
+      "IMI": {
+        "precision": 0.44504444629060397,
+        "recall": 0.43166800966962127,
+        "f1-score": 0.43825418251728226,
+        "support": 12410.0
+      },
+      "ILMI": {
+        "precision": 0.4214811942613416,
+        "recall": 0.4051434960864704,
+        "f1-score": 0.4131508931965032,
+        "support": 8049.0
+      },
+      "HC": {
+        "precision": 0.7060683235268288,
+        "recall": 0.7475592747559274,
+        "f1-score": 0.7262216601932978,
+        "support": 10755.0
+      },
+      "accuracy": 0.45505969962229026,
+      "macro avg": {
+        "precision": 0.43335987698932144,
+        "recall": 0.435145264815837,
+        "f1-score": 0.43402177593608854,
+        "support": 55863.0
+      },
+      "weighted avg": {
+        "precision": 0.45130182419803033,
+        "recall": 0.45505969962229026,
+        "f1-score": 0.45295149979561355,
+        "support": 55863.0
+      }
+    }
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "best_params": {
+        "n_estimators": 250,
+        "max_depth": 3,
+        "learning_rate": 0.05,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8
+      },
+      "inner_patient_macro_f1": 0.5008120519640128,
+      "test_patient_accuracy": 0.47058823529411764,
+      "test_patient_macro_f1": 0.38888888888888884,
+      "train_patients": 147,
+      "test_patients": 17,
+      "patient_overlap": 0
+    },
+    {
+      "fold": 2,
+      "best_params": {
+        "n_estimators": 250,
+        "max_depth": 6,
+        "learning_rate": 0.05,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8
+      },
+      "inner_patient_macro_f1": 0.4245057974934136,
+      "test_patient_accuracy": 0.7647058823529411,
+      "test_patient_macro_f1": 0.6249999999999999,
+      "train_patients": 147,
+      "test_patients": 17,
+      "patient_overlap": 0
+    },
+    {
+      "fold": 3,
+      "best_params": {
+        "n_estimators": 250,
+        "max_depth": 6,
+        "learning_rate": 0.05,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8
+      },
+      "inner_patient_macro_f1": 0.48866186808208445,
+      "test_patient_accuracy": 0.5294117647058824,
+      "test_patient_macro_f1": 0.43973063973063975,
+      "train_patients": 147,
+      "test_patients": 17,
+      "patient_overlap": 0
+    },
+    {
+      "fold": 4,
+      "best_params": {
+        "n_estimators": 250,
+        "max_depth": 6,
+        "learning_rate": 0.05,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8
+      },
+      "inner_patient_macro_f1": 0.4272812009512632,
+      "test_patient_accuracy": 0.4117647058823529,
+      "test_patient_macro_f1": 0.31746031746031744,
+      "train_patients": 147,
+      "test_patients": 17,
+      "patient_overlap": 0
+    },
+    {
+      "fold": 5,
+      "best_params": {
+        "n_estimators": 250,
+        "max_depth": 3,
+        "learning_rate": 0.05,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8
+      },
+      "inner_patient_macro_f1": 0.4544881762211734,
+      "test_patient_accuracy": 0.4375,
+      "test_patient_macro_f1": 0.38888888888888884,
+      "train_patients": 148,
+      "test_patients": 16,
+      "patient_overlap": 0
+    },
+    {
+      "fold": 6,
+      "best_params": {
+        "n_estimators": 250,
+        "max_depth": 3,
+        "learning_rate": 0.05,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8
+      },
+      "inner_patient_macro_f1": 0.3954142771093641,
+      "test_patient_accuracy": 0.5625,
+      "test_patient_macro_f1": 0.40952380952380957,
+      "train_patients": 148,
+      "test_patients": 16,
+      "patient_overlap": 0
+    },
+    {
+      "fold": 7,
+      "best_params": {
+        "n_estimators": 250,
+        "max_depth": 3,
+        "learning_rate": 0.05,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8
+      },
+      "inner_patient_macro_f1": 0.44084930501597164,
+      "test_patient_accuracy": 0.5625,
+      "test_patient_macro_f1": 0.40740740740740744,
+      "train_patients": 148,
+      "test_patients": 16,
+      "patient_overlap": 0
+    },
+    {
+      "fold": 8,
+      "best_params": {
+        "n_estimators": 250,
+        "max_depth": 3,
+        "learning_rate": 0.05,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8
+      },
+      "inner_patient_macro_f1": 0.42851663586957706,
+      "test_patient_accuracy": 0.6875,
+      "test_patient_macro_f1": 0.5888888888888889,
+      "train_patients": 148,
+      "test_patients": 16,
+      "patient_overlap": 0
+    },
+    {
+      "fold": 9,
+      "best_params": {
+        "n_estimators": 250,
+        "max_depth": 3,
+        "learning_rate": 0.05,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8
+      },
+      "inner_patient_macro_f1": 0.43601726112101513,
+      "test_patient_accuracy": 0.625,
+      "test_patient_macro_f1": 0.537037037037037,
+      "train_patients": 148,
+      "test_patients": 16,
+      "patient_overlap": 0
+    },
+    {
+      "fold": 10,
+      "best_params": {
+        "n_estimators": 250,
+        "max_depth": 3,
+        "learning_rate": 0.05,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8
+      },
+      "inner_patient_macro_f1": 0.5106419878233605,
+      "test_patient_accuracy": 0.4375,
+      "test_patient_macro_f1": 0.3666666666666667,
+      "train_patients": 148,
+      "test_patients": 16,
+      "patient_overlap": 0
+    }
+  ],
+  "inner_tuning": {
+    "1": [
+      {
+        "params": {
+          "n_estimators": 250,
+          "max_depth": 3,
+          "learning_rate": 0.05,
+          "subsample": 0.8,
+          "colsample_bytree": 0.8
+        },
+        "fold_scores": [
+          0.38614177489177487,
+          0.4717864923747277,
+          0.6445078886255357
+        ],
+        "mean_patient_macro_f1": 0.5008120519640128
+      },
+      {
+        "params": {
+          "n_estimators": 250,
+          "max_depth": 6,
+          "learning_rate": 0.05,
+          "subsample": 0.8,
+          "colsample_bytree": 0.8
+        },
+        "fold_scores": [
+          0.3423439424078811,
+          0.45821661998132585,
+          0.6453574203574205
+        ],
+        "mean_patient_macro_f1": 0.4819726609155424
+      }
+    ],
+    "2": [
+      {
+        "params": {
+          "n_estimators": 250,
+          "max_depth": 3,
+          "learning_rate": 0.05,
+          "subsample": 0.8,
+          "colsample_bytree": 0.8
+        },
+        "fold_scores": [
+          0.48535353535353537,
+          0.2982720982720983,
+          0.42344338755629085
+        ],
+        "mean_patient_macro_f1": 0.4023563403939748
+      },
+      {
+        "params": {
+          "n_estimators": 250,
+          "max_depth": 6,
+          "learning_rate": 0.05,
+          "subsample": 0.8,
+          "colsample_bytree": 0.8
+        },
+        "fold_scores": [
+          0.4753949267107161,
+          0.32002164502164504,
+          0.47810082074787963
+        ],
+        "mean_patient_macro_f1": 0.4245057974934136
+      }
+    ],
+    "3": [
+      {
+        "params": {
+          "n_estimators": 250,
+          "max_depth": 3,
+          "learning_rate": 0.05,
+          "subsample": 0.8,
+          "colsample_bytree": 0.8
+        },
+        "fold_scores": [
+          0.5167729160629769,
+          0.410003885003885,
+          0.47474747474747475
+        ],
+        "mean_patient_macro_f1": 0.4671747586047789
+      },
+      {
+        "params": {
+          "n_estimators": 250,
+          "max_depth": 6,
+          "learning_rate": 0.05,
+          "subsample": 0.8,
+          "colsample_bytree": 0.8
+        },
+        "fold_scores": [
+          0.5399288451012589,
+          0.46793386352209887,
+          0.4581228956228956
+        ],
+        "mean_patient_macro_f1": 0.48866186808208445
+      }
+    ],
+    "4": [
+      {
+        "params": {
+          "n_estimators": 250,
+          "max_depth": 3,
+          "learning_rate": 0.05,
+          "subsample": 0.8,
+          "colsample_bytree": 0.8
+        },
+        "fold_scores": [
+          0.4496646168045762,
+          0.39718848403058926,
+          0.4314435591098343
+        ],
+        "mean_patient_macro_f1": 0.42609888664833323
+      },
+      {
+        "params": {
+          "n_estimators": 250,
+          "max_depth": 6,
+          "learning_rate": 0.05,
+          "subsample": 0.8,
+          "colsample_bytree": 0.8
+        },
+        "fold_scores": [
+          0.4645412815192102,
+          0.41708679611905414,
+          0.4002155252155252
+        ],
+        "mean_patient_macro_f1": 0.4272812009512632
+      }
+    ],
+    "5": [
+      {
+        "params": {
+          "n_estimators": 250,
+          "max_depth": 3,
+          "learning_rate": 0.05,
+          "subsample": 0.8,
+          "colsample_bytree": 0.8
+        },
+        "fold_scores": [
+          0.45028011204481794,
+          0.41553454715219423,
+          0.49764986946650785
+        ],
+        "mean_patient_macro_f1": 0.4544881762211734
+      },
+      {
+        "params": {
+          "n_estimators": 250,
+          "max_depth": 6,
+          "learning_rate": 0.05,
+          "subsample": 0.8,
+          "colsample_bytree": 0.8
+        },
+        "fold_scores": [
+          0.34327485380116957,
+          0.4765002970885324,
+          0.43917033730276517
+        ],
+        "mean_patient_macro_f1": 0.4196484960641557
+      }
+    ],
+    "6": [
+      {
+        "params": {
+          "n_estimators": 250,
+          "max_depth": 3,
+          "learning_rate": 0.05,
+          "subsample": 0.8,
+          "colsample_bytree": 0.8
+        },
+        "fold_scores": [
+          0.3621444625280943,
+          0.4459920366614078,
+          0.37810633213859024
+        ],
+        "mean_patient_macro_f1": 0.3954142771093641
+      },
+      {
+        "params": {
+          "n_estimators": 250,
+          "max_depth": 6,
+          "learning_rate": 0.05,
+          "subsample": 0.8,
+          "colsample_bytree": 0.8
+        },
+        "fold_scores": [
+          0.4136904761904761,
+          0.3900793650793651,
+          0.30802005012531325
+        ],
+        "mean_patient_macro_f1": 0.3705966304650515
+      }
+    ],
+    "7": [
+      {
+        "params": {
+          "n_estimators": 250,
+          "max_depth": 3,
+          "learning_rate": 0.05,
+          "subsample": 0.8,
+          "colsample_bytree": 0.8
+        },
+        "fold_scores": [
+          0.5115967365967365,
+          0.47361111111111115,
+          0.33734006734006733
+        ],
+        "mean_patient_macro_f1": 0.44084930501597164
+      },
+      {
+        "params": {
+          "n_estimators": 250,
+          "max_depth": 6,
+          "learning_rate": 0.05,
+          "subsample": 0.8,
+          "colsample_bytree": 0.8
+        },
+        "fold_scores": [
+          0.4578117534639274,
+          0.4507897603485838,
+          0.38214316898693873
+        ],
+        "mean_patient_macro_f1": 0.4302482275998167
+      }
+    ],
+    "8": [
+      {
+        "params": {
+          "n_estimators": 250,
+          "max_depth": 3,
+          "learning_rate": 0.05,
+          "subsample": 0.8,
+          "colsample_bytree": 0.8
+        },
+        "fold_scores": [
+          0.47039442039442037,
+          0.418438315497139,
+          0.39671717171717175
+        ],
+        "mean_patient_macro_f1": 0.42851663586957706
+      },
+      {
+        "params": {
+          "n_estimators": 250,
+          "max_depth": 6,
+          "learning_rate": 0.05,
+          "subsample": 0.8,
+          "colsample_bytree": 0.8
+        },
+        "fold_scores": [
+          0.4385942760942761,
+          0.4213184476342371,
+          0.3445602083750751
+        ],
+        "mean_patient_macro_f1": 0.40149097736786277
+      }
+    ],
+    "9": [
+      {
+        "params": {
+          "n_estimators": 250,
+          "max_depth": 3,
+          "learning_rate": 0.05,
+          "subsample": 0.8,
+          "colsample_bytree": 0.8
+        },
+        "fold_scores": [
+          0.3222222222222222,
+          0.4899238837835329,
+          0.4959056773572903
+        ],
+        "mean_patient_macro_f1": 0.43601726112101513
+      },
+      {
+        "params": {
+          "n_estimators": 250,
+          "max_depth": 6,
+          "learning_rate": 0.05,
+          "subsample": 0.8,
+          "colsample_bytree": 0.8
+        },
+        "fold_scores": [
+          0.35629458261037206,
+          0.45245471742749416,
+          0.43161996307157596
+        ],
+        "mean_patient_macro_f1": 0.4134564210364808
+      }
+    ],
+    "10": [
+      {
+        "params": {
+          "n_estimators": 250,
+          "max_depth": 3,
+          "learning_rate": 0.05,
+          "subsample": 0.8,
+          "colsample_bytree": 0.8
+        },
+        "fold_scores": [
+          0.5142211328976035,
+          0.5696606634106635,
+          0.4480441671618142
+        ],
+        "mean_patient_macro_f1": 0.5106419878233605
+      },
+      {
+        "params": {
+          "n_estimators": 250,
+          "max_depth": 6,
+          "learning_rate": 0.05,
+          "subsample": 0.8,
+          "colsample_bytree": 0.8
+        },
+        "fold_scores": [
+          0.41465941465941464,
+          0.4834558823529412,
+          0.40897480552652965
+        ],
+        "mean_patient_macro_f1": 0.43569670084629514
+      }
+    ]
+  }
+}

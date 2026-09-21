@@ -1,0 +1,22 @@
+seed: 42
+features_path: data/processed/ablation_features.npz
+feature_key: wavelet_statistics
+folds_path: configs/patient_folds.csv
+output_dir: results/wavelet_statistics_confirm
+classes: [AMI, ALMI, ASMI, IMI, ILMI, HC]
+outer_splits: 10
+inner_splits: 3
+selection_metric: patient_macro_f1
+aggregation: mean_probability
+models:
+  xgboost:
+    - n_estimators: 250
+      max_depth: 3
+      learning_rate: 0.05
+      subsample: 0.8
+      colsample_bytree: 0.8
+    - n_estimators: 250
+      max_depth: 6
+      learning_rate: 0.05
+      subsample: 0.8
+      colsample_bytree: 0.8

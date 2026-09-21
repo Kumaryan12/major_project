@@ -32,9 +32,12 @@ from xgboost import XGBClassifier
 
 def load_primary_data(config: dict) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     arrays = np.load(config["features_path"])
+    feature_key = config.get("feature_key", "X")
+    if feature_key not in arrays.files:
+        raise KeyError(f"Feature key {feature_key!r} not found in {config['features_path']}")
     classes = list(config["classes"])
     mask = np.isin(arrays["y"], classes)
-    X = arrays["X"][mask]
+    X = arrays[feature_key][mask]
     y_text = arrays["y"][mask]
     groups = arrays["groups"][mask]
     mapping = {name: index for index, name in enumerate(classes)}
@@ -305,4 +308,3 @@ def write_comparison(output_dir: Path) -> Path:
     destination = output_dir / "comparison.csv"
     pd.DataFrame(rows).sort_values("patient_macro_f1", ascending=False).to_csv(destination, index=False)
     return destination
-
