@@ -11,6 +11,7 @@ import yaml
 from .ablation import build_feature_bank, run_ablation
 from .benchmark import run_benchmark
 from .pipeline import evaluate, featurize, prepare
+from .ptbxl import audit_labels
 
 
 def load_config(path: str) -> dict:
@@ -20,15 +21,19 @@ def load_config(path: str) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Reproduce the VCG Tucker MI-localization paper")
-    parser.add_argument("command", choices=["prepare", "features", "evaluate", "benchmark", "ablation-features", "ablation", "run"])
+    parser.add_argument("command", choices=["prepare", "features", "evaluate", "benchmark", "ablation-features", "ablation", "ptbxl-audit", "run"])
     parser.add_argument("--config", default="configs/paper.yaml")
     parser.add_argument("--benchmark-config", default="configs/patient_benchmark.yaml")
     parser.add_argument("--ablation-config", default="configs/ablation.yaml")
+    parser.add_argument("--ptbxl-config", default="configs/ptbxl_external.yaml")
     parser.add_argument("--mode", choices=["beat", "patient", "both"], default="both")
     parser.add_argument("--models", nargs="+", choices=["rf", "svm", "xgboost"], default=["rf", "svm", "xgboost"])
     parser.add_argument("--representations", nargs="+", default=None)
     args = parser.parse_args()
     config = load_config(args.config)
+    if args.command == "ptbxl-audit":
+        print(json.dumps(audit_labels(load_config(args.ptbxl_config)), indent=2))
+        return
     if args.command in {"ablation-features", "ablation"}:
         ablation = load_config(args.ablation_config)
         if args.command == "ablation-features":

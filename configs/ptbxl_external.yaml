@@ -1,0 +1,30 @@
+seed: 42
+version: 1.0.3
+base_url: https://physionet-open.s3.amazonaws.com/ptb-xl/1.0.3
+metadata_dir: data/raw/ptbxl
+waveform_dir: data/raw/ptbxl
+audit_dir: results/ptbxl_audit
+output_dir: results/ptbxl_external
+test_fold: 10
+classes: [AMI, ALMI, ASMI, IMI, ILMI, HC]
+minimum_code_likelihood: 0
+ptb_features_path: data/processed/ablation_features.npz
+ptb_feature_key: wavelet_statistics
+ptb_paper_config: configs/paper.yaml
+preprocessing:
+  target_sampling_rate: 1000
+  before_r: 250
+  after_r: 400
+  wavelet: bior6.8
+  level: 9
+  detail_levels: [3, 4, 5, 6, 7, 8, 9]
+  rpeak_refractory_ms: 250
+  rpeak_integration_ms: 150
+  rpeak_threshold_scale: 0.06
+model:
+  n_estimators: 250
+  max_depth: 3
+  learning_rate: 0.05
+  subsample: 0.8
+  colsample_bytree: 0.8
+
