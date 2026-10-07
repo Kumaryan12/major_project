@@ -6,6 +6,16 @@ This repository is an end-to-end, reproducible reimplementation of Zhang et al.,
 
 For professor-facing material, see the four-page [project summary](output/pdf/mi_localization_summary_report.pdf) or the more detailed [major-project progress report](output/pdf/mi_localization_progress_report.pdf). Rebuild them with `pip install -e '.[report]'`, followed by `python scripts/build_summary_report.py` or `python scripts/build_professor_progress_report.py`.
 
+For Aryan's implementation section of the presentation, use the [implementation and results deck](output/pptx/mi_implementation_presentation.pptx). Slides 1–14 cover the completed pipeline and experiments, and slides 15–17 provide technical backup. Each slide includes presenter notes. The [speaking guide](docs/implementation_presentation_notes.md) includes transitions, timing and likely questions.
+
+Rebuild the deck on macOS with Keynote installed and the local PTB signal files available:
+
+```bash
+.venv/bin/python scripts/build_implementation_presentation.py prepare
+osascript tmp/presentations/implementation/build.applescript
+.venv/bin/python scripts/build_implementation_presentation.py finalize
+```
+
 ## Implemented pipeline
 
 1. Download the open PTB Diagnostic ECG Database headers and Frank `vx`, `vy`, `vz` files (not the unused 12-lead files).
