@@ -8,6 +8,8 @@ For professor-facing material, see the four-page [project summary](output/pdf/mi
 
 For Aryan's implementation section of the presentation, use the [implementation and results deck](output/pptx/mi_implementation_presentation.pptx). Slides 1–14 cover the completed pipeline and experiments, and slides 15–17 provide technical backup. Each slide includes presenter notes. The [speaking guide](docs/implementation_presentation_notes.md) includes transitions, timing and likely questions.
 
+For a formal monochrome version, use the [LaTeX Beamer source](output/latex/mi_implementation.tex), [compiled slide PDF](output/pdf/mi_implementation_beamer.pdf), or [Overleaf-ready ZIP](output/mi_implementation_latex.zip). It retains all 17 slides and hidden speaker notes. Upload the ZIP to Overleaf and compile `mi_implementation.tex` with pdfLaTeX; see the [LaTeX instructions](output/latex/README.md) for local compilation and notes options.
+
 Rebuild the deck on macOS with Keynote installed and the local PTB signal files available:
 
 ```bash
