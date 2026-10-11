@@ -114,10 +114,13 @@ def summarize_relational_study(config: dict, draws: int = 5000) -> Path:
              "correlation_flat": "Uncompressed correlations + context statistics",
              "correlation_shared": "Shared correlation cores + context statistics",
              "covariance_shared": "Shared covariance cores + context statistics"}
+    maximum = max(saved["patient_metrics"]["macro_f1"] for saved in metrics.values())
+    target_status = ("No arm reached 0.80 macro F1 in this study; 0.80–0.90 remains an aspirational target."
+                     if maximum < 0.8 else "At least one arm reached 0.80 macro F1 on this development benchmark; this is not independent confirmation or a guaranteed generalization result.")
     lines = ["# VCG relational tensor development: completed results", "",
              "Measured Frank XYZ is the sole input. ECG + VCG remains a separate, **not yet implemented** extension.", "",
              f"All five arms completed all {config['outer_splits']} frozen patient folds: {len(frozen)} patients, {bank_manifest['n_beats']:,} beats, {len(classes)} classes. Scores below use pooled out-of-fold patient predictions, not an average of fold F1 scores.", "",
-             "These previously inspected PTB folds are a **development benchmark**, not untouched confirmation. The target of 0.80–0.90 macro F1 is not achieved or guaranteed.", "",
+             f"These previously inspected PTB folds are a **development benchmark**, not untouched confirmation. {target_status}", "",
              "## Results", "", "| Representation | Patient macro F1 | Accuracy | Δ F1 vs short control | Paired 95% interval for Δ |", "|---|---:|---:|---:|---:|"]
     baseline = metrics["statistics_short"]["patient_metrics"]["macro_f1"]
     for arm in ARMS:
