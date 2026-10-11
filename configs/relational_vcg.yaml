@@ -1,0 +1,30 @@
+seed: 42
+paper_config: configs/paper.yaml
+beats_path: data/processed/beats.csv
+original_bank_path: data/processed/ablation_features.npz
+bank_dir: data/processed/relational_vcg_v1
+folds_path: configs/patient_folds.csv
+output_dir: results/relational_vcg_v1
+classes: [AMI, ALMI, ASMI, IMI, ILMI, HC]
+outer_splits: 10
+inner_splits: 3
+selection_metric: patient_macro_f1
+aggregation: mean_probability
+n_jobs: 2
+model_n_jobs: 4
+
+# Half-open offsets in samples from the original R peak (1,000 Hz).
+# Whole beat, then approximate QRS / early post-QRS / late post-QRS regions.
+# These are hypotheses, NOT validated ECG delineations.
+windows: [[-250, 401], [-80, 100], [100, 200], [200, 401]]
+shrinkage: 0.05
+ranks: [4, 8]
+
+# Same pre-existing depth-3 classifier for all arms. Only shared-core rank
+# is tuned in this first study. This is not the previous depth-3/6 benchmark.
+model_candidates:
+  - n_estimators: 250
+    max_depth: 3
+    learning_rate: 0.05
+    subsample: 0.8
+    colsample_bytree: 0.8

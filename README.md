@@ -102,6 +102,17 @@ PTB records contain simultaneous 12-lead ECG and measured Frank XYZ. A separate 
 
 Configuration is in [`configs/domain_shift.yaml`](configs/domain_shift.yaml); findings and limitations are in [`DOMAIN_SHIFT_RESULTS.md`](DOMAIN_SHIFT_RESULTS.md). The additional PTB ECG downloads and paired feature archive are cached locally and not committed.
 
+## VCG-first relational tensors
+
+Measured XYZ VCG remains the primary input. The new [relational tensor study](docs/relational_vcg_plan.md) compares paper-style short-beat statistics, longer-context wavelet statistics, and correlation/covariance tensors with shared training-fold-only channel projections. ECG + VCG is a separate planned extension, not an input to this study.
+
+```bash
+.venv/bin/mi-localization relational-features
+.venv/bin/mi-localization relational-study
+```
+
+The same six classes and frozen patient folds are preserved. Rank selection uses inner patient validation; projection/scaling parameters are refitted inside every training split. New aggregate metrics and tuning audits go to `results/relational_vcg_v1/complete/`, with local resumable fold checkpoints. The previously inspected PTB folds remain a development benchmark, not untouched confirmation. See [`configs/relational_vcg.yaml`](configs/relational_vcg.yaml) for the fixed classifier and approximate beat-region definitions.
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:
