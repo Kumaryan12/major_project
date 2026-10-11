@@ -328,6 +328,22 @@ def run_relational_study(config: dict, arms: list[str] | None = None,
     if config.get("selection_metric", "patient_macro_f1") != "patient_macro_f1" or config.get("aggregation", "mean_probability") != "mean_probability":
         raise ValueError("This study supports patient macro F1 selection and mean-probability aggregation only")
     study_hash = hashlib.sha256(json.dumps({"config": config, "bank": manifest["fingerprint"]}, sort_keys=True).encode()).hexdigest()
+    # Guard the whole directory, not just an individual arm's checkpoints.
+    # The fold path alone does not identify its contents.
+    study_manifest = {"study_fingerprint": study_hash,
+                      "folds_sha256": hashlib.sha256(Path(config["folds_path"]).read_bytes()).hexdigest(),
+                      "feature_bank_fingerprint": manifest["fingerprint"],
+                      "evaluated_folds": chosen_folds, "config": config}
+    study_manifest_path = output / "study_manifest.json"
+    if study_manifest_path.exists():
+        if json.loads(study_manifest_path.read_text()) != study_manifest:
+            raise ValueError("Study settings changed; select a new output_dir")
+    else:
+        # Adopt older, compatible checkpoints without permitting mixed runs.
+        for existing in output.glob("fold_*.json"):
+            if json.loads(existing.read_text())["study_fingerprint"] != study_hash:
+                raise ValueError("Study settings changed; select a new output_dir")
+        study_manifest_path.write_text(json.dumps(study_manifest, indent=2))
     lookup = dict(zip(folds.patient_id.astype(str), folds.fold, strict=True))
     beat_folds = np.array([lookup[str(group)] for group in groups])
     statistics = np.load(bank / "statistics_context.npy", allow_pickle=False)
@@ -414,5 +430,17 @@ def run_relational_study(config: dict, arms: list[str] | None = None,
         summary.append({"arm": arm, "complete": not partial, "n_patients": len(ids),
                         "patient_macro_f1": result["patient_metrics"]["macro_f1"],
                         "patient_accuracy": result["patient_metrics"]["accuracy"]})
-        pd.DataFrame(summary).to_csv(output / "comparison.csv", index=False)
+        # A subsequent single-arm resume must not erase other completed arms.
+        completed = []
+        for name in ARMS:
+            metrics_path = output / f"metrics_{name}.json"
+            if metrics_path.exists():
+                saved = json.loads(metrics_path.read_text())
+                if saved["study_fingerprint"] != study_hash:
+                    raise ValueError("Study settings changed; select a new output_dir")
+                completed.append({"arm": name, "complete": saved["complete"],
+                                  "n_patients": saved["n_patients"],
+                                  "patient_macro_f1": saved["patient_metrics"]["macro_f1"],
+                                  "patient_accuracy": saved["patient_metrics"]["accuracy"]})
+        pd.DataFrame(completed).to_csv(output / "comparison.csv", index=False)
     return pd.DataFrame(summary)

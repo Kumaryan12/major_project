@@ -109,9 +109,12 @@ Measured XYZ VCG remains the primary input. The new [relational tensor study](do
 ```bash
 .venv/bin/mi-localization relational-features
 .venv/bin/mi-localization relational-study
+.venv/bin/python -m mi_localization.relational_report
 ```
 
 The same six classes and frozen patient folds are preserved. Rank selection uses inner patient validation; projection/scaling parameters are refitted inside every training split. New aggregate metrics and tuning audits go to `results/relational_vcg_v1/complete/`, with local resumable fold checkpoints. The previously inspected PTB folds remain a development benchmark, not untouched confirmation. See [`configs/relational_vcg.yaml`](configs/relational_vcg.yaml) for the fixed classifier and approximate beat-region definitions.
+
+After all five arms finish, the report command validates paired patient predictions and produces `REPORT.md` and class-stratified paired bootstrap intervals. It refuses incomplete or mismatched studies. Intervals are conditional on fitted predictions and do not correct repeated development, shared training folds or multiple comparisons.
 
 ## Reproduction boundaries
 

@@ -154,6 +154,22 @@ def test_complete_statistics_study_preserves_entire_patient_cohort(tmp_path):
     assert np.allclose(saved.filter(like="probability_").sum(axis=1), 1)
 
 
+def test_cross_arm_scope_guard_and_comparison_preserved(tmp_path):
+    config = _tiny_bank(tmp_path)
+    run_relational_study(config, ["statistics_short"])
+    run_relational_study(config, ["statistics_context"])
+    output = Path(config["output_dir"]) / "complete"
+    assert pd.read_csv(output / "comparison.csv").arm.tolist() == ["statistics_short", "statistics_context"]
+    changed = dict(config, ranks=[1])
+    with pytest.raises(ValueError, match="settings changed"):
+        run_relational_study(changed, ["correlation_flat"])
+    folds = pd.read_csv(config["folds_path"])
+    folds["fold"] = folds["fold"].map({1: 2, 2: 1, 3: 3})
+    folds.to_csv(config["folds_path"], index=False)
+    with pytest.raises(ValueError, match="settings changed"):
+        run_relational_study(config, ["correlation_flat"])
+
+
 def test_bank_reuses_manifest_and_rejects_changed_sources(tmp_path, monkeypatch):
     config = _tiny_bank(tmp_path)
     # A complete mock cache; source fingerprint is independently checked.
@@ -171,3 +187,35 @@ def test_bank_reuses_manifest_and_rejects_changed_sources(tmp_path, monkeypatch)
     monkeypatch.setattr(relational, "_fingerprint", lambda *args: "changed")
     with pytest.raises(ValueError, match="sources/settings changed"):
         relational.build_relational_bank(config)
+
+
+def test_paired_bootstrap_reproducible_identical_predictions_and_missing_class():
+    from mi_localization.relational_report import paired_bootstrap
+    truth = np.repeat(np.arange(3), 9)
+    values = {"statistics_short": truth.copy(), "statistics_context": truth.copy()}
+    result = paired_bootstrap(truth, values, 3, draws=100)
+    assert result == paired_bootstrap(truth, values, 3, draws=100)
+    assert result["arms"]["statistics_short"]["macro_f1_95_interval"] == [1, 1]
+    assert result["arms"]["statistics_context"]["paired_comparisons"]["statistics_short"]["macro_f1_difference_95_interval"] == [0, 0]
+    with pytest.raises(ValueError, match="Every class"):
+        paired_bootstrap(truth[truth != 2], {}, 3, draws=100)
+
+
+def test_paired_report_validates_full_cohort_and_rejects_tampering(tmp_path):
+    from mi_localization.relational_report import summarize_relational_study
+    config = _tiny_bank(tmp_path)
+    bank_manifest = Path(config["bank_dir"]) / "manifest.json"
+    manifest = json.loads(bank_manifest.read_text())
+    manifest["n_beats"] = 81
+    bank_manifest.write_text(json.dumps(manifest))
+    run_relational_study(config)
+    report = summarize_relational_study(config, draws=100)
+    assert "27 patients, 81 beats, 3 classes" in report.read_text()
+    assert "not untouched confirmation" in report.read_text()
+    assert (report.parent / "paired_bootstrap.json").exists()
+    predictions = report.parent / "patient_predictions_correlation_shared.csv"
+    patient = pd.read_csv(predictions)
+    patient.loc[0, "prediction"] = "UNKNOWN"
+    patient.to_csv(predictions, index=False)
+    with pytest.raises(ValueError, match="Predictions do not match"):
+        summarize_relational_study(config, draws=100)

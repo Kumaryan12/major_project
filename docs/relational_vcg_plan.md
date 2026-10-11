@@ -60,6 +60,7 @@ complete cross-validation. Fold checkpoints permit safe continuation.
 ```bash
 .venv/bin/mi-localization relational-features
 .venv/bin/mi-localization relational-study
+.venv/bin/python -m mi_localization.relational_report
 ```
 
 For a partial integration check:
@@ -73,6 +74,12 @@ Configuration: `configs/relational_vcg.yaml`. Cache:
 `results/relational_vcg_v1/complete/`. Existing reports remain unchanged.
 Raw signals, feature arrays, fold beat probabilities and patient prediction
 files stay local; small aggregate metrics/tuning audits are committed.
+The final reporting command requires all five completed paired arms and
+checks predictions against the frozen patient labels/folds. Bootstrap
+intervals resample patients within classes using identical draws for every
+arm. They are conditional on fitted predictions, without model refits or
+correction for repeated development, shared training folds or multiple
+comparisons; they are descriptive uncertainty, not independent confirmation.
 
 ## Separate extension, not yet implemented
 
