@@ -17,7 +17,8 @@ from .relational import ARMS
 
 
 def paired_bootstrap(truth: np.ndarray, predictions: dict[str, np.ndarray],
-                     n_classes: int, draws: int = 5000, seed: int = 42) -> dict:
+                     n_classes: int, draws: int = 5000, seed: int = 42,
+                     references: tuple[str, ...] = ("statistics_short", "statistics_context")) -> dict:
     """Class-stratified, patient-paired percentile intervals; no model refits."""
     truth = np.asarray(truth, dtype=int)
     if draws < 100 or truth.ndim != 1 or len(truth) == 0:
@@ -44,7 +45,7 @@ def paired_bootstrap(truth: np.ndarray, predictions: dict[str, np.ndarray],
               "arms": {}}
     for name, distribution in distributions.items():
         comparisons = {}
-        for reference in ["statistics_short", "statistics_context"]:
+        for reference in references:
             if reference in distributions and reference != name:
                 differences = distribution - distributions[reference]
                 comparisons[reference] = {"macro_f1_difference_95_interval": np.quantile(differences, [0.025, 0.975]).tolist()}

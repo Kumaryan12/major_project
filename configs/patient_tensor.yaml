@@ -1,0 +1,30 @@
+seed: 42
+split_seed: 42
+training_seed: 42
+bank_dir: data/processed/neural_vcg_v1
+folds_path: configs/patient_folds.csv
+output_dir: results/neural_patient_tensor_v1
+control_dir: results/neural_vcg_v1/complete
+classes: [AMI, ALMI, ASMI, IMI, ILMI, HC]
+outer_splits: 10
+inner_splits: 3
+models: [bag_mean, bag_attention, multiscale_attention, tucker_attention]
+device: auto
+torch_threads: 2
+widths: [16, 32, 64]
+pool_bins: 4
+dropout: 0.2
+attention_hidden: 32
+bag_size: 16
+bags_per_epoch: 512
+batch_size: 8
+inference_batch_size: 128
+max_epochs: 25
+patience: 6
+learning_rate: 0.001
+weight_decay: 0.01
+scale_windows: [9, 33, 129]
+tensor_time_bins: 64
+tensor_ranks: [3, 12, 3]
+tensor_embedding: 32
+orthogonality_weight: 0.001

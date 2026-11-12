@@ -131,6 +131,18 @@ The [neural development plan](docs/neural_vcg_plan.md) adds a 78k-parameter XYZ 
 
 All 164 patients and original beat positions are retained. Class/patient-balanced sampling draws 8,192 training beats per epoch; all validation/test beats are evaluated. Models are compared with the fixed depth-3 statistics control on pooled patient predictions. Partial runs are clearly separated, and inner/outer checkpoints support resuming. The report is produced only after the full run finishes; no improvement or SOTA result is claimed in advance. Existing PTB-XL results are untouched, and ECG + VCG remains a future extension.
 
+## Patient-level learned multi-scale tensors
+
+The [next-phase plan](docs/patient_tensor_plan.md) separates repeatability from architecture changes. The ResNet repeat study uses three training seeds with fixed outer **and inner** patient partitions. The patient-tensor study compares mean embedding pooling, gated attention, learned scales with fixed compression, and learned scales with supervised Tucker mode factors. The raw waveform/CNN path stays present; padding and beat permutations cannot change patient predictions.
+
+```bash
+.venv/bin/python -m mi_localization.neural_repeat
+.venv/bin/python -m mi_localization.patient_tensor
+.venv/bin/python -m mi_localization.patient_tensor_report
+```
+
+The modern tensor has beats × XYZ × time × scales axes and is built on demand, preserving the raw view. Filters/factors are learned only within training patients. Inference uses all eligible beats, not a random test subset. New configurations are `configs/neural_repeat.yaml` and `configs/patient_tensor.yaml`; outputs are separate from completed studies. Scores, improvement, novelty and SOTA are not claimed before evaluation, and these repeatedly inspected PTB folds remain development data.
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:
