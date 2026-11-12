@@ -116,7 +116,7 @@ def fake_fit(calls):
         norm = FoldNormalizer().fit(waves, statistics, train, np.ones(len(train)))
         model = VCGResNet(n_classes=3, widths=(4, 8, 12), pool_bins=2,
                           statistics=statistics.shape[1] if name == "resnet_statistics" else 0)
-        return model, norm, {"selected_epoch": 1 if valid is not None else epochs,
+        return model, norm, {"seed": seed, "selected_epoch": 1 if valid is not None else epochs,
             "best_validation_macro_f1": 0.25 if valid is not None else None,
             "normalizer_fit_beats": len(train), "parameter_count": 100, "normalization": norm.audit()}
     return fit
@@ -210,3 +210,44 @@ def test_waveform_cache_matches_existing_r_positions(tmp_path, monkeypatch):
     (raw / "r.xyz").write_text("changed-source")
     with pytest.raises(ValueError, match="sources/settings changed"):
         neural.build_waveform_bank(config)
+
+
+def test_training_seeds_do_not_change_inner_patient_partitions(tmp_path, monkeypatch):
+    config, *_ = tiny_config(tmp_path)
+    observations = []
+    for seed in [42, 123]:
+        calls, seeds = [], []
+        implementation = fake_fit(calls)
+
+        def fit(*args):
+            seeds.append(args[-1])
+            return implementation(*args)
+
+        monkeypatch.setattr(neural, "_fit_network", fit)
+        run_neural_study(dict(config, models=["resnet"], split_seed=42, training_seed=seed,
+                              output_dir=str(tmp_path / f"seed_{seed}")), [1])
+        observations.append((calls, seeds))
+    assert observations[0][0] == observations[1][0]
+    assert np.array_equal(np.array(observations[1][1]) - observations[0][1], [81] * 3)
+
+
+def test_repeat_study_reuses_reference_reports_all_seeds_and_guards_scope(tmp_path, monkeypatch):
+    import yaml
+    from mi_localization.neural_repeat import run_repeats
+    config, *_ = tiny_config(tmp_path)
+    monkeypatch.setattr(neural, "_fit_network", fake_fit([]))
+    run_neural_study(config)
+    path = tmp_path / "base.yaml"
+    path.write_text(yaml.safe_dump(config))
+    repeated = {"base_config": str(path), "output_dir": str(tmp_path / "repeats"),
+                "reference_dir": str(Path(config["output_dir"]) / "complete"),
+                "reference_seed": 42, "training_seeds": [42, 123, 2026], "split_seed": 42}
+    result = run_repeats(repeated)
+    assert result.training_seed.tolist() == [42, 123, 2026]
+    summary = json.loads((Path(repeated["output_dir"]) / "summary.json").read_text())
+    assert summary["complete"] is True
+    assert np.isclose(summary["macro_f1_mean"], result.patient_macro_f1.mean())
+    assert np.isclose(summary["macro_f1_sample_std"], result.patient_macro_f1.std(ddof=1))
+    assert not (Path(repeated["output_dir"]) / "seed_42").exists()
+    with pytest.raises(ValueError, match="Reference split/training seed"):
+        run_repeats(dict(repeated, split_seed=17))

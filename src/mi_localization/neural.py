@@ -384,7 +384,9 @@ def run_neural_study(config: dict, outer_folds: list[int] | None = None) -> pd.D
                 print(f"{name} fold {fold}: resumed completed checkpoint", flush=True)
                 continue
             selections = []
-            splits = inner_patient_splits(y[train], groups[train], int(config["inner_splits"]), int(config["seed"]) + fold * 1000)
+            split_seed = int(config.get("split_seed", config["seed"]))
+            training_seed = int(config.get("training_seed", config["seed"]))
+            splits = inner_patient_splits(y[train], groups[train], int(config["inner_splits"]), split_seed + fold * 1000)
             for inner, (itrain, ivalid) in enumerate(splits, 1):
                 ti, vi = train[itrain], train[ivalid]
                 selection_path = output / f"inner_{fold:02d}_{inner}_{name}.json"
@@ -394,7 +396,7 @@ def run_neural_study(config: dict, outer_folds: list[int] | None = None) -> pd.D
                         raise ValueError("Inner selection settings changed")
                 else:
                     model, normalizer, selected = _fit_network(name, waves, statistics, y, groups, ti, vi,
-                        int(config["max_epochs"]), config, int(config["seed"]) + fold * 1000 + inner)
+                        int(config["max_epochs"]), config, training_seed + fold * 1000 + inner)
                     selected.update(study_fingerprint=study_hash, inner_fold=inner, patient_overlap=0)
                     _save_json(selection_path, selected)
                     del model, normalizer
@@ -402,7 +404,7 @@ def run_neural_study(config: dict, outer_folds: list[int] | None = None) -> pd.D
                 print(f"{name} outer {fold}/{config['outer_splits']} inner {inner}/{config['inner_splits']}: selected epoch {selected['selected_epoch']}, patient macro F1={selected['best_validation_macro_f1']:.4f}", flush=True)
             epochs = int(np.clip(np.floor(np.median([row["selected_epoch"] for row in selections]) + 0.5), 1, int(config["max_epochs"])))
             model, normalizer, final_fit = _fit_network(name, waves, statistics, y, groups, train, None,
-                epochs, config, int(config["seed"]) + fold)
+                epochs, config, training_seed + fold)
             probabilities[test] = _predict_network(model, normalizer, waves, statistics, y, test, config)
             _, truth, patient_scores = aggregate_patients(probabilities[test], y[test], groups[test])
             audit = {"study_fingerprint": study_hash, "model": name, "fold": fold,
