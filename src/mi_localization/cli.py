@@ -14,7 +14,7 @@ from .pipeline import evaluate, featurize, prepare
 from .ptbxl import audit_labels
 from .external import make_external_features, evaluate_external
 from .domain_shift import make_paired_features, evaluate_paired
-from .relational import ARMS, build_relational_bank, run_relational_study
+from .relational import ARMS, build_relational_bank, restore_relational_arrays, run_relational_study
 
 
 def load_config(path: str) -> dict:
@@ -24,25 +24,36 @@ def load_config(path: str) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Reproduce the VCG Tucker MI-localization paper")
-    parser.add_argument("command", choices=["prepare", "features", "evaluate", "benchmark", "ablation-features", "ablation", "ptbxl-audit", "ptbxl-features", "ptbxl-external", "domain-features", "domain-evaluate", "relational-features", "relational-study", "run"])
+    parser.add_argument("command", choices=["prepare", "features", "evaluate", "benchmark", "ablation-features", "ablation", "ptbxl-audit", "ptbxl-features", "ptbxl-external", "domain-features", "domain-evaluate", "relational-features", "relational-repair", "relational-study", "neural-features", "neural-study", "run"])
     parser.add_argument("--config", default="configs/paper.yaml")
     parser.add_argument("--benchmark-config", default="configs/patient_benchmark.yaml")
     parser.add_argument("--ablation-config", default="configs/ablation.yaml")
     parser.add_argument("--ptbxl-config", default="configs/ptbxl_external.yaml")
     parser.add_argument("--domain-config", default="configs/domain_shift.yaml")
     parser.add_argument("--relational-config", default="configs/relational_vcg.yaml")
+    parser.add_argument("--neural-config", default="configs/neural_vcg.yaml")
     parser.add_argument("--arms", nargs="+", choices=list(ARMS), default=None)
     parser.add_argument("--outer-folds", nargs="+", type=int, default=None,
-                        help="Partial relational smoke run; saved separately and never presented as complete CV")
+                        help="Partial relational/neural run; saved separately and never presented as complete CV")
     parser.add_argument("--mode", choices=["beat", "patient", "both"], default="both")
     parser.add_argument("--models", nargs="+", choices=["rf", "svm", "xgboost"], default=["rf", "svm", "xgboost"])
     parser.add_argument("--representations", nargs="+", default=None)
     args = parser.parse_args()
     config = load_config(args.config)
-    if args.command in {"relational-features", "relational-study"}:
+    if args.command in {"neural-features", "neural-study"}:
+        from .neural import build_waveform_bank, run_neural_study
+        neural = load_config(args.neural_config)
+        if args.command == "neural-features":
+            print(f"Waveform bank saved to {build_waveform_bank(neural)}")
+        else:
+            print(run_neural_study(neural, args.outer_folds).to_string(index=False))
+        return
+    if args.command in {"relational-features", "relational-repair", "relational-study"}:
         relational = load_config(args.relational_config)
         if args.command == "relational-features":
             print(f"Relational feature bank saved to {build_relational_bank(relational)}")
+        elif args.command == "relational-repair":
+            print(f"Verified relational arrays restored in {restore_relational_arrays(relational)}")
         else:
             print(run_relational_study(relational, args.arms, args.outer_folds).to_string(index=False))
         return

@@ -219,3 +219,34 @@ def test_paired_report_validates_full_cohort_and_rejects_tampering(tmp_path):
     patient.to_csv(predictions, index=False)
     with pytest.raises(ValueError, match="Predictions do not match"):
         summarize_relational_study(config, draws=100)
+
+
+@pytest.mark.parametrize("different_context", [False, True])
+def test_missing_matrix_repair_verifies_context_before_publishing(tmp_path, monkeypatch, different_context):
+    config = _tiny_bank(tmp_path)
+    bank = Path(config["bank_dir"])
+    correlation = np.load(bank / "correlation.npy")
+    (bank / "correlation.npy").rename(bank / "correlation.retained-for-test.npy")
+    groups, labels = np.load(bank / "groups.npy"), np.load(bank / "y.npy")
+    beats = pd.DataFrame({"record": ["r"] * len(groups), "patient_id": groups, "label": labels})
+    beats.to_csv(tmp_path / "beats.csv", index=False)
+    (tmp_path / "paper.yaml").write_text("{}")
+    manifest = json.loads((bank / "manifest.json").read_text())
+    manifest.update(windows=[[0, 2], [2, 4]], shrinkage=0.05, n_beats=len(beats), widths={"correlation": correlation.shape[1]})
+    (bank / "manifest.json").write_text(json.dumps(manifest))
+    config.update(paper_config=str(tmp_path / "paper.yaml"), beats_path=str(tmp_path / "beats.csv"),
+                  windows=manifest["windows"], shrinkage=0.05, n_jobs=1)
+
+    def rows(record, frame, paper, settings):
+        return frame.index.to_numpy(), {"statistics_context": np.load(bank / "statistics_context.npy") + int(different_context),
+                                        "correlation": correlation}
+
+    monkeypatch.setattr(relational, "_record_rows", rows)
+    if different_context:
+        with pytest.raises(ValueError, match="context differs"):
+            relational.restore_relational_arrays(config)
+        assert not (bank / "correlation.npy").exists()
+    else:
+        assert relational.restore_relational_arrays(config) == bank
+        np.testing.assert_array_equal(np.load(bank / "correlation.npy"), correlation.astype(np.float32))
+        assert json.loads((bank / "repair_receipt.json").read_text())["verified_beats"] == len(beats)

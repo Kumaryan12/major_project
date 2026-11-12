@@ -286,6 +286,56 @@ def build_relational_bank(config: dict) -> Path:
     return destination
 
 
+def restore_relational_arrays(config: dict) -> Path:
+    """Restore missing matrices only after exact context-feature verification.
+
+    This does not invent a new bank fingerprint or overwrite retained arrays.
+    Every regenerated record must reproduce the retained float32 context
+    statistics exactly before its missing matrix rows can be accepted.
+    """
+    bank = Path(config["bank_dir"])
+    manifest = json.loads((bank / "manifest.json").read_text())
+    missing = [name for name in ["correlation", "covariance"] if not (bank / f"{name}.npy").exists()]
+    if not missing:
+        return bank
+    with Path(config["paper_config"]).open() as stream:
+        paper = yaml.safe_load(stream)
+    beats = pd.read_csv(config["beats_path"])
+    beats = beats.loc[beats.label.isin(config["classes"])].reset_index(drop=True)
+    if manifest["windows"] != config["windows"] or manifest["shrinkage"] != config["shrinkage"]:
+        raise ValueError("Repair settings do not match the retained bank")
+    if not np.array_equal(np.load(bank / "groups.npy"), beats.patient_id.astype(str).to_numpy()) or not np.array_equal(np.load(bank / "y.npy"), beats.label.astype(str).to_numpy()):
+        raise ValueError("Repair cohort does not match the retained bank")
+    retained = np.load(bank / "statistics_context.npy", mmap_mode="r")
+    if retained.shape != (len(beats), manifest["statistics"]) or len(beats) != manifest["n_beats"]:
+        raise ValueError("Retained context cache is incomplete")
+    # Use separate temporary outputs. A failed verification never publishes
+    # partially rebuilt matrices under their canonical cache names.
+    temporary = {name: bank / f"{name}.repair.npy" for name in missing}
+    arrays = {name: np.lib.format.open_memmap(path, mode="w+", dtype=np.float32,
+               shape=(len(beats), manifest["widths"][name])) for name, path in temporary.items()}
+    tasks = Parallel(n_jobs=int(config.get("n_jobs", 2)), return_as="generator_unordered")(
+        delayed(_record_rows)(record, rows, paper, config) for record, rows in beats.groupby("record", sort=False))
+    for completed, (indices, values) in enumerate(tasks, 1):
+        if not np.array_equal(values["statistics_context"], retained[indices]):
+            raise ValueError("Regenerated context differs; use a new bank and study instead of resuming")
+        for name in missing:
+            arrays[name][indices] = values[name]
+        if completed % 25 == 0 or completed == beats.record.nunique():
+            print(f"Verified relational repair: {completed}/{beats.record.nunique()} records", flush=True)
+    for name in missing:
+        arrays[name].flush()
+        if not np.isfinite(arrays[name]).all():
+            raise ValueError("Repaired matrix contains nonfinite values")
+    arrays.clear()
+    for name, path in temporary.items():
+        path.replace(bank / f"{name}.npy")
+    (bank / "repair_receipt.json").write_text(json.dumps({"restored": missing,
+        "preserved_bank_fingerprint": manifest["fingerprint"], "verified_records": int(beats.record.nunique()),
+        "verified_beats": len(beats), "verification": "exact regenerated float32 context statistics and identical patient/label row order; unchanged windows/shrinkage"}, indent=2))
+    return bank
+
+
 def _fit_arm(arm, X, y, groups, rank, model_params, config, manifest, seed):
     weights = patient_balanced_weights(y, groups)
     projection = None

@@ -116,6 +116,21 @@ The same six classes and frozen patient folds are preserved. Rank selection uses
 
 After all five arms finish, the report command validates paired patient predictions and produces `REPORT.md` and class-stratified paired bootstrap intervals. It refuses incomplete or mismatched studies. Intervals are conditional on fitted predictions and do not correct repeated development, shared training folds or multiple comparisons.
 
+If only correlation/covariance cache arrays are missing, `mi-localization relational-repair` rebuilds them without discarding fold checkpoints. It verifies exact regenerated context statistics across every record, plus cohort order and region/shrinkage settings, before publishing restored matrices. A mismatch requires a new bank/study rather than a silent resume.
+
+## Compact measured-VCG ResNet
+
+The [neural development plan](docs/neural_vcg_plan.md) adds a 78k-parameter XYZ ResNet and a separate ResNet + 192-statistics fusion ablation. Architecture/optimizer settings are fixed in [`configs/neural_vcg.yaml`](configs/neural_vcg.yaml). Inner patient folds select the epoch budget; normalization and early stopping never use outer test patients.
+
+```bash
+.venv/bin/python -m pip install -e '.[neural,dev]'
+.venv/bin/mi-localization neural-features
+.venv/bin/mi-localization neural-study
+.venv/bin/python -m mi_localization.neural_report
+```
+
+All 164 patients and original beat positions are retained. Class/patient-balanced sampling draws 8,192 training beats per epoch; all validation/test beats are evaluated. Models are compared with the fixed depth-3 statistics control on pooled patient predictions. Partial runs are clearly separated, and inner/outer checkpoints support resuming. The report is produced only after the full run finishes; no improvement or SOTA result is claimed in advance. Existing PTB-XL results are untouched, and ECG + VCG remains a future extension.
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:

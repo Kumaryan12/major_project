@@ -1,0 +1,25 @@
+seed: 42
+paper_config: configs/paper.yaml
+beats_path: data/processed/beats.csv
+statistics_bank_dir: data/processed/relational_vcg_v1
+bank_dir: data/processed/neural_vcg_v1
+folds_path: configs/patient_folds.csv
+output_dir: results/neural_vcg_v1
+control_dir: results/relational_vcg_v1/complete
+classes: [AMI, ALMI, ASMI, IMI, ILMI, HC]
+outer_splits: 10
+inner_splits: 3
+models: [resnet, resnet_statistics]
+feature_n_jobs: 2
+device: auto
+torch_threads: 2
+widths: [16, 32, 64]
+pool_bins: 4
+dropout: 0.2
+learning_rate: 0.001
+weight_decay: 0.01
+batch_size: 128
+samples_per_epoch: 8192
+max_epochs: 25
+patience: 6
+verbose_epochs: false
