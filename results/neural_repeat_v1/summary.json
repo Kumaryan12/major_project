@@ -1,0 +1,37 @@
+{
+  "complete": true,
+  "training_seeds": [
+    42,
+    123,
+    2026
+  ],
+  "split_seed": 42,
+  "macro_f1_mean": 0.5501078970006266,
+  "macro_f1_sample_std": 0.03979258705922586,
+  "macro_f1_min": 0.5074544316221441,
+  "macro_f1_max": 0.5862319741567313,
+  "runs": [
+    {
+      "training_seed": 42,
+      "split_seed": 42,
+      "source": "results/neural_vcg_v1/complete",
+      "patient_macro_f1": 0.5862319741567313,
+      "patient_accuracy": 0.6341463414634146
+    },
+    {
+      "training_seed": 123,
+      "split_seed": 42,
+      "source": "results/neural_repeat_v1/seed_123/complete",
+      "patient_macro_f1": 0.5566372852230043,
+      "patient_accuracy": 0.6219512195121951
+    },
+    {
+      "training_seed": 2026,
+      "split_seed": 42,
+      "source": "results/neural_repeat_v1/seed_2026/complete",
+      "patient_macro_f1": 0.5074544316221441,
+      "patient_accuracy": 0.5792682926829268
+    }
+  ],
+  "disclosure": "Reference seed reused after protocol/cohort/audit verification; other seeds refit on fixed outer and inner patient partitions. No best-seed selection or ensemble. Development data, not independent validation."
+}

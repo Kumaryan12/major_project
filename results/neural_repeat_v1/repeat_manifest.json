@@ -1,0 +1,58 @@
+{
+  "config": {
+    "base_config": "configs/neural_vcg.yaml",
+    "output_dir": "results/neural_repeat_v1",
+    "reference_dir": "results/neural_vcg_v1/complete",
+    "reference_seed": 42,
+    "training_seeds": [
+      42,
+      123,
+      2026
+    ],
+    "split_seed": 42
+  },
+  "base": {
+    "seed": 42,
+    "paper_config": "configs/paper.yaml",
+    "beats_path": "data/processed/beats.csv",
+    "statistics_bank_dir": "data/processed/relational_vcg_v1",
+    "bank_dir": "data/processed/neural_vcg_v1",
+    "folds_path": "configs/patient_folds.csv",
+    "output_dir": "results/neural_vcg_v1",
+    "control_dir": "results/relational_vcg_v1/complete",
+    "classes": [
+      "AMI",
+      "ALMI",
+      "ASMI",
+      "IMI",
+      "ILMI",
+      "HC"
+    ],
+    "outer_splits": 10,
+    "inner_splits": 3,
+    "models": [
+      "resnet",
+      "resnet_statistics"
+    ],
+    "feature_n_jobs": 2,
+    "device": "auto",
+    "torch_threads": 2,
+    "widths": [
+      16,
+      32,
+      64
+    ],
+    "pool_bins": 4,
+    "dropout": 0.2,
+    "learning_rate": 0.001,
+    "weight_decay": 0.01,
+    "batch_size": 128,
+    "samples_per_epoch": 8192,
+    "max_epochs": 25,
+    "patience": 6,
+    "verbose_epochs": false
+  },
+  "reference_fingerprint": "be07562dadb877f7e60c1bcf270ceb6ff41b09518101e377f5b0c42bb5c84446",
+  "reference_predictions_sha256": "f071cff6dd63ad16dee4282324af12dbf0a9c85a0b2721ae2b72418c9e2a62cf",
+  "code_sha256": "66459085ea0ebd2396c7a0cb38534b1f672fc55450cf43be74290541b1056a19"
+}
