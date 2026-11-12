@@ -1,0 +1,58 @@
+{
+  "draws": 5000,
+  "seed": 42,
+  "method": "paired class-stratified patient bootstrap, percentile 95% intervals",
+  "limitations": "Conditional on fitted cross-validation predictions; no model refits, no correction for repeated development or multiple comparisons. Not independent confirmation.",
+  "arms": {
+    "statistics_short": {
+      "macro_f1_95_interval": [
+        0.3875506728938552,
+        0.5465974415556194
+      ],
+      "paired_comparisons": {},
+      "macro_f1": 0.46872276537418217
+    },
+    "resnet": {
+      "macro_f1_95_interval": [
+        0.5065235604358487,
+        0.6640600240422898
+      ],
+      "paired_comparisons": {
+        "statistics_short": {
+          "macro_f1_difference_95_interval": [
+            0.021962199129749393,
+            0.21073754310996168
+          ],
+          "macro_f1_difference": 0.11750920878254917
+        }
+      },
+      "macro_f1": 0.5862319741567313
+    },
+    "resnet_statistics": {
+      "macro_f1_95_interval": [
+        0.4996408242078403,
+        0.6603233914819112
+      ],
+      "paired_comparisons": {
+        "statistics_short": {
+          "macro_f1_difference_95_interval": [
+            0.023290378551518175,
+            0.2056158622019527
+          ],
+          "macro_f1_difference": 0.11487761734900753
+        }
+      },
+      "macro_f1": 0.5836003827231897
+    }
+  },
+  "study_fingerprint": "be07562dadb877f7e60c1bcf270ceb6ff41b09518101e377f5b0c42bb5c84446",
+  "n_patients": 164,
+  "classes": [
+    "AMI",
+    "ALMI",
+    "ASMI",
+    "IMI",
+    "ILMI",
+    "HC"
+  ]
+}
