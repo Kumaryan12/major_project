@@ -1,0 +1,121 @@
+{
+  "study_fingerprint": "5a058ca97c07a749157e9e0e09412a5340f1447859927d016f85597f0d594325",
+  "fold": 6,
+  "arm": "covariance_shared",
+  "train_patients": 148,
+  "test_patients": 16,
+  "train_beats": 49980,
+  "test_beats": 5883,
+  "patient_overlap": 0,
+  "best_candidate": {
+    "rank": 4,
+    "model_params": {
+      "n_estimators": 250,
+      "max_depth": 3,
+      "learning_rate": 0.05,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8
+    },
+    "inner_scores": [
+      0.4080808080808081,
+      0.5188678536548719,
+      0.367088779956427
+    ],
+    "inner_mean_macro_f1": 0.431345813897369
+  },
+  "inner_candidates": [
+    {
+      "rank": 4,
+      "model_params": {
+        "n_estimators": 250,
+        "max_depth": 3,
+        "learning_rate": 0.05,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8
+      },
+      "inner_scores": [
+        0.4080808080808081,
+        0.5188678536548719,
+        0.367088779956427
+      ],
+      "inner_mean_macro_f1": 0.431345813897369
+    },
+    {
+      "rank": 8,
+      "model_params": {
+        "n_estimators": 250,
+        "max_depth": 3,
+        "learning_rate": 0.05,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8
+      },
+      "inner_scores": [
+        0.45,
+        0.5090794938665121,
+        0.3302631578947368
+      ],
+      "inner_mean_macro_f1": 0.4297808839204163
+    }
+  ],
+  "projection_fit_scope": "inner training only during selection; outer training only for final fold model",
+  "projection_energy_fraction": 0.6221286061726408,
+  "output_feature_count": 232,
+  "patient_metrics": {
+    "accuracy": 0.5625,
+    "balanced_accuracy": 0.4166666666666667,
+    "macro_f1": 0.39357864357864353,
+    "macro_roc_auc_ovr": 0.7887112887112887,
+    "macro_average_precision": 0.4892438271604938,
+    "classification_report": {
+      "AMI": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1-score": 0.5,
+        "support": 2.0
+      },
+      "ALMI": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 1.0
+      },
+      "ASMI": {
+        "precision": 0.6666666666666666,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.6666666666666666,
+        "support": 3.0
+      },
+      "IMI": {
+        "precision": 0.25,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.2857142857142857,
+        "support": 3.0
+      },
+      "ILMI": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 2.0
+      },
+      "HC": {
+        "precision": 0.8333333333333334,
+        "recall": 1.0,
+        "f1-score": 0.9090909090909091,
+        "support": 5.0
+      },
+      "accuracy": 0.5625,
+      "macro avg": {
+        "precision": 0.375,
+        "recall": 0.4166666666666667,
+        "f1-score": 0.39357864357864353,
+        "support": 16.0
+      },
+      "weighted avg": {
+        "precision": 0.4947916666666667,
+        "recall": 0.5625,
+        "f1-score": 0.5251623376623377,
+        "support": 16.0
+      }
+    }
+  }
+}

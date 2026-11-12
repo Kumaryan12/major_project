@@ -1,0 +1,121 @@
+{
+  "study_fingerprint": "5a058ca97c07a749157e9e0e09412a5340f1447859927d016f85597f0d594325",
+  "fold": 1,
+  "arm": "correlation_shared",
+  "train_patients": 147,
+  "test_patients": 17,
+  "train_beats": 51073,
+  "test_beats": 4790,
+  "patient_overlap": 0,
+  "best_candidate": {
+    "rank": 8,
+    "model_params": {
+      "n_estimators": 250,
+      "max_depth": 3,
+      "learning_rate": 0.05,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8
+    },
+    "inner_scores": [
+      0.44358974358974357,
+      0.4898319273319274,
+      0.5417848280751506
+    ],
+    "inner_mean_macro_f1": 0.4917354996656072
+  },
+  "inner_candidates": [
+    {
+      "rank": 4,
+      "model_params": {
+        "n_estimators": 250,
+        "max_depth": 3,
+        "learning_rate": 0.05,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8
+      },
+      "inner_scores": [
+        0.48417329796640146,
+        0.43355119825708055,
+        0.5417644780548007
+      ],
+      "inner_mean_macro_f1": 0.4864963247594276
+    },
+    {
+      "rank": 8,
+      "model_params": {
+        "n_estimators": 250,
+        "max_depth": 3,
+        "learning_rate": 0.05,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8
+      },
+      "inner_scores": [
+        0.44358974358974357,
+        0.4898319273319274,
+        0.5417848280751506
+      ],
+      "inner_mean_macro_f1": 0.4917354996656072
+    }
+  ],
+  "projection_fit_scope": "inner training only during selection; outer training only for final fold model",
+  "projection_energy_fraction": 0.6625190222026843,
+  "output_feature_count": 336,
+  "patient_metrics": {
+    "accuracy": 0.47058823529411764,
+    "balanced_accuracy": 0.3333333333333333,
+    "macro_f1": 0.2904040404040404,
+    "macro_roc_auc_ovr": 0.725,
+    "macro_average_precision": 0.4540963665963666,
+    "classification_report": {
+      "AMI": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 1.0
+      },
+      "ALMI": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 2.0
+      },
+      "ASMI": {
+        "precision": 0.3333333333333333,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.3333333333333333,
+        "support": 3.0
+      },
+      "IMI": {
+        "precision": 0.4,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.5,
+        "support": 3.0
+      },
+      "ILMI": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      },
+      "HC": {
+        "precision": 0.8333333333333334,
+        "recall": 1.0,
+        "f1-score": 0.9090909090909091,
+        "support": 5.0
+      },
+      "accuracy": 0.47058823529411764,
+      "macro avg": {
+        "precision": 0.2611111111111111,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.2904040404040404,
+        "support": 17.0
+      },
+      "weighted avg": {
+        "precision": 0.37450980392156863,
+        "recall": 0.47058823529411764,
+        "f1-score": 0.4144385026737968,
+        "support": 17.0
+      }
+    }
+  }
+}

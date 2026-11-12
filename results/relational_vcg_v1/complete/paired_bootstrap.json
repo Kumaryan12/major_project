@@ -1,0 +1,128 @@
+{
+  "draws": 5000,
+  "seed": 42,
+  "method": "paired class-stratified patient bootstrap, percentile 95% intervals",
+  "limitations": "Conditional on fitted cross-validation predictions; no model refits, no correction for repeated development or multiple comparisons. Not independent confirmation.",
+  "arms": {
+    "statistics_short": {
+      "macro_f1_95_interval": [
+        0.3875506728938552,
+        0.5465974415556194
+      ],
+      "paired_comparisons": {
+        "statistics_context": {
+          "macro_f1_difference_95_interval": [
+            -0.020620523304331322,
+            0.11508220754291523
+          ],
+          "macro_f1_difference": 0.04736909523163302
+        }
+      },
+      "macro_f1": 0.46872276537418217
+    },
+    "statistics_context": {
+      "macro_f1_95_interval": [
+        0.33972483929988967,
+        0.4999319105393063
+      ],
+      "paired_comparisons": {
+        "statistics_short": {
+          "macro_f1_difference_95_interval": [
+            -0.11508220754291523,
+            0.020620523304331246
+          ],
+          "macro_f1_difference": -0.04736909523163302
+        }
+      },
+      "macro_f1": 0.42135367014254915
+    },
+    "correlation_flat": {
+      "macro_f1_95_interval": [
+        0.37911098050146624,
+        0.5369538421382788
+      ],
+      "paired_comparisons": {
+        "statistics_short": {
+          "macro_f1_difference_95_interval": [
+            -0.08569052937180989,
+            0.06609230968007951
+          ],
+          "macro_f1_difference": -0.010101673701691682
+        },
+        "statistics_context": {
+          "macro_f1_difference_95_interval": [
+            -0.033698306555911745,
+            0.11235951666547456
+          ],
+          "macro_f1_difference": 0.037267421529941336
+        }
+      },
+      "macro_f1": 0.4586210916724905
+    },
+    "correlation_shared": {
+      "macro_f1_95_interval": [
+        0.3360446749855828,
+        0.4900965927433095
+      ],
+      "paired_comparisons": {
+        "statistics_short": {
+          "macro_f1_difference_95_interval": [
+            -0.11771774421669559,
+            0.004976664559707722
+          ],
+          "macro_f1_difference": -0.05572821485361318
+        },
+        "statistics_context": {
+          "macro_f1_difference_95_interval": [
+            -0.05805821699568359,
+            0.04027206765767191
+          ],
+          "macro_f1_difference": -0.00835911962198016
+        }
+      },
+      "macro_f1": 0.412994550520569
+    },
+    "covariance_shared": {
+      "macro_f1_95_interval": [
+        0.39070238650134004,
+        0.5481174360477719
+      ],
+      "paired_comparisons": {
+        "statistics_short": {
+          "macro_f1_difference_95_interval": [
+            -0.06874183890874078,
+            0.07149849523858674
+          ],
+          "macro_f1_difference": 0.0009098558615512342
+        },
+        "statistics_context": {
+          "macro_f1_difference_95_interval": [
+            -0.0005318803010893278,
+            0.09891591378837908
+          ],
+          "macro_f1_difference": 0.04827895109318425
+        }
+      },
+      "macro_f1": 0.4696326212357334
+    }
+  },
+  "study_fingerprint": "5a058ca97c07a749157e9e0e09412a5340f1447859927d016f85597f0d594325",
+  "n_patients": 164,
+  "classes": [
+    "AMI",
+    "ALMI",
+    "ASMI",
+    "IMI",
+    "ILMI",
+    "HC"
+  ],
+  "class_counts": {
+    "HC": 52,
+    "IMI": 29,
+    "ASMI": 27,
+    "ILMI": 23,
+    "AMI": 17,
+    "ALMI": 16
+  },
+  "folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625"
+}

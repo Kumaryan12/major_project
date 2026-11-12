@@ -1,0 +1,97 @@
+{
+  "study_fingerprint": "5a058ca97c07a749157e9e0e09412a5340f1447859927d016f85597f0d594325",
+  "fold": 4,
+  "arm": "statistics_context",
+  "train_patients": 147,
+  "test_patients": 17,
+  "train_beats": 52086,
+  "test_beats": 3777,
+  "patient_overlap": 0,
+  "best_candidate": {
+    "rank": null,
+    "model_params": {
+      "n_estimators": 250,
+      "max_depth": 3,
+      "learning_rate": 0.05,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8
+    },
+    "inner_scores": [],
+    "inner_mean_macro_f1": null
+  },
+  "inner_candidates": [
+    {
+      "rank": null,
+      "model_params": {
+        "n_estimators": 250,
+        "max_depth": 3,
+        "learning_rate": 0.05,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8
+      },
+      "inner_scores": [],
+      "inner_mean_macro_f1": null
+    }
+  ],
+  "projection_fit_scope": "inner training only during selection; outer training only for final fold model",
+  "projection_energy_fraction": null,
+  "output_feature_count": 192,
+  "patient_metrics": {
+    "accuracy": 0.47058823529411764,
+    "balanced_accuracy": 0.4444444444444444,
+    "macro_f1": 0.45360195360195354,
+    "macro_roc_auc_ovr": 0.7104617604617603,
+    "macro_average_precision": 0.5130404998052057,
+    "classification_report": {
+      "AMI": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1-score": 0.6666666666666666,
+        "support": 2.0
+      },
+      "ALMI": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1.0
+      },
+      "ASMI": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      },
+      "IMI": {
+        "precision": 0.25,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.2857142857142857,
+        "support": 3.0
+      },
+      "ILMI": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 2.0
+      },
+      "HC": {
+        "precision": 0.7142857142857143,
+        "recall": 0.8333333333333334,
+        "f1-score": 0.7692307692307693,
+        "support": 6.0
+      },
+      "accuracy": 0.47058823529411764,
+      "macro avg": {
+        "precision": 0.49404761904761907,
+        "recall": 0.4444444444444444,
+        "f1-score": 0.45360195360195354,
+        "support": 17.0
+      },
+      "weighted avg": {
+        "precision": 0.47268907563025203,
+        "recall": 0.47058823529411764,
+        "f1-score": 0.4591682826976945,
+        "support": 17.0
+      }
+    }
+  }
+}
