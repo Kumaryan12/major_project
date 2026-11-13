@@ -1,0 +1,175 @@
+{
+  "draws": 5000,
+  "seed": 42,
+  "method": "paired class-stratified patient bootstrap, percentile 95% intervals",
+  "limitations": "Conditional on fitted cross-validation predictions; no model refits, no correction for repeated development or multiple comparisons. Not independent confirmation.",
+  "arms": {
+    "resnet_reference": {
+      "macro_f1_95_interval": [
+        0.5065235604358487,
+        0.6640600240422898
+      ],
+      "paired_comparisons": {
+        "bag_mean": {
+          "macro_f1_difference_95_interval": [
+            -0.036094413316435016,
+            0.16456758788226533
+          ],
+          "macro_f1_difference": 0.0638032500123209
+        },
+        "bag_attention": {
+          "macro_f1_difference_95_interval": [
+            0.05643817953827447,
+            0.2305787651570932
+          ],
+          "macro_f1_difference": 0.14295937481154197
+        },
+        "multiscale_attention": {
+          "macro_f1_difference_95_interval": [
+            0.01752375648996762,
+            0.19384090548978156
+          ],
+          "macro_f1_difference": 0.10611987825516173
+        }
+      },
+      "macro_f1": 0.5862319741567313
+    },
+    "bag_mean": {
+      "macro_f1_95_interval": [
+        0.4419542073286542,
+        0.5983101524363355
+      ],
+      "paired_comparisons": {
+        "resnet_reference": {
+          "macro_f1_difference_95_interval": [
+            -0.16456758788226533,
+            0.03609441331643493
+          ],
+          "macro_f1_difference": -0.0638032500123209
+        },
+        "bag_attention": {
+          "macro_f1_difference_95_interval": [
+            -0.012034586568330508,
+            0.1705926537385422
+          ],
+          "macro_f1_difference": 0.07915612479922107
+        },
+        "multiscale_attention": {
+          "macro_f1_difference_95_interval": [
+            -0.05298671571026077,
+            0.13609158024314694
+          ],
+          "macro_f1_difference": 0.042316628242840826
+        }
+      },
+      "macro_f1": 0.5224287241444104
+    },
+    "bag_attention": {
+      "macro_f1_95_interval": [
+        0.36748092141763566,
+        0.517702753766828
+      ],
+      "paired_comparisons": {
+        "resnet_reference": {
+          "macro_f1_difference_95_interval": [
+            -0.23057876515709322,
+            -0.05643817953827459
+          ],
+          "macro_f1_difference": -0.14295937481154197
+        },
+        "bag_mean": {
+          "macro_f1_difference_95_interval": [
+            -0.1705926537385423,
+            0.012034586568330475
+          ],
+          "macro_f1_difference": -0.07915612479922107
+        },
+        "multiscale_attention": {
+          "macro_f1_difference_95_interval": [
+            -0.12819141757144156,
+            0.05321384825553287
+          ],
+          "macro_f1_difference": -0.03683949655638025
+        }
+      },
+      "macro_f1": 0.44327259934518937
+    },
+    "multiscale_attention": {
+      "macro_f1_95_interval": [
+        0.4017736566259642,
+        0.557094341021313
+      ],
+      "paired_comparisons": {
+        "resnet_reference": {
+          "macro_f1_difference_95_interval": [
+            -0.19384090548978167,
+            -0.017523756489967773
+          ],
+          "macro_f1_difference": -0.10611987825516173
+        },
+        "bag_mean": {
+          "macro_f1_difference_95_interval": [
+            -0.13609158024314702,
+            0.052986715710260646
+          ],
+          "macro_f1_difference": -0.042316628242840826
+        },
+        "bag_attention": {
+          "macro_f1_difference_95_interval": [
+            -0.05321384825553297,
+            0.12819141757144148
+          ],
+          "macro_f1_difference": 0.03683949655638025
+        }
+      },
+      "macro_f1": 0.4801120959015696
+    },
+    "tucker_attention": {
+      "macro_f1_95_interval": [
+        0.4272151834233401,
+        0.5838746010086366
+      ],
+      "paired_comparisons": {
+        "resnet_reference": {
+          "macro_f1_difference_95_interval": [
+            -0.1670324569429811,
+            0.007452346936398202
+          ],
+          "macro_f1_difference": -0.0795006134771461
+        },
+        "bag_mean": {
+          "macro_f1_difference_95_interval": [
+            -0.09857623074134982,
+            0.06744294789333344
+          ],
+          "macro_f1_difference": -0.015697363464825198
+        },
+        "bag_attention": {
+          "macro_f1_difference_95_interval": [
+            -0.02473859126648097,
+            0.14887709604970362
+          ],
+          "macro_f1_difference": 0.06345876133439587
+        },
+        "multiscale_attention": {
+          "macro_f1_difference_95_interval": [
+            -0.06641063742461246,
+            0.1183321057993684
+          ],
+          "macro_f1_difference": 0.026619264778015628
+        }
+      },
+      "macro_f1": 0.5067313606795852
+    }
+  },
+  "study_fingerprint": "d980a92e01a85b2a8b85c050c9013da24208bebb45c7eea30f63243f738a77e4",
+  "n_patients": 164,
+  "classes": [
+    "AMI",
+    "ALMI",
+    "ASMI",
+    "IMI",
+    "ILMI",
+    "HC"
+  ]
+}
