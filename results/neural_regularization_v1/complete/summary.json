@@ -1,0 +1,51 @@
+{
+  "complete": true,
+  "study_fingerprint": "65b8eb8efcc5e203db96109bb1f7b40ddff082df499f53652d0f6472364ce095",
+  "n_patients": 164,
+  "n_records": 391,
+  "n_beats": 55863,
+  "training_seeds": [
+    42,
+    123,
+    2026
+  ],
+  "arms": {
+    "baseline": {
+      "macro_f1_mean": 0.5501078970006266,
+      "macro_f1_sample_std": 0.03979258705922586
+    },
+    "selected": {
+      "macro_f1_mean": 0.5503125420690284,
+      "macro_f1_sample_std": 0.030952931326958956
+    }
+  },
+  "per_seed": [
+    {
+      "training_seed": 42,
+      "baseline_macro_f1": 0.5862319741567313,
+      "selected_macro_f1": 0.5548680841652003,
+      "selected_minus_baseline_macro_f1": -0.03136388999153106
+    },
+    {
+      "training_seed": 123,
+      "baseline_macro_f1": 0.5566372852230043,
+      "selected_macro_f1": 0.5787352471555064,
+      "selected_minus_baseline_macro_f1": 0.02209796193250213
+    },
+    {
+      "training_seed": 2026,
+      "baseline_macro_f1": 0.5074544316221441,
+      "selected_macro_f1": 0.5173342948863782,
+      "selected_minus_baseline_macro_f1": 0.009879863264234068
+    }
+  ],
+  "selection_counts": {
+    "baseline": 5,
+    "regularized": 6,
+    "augmented": 11,
+    "combined": 8
+  },
+  "unique_fit_count": 415,
+  "mean_selected_minus_baseline_macro_f1": 0.0002046450684017135,
+  "limits": "Fixed baseline vs four-preset nested selection with extra tuning compute; repeated PTB development, not independent confirmation or an isolated augmentation-effect estimate."
+}

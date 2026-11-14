@@ -1,0 +1,87 @@
+{
+  "study_fingerprint": "65b8eb8efcc5e203db96109bb1f7b40ddff082df499f53652d0f6472364ce095",
+  "arm": "selected",
+  "training_seed": 42,
+  "classes": [
+    "AMI",
+    "ALMI",
+    "ASMI",
+    "IMI",
+    "ILMI",
+    "HC"
+  ],
+  "complete": true,
+  "evaluated_folds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "n_patients": 164,
+  "n_beats": 55863,
+  "patient_metrics": {
+    "accuracy": 0.6097560975609756,
+    "balanced_accuracy": 0.5527927312320041,
+    "macro_f1": 0.5548680841652003,
+    "macro_roc_auc_ovr": 0.8777467751469709,
+    "macro_average_precision": 0.5678436017718705,
+    "classification_report": {
+      "AMI": {
+        "precision": 0.3888888888888889,
+        "recall": 0.4117647058823529,
+        "f1-score": 0.4,
+        "support": 17.0
+      },
+      "ALMI": {
+        "precision": 0.5384615384615384,
+        "recall": 0.4375,
+        "f1-score": 0.4827586206896552,
+        "support": 16.0
+      },
+      "ASMI": {
+        "precision": 0.5517241379310345,
+        "recall": 0.5925925925925926,
+        "f1-score": 0.5714285714285714,
+        "support": 27.0
+      },
+      "IMI": {
+        "precision": 0.45161290322580644,
+        "recall": 0.4827586206896552,
+        "f1-score": 0.4666666666666667,
+        "support": 29.0
+      },
+      "ILMI": {
+        "precision": 0.5652173913043478,
+        "recall": 0.5652173913043478,
+        "f1-score": 0.5652173913043478,
+        "support": 23.0
+      },
+      "HC": {
+        "precision": 0.86,
+        "recall": 0.8269230769230769,
+        "f1-score": 0.8431372549019608,
+        "support": 52.0
+      },
+      "accuracy": 0.6097560975609756,
+      "macro avg": {
+        "precision": 0.5593174766352693,
+        "recall": 0.5527927312320041,
+        "f1-score": 0.5548680841652003,
+        "support": 164.0
+      },
+      "weighted avg": {
+        "precision": 0.6154867173425734,
+        "recall": 0.6097560975609756,
+        "f1-score": 0.6117632923648854,
+        "support": 164.0
+      }
+    }
+  },
+  "protocol": "Fixed baseline versus four-preset inner-patient selection; same measured denoised XYZ and cached R positions; fresh outer refits, training-only augmentation and normalization; mean all beat probabilities per patient. Repeated PTB development."
+}
