@@ -1,0 +1,27 @@
+seed: 42
+split_seed: 42
+training_seeds: [42, 123, 2026]
+bank_dir: data/processed/neural_vcg_v1
+folds_path: configs/patient_folds.csv
+output_dir: results/neural_contrastive_v1
+classes: [AMI, ALMI, ASMI, IMI, ILMI, HC]
+outer_splits: 10
+inner_splits: 3
+arms: [matched_ce, cross_patient_supcon]
+device: auto
+torch_threads: 2
+widths: [16, 32, 64]
+pool_bins: 4
+dropout: 0.2
+learning_rate: 0.001
+weight_decay: 0.01
+patients_per_class: 2
+beats_per_patient: 8
+batches_per_epoch: 86
+# Six classes x two patients x eight beats = 96 beats per training batch.
+# Both arms use 86 x 96 = 8,256 presentations per epoch, not the old 8,192.
+batch_size: 96
+max_epochs: 25
+patience: 6
+temperature: 0.1
+contrastive_weight: 0.1

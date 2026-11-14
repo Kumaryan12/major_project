@@ -143,6 +143,19 @@ The [next-phase plan](docs/patient_tensor_plan.md) separates repeatability from 
 
 The modern tensor has beats × XYZ × time × scales axes and is built on demand, preserving the raw view. Filters/factors are learned only within training patients. Inference uses all eligible beats, not a random test subset. New configurations are `configs/neural_repeat.yaml` and `configs/patient_tensor.yaml`; outputs are separate from completed studies. Scores, improvement, novelty and SOTA are not claimed before evaluation, and these repeatedly inspected PTB folds remain development data.
 
+## Matched cross-patient contrastive learning
+
+The [contrastive plan](docs/contrastive_vcg_plan.md) compares a newly trained CE control with CE + cross-patient supervised contrastive loss. Both use the same plain ResNet, initial weights, structured patient-balanced batches and maximum epoch budget. Same-patient pairs are excluded entirely from the contrastive comparisons. Three training seeds share frozen inner/outer patient partitions. There is no pretraining, extra head or ECG input.
+
+```bash
+.venv/bin/python -m mi_localization.contrastive
+.venv/bin/python -m mi_localization.contrastive_report
+# Read-only progress; does not launch training:
+.venv/bin/python -m mi_localization.contrastive --status
+```
+
+Configuration: `configs/contrastive_vcg.yaml`. New output: `results/neural_contrastive_v1/complete/`. The batch policy differs from the old ResNet study, so benefit is measured against the new matched control, not assumed from the historical 0.550 mean. Final reporting validates matching sample/initialization hashes and all seeds, with patient-paired uncertainty. Saved epochs and checkpoints support resuming; partial runs remain clearly separated. No improvement, novelty or SOTA is claimed before full evaluation.
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:
