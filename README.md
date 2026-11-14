@@ -205,6 +205,21 @@ The [regularization study](docs/regularization_vcg_plan.md) retains the original
 
 Configuration: `configs/regularization_vcg.yaml`. New outputs: `results/neural_regularization_v1/complete/`. Augmentation uses an independent random stream and is never applied to validation/test inputs. Every candidate has the same maximum epoch/sample budget; the selected procedure uses extra tuning compute. The report validates paired predictions, all candidate histories, selection, sampling and exact baseline fallback before describing any gain. Augmentation strengths are experimental choices; no target score or clinical invariance is assumed.
 
+## Persistent-error review and patient learning curves
+
+The [diagnostic phase](docs/diagnostics_learning_curve_plan.md) audits persistent out-of-fold errors and tests training-patient sensitivity independently. The completed [error audit](results/neural_diagnostics_v1/REPORT.md) supplies aggregate findings plus a local review packet for all 35 persistent selected-model cases. No labels, patients, beats or peaks are changed; source/signal flags do not establish error causes or clinical truth.
+
+```bash
+.venv/bin/python -m mi_localization.error_audit
+.venv/bin/python -m mi_localization.learning_curve --plan
+.venv/bin/python -m mi_localization.learning_curve
+.venv/bin/python -m mi_localization.learning_curve_report
+# Read-only progress:
+.venv/bin/python -m mi_localization.learning_curve --status
+```
+
+The learning curve freshly trains the original 651-sample denoised ResNet using 25%, 50%, 75% and 100% class-stratified patient subsets across three seeds and the same ten outer test folds. All beats of selected patients are retained; subsets are nested and selected without model errors. Inner normalization/stopping stays within each subset. The report separates training resubstitution from pooled held-out patient F1 and does not extrapolate a target score or dataset ceiling. Configurations: `configs/diagnostics_vcg.yaml` and `configs/learning_curve_vcg.yaml`; new curve outputs: `results/neural_learning_curve_v1/complete/`.
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:
