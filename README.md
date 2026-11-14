@@ -192,6 +192,19 @@ The [longer-context experiment](docs/context_vcg_plan.md) compares the original 
 
 Configuration: `configs/context_vcg.yaml`. New aggregate cache audits and experiment outputs: `results/neural_context_v1/`. The comparison preserves matched initializations/sampled rows, separate training-only normalization and inner-patient stopping. Longer inputs require more computation and change pooling coordinates; they are not adjudicated cardiac phases. The final report validates every seed/fold before assessing benefit, and no improvement is claimed in advance.
 
+## Bounded regularization and signal augmentation
+
+The [regularization study](docs/regularization_vcg_plan.md) retains the original 651-sample denoised XYZ input and ResNet. It compares a fresh fixed baseline with an inner-patient-selected procedure choosing among exactly four presets: baseline, stronger regularization, mild common-XYZ gain/noise augmentation, and their combination. Selection, normalization and stopping use training/inner-validation patients only. All original patients/beats and frozen folds remain, across three seeds.
+
+```bash
+.venv/bin/python -m mi_localization.regularization
+.venv/bin/python -m mi_localization.regularization_report
+# Read-only progress:
+.venv/bin/python -m mi_localization.regularization --status
+```
+
+Configuration: `configs/regularization_vcg.yaml`. New outputs: `results/neural_regularization_v1/complete/`. Augmentation uses an independent random stream and is never applied to validation/test inputs. Every candidate has the same maximum epoch/sample budget; the selected procedure uses extra tuning compute. The report validates paired predictions, all candidate histories, selection, sampling and exact baseline fallback before describing any gain. Augmentation strengths are experimental choices; no target score or clinical invariance is assumed.
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:
