@@ -1,0 +1,70 @@
+{
+  "config": {
+    "seed": 42,
+    "version": "1.0.3",
+    "base_url": "https://physionet-open.s3.amazonaws.com/ptb-xl/1.0.3",
+    "metadata_path": "data/raw/ptbxl/ptbxl_database.csv",
+    "waveform_dir": "data/raw/ptbxl",
+    "train_folds": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "validation_fold": 9,
+    "excluded_fold": 10,
+    "train_patients": 1024,
+    "validation_patients": 128,
+    "bank_dir": "data/processed/source_pretraining_v1",
+    "audit_dir": "results/neural_source_pretraining_v1/source_audit",
+    "output_dir": "results/neural_source_pretraining_v1/pilot",
+    "download_workers": 8,
+    "conversion_workers": 2,
+    "review_records_per_role": 3,
+    "preprocessing": {
+      "sampling_rate": 1000,
+      "before_r": 250,
+      "after_r": 400,
+      "wavelet": "bior6.8",
+      "denoise_level": 9,
+      "rpeak_refractory_ms": 250,
+      "rpeak_integration_ms": 150,
+      "rpeak_threshold_scale": 0.06
+    },
+    "device": "auto",
+    "torch_threads": 2,
+    "widths": [
+      16,
+      32,
+      64
+    ],
+    "pool_bins": 4,
+    "batch_size": 128,
+    "samples_per_epoch": 4096,
+    "learning_rate": 0.001,
+    "weight_decay": 0.01,
+    "max_epochs": 20,
+    "patience": 5,
+    "patch_samples": 31,
+    "masked_patches": 6
+  },
+  "bank_manifest_sha256": "2fb90974b41b003787c4017ee825ef4dae1194815a19574d2eb09a60485358c2",
+  "bank_fingerprint": "cac0b76720f2e5112d4a0f303c52c1905e7607cff20df5d2bca948477843156a",
+  "runtime": {
+    "torch": "2.15.0",
+    "numpy": "2.5.3",
+    "platform": "macOS-26.5-arm64-arm-64bit",
+    "device": "mps",
+    "deterministic_kernels": false,
+    "code_sha256": "969376f24ab15f2eac45ff913ea63cfe04e87a5c852ac3f7485285bb73dd58de",
+    "neural_code_sha256": "7aa44cba432693dca59ccb2587d1f3bd2c5cee195ed74c4259c456de1fa56f97",
+    "source_code_sha256": "1d9b6bce3318c55a6c79e176818194e64f59f1d8e7396e05ed1979e9e0e27a43"
+  },
+  "cross_dataset_identity_overlap": "unresolved: unrelated de-identified namespaces; no cross-dataset identity linkage or comprehensive waveform-overlap screen",
+  "ptb_patient_independence_cleared": false,
+  "pilot_fingerprint": "a6a95aed5cf122a00ea0c005c87059097dc61eafbecd5c96faee100f46afd0a3"
+}

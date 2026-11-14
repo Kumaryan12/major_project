@@ -34,6 +34,8 @@ Report the best model against a zero predictor, the training mean-beat template,
 
 Checkpoints preserve current and best weights, AdamW state, sampler/mask/loader generators and torch CPU/MPS RNG states. A CPU interruption/resume test verifies exact agreement with uninterrupted training. Full-size MPS masking/backward/checkpoint/export is also tested. MPS itself is not guaranteed bitwise deterministic. The exported encoder remains local and carries the unresolved identity limitation; no automatic target comparison is chained to this run.
 
+The first pilot completed all 20 epochs, retaining all 1,024 training and 128 validation patients without QC exclusions or exact source-file duplicate groups. Best fixed-mask source validation MSE was **0.24910 at epoch 17**, compared with **0.62411** for the training mean-beat template, **0.96967** for the zero predictor, and **1.43111** for the trained model with all-zero input. This is about 60% lower error than the mean-template control on this validation realization. It demonstrates reconstruction feasibility, not target localization improvement. The exported encoder was checked against the best checkpoint and all exported weights were finite. There is no new PTB macro F1 from this phase.
+
 ## Commands and artifacts
 
 ```bash
