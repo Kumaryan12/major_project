@@ -234,6 +234,20 @@ The [pretraining phase](docs/source_pretraining_plan.md) freezes 1,024 PTB-XL tr
 
 The bounded masked-reconstruction pilot reuses the compact VCG encoder with a temporary decoder, train-only source normalization, fixed source-validation masks and resumable RNG/optimizer checkpoints. Mean-template and zero-input controls accompany reconstruction MSE. Configuration: `configs/source_pretraining_vcg.yaml`; new reports: `results/neural_source_pretraining_v1/`. PTB-versus-PTB-XL identity overlap is unresolved, and the export explicitly remains uncleared for a clean target patient-independent claim. No PTB localization evaluation or automatic transfer run is included in this source-only phase; measured VCG remains the primary target input.
 
+## Exploratory pretrained-versus-scratch VCG comparison
+
+The [transfer phase](docs/transfer_vcg_plan.md) follows the completed source-only pilot with a bounded recording-copy screen and a matched target comparison. The screen checked 9,216 retrieved source/target pairs, detected 20/20 synthetic copied-segment controls and flagged no matches. This does **not** clear cross-dataset patient identity: transfer remains exploratory on repeatedly inspected PTB folds.
+
+```bash
+.venv/bin/python -m mi_localization.overlap_screen
+.venv/bin/python -m mi_localization.transfer
+.venv/bin/python -m mi_localization.transfer_report
+# Read-only saved progress:
+.venv/bin/python -m mi_localization.transfer --status
+```
+
+Both arms use the same measured XYZ bank, patient folds, architecture, fresh classifier initialization, training-only target normalization, weighted sampling and two inner-selected learning rates. Only the pretrained arm imports the fixed source encoder; its source decoder/normalization/optimizer are discarded. Three target seeds and ten outer folds require 420 target fits, with inner/outer checkpoints for resumption and a validated final paired report. Configurations: `configs/source_target_overlap.yaml` and `configs/transfer_vcg.yaml`; outputs: `results/neural_transfer_v1/`. See the [recording-screen report](results/neural_transfer_v1/overlap_audit/REPORT.md) for its limited coverage and unresolved identity caveat. No target improvement is claimed before the complete comparison.
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:

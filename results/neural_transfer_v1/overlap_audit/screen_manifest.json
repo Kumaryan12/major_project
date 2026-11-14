@@ -1,0 +1,52 @@
+{
+  "config": {
+    "source_config": "configs/source_pretraining_vcg.yaml",
+    "target_config": "configs/regularization_vcg.yaml",
+    "cache_dir": "data/processed/source_target_overlap_v1",
+    "output_dir": "results/neural_transfer_v1/overlap_audit",
+    "seed": 42,
+    "screen_rate": 250,
+    "query_seconds": 8,
+    "template_points": 66,
+    "candidate_counts": [
+      8,
+      16,
+      32
+    ],
+    "positive_controls": 20,
+    "mean_correlation_threshold": 0.995,
+    "minimum_lead_correlation": 0.98,
+    "minimum_active_leads": 6,
+    "minimum_lead_sd_mv": 1e-05,
+    "workers": 2
+  },
+  "source_bank_manifest_sha256": "2fb90974b41b003787c4017ee825ef4dae1194815a19574d2eb09a60485358c2",
+  "target_bank": {
+    "fingerprint": "f44e31cff8230dc5ce971997f80ee0d0d921eb5f72a8ab75d0327692271192e7",
+    "files": {
+      "manifest.json": "b939ab2bf76e25d7569152ac60005f61b3fc99533b028a6413b1ee9b267f0b2c",
+      "waveforms.npy": "118fbfb2d8b2fbc2c32ba6449e301874cc1a79c7ad2d8692652129c224f91fba",
+      "y.npy": "e0aca562cb4beabb0d59119035baf5b997ffc678a0cd21822751f393339ef7f8",
+      "groups.npy": "729880b095d4a225551db982d107754df9ca442f0eafee2145a61cd5db963ab0"
+    },
+    "beats_sha256": "277e2f1498d54db23061c3bb60969f05ce506b941d9dfa7c07e835713950358b",
+    "paper_sha256": "5aea297dd03a5a214de3fc8142b77c58a9e9074e6dbf26288499f360e36892b0",
+    "n_beats": 55863,
+    "n_patients": 164,
+    "n_records": 391,
+    "shape": [
+      55863,
+      3,
+      651
+    ]
+  },
+  "source_inventory_sha256": "aef145f4947264eb13e58c2ca8917488e26aa291c9cd8eafe20e1326824282fc",
+  "target_inventory_sha256": "907d323d7d4b151c0a01e23fb27d4effb2753a56be9e613ee50e831f9ff500ca",
+  "code_sha256": "5d87cbd9fd3403d2fabdf536075a40ec1eccf694b05404d69b40bfcc7e5cf23f",
+  "signal_code_sha256": "b493f5a02fdea5e1c87f1d7d4db3e468409e5fd089e5e297725e10104bea858d",
+  "kors_code_sha256": "a926a837dd7344b6109cc22b655d7dd34b3f2784d2b025dd8e48bbeff7d9c979",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "wfdb": "4.3.1",
+  "screen_fingerprint": "ddf552b8784d46cd0dbe59ddb1c81f85cce906ca6f064a8032623ef03c967615"
+}

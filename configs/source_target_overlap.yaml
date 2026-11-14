@@ -1,0 +1,15 @@
+source_config: configs/source_pretraining_vcg.yaml
+target_config: configs/regularization_vcg.yaml
+cache_dir: data/processed/source_target_overlap_v1
+output_dir: results/neural_transfer_v1/overlap_audit
+seed: 42
+screen_rate: 250
+query_seconds: 8
+template_points: 66
+candidate_counts: [8, 16, 32]
+positive_controls: 20
+mean_correlation_threshold: 0.995
+minimum_lead_correlation: 0.98
+minimum_active_leads: 6
+minimum_lead_sd_mv: 0.00001
+workers: 2

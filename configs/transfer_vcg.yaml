@@ -1,0 +1,27 @@
+seed: 42
+split_seed: 42
+training_seeds: [42, 123, 2026]
+paper_config: configs/paper.yaml
+beats_path: data/processed/beats.csv
+bank_dir: data/processed/neural_vcg_v1
+output_dir: results/neural_transfer_v1
+folds_path: configs/patient_folds.csv
+source_config: configs/source_pretraining_vcg.yaml
+overlap_config: configs/source_target_overlap.yaml
+encoder_path: results/neural_source_pretraining_v1/pilot/encoder_source_only.pt
+classes: [AMI, ALMI, ASMI, IMI, ILMI, HC]
+arms: [scratch, pretrained]
+outer_splits: 10
+inner_splits: 3
+device: auto
+torch_threads: 2
+widths: [16, 32, 64]
+pool_bins: 4
+dropout: 0.2
+weight_decay: 0.01
+# Equal target tuning budgets; exact ties favor the original baseline rate.
+learning_rates: [0.001, 0.0001]
+batch_size: 128
+samples_per_epoch: 8192
+max_epochs: 25
+patience: 6
