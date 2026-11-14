@@ -1,0 +1,37 @@
+seed: 42
+version: 1.0.3
+base_url: https://physionet-open.s3.amazonaws.com/ptb-xl/1.0.3
+metadata_path: data/raw/ptbxl/ptbxl_database.csv
+waveform_dir: data/raw/ptbxl
+train_folds: [1, 2, 3, 4, 5, 6, 7, 8]
+validation_fold: 9
+excluded_fold: 10
+train_patients: 1024
+validation_patients: 128
+bank_dir: data/processed/source_pretraining_v1
+audit_dir: results/neural_source_pretraining_v1/source_audit
+output_dir: results/neural_source_pretraining_v1/pilot
+download_workers: 8
+conversion_workers: 2
+review_records_per_role: 3
+preprocessing:
+  sampling_rate: 1000
+  before_r: 250
+  after_r: 400
+  wavelet: bior6.8
+  denoise_level: 9
+  rpeak_refractory_ms: 250
+  rpeak_integration_ms: 150
+  rpeak_threshold_scale: 0.06
+device: auto
+torch_threads: 2
+widths: [16, 32, 64]
+pool_bins: 4
+batch_size: 128
+samples_per_epoch: 4096
+learning_rate: 0.001
+weight_decay: 0.01
+max_epochs: 20
+patience: 5
+patch_samples: 31
+masked_patches: 6

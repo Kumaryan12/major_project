@@ -220,6 +220,20 @@ The [diagnostic phase](docs/diagnostics_learning_curve_plan.md) audits persisten
 
 The learning curve freshly trains the original 651-sample denoised ResNet using 25%, 50%, 75% and 100% class-stratified patient subsets across three seeds and the same ten outer test folds. All beats of selected patients are retained; subsets are nested and selected without model errors. Inner normalization/stopping stays within each subset. The report separates training resubstitution from pooled held-out patient F1 and does not extrapolate a target score or dataset ceiling. Configurations: `configs/diagnostics_vcg.yaml` and `configs/learning_curve_vcg.yaml`; new curve outputs: `results/neural_learning_curve_v1/complete/`.
 
+## Audited source-only pretraining pilot
+
+The [pretraining phase](docs/source_pretraining_plan.md) freezes 1,024 PTB-XL training patients from folds 1–8 and 128 source validation patients from fold 9, one recording per patient without diagnostic-label filtering. Fold 10 is excluded before waveform I/O. The new source bank verifies units/leads/rates, converts ECG to Kors XYZ, records QC exclusions and exact source duplicate quarantine, and retains one original-size crop per source patient.
+
+```bash
+.venv/bin/python -m mi_localization.pretraining_source
+.venv/bin/python -m mi_localization.pretraining_source --prepare
+.venv/bin/python -m mi_localization.masked_pretraining
+# Read-only status:
+.venv/bin/python -m mi_localization.masked_pretraining --status
+```
+
+The bounded masked-reconstruction pilot reuses the compact VCG encoder with a temporary decoder, train-only source normalization, fixed source-validation masks and resumable RNG/optimizer checkpoints. Mean-template and zero-input controls accompany reconstruction MSE. Configuration: `configs/source_pretraining_vcg.yaml`; new reports: `results/neural_source_pretraining_v1/`. PTB-versus-PTB-XL identity overlap is unresolved, and the export explicitly remains uncleared for a clean target patient-independent claim. No PTB localization evaluation or automatic transfer run is included in this source-only phase; measured VCG remains the primary target input.
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:
