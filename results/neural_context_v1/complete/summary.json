@@ -1,0 +1,44 @@
+{
+  "complete": true,
+  "study_fingerprint": "95d6f64ebe7f61cc047ea9fe498835d2ca3d94eecdb6c498eaddeea50331a0b1",
+  "n_patients": 164,
+  "n_beats": 55863,
+  "training_seeds": [
+    42,
+    123,
+    2026
+  ],
+  "arms": {
+    "short": {
+      "macro_f1_mean": 0.5501078970006266,
+      "macro_f1_sample_std": 0.03979258705922586
+    },
+    "long": {
+      "macro_f1_mean": 0.5381338776199276,
+      "macro_f1_sample_std": 0.03256464768427383
+    }
+  },
+  "per_seed": [
+    {
+      "training_seed": 42,
+      "short_macro_f1": 0.5862319741567313,
+      "long_macro_f1": 0.5355741084312512,
+      "long_minus_short_macro_f1": -0.050657865725480145
+    },
+    {
+      "training_seed": 123,
+      "short_macro_f1": 0.5566372852230043,
+      "long_macro_f1": 0.5069246568853035,
+      "long_minus_short_macro_f1": -0.04971262833770074
+    },
+    {
+      "training_seed": 2026,
+      "short_macro_f1": 0.5074544316221441,
+      "long_macro_f1": 0.5719028675432282,
+      "long_minus_short_macro_f1": 0.06444843592108407
+    }
+  ],
+  "mean_long_minus_short_macro_f1": -0.011974019380698938,
+  "matching": "same architecture, initial weights, patient/beat membership and shared-epoch sampled-row hashes; separate training-only scaling per arm",
+  "limits": "Previously inspected PTB development patients; fixed fitted predictions/seeds; no independent confirmation, best-seed selection or SOTA claim."
+}

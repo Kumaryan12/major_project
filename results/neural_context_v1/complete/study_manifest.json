@@ -1,0 +1,94 @@
+{
+  "config": {
+    "seed": 42,
+    "split_seed": 42,
+    "training_seeds": [
+      42,
+      123,
+      2026
+    ],
+    "paper_config": "configs/paper.yaml",
+    "beats_path": "data/processed/beats.csv",
+    "short_bank_dir": "data/processed/neural_vcg_v1",
+    "long_bank_dir": "data/processed/neural_context_v1",
+    "output_dir": "results/neural_context_v1",
+    "audit_dir": "results/neural_context_v1/audit",
+    "folds_path": "configs/patient_folds.csv",
+    "classes": [
+      "AMI",
+      "ALMI",
+      "ASMI",
+      "IMI",
+      "ILMI",
+      "HC"
+    ],
+    "outer_splits": 10,
+    "inner_splits": 3,
+    "arms": [
+      "short",
+      "long"
+    ],
+    "before_r": 350,
+    "after_r": 650,
+    "boundary_mode": "reflect",
+    "feature_n_jobs": 2,
+    "device": "auto",
+    "torch_threads": 2,
+    "widths": [
+      16,
+      32,
+      64
+    ],
+    "pool_bins": 4,
+    "dropout": 0.2,
+    "learning_rate": 0.001,
+    "weight_decay": 0.01,
+    "batch_size": 128,
+    "samples_per_epoch": 8192,
+    "max_epochs": 25,
+    "patience": 6
+  },
+  "bank_fingerprints": {
+    "short": "f44e31cff8230dc5ce971997f80ee0d0d921eb5f72a8ab75d0327692271192e7",
+    "long": "1d98fbb99198a01493dd23481ac64e5dbcdb72670a7552feeb36f8fece4bbfde"
+  },
+  "cache_hashes": {
+    "short": {
+      "waveforms": "118fbfb2d8b2fbc2c32ba6449e301874cc1a79c7ad2d8692652129c224f91fba",
+      "y": "e0aca562cb4beabb0d59119035baf5b997ffc678a0cd21822751f393339ef7f8",
+      "groups": "729880b095d4a225551db982d107754df9ca442f0eafee2145a61cd5db963ab0",
+      "manifest": "b939ab2bf76e25d7569152ac60005f61b3fc99533b028a6413b1ee9b267f0b2c"
+    },
+    "long": {
+      "waveforms": "b3a7cb443b35c8fb37b029581dbfcf6df16b3c10207ab4c5e784dfe1a00427c7",
+      "y": "e0aca562cb4beabb0d59119035baf5b997ffc678a0cd21822751f393339ef7f8",
+      "groups": "729880b095d4a225551db982d107754df9ca442f0eafee2145a61cd5db963ab0",
+      "padding": "1718a461d9c5fc4929cbeccfe0be9c02e20aa9e3081aaba5ff30147cb2fa9988",
+      "manifest": "4e08fc956b7ccf82bbd785377c087af52b141fa4e30ac869f7b18b37114fc48d"
+    }
+  },
+  "folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625",
+  "evaluated_folds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "runtime": {
+    "torch": "2.15.0",
+    "numpy": "2.5.3",
+    "platform": "macOS-26.5-arm64-arm-64bit",
+    "device": "mps",
+    "deterministic_kernels": false,
+    "code_sha256": "5d92f04ad193172b05339d307e10616a1231ea11f145696dfbc5c51ff13bb850",
+    "fit_code_sha256": "28e974b992c15ae70901c99554cd86801b6f3f28a4c9f437e8c6f9130e7d0bb6",
+    "neural_code_sha256": "7aa44cba432693dca59ccb2587d1f3bd2c5cee195ed74c4259c456de1fa56f97"
+  },
+  "study_fingerprint": "95d6f64ebe7f61cc047ea9fe498835d2ca3d94eecdb6c498eaddeea50331a0b1"
+}
