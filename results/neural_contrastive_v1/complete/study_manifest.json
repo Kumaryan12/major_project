@@ -1,0 +1,71 @@
+{
+  "config": {
+    "seed": 42,
+    "split_seed": 42,
+    "training_seeds": [
+      42,
+      123,
+      2026
+    ],
+    "bank_dir": "data/processed/neural_vcg_v1",
+    "folds_path": "configs/patient_folds.csv",
+    "output_dir": "results/neural_contrastive_v1",
+    "classes": [
+      "AMI",
+      "ALMI",
+      "ASMI",
+      "IMI",
+      "ILMI",
+      "HC"
+    ],
+    "outer_splits": 10,
+    "inner_splits": 3,
+    "arms": [
+      "matched_ce",
+      "cross_patient_supcon"
+    ],
+    "device": "auto",
+    "torch_threads": 2,
+    "widths": [
+      16,
+      32,
+      64
+    ],
+    "pool_bins": 4,
+    "dropout": 0.2,
+    "learning_rate": 0.001,
+    "weight_decay": 0.01,
+    "patients_per_class": 2,
+    "beats_per_patient": 8,
+    "batches_per_epoch": 86,
+    "batch_size": 96,
+    "max_epochs": 25,
+    "patience": 6,
+    "temperature": 0.1,
+    "contrastive_weight": 0.1
+  },
+  "runtime": {
+    "torch": "2.15.0",
+    "numpy": "2.5.3",
+    "platform": "macOS-26.5-arm64-arm-64bit",
+    "device": "mps",
+    "deterministic_kernels": false,
+    "code_sha256": "923971952e03edf76d7aa63df6a1daa485e93fafa37d12979a661c5a5cb32c1c",
+    "neural_code_sha256": "7aa44cba432693dca59ccb2587d1f3bd2c5cee195ed74c4259c456de1fa56f97"
+  },
+  "bank_fingerprint": "f44e31cff8230dc5ce971997f80ee0d0d921eb5f72a8ab75d0327692271192e7",
+  "folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625",
+  "evaluated_folds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "study_fingerprint": "ee90cb835362cc34f6e1800900af912dfe218cdb6378f54c83b5a07bce02e1f1"
+}

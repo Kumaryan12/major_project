@@ -1,0 +1,44 @@
+{
+  "complete": true,
+  "study_fingerprint": "ee90cb835362cc34f6e1800900af912dfe218cdb6378f54c83b5a07bce02e1f1",
+  "n_patients": 164,
+  "n_beats": 55863,
+  "training_seeds": [
+    42,
+    123,
+    2026
+  ],
+  "arms": {
+    "matched_ce": {
+      "macro_f1_mean": 0.47923426555063414,
+      "macro_f1_sample_std": 0.041735333943645724
+    },
+    "cross_patient_supcon": {
+      "macro_f1_mean": 0.516014444952492,
+      "macro_f1_sample_std": 0.04960512151353187
+    }
+  },
+  "per_seed": [
+    {
+      "training_seed": 42,
+      "matched_ce_macro_f1": 0.5224930376310039,
+      "cross_patient_supcon_macro_f1": 0.5108262806242135,
+      "paired_macro_f1_difference": -0.011666757006790318
+    },
+    {
+      "training_seed": 123,
+      "matched_ce_macro_f1": 0.4392106663453912,
+      "cross_patient_supcon_macro_f1": 0.5680097446476734,
+      "paired_macro_f1_difference": 0.1287990783022822
+    },
+    {
+      "training_seed": 2026,
+      "matched_ce_macro_f1": 0.47599909267550755,
+      "cross_patient_supcon_macro_f1": 0.4692073095855891,
+      "paired_macro_f1_difference": -0.006791783089918457
+    }
+  ],
+  "mean_paired_macro_f1_difference": 0.036780179401857814,
+  "matching_checks": "identical initial-state hashes, parameter counts, training-only normalization and shared-epoch batch-draw hashes for every paired inner/final fit",
+  "interpretation": "Previously inspected PTB development cohort. No best-seed selection, unplanned ensemble, independent confirmation or SOTA claim."
+}
