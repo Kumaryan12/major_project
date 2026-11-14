@@ -227,3 +227,29 @@ def test_complete_matched_report_checks_draws_and_uses_every_seed(tmp_path, monk
     path.write_text(json.dumps(tampered))
     with pytest.raises(ValueError, match="identical batch draws"):
         summarize_study(config, draws=100)
+
+
+def test_high_diversity_preserves_batch_size_and_increases_distinct_patients():
+    y = np.repeat(np.arange(6), 10 * 8)
+    groups = np.repeat(np.arange(60), 8)
+    indices = np.arange(len(y))
+    old = next(iter(cp.StructuredPatientBatches(y, groups, indices, 6, 2, 8, 1, 42)))
+    new = next(iter(cp.StructuredPatientBatches(y, groups, indices, 6, 8, 2, 1, 42)))
+    assert len(old) == len(new) == 96
+    assert len(np.unique(groups[old])) == 12
+    assert len(np.unique(groups[new])) == 48
+    for batch, positives_per_anchor in [(old, 8), (new, 14)]:
+        assert np.bincount(y[batch]).tolist() == [16] * 6
+        _, positives = cp.cross_patient_masks(torch.tensor(y[batch]), torch.tensor(groups[batch]))
+        assert positives.sum(1).tolist() == [positives_per_anchor] * 96
+
+
+def test_diversity_config_changes_only_patient_beat_composition_and_output():
+    import yaml
+    directory = Path(__file__).resolve().parents[1] / "configs"
+    original = yaml.safe_load((directory / "contrastive_vcg.yaml").read_text())
+    followup = yaml.safe_load((directory / "contrastive_vcg_diverse.yaml").read_text())
+    changed = {key for key in original if original[key] != followup[key]}
+    assert changed == {"patients_per_class", "beats_per_patient", "output_dir"}
+    cp.validate_config(followup)
+    assert followup["patients_per_class"] == 8 and followup["beats_per_patient"] == 2

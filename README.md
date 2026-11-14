@@ -156,6 +156,14 @@ The [contrastive plan](docs/contrastive_vcg_plan.md) compares a newly trained CE
 
 Configuration: `configs/contrastive_vcg.yaml`. New output: `results/neural_contrastive_v1/complete/`. The batch policy differs from the old ResNet study, so benefit is measured against the new matched control, not assumed from the historical 0.550 mean. Final reporting validates matching sample/initialization hashes and all seeds, with patient-paired uncertainty. Saved epochs and checkpoints support resuming; partial runs remain clearly separated. No improvement, novelty or SOTA is claimed before full evaluation.
 
+The first matched study completed at 0.479 mean macro F1 for CE and 0.516 for cross-patient SupCon, with an inconclusive paired interval. The [patient-diversity follow-up](docs/contrastive_diversity_followup.md) changes only batch composition: 8 patients/class × 2 beats instead of 2 × 8, keeping 96 beats and the same maximum budget in both arms. It uses separate outputs and remains exploratory development on the same patients.
+
+```bash
+.venv/bin/python -m mi_localization.contrastive --config configs/contrastive_vcg_diverse.yaml
+.venv/bin/python -m mi_localization.contrastive_report --config configs/contrastive_vcg_diverse.yaml
+.venv/bin/python -m mi_localization.contrastive --config configs/contrastive_vcg_diverse.yaml --status
+```
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:

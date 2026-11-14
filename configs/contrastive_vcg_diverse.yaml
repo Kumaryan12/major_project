@@ -1,0 +1,27 @@
+seed: 42
+split_seed: 42
+training_seeds: [42, 123, 2026]
+bank_dir: data/processed/neural_vcg_v1
+folds_path: configs/patient_folds.csv
+output_dir: results/neural_contrastive_diverse_v1
+classes: [AMI, ALMI, ASMI, IMI, ILMI, HC]
+outer_splits: 10
+inner_splits: 3
+arms: [matched_ce, cross_patient_supcon]
+device: auto
+torch_threads: 2
+widths: [16, 32, 64]
+pool_bins: 4
+dropout: 0.2
+learning_rate: 0.001
+weight_decay: 0.01
+patients_per_class: 8
+beats_per_patient: 2
+batches_per_epoch: 86
+# Only minibatch patient/beat composition differs from contrastive_vcg.yaml.
+# Six classes x eight patients x two beats = the same 96 beats per batch.
+batch_size: 96
+max_epochs: 25
+patience: 6
+temperature: 0.1
+contrastive_weight: 0.1
