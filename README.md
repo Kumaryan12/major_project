@@ -250,6 +250,22 @@ Both arms use the same measured XYZ bank, patient folds, architecture, fresh cla
 
 Configurations: `configs/source_target_overlap.yaml` and `configs/transfer_vcg.yaml`; outputs: `results/neural_transfer_v1/`. See the [recording-screen report](results/neural_transfer_v1/overlap_audit/REPORT.md) for its limited coverage and unresolved identity caveat. Source reconstruction improvement did not translate into higher mean localization F1 in this tested setup. Scratch training remains the reference procedure; these results do not justify adopting this source encoder as an improvement.
 
+## Separate measured ECG + VCG extension
+
+The [paired-signal study](docs/paired_ecg_vcg_plan.md) tests additional measured ECG information after the masked-pretraining pilot did not improve target mean F1. VCG remains the primary benchmark. This separate extension adds actual simultaneous twelve-lead ECG at the same original beat positions; every recomputed Frank crop must exactly match the retained VCG cache. No patients, labels, R positions or frozen patient folds are changed, and no external pretraining is used.
+
+Five prespecified models compare VCG alone, ECG alone, a capacity-matched VCG-only twin, additive ECG + VCG fusion and low-rank bilinear ECG + VCG fusion. The three dual models share identical initial trainable tensors and parameter counts. The fixed rank-16 interaction is a compressed tensor of learned ECG/VCG embeddings; the additive and VCG-twin controls test its benefit separately from added capacity and added sensor information. All five models use the same three target seeds and nested patient evaluation: 600 fits. No improvement or 0.80–0.90 score is claimed before evaluation.
+
+```bash
+.venv/bin/python -m mi_localization.paired_bank
+.venv/bin/python -m mi_localization.paired_study
+.venv/bin/python -m mi_localization.paired_report
+# Read-only checkpoint status:
+.venv/bin/python -m mi_localization.paired_study --status
+```
+
+Configuration: `configs/paired_ecg_vcg.yaml`; separate output: `results/neural_paired_ecg_v1/`. Normalization and early stopping remain training-patient-only. Complete-record denoising is offline/noncausal; constant ECG leads are retained and a zero-threshold shrinkage identity avoids nonfinite coefficients. These repeatedly inspected PTB folds remain development data. Tensor basis: [low-rank bilinear pooling](https://arxiv.org/abs/1610.04325); this adaptation has no established novelty/SOTA claim.
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:

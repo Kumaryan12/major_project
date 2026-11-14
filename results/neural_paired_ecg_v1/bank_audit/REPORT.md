@@ -1,0 +1,5 @@
+# Simultaneous measured ECG bank
+
+Retained all 164 patients, 391 recordings and 55,863 original beats. Twelve measured ECG channels share the WFDB time axis with Frank XYZ. Every recomputed denoised Frank crop exactly matched the existing VCG cache. ECG uses the same full-record wavelet denoising and frozen R positions/crops, with no redetection, time resizing, exclusions or label changes. Physical units, finite samples, complete lead inventory and rate were checked. Scaling is deferred to each training partition. Records with constant ECG leads: 0; with zero-threshold ECG leads: 1. At zero shrinkage threshold, wavelet coefficients are kept unchanged (soft(x, 0) = x), avoiding 0/0 in zero-valued coefficients. No missing signal is synthesized; constant leads and their recordings are retained. Full-record denoising is offline/noncausal. Record identities and raw inventories remain local.
+
+This bank enables a separate ECG extension; VCG-only results remain the primary benchmark. No localization gain is established by cache construction.
