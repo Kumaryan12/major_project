@@ -1,0 +1,49 @@
+{
+  "complete": true,
+  "study_fingerprint": "76fc9d1c88dba9111f5cda4c5fa1b6a1033bda0adb8cb8d1b30036fc60355024",
+  "n_patients": 164,
+  "n_records": 391,
+  "n_beats": 55863,
+  "training_seeds": [
+    42,
+    123,
+    2026
+  ],
+  "pretraining_seeds": [
+    42
+  ],
+  "arms": {
+    "scratch": {
+      "macro_f1_mean": 0.5533307173312372,
+      "macro_f1_sample_std": 0.05187992963285966
+    },
+    "pretrained": {
+      "macro_f1_mean": 0.5202307188831053,
+      "macro_f1_sample_std": 0.006746828327706629
+    }
+  },
+  "per_seed": [
+    {
+      "training_seed": 42,
+      "scratch_macro_f1": 0.5893919114390542,
+      "pretrained_macro_f1": 0.5148522191815638,
+      "pretrained_minus_scratch_macro_f1": -0.07453969225749046
+    },
+    {
+      "training_seed": 123,
+      "scratch_macro_f1": 0.5767274036585646,
+      "pretrained_macro_f1": 0.5278009008378838,
+      "pretrained_minus_scratch_macro_f1": -0.048926502820680784
+    },
+    {
+      "training_seed": 2026,
+      "scratch_macro_f1": 0.49387283689609274,
+      "pretrained_macro_f1": 0.5180390366298685,
+      "pretrained_minus_scratch_macro_f1": 0.02416619973377576
+    }
+  ],
+  "unique_target_fit_count": 420,
+  "mean_pretrained_minus_scratch_macro_f1": -0.03309999844813183,
+  "patient_identity_independence_cleared": false,
+  "claim_scope": "Exploratory PTB development; source-target patient identity unresolved; no independent confirmation or SOTA claim."
+}

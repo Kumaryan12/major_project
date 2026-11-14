@@ -1,0 +1,111 @@
+{
+  "config": {
+    "seed": 42,
+    "split_seed": 42,
+    "training_seeds": [
+      42,
+      123,
+      2026
+    ],
+    "paper_config": "configs/paper.yaml",
+    "beats_path": "data/processed/beats.csv",
+    "bank_dir": "data/processed/neural_vcg_v1",
+    "output_dir": "results/neural_transfer_v1",
+    "folds_path": "configs/patient_folds.csv",
+    "source_config": "configs/source_pretraining_vcg.yaml",
+    "overlap_config": "configs/source_target_overlap.yaml",
+    "encoder_path": "results/neural_source_pretraining_v1/pilot/encoder_source_only.pt",
+    "classes": [
+      "AMI",
+      "ALMI",
+      "ASMI",
+      "IMI",
+      "ILMI",
+      "HC"
+    ],
+    "arms": [
+      "scratch",
+      "pretrained"
+    ],
+    "outer_splits": 10,
+    "inner_splits": 3,
+    "device": "auto",
+    "torch_threads": 2,
+    "widths": [
+      16,
+      32,
+      64
+    ],
+    "pool_bins": 4,
+    "dropout": 0.2,
+    "weight_decay": 0.01,
+    "learning_rates": [
+      0.001,
+      0.0001
+    ],
+    "batch_size": 128,
+    "samples_per_epoch": 8192,
+    "max_epochs": 25,
+    "patience": 6
+  },
+  "bank": {
+    "fingerprint": "f44e31cff8230dc5ce971997f80ee0d0d921eb5f72a8ab75d0327692271192e7",
+    "files": {
+      "manifest.json": "b939ab2bf76e25d7569152ac60005f61b3fc99533b028a6413b1ee9b267f0b2c",
+      "waveforms.npy": "118fbfb2d8b2fbc2c32ba6449e301874cc1a79c7ad2d8692652129c224f91fba",
+      "y.npy": "e0aca562cb4beabb0d59119035baf5b997ffc678a0cd21822751f393339ef7f8",
+      "groups.npy": "729880b095d4a225551db982d107754df9ca442f0eafee2145a61cd5db963ab0"
+    },
+    "beats_sha256": "277e2f1498d54db23061c3bb60969f05ce506b941d9dfa7c07e835713950358b",
+    "paper_sha256": "5aea297dd03a5a214de3fc8142b77c58a9e9074e6dbf26288499f360e36892b0",
+    "n_beats": 55863,
+    "n_patients": 164,
+    "n_records": 391,
+    "shape": [
+      55863,
+      3,
+      651
+    ]
+  },
+  "source": {
+    "encoder_export_sha256": "886ceaaac0e233daac9b1bf858b7c9f869452d105b664af17212559ec698ffce",
+    "pilot_fingerprint": "a6a95aed5cf122a00ea0c005c87059097dc61eafbecd5c96faee100f46afd0a3",
+    "pilot_manifest_sha256": "c87135696af84c3539a6467a57392f6acc4d6a577136a46b9daf2a5dc5e96aa9",
+    "source_bank_manifest_sha256": "2fb90974b41b003787c4017ee825ef4dae1194815a19574d2eb09a60485358c2",
+    "screen_fingerprint": "ddf552b8784d46cd0dbe59ddb1c81f85cce906ca6f064a8032623ef03c967615",
+    "screen_summary_sha256": "360f63c1c0248d4b088f9a55a4a9266b2aad9bd61687349d3fffa2e9ad2b15e0",
+    "source_training_patients": 1024,
+    "source_validation_patients": 128,
+    "pretraining_seeds": [
+      42
+    ],
+    "patient_identity_independence_cleared": false,
+    "claim_scope": "Exploratory PTB development; source-target patient identity unresolved; no independent confirmation or SOTA claim."
+  },
+  "source_encoder_state_sha256": "a4df5b18222b1a5f1843da5a4ecee4fbee54e6eee1fbfe84213cc65ce680db58",
+  "folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625",
+  "evaluated_folds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "claim_scope": "Exploratory PTB development; source-target patient identity unresolved; no independent confirmation or SOTA claim.",
+  "runtime": {
+    "torch": "2.15.0",
+    "numpy": "2.5.3",
+    "platform": "macOS-26.5-arm64-arm-64bit",
+    "device": "mps",
+    "deterministic_kernels": false,
+    "code_sha256": "28e5ebcfddaa8c45e2d307b95f4b4788b99e46c2a07d5002934cd59c4e5a6902",
+    "neural_code_sha256": "7aa44cba432693dca59ccb2587d1f3bd2c5cee195ed74c4259c456de1fa56f97",
+    "scratch_trainer_code_sha256": "28e974b992c15ae70901c99554cd86801b6f3f28a4c9f437e8c6f9130e7d0bb6"
+  },
+  "study_fingerprint": "76fc9d1c88dba9111f5cda4c5fa1b6a1033bda0adb8cb8d1b30036fc60355024"
+}
