@@ -1,0 +1,1943 @@
+{
+  "config": {
+    "seed": 42,
+    "split_seed": 42,
+    "subset_seed": 42,
+    "training_seeds": [
+      42,
+      123,
+      2026
+    ],
+    "training_fractions": [
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "paper_config": "configs/paper.yaml",
+    "beats_path": "data/processed/beats.csv",
+    "bank_dir": "data/processed/neural_vcg_v1",
+    "output_dir": "results/neural_learning_curve_v1",
+    "folds_path": "configs/patient_folds.csv",
+    "classes": [
+      "AMI",
+      "ALMI",
+      "ASMI",
+      "IMI",
+      "ILMI",
+      "HC"
+    ],
+    "outer_splits": 10,
+    "inner_splits": 3,
+    "device": "auto",
+    "torch_threads": 2,
+    "widths": [
+      16,
+      32,
+      64
+    ],
+    "pool_bins": 4,
+    "dropout": 0.2,
+    "learning_rate": 0.001,
+    "weight_decay": 0.01,
+    "batch_size": 128,
+    "samples_per_epoch": 8192,
+    "max_epochs": 25,
+    "patience": 6
+  },
+  "bank": {
+    "fingerprint": "f44e31cff8230dc5ce971997f80ee0d0d921eb5f72a8ab75d0327692271192e7",
+    "files": {
+      "manifest.json": "b939ab2bf76e25d7569152ac60005f61b3fc99533b028a6413b1ee9b267f0b2c",
+      "waveforms.npy": "118fbfb2d8b2fbc2c32ba6449e301874cc1a79c7ad2d8692652129c224f91fba",
+      "y.npy": "e0aca562cb4beabb0d59119035baf5b997ffc678a0cd21822751f393339ef7f8",
+      "groups.npy": "729880b095d4a225551db982d107754df9ca442f0eafee2145a61cd5db963ab0"
+    },
+    "beats_sha256": "277e2f1498d54db23061c3bb60969f05ce506b941d9dfa7c07e835713950358b",
+    "paper_sha256": "5aea297dd03a5a214de3fc8142b77c58a9e9074e6dbf26288499f360e36892b0",
+    "n_beats": 55863,
+    "n_patients": 164,
+    "n_records": 391,
+    "shape": [
+      55863,
+      3,
+      651
+    ]
+  },
+  "folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625",
+  "evaluated_folds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "subset_plan": {
+    "fraction_025": {
+      "1": {
+        "fraction": 0.25,
+        "available_train_patients": 147,
+        "train_patients": 38,
+        "train_beats": 12659,
+        "class_patient_counts": {
+          "AMI": 4,
+          "ALMI": 4,
+          "ASMI": 6,
+          "IMI": 7,
+          "ILMI": 5,
+          "HC": 12
+        },
+        "train_patients_sha256": "a3f1fe80c908c2e99c12a81ccd1b2738ff6c9a7d6399ee8480035a8631bdc998",
+        "test_patients": 17,
+        "test_beats": 4790,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 8624,
+            "validation_beats": 4035,
+            "train_patients": 25,
+            "validation_patients": 13,
+            "train_patients_sha256": "e97cd9b757dea94e6d323d1f7d700953a4f7743f12fa452b598d89f53d72522a",
+            "validation_patients_sha256": "718271e462f21733d98914099c6d0b18c7a2a270b0ba46a804b780c600e5e57e"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 8840,
+            "validation_beats": 3819,
+            "train_patients": 25,
+            "validation_patients": 13,
+            "train_patients_sha256": "105d594382f9278f1979cdab299e58343cab4b84b3334eb1973f4c4da41846ae",
+            "validation_patients_sha256": "4eef907d26d8836ea7200ca54f6fffc98cec692bb814998416ec09695d1f6d71"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 7854,
+            "validation_beats": 4805,
+            "train_patients": 26,
+            "validation_patients": 12,
+            "train_patients_sha256": "089576e3fed154532371ad6ed504af63caafe6e8822be7b8669b186701ad5dca",
+            "validation_patients_sha256": "aff5eadeea78267e68f48d2d3aaedc067f50cd46dcae66e5bd0a2787baf0928d"
+          }
+        ]
+      },
+      "2": {
+        "fraction": 0.25,
+        "available_train_patients": 147,
+        "train_patients": 38,
+        "train_beats": 11912,
+        "class_patient_counts": {
+          "AMI": 4,
+          "ALMI": 4,
+          "ASMI": 6,
+          "IMI": 7,
+          "ILMI": 5,
+          "HC": 12
+        },
+        "train_patients_sha256": "c34fb0296962fcb759d488d0336639c954513d48f3532f4eb826342a5f553f8b",
+        "test_patients": 17,
+        "test_beats": 6264,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 8513,
+            "validation_beats": 3399,
+            "train_patients": 25,
+            "validation_patients": 13,
+            "train_patients_sha256": "12a8c237472057a4d09d98cd8840f572bf69428f4d0c1b90716d3e8b978f11be",
+            "validation_patients_sha256": "5d621a59b89b82c41a3b2d80837b4b4ecafb36c2ba02d63c283c11aa431e3429"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 8217,
+            "validation_beats": 3695,
+            "train_patients": 25,
+            "validation_patients": 13,
+            "train_patients_sha256": "b9f7cbe6fe246e24149ce98d5edb6e21a45a26d63970963047703b1c504d55ad",
+            "validation_patients_sha256": "bf199f268b177bcb13d8c3f55cb6679f75fd88cd82418196bcf02540c1b007a1"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 7094,
+            "validation_beats": 4818,
+            "train_patients": 26,
+            "validation_patients": 12,
+            "train_patients_sha256": "d6a6062dfa8cf14118fa4bc822b484587d7c070525ce7ab700cbdc12c040cc5c",
+            "validation_patients_sha256": "ecd80a4fcc33d7ec3e9e05b45eec70d71ec9d0c5437c7094a966e00d227531a0"
+          }
+        ]
+      },
+      "3": {
+        "fraction": 0.25,
+        "available_train_patients": 147,
+        "train_patients": 38,
+        "train_beats": 11542,
+        "class_patient_counts": {
+          "AMI": 4,
+          "ALMI": 4,
+          "ASMI": 6,
+          "IMI": 7,
+          "ILMI": 5,
+          "HC": 12
+        },
+        "train_patients_sha256": "cc96de509d28b216f7bb9faff7af0cc342bbcdede82fe42a894641d19682b089",
+        "test_patients": 17,
+        "test_beats": 6045,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 7338,
+            "validation_beats": 4204,
+            "train_patients": 25,
+            "validation_patients": 13,
+            "train_patients_sha256": "c71095ebc9fc1c230ba12787b4c41d57af457fb4aaa4f82dd9d0a8b00687dc9e",
+            "validation_patients_sha256": "e2f2010072fe120965ab959be984ff7134de516e81cd4a4867189efa59f40116"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 8408,
+            "validation_beats": 3134,
+            "train_patients": 25,
+            "validation_patients": 13,
+            "train_patients_sha256": "18ab92d56d36dff9df78fe77eace5b4abc70f36d885ef1cac65b9e1ef1046ef4",
+            "validation_patients_sha256": "e92ec1a8cd10928223f7b67722b003f951f2c7a8d671c07ee272c493f5ca72d8"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 7338,
+            "validation_beats": 4204,
+            "train_patients": 26,
+            "validation_patients": 12,
+            "train_patients_sha256": "248b95b7fd92f02582a90156180bcfd9945539c70b8f3c2f4e4f634a3f94c36f",
+            "validation_patients_sha256": "4a50d17661486a343c1cc78b74303480fcad7207c28264e423e190e07843fc5c"
+          }
+        ]
+      },
+      "4": {
+        "fraction": 0.25,
+        "available_train_patients": 147,
+        "train_patients": 39,
+        "train_beats": 14982,
+        "class_patient_counts": {
+          "AMI": 4,
+          "ALMI": 4,
+          "ASMI": 6,
+          "IMI": 7,
+          "ILMI": 6,
+          "HC": 12
+        },
+        "train_patients_sha256": "426715bf5bd1532c9e2a508abc60bc95d793a035131b2772b585b3bb2f2b77e7",
+        "test_patients": 17,
+        "test_beats": 3777,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 10661,
+            "validation_beats": 4321,
+            "train_patients": 26,
+            "validation_patients": 13,
+            "train_patients_sha256": "db2bc6a2a06aa19c751473466d09429a763d7d7d7952c213639a8a933e9a07cf",
+            "validation_patients_sha256": "39ed5077aadad9ceacd8cc04087080c9ad0668f73f714ef545b9dec2d2e3de55"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 9200,
+            "validation_beats": 5782,
+            "train_patients": 26,
+            "validation_patients": 13,
+            "train_patients_sha256": "2503afd59aba146f968a332202bba96b389878133e6338f1314420330b2fe352",
+            "validation_patients_sha256": "2d4bac80e75a963b3ed8406bbae740074429a9fe4b6a5caa77972d5f2c217511"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 10103,
+            "validation_beats": 4879,
+            "train_patients": 26,
+            "validation_patients": 13,
+            "train_patients_sha256": "19b4cb06f433c607e8d050fbb7040c22ab9f5cc62587de4ee197f87290cc0640",
+            "validation_patients_sha256": "1268c55449fc864fde001266b723c07e046076863e4070d7ba4251316d33efb3"
+          }
+        ]
+      },
+      "5": {
+        "fraction": 0.25,
+        "available_train_patients": 148,
+        "train_patients": 39,
+        "train_beats": 14765,
+        "class_patient_counts": {
+          "AMI": 4,
+          "ALMI": 4,
+          "ASMI": 6,
+          "IMI": 7,
+          "ILMI": 6,
+          "HC": 12
+        },
+        "train_patients_sha256": "d32cf57847c1f6b423295e61c23b9a981e7d6b285584be9e7db4b7325b6df742",
+        "test_patients": 16,
+        "test_beats": 6588,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 9761,
+            "validation_beats": 5004,
+            "train_patients": 26,
+            "validation_patients": 13,
+            "train_patients_sha256": "aedba978b899b2e53a1e9f68c9cfdb56f102ef03b4b982fb02e5d0949c09dcbb",
+            "validation_patients_sha256": "c9077668e3eff0b32321bcb110bf4cd7bf4646cb387f0ff61c186d6323eb541e"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 9820,
+            "validation_beats": 4945,
+            "train_patients": 26,
+            "validation_patients": 13,
+            "train_patients_sha256": "ff82ab8aaf7351a3d316b667c218eda79968a8862add2ea9c6a8cd767a1925ee",
+            "validation_patients_sha256": "0a0e8026b9286513e27a44798d8a1fcafa4f336a709911d7ceac92b57442bed8"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 9949,
+            "validation_beats": 4816,
+            "train_patients": 26,
+            "validation_patients": 13,
+            "train_patients_sha256": "834477fefdae66464686b36b143754223482c6cf2415095beddd892c7c3d3f46",
+            "validation_patients_sha256": "0b2153905c31c451998aeb7eed706fffbff2e96142c5974f2e14e2ff99dd511b"
+          }
+        ]
+      },
+      "6": {
+        "fraction": 0.25,
+        "available_train_patients": 148,
+        "train_patients": 39,
+        "train_beats": 12757,
+        "class_patient_counts": {
+          "AMI": 4,
+          "ALMI": 4,
+          "ASMI": 6,
+          "IMI": 7,
+          "ILMI": 6,
+          "HC": 12
+        },
+        "train_patients_sha256": "e7f93156e383286986deccfe6db82d4841564487323788d9cca7ee3be1440920",
+        "test_patients": 16,
+        "test_beats": 5883,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 8583,
+            "validation_beats": 4174,
+            "train_patients": 26,
+            "validation_patients": 13,
+            "train_patients_sha256": "039be7f7f5986be2ab65c0902c27e3f107c618688d196b40a58240b902be78b4",
+            "validation_patients_sha256": "97df07a31a54015c91dca103702e59665ac21619f54c23698c41157861a38809"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 8263,
+            "validation_beats": 4494,
+            "train_patients": 26,
+            "validation_patients": 13,
+            "train_patients_sha256": "1258382622dcf0e8ae2be65b7c7f1d1bdf543255c13aed7772c6480888944a40",
+            "validation_patients_sha256": "7a55baaebc947dfe00738c190196a43cc74c083ae90c81b6ee7c6db22f0fd940"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 8668,
+            "validation_beats": 4089,
+            "train_patients": 26,
+            "validation_patients": 13,
+            "train_patients_sha256": "581ca659390dc236144d5ee1e08223c12b722e65ea0ec15a52b2e9b99bfa3e06",
+            "validation_patients_sha256": "1dc55ac420d8a7afaa5cdd4bc9df4acdd9aee209fd1cb42f8b64be85fbb333d7"
+          }
+        ]
+      },
+      "7": {
+        "fraction": 0.25,
+        "available_train_patients": 148,
+        "train_patients": 39,
+        "train_beats": 13019,
+        "class_patient_counts": {
+          "AMI": 4,
+          "ALMI": 4,
+          "ASMI": 6,
+          "IMI": 7,
+          "ILMI": 6,
+          "HC": 12
+        },
+        "train_patients_sha256": "b0e61a486ea61f72139d9f1cdaa8db51b23c073dd90d742ff7f580c2c6030cf7",
+        "test_patients": 16,
+        "test_beats": 5404,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 9010,
+            "validation_beats": 4009,
+            "train_patients": 26,
+            "validation_patients": 13,
+            "train_patients_sha256": "0a8a5e7800703253b9250733d10bb37724510487ae765106a3c9137a4040609a",
+            "validation_patients_sha256": "352e302c248258edcf64ff357df329e8156a9737046e9966d944b0f456d3154c"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 8603,
+            "validation_beats": 4416,
+            "train_patients": 26,
+            "validation_patients": 13,
+            "train_patients_sha256": "4f810522a6aead4b630a4f3345e1f4152ca343a912a84fe25d9cc83aa22c1692",
+            "validation_patients_sha256": "ef1ab8abe5224550745db46456060f01c9113315657dcb226fad207b13d342bf"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 8425,
+            "validation_beats": 4594,
+            "train_patients": 26,
+            "validation_patients": 13,
+            "train_patients_sha256": "3d588ec84e5f97a20af38e4af9d57080aa6dbd633e8e50431dcff3fdbd04c534",
+            "validation_patients_sha256": "3b5fac335d3de5cc72a468a1f0c06884dc7d1520f59f4efda848e35f99930561"
+          }
+        ]
+      },
+      "8": {
+        "fraction": 0.25,
+        "available_train_patients": 148,
+        "train_patients": 40,
+        "train_beats": 14395,
+        "class_patient_counts": {
+          "AMI": 4,
+          "ALMI": 4,
+          "ASMI": 7,
+          "IMI": 7,
+          "ILMI": 6,
+          "HC": 12
+        },
+        "train_patients_sha256": "23ca9f3960e6c32726a48ff54354710642e9b038016c59bcea1b54c7c077217c",
+        "test_patients": 16,
+        "test_beats": 5752,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 9326,
+            "validation_beats": 5069,
+            "train_patients": 26,
+            "validation_patients": 14,
+            "train_patients_sha256": "c17da18a0ec5a19fc7ba7aee40e080a915c8fd2df09af711974ba66a3a6ddfc1",
+            "validation_patients_sha256": "a08359d34f1059e3840ffbc0479c3d263a57f267acae8432f2a0dbda0d20afcb"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 9342,
+            "validation_beats": 5053,
+            "train_patients": 27,
+            "validation_patients": 13,
+            "train_patients_sha256": "d3d13921b061c152d9ed689985292898d7dfe8af85a6419ca972573ac864fd74",
+            "validation_patients_sha256": "40e096e955a48b1565a68720a742d744ea29a5b0f06ee14e417881595f7c6be3"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 10122,
+            "validation_beats": 4273,
+            "train_patients": 27,
+            "validation_patients": 13,
+            "train_patients_sha256": "e8a8c0b2394a9a9b0a56b94dfd4cd67ce2d81511fdd13af288d286d489930597",
+            "validation_patients_sha256": "f33775703a8f1c5798658a8dd8ee0e3b076f9b1ccc7ee87837698fccaadf5585"
+          }
+        ]
+      },
+      "9": {
+        "fraction": 0.25,
+        "available_train_patients": 148,
+        "train_patients": 40,
+        "train_beats": 14745,
+        "class_patient_counts": {
+          "AMI": 4,
+          "ALMI": 4,
+          "ASMI": 7,
+          "IMI": 7,
+          "ILMI": 6,
+          "HC": 12
+        },
+        "train_patients_sha256": "c66e83a8aab3dad436d081c7416d06d7383a3ce946d1698662173ac68da9baee",
+        "test_patients": 16,
+        "test_beats": 5371,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 8566,
+            "validation_beats": 6179,
+            "train_patients": 26,
+            "validation_patients": 14,
+            "train_patients_sha256": "b54cb018aba1268598b043c86bcd2fe45f4cafdfc520b88bcc1ce2858ae2a5dc",
+            "validation_patients_sha256": "94ae1e5f24efd55fe815e15632cab3b3768786c20ad6efaba42b085d5cb39925"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 9924,
+            "validation_beats": 4821,
+            "train_patients": 27,
+            "validation_patients": 13,
+            "train_patients_sha256": "47648cdc5e80d185c3e004a19e3ddcc4af44aeb45b2dc6245a69be589f4a6369",
+            "validation_patients_sha256": "8e1bddf332670ec18a977fd3cbf7da7bb12aea164745688c9a49d147f2bf66c5"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 11000,
+            "validation_beats": 3745,
+            "train_patients": 27,
+            "validation_patients": 13,
+            "train_patients_sha256": "cd1c17db93206ed93263a54019086e82f1e705745de71151a7483ac8612ad21c",
+            "validation_patients_sha256": "1a9e8ca8b4b6b54d1227efd960624ec2bc6289602904d178febb9c35cbb747e4"
+          }
+        ]
+      },
+      "10": {
+        "fraction": 0.25,
+        "available_train_patients": 148,
+        "train_patients": 40,
+        "train_beats": 11398,
+        "class_patient_counts": {
+          "AMI": 4,
+          "ALMI": 4,
+          "ASMI": 7,
+          "IMI": 7,
+          "ILMI": 6,
+          "HC": 12
+        },
+        "train_patients_sha256": "01aa689fb9962e1046028ecc5d3e56719bb75229c3a309231a59c00c8e386122",
+        "test_patients": 16,
+        "test_beats": 5989,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 6554,
+            "validation_beats": 4844,
+            "train_patients": 26,
+            "validation_patients": 14,
+            "train_patients_sha256": "cddf3cf3e10883844c4f02f37107695e61ad565e75381438f86dfa7cbed2cf19",
+            "validation_patients_sha256": "8bc63f8c815268e76c8ec21feeb3fd64cb015e26e39dfef9f627ebab220e025d"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 7394,
+            "validation_beats": 4004,
+            "train_patients": 27,
+            "validation_patients": 13,
+            "train_patients_sha256": "b397fe935a7af8cd94cfb5ff3943353482df5ccb96391ba0090c993abcc97195",
+            "validation_patients_sha256": "13baf6a014037b4d8a514c98200b92acacde02ee6852e08d1b686a6cf2e63438"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 8848,
+            "validation_beats": 2550,
+            "train_patients": 27,
+            "validation_patients": 13,
+            "train_patients_sha256": "9f8df735332a6114e060d4db46db07121540fb779d407664efe59705b23b6dbc",
+            "validation_patients_sha256": "42e909df02c79aa8d129d1ecda5284f6952c7c4696ebe6dccc9c6afa5895bd7e"
+          }
+        ]
+      }
+    },
+    "fraction_050": {
+      "1": {
+        "fraction": 0.5,
+        "available_train_patients": 147,
+        "train_patients": 74,
+        "train_beats": 23700,
+        "class_patient_counts": {
+          "AMI": 8,
+          "ALMI": 7,
+          "ASMI": 12,
+          "IMI": 13,
+          "ILMI": 10,
+          "HC": 24
+        },
+        "train_patients_sha256": "1b2f327db921e0ff6da54a5fb0a1eb156c8a84c90a099bd76bd7fbfca2d76caa",
+        "test_patients": 17,
+        "test_beats": 4790,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 15753,
+            "validation_beats": 7947,
+            "train_patients": 49,
+            "validation_patients": 25,
+            "train_patients_sha256": "e6efa58e24cac88616f5e6bf3ed91c393e82ea9f6cfff34793e72b276d816564",
+            "validation_patients_sha256": "2b73cb502a423b878c4c8f0c970085467a75f3225d1da13b05d762817c2add61"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 16267,
+            "validation_beats": 7433,
+            "train_patients": 49,
+            "validation_patients": 25,
+            "train_patients_sha256": "2921281fb9ed17fb3b7256195bf5ad0febd0da73da02ab82ed6e3b93015ef036",
+            "validation_patients_sha256": "48de92400a9a8599975e051f21a36e039e002789b2227b3460d4a9c75eec60b5"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 15380,
+            "validation_beats": 8320,
+            "train_patients": 50,
+            "validation_patients": 24,
+            "train_patients_sha256": "948938297f3bf9854fa1cfc745719a14e51128474835539601b4b9129226dd07",
+            "validation_patients_sha256": "e419bc687b8f1a6eee3d3dd88ba6330b47353898d5af8f339f6239b78d011a41"
+          }
+        ]
+      },
+      "2": {
+        "fraction": 0.5,
+        "available_train_patients": 147,
+        "train_patients": 74,
+        "train_beats": 23880,
+        "class_patient_counts": {
+          "AMI": 8,
+          "ALMI": 7,
+          "ASMI": 12,
+          "IMI": 13,
+          "ILMI": 10,
+          "HC": 24
+        },
+        "train_patients_sha256": "229a3f0bf73e540c882f947a10aa0cd1ecb7c808059f286d3b5c4fef031892a2",
+        "test_patients": 17,
+        "test_beats": 6264,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 15464,
+            "validation_beats": 8416,
+            "train_patients": 49,
+            "validation_patients": 25,
+            "train_patients_sha256": "a914c904d91cac4fe32a0ba8c713d085d8682d3835dc91959cd1863407f117d8",
+            "validation_patients_sha256": "323bad11fa1a5458bf84e13a338efa686e174163cb0aaa88f05911c797f076c6"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 16954,
+            "validation_beats": 6926,
+            "train_patients": 49,
+            "validation_patients": 25,
+            "train_patients_sha256": "e2da2402e10b9bed399a855e12d4753f6947382fcbe6f98efb27c770c105924d",
+            "validation_patients_sha256": "a9412e1e692a00ca6e4429e63175c216d387bca8ab17b7af09d28384de6e55b7"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 15342,
+            "validation_beats": 8538,
+            "train_patients": 50,
+            "validation_patients": 24,
+            "train_patients_sha256": "e7b353b5e902b436368ec2ba5120943452e4793d49958cf5ad1ebc73856aab12",
+            "validation_patients_sha256": "82ca6f4ba2bde53fa9a01aa221495eff89e9d33c75aec01dea6128bdc7ec01ae"
+          }
+        ]
+      },
+      "3": {
+        "fraction": 0.5,
+        "available_train_patients": 147,
+        "train_patients": 74,
+        "train_beats": 25365,
+        "class_patient_counts": {
+          "AMI": 8,
+          "ALMI": 8,
+          "ASMI": 12,
+          "IMI": 13,
+          "ILMI": 10,
+          "HC": 23
+        },
+        "train_patients_sha256": "1ea02ac7b851ba42734d940a2165ae959b27b7d9646f88a3af6366a80ec1d33b",
+        "test_patients": 17,
+        "test_beats": 6045,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 17887,
+            "validation_beats": 7478,
+            "train_patients": 49,
+            "validation_patients": 25,
+            "train_patients_sha256": "b9dad3f7453ae5454b9e94fbb2b4a879ef73110c32ceb030c4602f90ebe1e5cf",
+            "validation_patients_sha256": "0b0746fb3326025d3a51df033a7c5cf4b019bee6cbe606cb5e3734c2428b5284"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 16098,
+            "validation_beats": 9267,
+            "train_patients": 49,
+            "validation_patients": 25,
+            "train_patients_sha256": "d11d8ffe2db7d5f5d7e99068838ecae291b428d22d1a71d2c4fa8f7a0ddfe538",
+            "validation_patients_sha256": "2ef52cce09c96b3d0027126a9c3f575f6897b61597187ef648a2f935c3770f5d"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 16745,
+            "validation_beats": 8620,
+            "train_patients": 50,
+            "validation_patients": 24,
+            "train_patients_sha256": "405bab961e0bdaef35a20e009cb2e177e15d8c15d98a143f31fffdd2fce447a3",
+            "validation_patients_sha256": "85f2fc6a19506793622c7f6fc1cb7179d3b05a9d6dbf2148f4d96d875a2e2a83"
+          }
+        ]
+      },
+      "4": {
+        "fraction": 0.5,
+        "available_train_patients": 147,
+        "train_patients": 75,
+        "train_beats": 25641,
+        "class_patient_counts": {
+          "AMI": 8,
+          "ALMI": 8,
+          "ASMI": 12,
+          "IMI": 13,
+          "ILMI": 11,
+          "HC": 23
+        },
+        "train_patients_sha256": "89939403008a827bec736e2970f3185a8e4037eaa7d8dc3b1102bbfe005f09fa",
+        "test_patients": 17,
+        "test_beats": 3777,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 17396,
+            "validation_beats": 8245,
+            "train_patients": 50,
+            "validation_patients": 25,
+            "train_patients_sha256": "2166638a882e6883e366679f2d0053fe8244c454e05769cc25ce47b32e1d787b",
+            "validation_patients_sha256": "301e2c6d1d0c704f4fbe629b85b1c831d33085626016f28fcafcad61f4a206c3"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 15571,
+            "validation_beats": 10070,
+            "train_patients": 50,
+            "validation_patients": 25,
+            "train_patients_sha256": "917f567649efa6bcd4720365dbc5b97af8369036f81a14ad567ff1819b46717b",
+            "validation_patients_sha256": "d49291c223e33f56132dc8596eac63361e26d035909f9dc1842e467dcd77d606"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 18315,
+            "validation_beats": 7326,
+            "train_patients": 50,
+            "validation_patients": 25,
+            "train_patients_sha256": "7b09430e2f0053e8a75b79b60b0b83357b5632b353194de19a9146d229d8c826",
+            "validation_patients_sha256": "fbda73ad41d2a3eada149116ef5b53eccace7ea168275453b825d25d5328182c"
+          }
+        ]
+      },
+      "5": {
+        "fraction": 0.5,
+        "available_train_patients": 148,
+        "train_patients": 76,
+        "train_beats": 27699,
+        "class_patient_counts": {
+          "AMI": 8,
+          "ALMI": 8,
+          "ASMI": 12,
+          "IMI": 13,
+          "ILMI": 11,
+          "HC": 24
+        },
+        "train_patients_sha256": "31e2ae7fd22eb3509b95a0aa80050c794072dafb3d35a00a72b35a86765e7635",
+        "test_patients": 16,
+        "test_beats": 6588,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 17866,
+            "validation_beats": 9833,
+            "train_patients": 50,
+            "validation_patients": 26,
+            "train_patients_sha256": "9a1099c184e278b0b5dbad7de1b6355714442b892e5945d1a899046c3ddd4691",
+            "validation_patients_sha256": "a6ba249ce03322b988b3a29c6ef86c13c5901596164bd90e577e34a1a999e668"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 18708,
+            "validation_beats": 8991,
+            "train_patients": 51,
+            "validation_patients": 25,
+            "train_patients_sha256": "e48ab84d6b5938e51a8d654f68b0f308dbbc1d921f09c0c1514aeaf9b9c16ada",
+            "validation_patients_sha256": "08cf32cfadf9193ca82c5bf6df2688a67735dfc8b167868e9c3f71596bf8232c"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 18824,
+            "validation_beats": 8875,
+            "train_patients": 51,
+            "validation_patients": 25,
+            "train_patients_sha256": "8b94e1e3ff611121d72d30abbdbf6a04dccb7893e7d51319c12fe9c8554742d7",
+            "validation_patients_sha256": "a63c66f19cc777ba800fa21707fe0c7a36810eae30259c58493b663cce77899f"
+          }
+        ]
+      },
+      "6": {
+        "fraction": 0.5,
+        "available_train_patients": 148,
+        "train_patients": 76,
+        "train_beats": 23979,
+        "class_patient_counts": {
+          "AMI": 8,
+          "ALMI": 8,
+          "ASMI": 12,
+          "IMI": 13,
+          "ILMI": 11,
+          "HC": 24
+        },
+        "train_patients_sha256": "7fcfa4c374063dace4c350c249e1f9b1410006f27870d36f004b194a9ea4ba9f",
+        "test_patients": 16,
+        "test_beats": 5883,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 15219,
+            "validation_beats": 8760,
+            "train_patients": 50,
+            "validation_patients": 26,
+            "train_patients_sha256": "1614a382ab49726b675cc1153212e434a543bd2565e71a76f537939161af737d",
+            "validation_patients_sha256": "b3e260fb8dc901e83463a01017d1ecf2d2f6e13025586f2def12462bb9996e43"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 16941,
+            "validation_beats": 7038,
+            "train_patients": 51,
+            "validation_patients": 25,
+            "train_patients_sha256": "45758b0a030acbdf2a45f7a3a55dc0d72110fce2d477a3a29e2765a8a7909df6",
+            "validation_patients_sha256": "7b4220bbae7d0d3e61a51cbd97a5d5c01158a4ba82c0b6f81f79e1af2bc5296f"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 15798,
+            "validation_beats": 8181,
+            "train_patients": 51,
+            "validation_patients": 25,
+            "train_patients_sha256": "758ca6a43153af7e812969be72844aba042e8427d92a826ae6ef05b7f04c37a7",
+            "validation_patients_sha256": "5667d04909324fa2e16076b44be96481e77272d792cffe17b0aa777b32c84ffd"
+          }
+        ]
+      },
+      "7": {
+        "fraction": 0.5,
+        "available_train_patients": 148,
+        "train_patients": 76,
+        "train_beats": 24136,
+        "class_patient_counts": {
+          "AMI": 8,
+          "ALMI": 7,
+          "ASMI": 12,
+          "IMI": 14,
+          "ILMI": 11,
+          "HC": 24
+        },
+        "train_patients_sha256": "20e6bc3d6554aa5d8146c8beb4508109a2308b2f93421ed4fe933031439a84fd",
+        "test_patients": 16,
+        "test_beats": 5404,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 16223,
+            "validation_beats": 7913,
+            "train_patients": 50,
+            "validation_patients": 26,
+            "train_patients_sha256": "f3cfffe10b4ac4df59e8b966a78e76aebcb03a80549dc9be55e91c73dc0f7754",
+            "validation_patients_sha256": "18834f6d72af12b95528d80e047afdedb1d9eba80bbae2cf2b6c9e72fb5d3367"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 15743,
+            "validation_beats": 8393,
+            "train_patients": 51,
+            "validation_patients": 25,
+            "train_patients_sha256": "668143ba54476ac3f26f6d5002c4c6b9bc7266b04d56a827940654f691b3ecef",
+            "validation_patients_sha256": "5401173c19b207931663fd979d62bd3e12460cd700a28bc9b64d3fcb36db6176"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 16306,
+            "validation_beats": 7830,
+            "train_patients": 51,
+            "validation_patients": 25,
+            "train_patients_sha256": "e79fc9766abdf2be649bb56b254bf031bf3d66d2300edf7f24bccbbd1e0575fd",
+            "validation_patients_sha256": "3b92a7be9a89befaf0b04ffcbbdd9ed8bcaad6739eab545bd654cdfb08dd17a5"
+          }
+        ]
+      },
+      "8": {
+        "fraction": 0.5,
+        "available_train_patients": 148,
+        "train_patients": 76,
+        "train_beats": 25211,
+        "class_patient_counts": {
+          "AMI": 8,
+          "ALMI": 7,
+          "ASMI": 13,
+          "IMI": 13,
+          "ILMI": 11,
+          "HC": 24
+        },
+        "train_patients_sha256": "3d686c0b92d59ee8153fccf8dbed399aeb585f5a15e73397e0f16dd7d0a989c9",
+        "test_patients": 16,
+        "test_beats": 5752,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 15590,
+            "validation_beats": 9621,
+            "train_patients": 50,
+            "validation_patients": 26,
+            "train_patients_sha256": "540b1aca234bd01ed3a2b507a3e0741f33d6e4af33abf9941b490168069abeb3",
+            "validation_patients_sha256": "c87ae5caed65542eba94e64a11ad89583b32c98815b7b74ae5f34e72edc6bd4e"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 16171,
+            "validation_beats": 9040,
+            "train_patients": 51,
+            "validation_patients": 25,
+            "train_patients_sha256": "e1cc264089431e066dbc1c9109710e5e3b79cc42cc84e219500843be82a099a1",
+            "validation_patients_sha256": "f2689202caa338f1665dfc21c99d4d48b3f42f45325c9b74ba8f9f48fb6792ba"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 18661,
+            "validation_beats": 6550,
+            "train_patients": 51,
+            "validation_patients": 25,
+            "train_patients_sha256": "9faf15f415ae4cf097903be19796f9e54985c098edf1b9d050f320539b4baa6a",
+            "validation_patients_sha256": "fae5329dd9999a178078cbeaebd376c7aedbbe45b183203e149cb3bc8ade639a"
+          }
+        ]
+      },
+      "9": {
+        "fraction": 0.5,
+        "available_train_patients": 148,
+        "train_patients": 76,
+        "train_beats": 26748,
+        "class_patient_counts": {
+          "AMI": 8,
+          "ALMI": 7,
+          "ASMI": 13,
+          "IMI": 13,
+          "ILMI": 11,
+          "HC": 24
+        },
+        "train_patients_sha256": "3a3c081ced4af1608ac74e4c6bdf4118c368f7ade2df6c5c07dd1e4a71274867",
+        "test_patients": 16,
+        "test_beats": 5371,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 17861,
+            "validation_beats": 8887,
+            "train_patients": 50,
+            "validation_patients": 26,
+            "train_patients_sha256": "80a9ba70965ff9d90ca128f42413105788f588a7e15158f711b21039e304d8e3",
+            "validation_patients_sha256": "b019589ef825416ab2446a93b38338ce22bc67caa12267465a239b77234730b3"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 17715,
+            "validation_beats": 9033,
+            "train_patients": 51,
+            "validation_patients": 25,
+            "train_patients_sha256": "8d3938d7dca7ac9db2dc2d4e253c44c5a0ee0bccaa90fc2cbda4ccaf71687587",
+            "validation_patients_sha256": "85c9d118aed5ae9e31ef3c670d37c05a513697c4bbf93259ed0c6ea578e415f2"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 17920,
+            "validation_beats": 8828,
+            "train_patients": 51,
+            "validation_patients": 25,
+            "train_patients_sha256": "5daa27951b02c6c02d308ca9210e638fccd9a52fc4f3f5e04dc77af8c9209aa4",
+            "validation_patients_sha256": "24f260f6f48ade95b6c2b448cca4d81731963625162bba7242afec0c3c42ab30"
+          }
+        ]
+      },
+      "10": {
+        "fraction": 0.5,
+        "available_train_patients": 148,
+        "train_patients": 76,
+        "train_beats": 26673,
+        "class_patient_counts": {
+          "AMI": 8,
+          "ALMI": 7,
+          "ASMI": 13,
+          "IMI": 13,
+          "ILMI": 11,
+          "HC": 24
+        },
+        "train_patients_sha256": "e7cecb449da175f9d8096bd057081e7f43deefe8bec7596ca237631c137a7a3b",
+        "test_patients": 16,
+        "test_beats": 5989,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 18371,
+            "validation_beats": 8302,
+            "train_patients": 50,
+            "validation_patients": 26,
+            "train_patients_sha256": "c27b632892db8246fbbcab2b48fcac77923620d6b8cff51696c213c6a4087c00",
+            "validation_patients_sha256": "201c910bffb7820b7c88942c714c15f40f9b74eadbb51485293ce76039596365"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 18932,
+            "validation_beats": 7741,
+            "train_patients": 51,
+            "validation_patients": 25,
+            "train_patients_sha256": "0db356d854093601bdd9199bac7276e9639866708e3e7c6d8471908c9fc9ff7b",
+            "validation_patients_sha256": "ba909c94bd33c442128224e8b92d21cb8f1626cb55d055121b368584c8546cb2"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 16043,
+            "validation_beats": 10630,
+            "train_patients": 51,
+            "validation_patients": 25,
+            "train_patients_sha256": "98ebeef0f38a2b8bb02b79a432162a01b813f3e7a625edea27dab7257917eb72",
+            "validation_patients_sha256": "7be0bc3bdb8262241b1521c82cc3bd04a7947015a131b8505a77c5db9fc70c81"
+          }
+        ]
+      }
+    },
+    "fraction_075": {
+      "1": {
+        "fraction": 0.75,
+        "available_train_patients": 147,
+        "train_patients": 112,
+        "train_beats": 37494,
+        "class_patient_counts": {
+          "AMI": 12,
+          "ALMI": 11,
+          "ASMI": 18,
+          "IMI": 20,
+          "ILMI": 15,
+          "HC": 36
+        },
+        "train_patients_sha256": "64bdae3b8da064e90230f41c08af4ca673c07f1dda17d29ecc770fba1b1fd3b4",
+        "test_patients": 17,
+        "test_beats": 4790,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 24307,
+            "validation_beats": 13187,
+            "train_patients": 74,
+            "validation_patients": 38,
+            "train_patients_sha256": "04f38f00c56916d17e09f9010505a53529357d20bc5a78ee37d81fded1e878b6",
+            "validation_patients_sha256": "a7ab0c7239fb570c1f03301e1b9700882e1212c0a5288d878af06bef5b6ed2ef"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 27404,
+            "validation_beats": 10090,
+            "train_patients": 75,
+            "validation_patients": 37,
+            "train_patients_sha256": "8709afd8ed38389a8d96f458e3c36fabbd5c4720041986cccf72ff62a449b797",
+            "validation_patients_sha256": "8d823b0673c97f77addb6998a193843770950b6d1ec0a7135b7a413fa971a5c8"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 23277,
+            "validation_beats": 14217,
+            "train_patients": 75,
+            "validation_patients": 37,
+            "train_patients_sha256": "78c80e05bbb9a516efe59c83f0691d70c07292e4da22f6dedd41029cdfc34e75",
+            "validation_patients_sha256": "ec02779282f0ef520c3a287b60cc6badca92171b32ed648c6539f88806dda7d0"
+          }
+        ]
+      },
+      "2": {
+        "fraction": 0.75,
+        "available_train_patients": 147,
+        "train_patients": 112,
+        "train_beats": 36558,
+        "class_patient_counts": {
+          "AMI": 12,
+          "ALMI": 11,
+          "ASMI": 18,
+          "IMI": 20,
+          "ILMI": 15,
+          "HC": 36
+        },
+        "train_patients_sha256": "561d54b5643fd1b3032d5d30021dad8060f0d8022ff538dc53aa9ebd635ed2e7",
+        "test_patients": 17,
+        "test_beats": 6264,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 23793,
+            "validation_beats": 12765,
+            "train_patients": 74,
+            "validation_patients": 38,
+            "train_patients_sha256": "ef3b453a1c9268cf4dcc9d78063daaf21ca5365f4aa76c71152e49a6b7e9555d",
+            "validation_patients_sha256": "35085d9b69acf9cd383a82375d40511780bdd20ff45b82b7d118f1cd382735ca"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 24246,
+            "validation_beats": 12312,
+            "train_patients": 75,
+            "validation_patients": 37,
+            "train_patients_sha256": "7973e8f68835abf5d5c6c92d30f00546ca1330e5c043ddd07abfc8c49e067dd9",
+            "validation_patients_sha256": "961cb2c2820398b2a03ca8194151c9c6a6689425100b00513059f5d82af7cfba"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 25077,
+            "validation_beats": 11481,
+            "train_patients": 75,
+            "validation_patients": 37,
+            "train_patients_sha256": "c8dfc77c0f0461a869dabc6dfcda167c6c711569890a748e7d654c2af3c7e891",
+            "validation_patients_sha256": "5bd46d4372cc401320ebf13e9d46df8a97d637c17160e70cdf57d3ee86ac722c"
+          }
+        ]
+      },
+      "3": {
+        "fraction": 0.75,
+        "available_train_patients": 147,
+        "train_patients": 112,
+        "train_beats": 37493,
+        "class_patient_counts": {
+          "AMI": 12,
+          "ALMI": 12,
+          "ASMI": 18,
+          "IMI": 20,
+          "ILMI": 15,
+          "HC": 35
+        },
+        "train_patients_sha256": "30f3c9f4dcbb880f38c87413d63253ae6c08b319f78dae4bcdb41405e19cec7f",
+        "test_patients": 17,
+        "test_beats": 6045,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 25619,
+            "validation_beats": 11874,
+            "train_patients": 74,
+            "validation_patients": 38,
+            "train_patients_sha256": "5f8588b905ef0dbc16372dd00d740fd96cd307c002fbd524d77d088e60d0e110",
+            "validation_patients_sha256": "ad9015337b3c43957b62ca0b280ce1000336ae197bf831254bfbed42ba9df560"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 25299,
+            "validation_beats": 12194,
+            "train_patients": 75,
+            "validation_patients": 37,
+            "train_patients_sha256": "7429ff62b12e3f3a5e6859e8e85c2f83728900558d1e6fb6c90633f547e1058f",
+            "validation_patients_sha256": "000e3f50d7c0c8384ada34cf08b7ad227eb334751bd758ce42ea660b35c11afe"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 24068,
+            "validation_beats": 13425,
+            "train_patients": 75,
+            "validation_patients": 37,
+            "train_patients_sha256": "29adf5db610f183b67d5538e0d9ca16fdcd857cf9ec2eea1bbfea1e15db2ff45",
+            "validation_patients_sha256": "d089b749ecbec364012b69e5ffaf2a4e9d06287bd9ecb540d95b6d12646fba25"
+          }
+        ]
+      },
+      "4": {
+        "fraction": 0.75,
+        "available_train_patients": 147,
+        "train_patients": 113,
+        "train_beats": 38593,
+        "class_patient_counts": {
+          "AMI": 12,
+          "ALMI": 12,
+          "ASMI": 18,
+          "IMI": 20,
+          "ILMI": 16,
+          "HC": 35
+        },
+        "train_patients_sha256": "ce94a6fd60d7ce1b208976c76c116db7f3aa215b854f67e5af0908edbbe0ced8",
+        "test_patients": 17,
+        "test_beats": 3777,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 25512,
+            "validation_beats": 13081,
+            "train_patients": 75,
+            "validation_patients": 38,
+            "train_patients_sha256": "0ea95b8831cd6a3ff7218d953ec9ea3f06052b040c9f5607a7db3574209e0201",
+            "validation_patients_sha256": "662a5aeedc8c2ec1f5fb59a78eb7589c3acbae14d512f4812391ffdf9f0a8ea7"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 25776,
+            "validation_beats": 12817,
+            "train_patients": 75,
+            "validation_patients": 38,
+            "train_patients_sha256": "f930eb17ccb5d199ec3b0cdfed3a6dfe34fe292a1ce34d3ebb59613f2f164665",
+            "validation_patients_sha256": "31809e965e86b7466511a2d48565d2b9ceefe615dd648bf8585f3a778f0b4b90"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 25898,
+            "validation_beats": 12695,
+            "train_patients": 76,
+            "validation_patients": 37,
+            "train_patients_sha256": "855ab9b32eb3771069ee47d9f2a3a9281afcea58ec48dbe6486ce454f64efb9b",
+            "validation_patients_sha256": "c853567c3516c067dd6fd842f4299a5b3dcfcaed06a978dca66dcd8c51431e0e"
+          }
+        ]
+      },
+      "5": {
+        "fraction": 0.75,
+        "available_train_patients": 148,
+        "train_patients": 114,
+        "train_beats": 39759,
+        "class_patient_counts": {
+          "AMI": 12,
+          "ALMI": 12,
+          "ASMI": 18,
+          "IMI": 20,
+          "ILMI": 16,
+          "HC": 36
+        },
+        "train_patients_sha256": "efb92b78bc47f7c28b67a59d9d9824167356136443a9fe5c14d7f04f30a5d24f",
+        "test_patients": 16,
+        "test_beats": 6588,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 26753,
+            "validation_beats": 13006,
+            "train_patients": 76,
+            "validation_patients": 38,
+            "train_patients_sha256": "faf06c056d488ddd3f4db8d917ecf461bbe69c175788b302ba5ff91d1fd21102",
+            "validation_patients_sha256": "7d367acc0335e8b108952250bb1955f9d1cf8268d35dfe14b13c641d62a2908f"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 26795,
+            "validation_beats": 12964,
+            "train_patients": 76,
+            "validation_patients": 38,
+            "train_patients_sha256": "f4560c1759d13ddf5c371dc9f5a411cc96649ab9a0ce949ee5b0a8ea3a4d61ca",
+            "validation_patients_sha256": "3b7be0136c69d7759e477a3c471507b868d5825d766c206606c19b7841bd44e7"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 25970,
+            "validation_beats": 13789,
+            "train_patients": 76,
+            "validation_patients": 38,
+            "train_patients_sha256": "8afb9b889cd0b3fea1abccdf2bb82c07589f54e1720e4e0aad5a414cd0f4c4fd",
+            "validation_patients_sha256": "a1c56a4e59aff06577b382d10cf2b35904168e7d4545dc562e7232e2d9688ef2"
+          }
+        ]
+      },
+      "6": {
+        "fraction": 0.75,
+        "available_train_patients": 148,
+        "train_patients": 114,
+        "train_beats": 38280,
+        "class_patient_counts": {
+          "AMI": 12,
+          "ALMI": 12,
+          "ASMI": 18,
+          "IMI": 20,
+          "ILMI": 16,
+          "HC": 36
+        },
+        "train_patients_sha256": "e3b1504afa8b556a1f46ad9bd588dd9a90c0d5197cbb202a74e6def47fc0f7a3",
+        "test_patients": 16,
+        "test_beats": 5883,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 24724,
+            "validation_beats": 13556,
+            "train_patients": 76,
+            "validation_patients": 38,
+            "train_patients_sha256": "fa5ed833030e36d38498eb749af8bbf13e419919c3c27ef633dfcd68919b603c",
+            "validation_patients_sha256": "83adb9bd9270d24c0c7ee866fcb5cf25c29d3a211d8a93d9f6bdb557cca96c29"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 26834,
+            "validation_beats": 11446,
+            "train_patients": 76,
+            "validation_patients": 38,
+            "train_patients_sha256": "ce7cf0989a0d042077a538ee42ceb2cb6435c03d3763a7c341cc31c89e167e84",
+            "validation_patients_sha256": "effa3ba93bd93d4331d4468467c5f8a1cdf0edfc1b25d6ea8430950339bccfc2"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 25002,
+            "validation_beats": 13278,
+            "train_patients": 76,
+            "validation_patients": 38,
+            "train_patients_sha256": "faa1e42e7150e5ebb802d65bfdc8fbc7a815d8a7c8404b2952b1efff82debf89",
+            "validation_patients_sha256": "755532998fdd2e70626ceb5a57334f68696323ba46e301e43fbb4977772e0413"
+          }
+        ]
+      },
+      "7": {
+        "fraction": 0.75,
+        "available_train_patients": 148,
+        "train_patients": 114,
+        "train_beats": 37592,
+        "class_patient_counts": {
+          "AMI": 12,
+          "ALMI": 11,
+          "ASMI": 18,
+          "IMI": 21,
+          "ILMI": 16,
+          "HC": 36
+        },
+        "train_patients_sha256": "ac91f00aaee52cb60bb414a4a8b1cd9c0bbb67ba284dc18a782c5c76934eb85a",
+        "test_patients": 16,
+        "test_beats": 5404,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 25818,
+            "validation_beats": 11774,
+            "train_patients": 76,
+            "validation_patients": 38,
+            "train_patients_sha256": "75cf0cf8852cc2734fed70b63f04abf275b4bdbf5e34a0049311cd8d75ab2527",
+            "validation_patients_sha256": "0ae0c0406d4b0b5f9079222ada677f5e06ec4294380e9c9beb06406091621546"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 25458,
+            "validation_beats": 12134,
+            "train_patients": 76,
+            "validation_patients": 38,
+            "train_patients_sha256": "fe5ca0f912fcab29d03a562b65b2d306315206736d29584394e34a8b6bacae7f",
+            "validation_patients_sha256": "21c1fcb576b30319af2f0e9eeea0353291404a7728b0e3e4cf8324f4d8e20f70"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 23908,
+            "validation_beats": 13684,
+            "train_patients": 76,
+            "validation_patients": 38,
+            "train_patients_sha256": "1ae69baecc33ab0e83678897ff53039769874d47100fa711003c32428f0810e2",
+            "validation_patients_sha256": "c78288e4e0f1e3bd0dcf23f2b32c61cb230f63503fd792379746f5983b99fc4d"
+          }
+        ]
+      },
+      "8": {
+        "fraction": 0.75,
+        "available_train_patients": 148,
+        "train_patients": 114,
+        "train_beats": 38428,
+        "class_patient_counts": {
+          "AMI": 12,
+          "ALMI": 11,
+          "ASMI": 19,
+          "IMI": 20,
+          "ILMI": 16,
+          "HC": 36
+        },
+        "train_patients_sha256": "856e099c358e7c4b664506abc41ba067d45327d05e68075c75cbb89782f95d4b",
+        "test_patients": 16,
+        "test_beats": 5752,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 26451,
+            "validation_beats": 11977,
+            "train_patients": 76,
+            "validation_patients": 38,
+            "train_patients_sha256": "9a2b316b0328783581c31113415a61d2ccb049fc653a3ea412f6cb26953af9d0",
+            "validation_patients_sha256": "03f8d089d95f900d694ba39d6538def2e929ee9f0d69e0f2267a2ba7f6f586a0"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 25707,
+            "validation_beats": 12721,
+            "train_patients": 76,
+            "validation_patients": 38,
+            "train_patients_sha256": "423cef37b2de2cc1ef56f69cff594b1d17d72e021f3f60ea989b53c1bcae4a8f",
+            "validation_patients_sha256": "beba2f4ed6c4c62bfa52a5f48afdaa5f80ef56456717efed14a4ed528f0febf5"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 24698,
+            "validation_beats": 13730,
+            "train_patients": 76,
+            "validation_patients": 38,
+            "train_patients_sha256": "c064025dbfac4661320edb0ecf61d759e76453e5db21eb22cb0186c3c12889ed",
+            "validation_patients_sha256": "bf8e496355fbf9bc056ce8adfed363463d13f25f19e3d3af06c5b557b04fdb33"
+          }
+        ]
+      },
+      "9": {
+        "fraction": 0.75,
+        "available_train_patients": 148,
+        "train_patients": 114,
+        "train_beats": 39169,
+        "class_patient_counts": {
+          "AMI": 12,
+          "ALMI": 11,
+          "ASMI": 19,
+          "IMI": 20,
+          "ILMI": 16,
+          "HC": 36
+        },
+        "train_patients_sha256": "cdcb94215e780df3244ede67c9ba96880ecad7cd4e8a8827fcad963bf24751e9",
+        "test_patients": 16,
+        "test_beats": 5371,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 27047,
+            "validation_beats": 12122,
+            "train_patients": 76,
+            "validation_patients": 38,
+            "train_patients_sha256": "f5a4dd72c8fe0c68a9a63a1cd406bac023d84eb7ba35a6d2a08ab683ed14fc7c",
+            "validation_patients_sha256": "4b299d8b203addb5e52840c2c3a5fd704d96625558e046014c51bfb174657d64"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 24380,
+            "validation_beats": 14789,
+            "train_patients": 76,
+            "validation_patients": 38,
+            "train_patients_sha256": "bf462297e03894de160bc3951eb0dc8c3872cbd6926d1a892ef26e127f1fd740",
+            "validation_patients_sha256": "de63375525c84d8b382293a3a2d533183e44f8ee2ed360bf9b7650337905627a"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 26911,
+            "validation_beats": 12258,
+            "train_patients": 76,
+            "validation_patients": 38,
+            "train_patients_sha256": "77071f18470a575f361ce04296b31c6d920f909c915c056546e52ed6df23aca0",
+            "validation_patients_sha256": "5e50135653f8fb52344d3461456a599ef84383ea1ccf49903a24181a76f5cd42"
+          }
+        ]
+      },
+      "10": {
+        "fraction": 0.75,
+        "available_train_patients": 148,
+        "train_patients": 114,
+        "train_beats": 37895,
+        "class_patient_counts": {
+          "AMI": 12,
+          "ALMI": 11,
+          "ASMI": 19,
+          "IMI": 20,
+          "ILMI": 16,
+          "HC": 36
+        },
+        "train_patients_sha256": "2a7e5e237d8c431ee06738e3b144b828b8c81d6ba0b88106fd0c3c8cbb719742",
+        "test_patients": 16,
+        "test_beats": 5989,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 25631,
+            "validation_beats": 12264,
+            "train_patients": 76,
+            "validation_patients": 38,
+            "train_patients_sha256": "56028ce04da6f4a277730b5d9d49e8dda6aea0ed21307b8651205c53d42b3c38",
+            "validation_patients_sha256": "2f3d5948f1d7e79ad1c599b18bb243dc96a09cbbd5fd9d7e86dcf284d08d9a36"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 23877,
+            "validation_beats": 14018,
+            "train_patients": 76,
+            "validation_patients": 38,
+            "train_patients_sha256": "c2083cbe55ea51633bd3438358ab1201e000bf624921294900417dd66edca8a4",
+            "validation_patients_sha256": "eecae434bc3d29c3aec41e2059b5f1a71b86adcd16019e6f5e066612253120ba"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 26282,
+            "validation_beats": 11613,
+            "train_patients": 76,
+            "validation_patients": 38,
+            "train_patients_sha256": "cf9e8d287f5a81d226b4dc2a2dd1455013ff251aafde5e8b68d50be143aa8015",
+            "validation_patients_sha256": "c6a15bdcebb94a1fd772c5388d48a07cd07604a59d61c9a19b2990bf7c127b6a"
+          }
+        ]
+      }
+    },
+    "fraction_100": {
+      "1": {
+        "fraction": 1.0,
+        "available_train_patients": 147,
+        "train_patients": 147,
+        "train_beats": 51073,
+        "class_patient_counts": {
+          "AMI": 16,
+          "ALMI": 14,
+          "ASMI": 24,
+          "IMI": 26,
+          "ILMI": 20,
+          "HC": 47
+        },
+        "train_patients_sha256": "4109a0130049a74474662093363ff4a366ddabc2bb979417137187cc01519244",
+        "test_patients": 17,
+        "test_beats": 4790,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 32307,
+            "validation_beats": 18766,
+            "train_patients": 98,
+            "validation_patients": 49,
+            "train_patients_sha256": "f64d825fb692aa34b72c9e73de5fa63eb6b635d4101c549aa417f9fde59a35cc",
+            "validation_patients_sha256": "ccfac9c448352850c03bc877e4581af795fbc20a3a7675f65cde5dfed82882b6"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 35103,
+            "validation_beats": 15970,
+            "train_patients": 98,
+            "validation_patients": 49,
+            "train_patients_sha256": "ccaef3a32a12ad3e624ba8277c84e69b37557a040a582a79f3734579c693ef4a",
+            "validation_patients_sha256": "5a7fdb4cb5dd8da262b345a3b35b56c50978c183f21065e348b27a67239e8109"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 34736,
+            "validation_beats": 16337,
+            "train_patients": 98,
+            "validation_patients": 49,
+            "train_patients_sha256": "25539090922de601aae713fd7b1a19dd67463baacec58f06a1665ef70860b6a0",
+            "validation_patients_sha256": "688dd9ec6cd5ce79d8e44a87c3ff5e4cc7059bffa8e5c6f05bb8213b82ffe3c6"
+          }
+        ]
+      },
+      "2": {
+        "fraction": 1.0,
+        "available_train_patients": 147,
+        "train_patients": 147,
+        "train_beats": 49599,
+        "class_patient_counts": {
+          "AMI": 16,
+          "ALMI": 14,
+          "ASMI": 24,
+          "IMI": 26,
+          "ILMI": 20,
+          "HC": 47
+        },
+        "train_patients_sha256": "c6661e61b71cea959c098ffb1c4a1957fcf5fd9fb90eb718b1fd498cb91b3197",
+        "test_patients": 17,
+        "test_beats": 6264,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 33076,
+            "validation_beats": 16523,
+            "train_patients": 98,
+            "validation_patients": 49,
+            "train_patients_sha256": "14e8555f4833c8295d1f6377da8ae0e471c59049328ee2338934c8fe1fe993cb",
+            "validation_patients_sha256": "dcfa3227ed615f5fc1b5accf76cb71529d360bd13c66246d54db3e2a19ff416c"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 33774,
+            "validation_beats": 15825,
+            "train_patients": 98,
+            "validation_patients": 49,
+            "train_patients_sha256": "29fed555f837d73a1bbe01f72ca80af8a470f0c9e6ea8f67cc42c05b5343e6a4",
+            "validation_patients_sha256": "6cbbb10504b6fc0fc9713515a395aa6668c1d30890e66fbd9d8765818771297c"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 32348,
+            "validation_beats": 17251,
+            "train_patients": 98,
+            "validation_patients": 49,
+            "train_patients_sha256": "e9ab7cbaee2839da287e131cff1f39da127e602fed37a6175fd47963ee3db28f",
+            "validation_patients_sha256": "98a6e5ba291f72fba29b23deb7d7ba115d8249da0ae26a1dee986b5fd61d87ff"
+          }
+        ]
+      },
+      "3": {
+        "fraction": 1.0,
+        "available_train_patients": 147,
+        "train_patients": 147,
+        "train_beats": 49818,
+        "class_patient_counts": {
+          "AMI": 16,
+          "ALMI": 15,
+          "ASMI": 24,
+          "IMI": 26,
+          "ILMI": 20,
+          "HC": 46
+        },
+        "train_patients_sha256": "3acd651fafe250c35a0b69f767806a410ffc8e9fedd7ca3a154c99fa0d3e3cc7",
+        "test_patients": 17,
+        "test_beats": 6045,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 33375,
+            "validation_beats": 16443,
+            "train_patients": 98,
+            "validation_patients": 49,
+            "train_patients_sha256": "aedaad2e188b8480bc14cbc5616c474b8a64958f15154b223a8340730bdb34e9",
+            "validation_patients_sha256": "b8a6f213d951880f61df41cdcb3f2a3102ae66aeded39ad0e114a164442e4957"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 31901,
+            "validation_beats": 17917,
+            "train_patients": 98,
+            "validation_patients": 49,
+            "train_patients_sha256": "69dd248fac17f6d15499bda6dc38a4abce3a84052f81bd6a307314f9ccd4ecad",
+            "validation_patients_sha256": "441eb561a658eddd8f229bc5496729abcf2c93b7a11dd0bc7a365c0e642fac6a"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 34360,
+            "validation_beats": 15458,
+            "train_patients": 98,
+            "validation_patients": 49,
+            "train_patients_sha256": "95be4cf4acc815f0938dafd7897cf4cbf9cacc7736b11b5284f53fcb5fd526e7",
+            "validation_patients_sha256": "ecd15e3ef832cd96425c370f7b2d9f34f59f8ada53277bcde31b676380cfd778"
+          }
+        ]
+      },
+      "4": {
+        "fraction": 1.0,
+        "available_train_patients": 147,
+        "train_patients": 147,
+        "train_beats": 52086,
+        "class_patient_counts": {
+          "AMI": 15,
+          "ALMI": 15,
+          "ASMI": 24,
+          "IMI": 26,
+          "ILMI": 21,
+          "HC": 46
+        },
+        "train_patients_sha256": "96613d5bee52978a562f6e3ebf3c36062b58648b4219143b0cea8acd60bf4463",
+        "test_patients": 17,
+        "test_beats": 3777,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 34678,
+            "validation_beats": 17408,
+            "train_patients": 98,
+            "validation_patients": 49,
+            "train_patients_sha256": "51d8ec00b559bab7c77b6ce6005560609dbc9976957bab45db90fe58b469708a",
+            "validation_patients_sha256": "83fcd4f87fa020ae6376cd0e1cfd0a78654a794363f36f3b55fb1c0ee179ef72"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 34412,
+            "validation_beats": 17674,
+            "train_patients": 98,
+            "validation_patients": 49,
+            "train_patients_sha256": "00d8d4eb2e62089cd1d5de6bd576b10b957dfa89856e8b3c3166b7e6d4a63ecd",
+            "validation_patients_sha256": "04e1a7c893e82881273eb61dd78b7ac0c5025e6d3f5d3fc0fe9a5fa2f8e71fee"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 35082,
+            "validation_beats": 17004,
+            "train_patients": 98,
+            "validation_patients": 49,
+            "train_patients_sha256": "a8ca3956398f8db7c236aa9270747a8e2a7a7b530d2ac02a6dd34562f22121be",
+            "validation_patients_sha256": "f1a0258969651e0ecc30553790ad2b4819a14604193e50cc18982a0348e8bb3e"
+          }
+        ]
+      },
+      "5": {
+        "fraction": 1.0,
+        "available_train_patients": 148,
+        "train_patients": 148,
+        "train_beats": 49275,
+        "class_patient_counts": {
+          "AMI": 15,
+          "ALMI": 15,
+          "ASMI": 24,
+          "IMI": 26,
+          "ILMI": 21,
+          "HC": 47
+        },
+        "train_patients_sha256": "b226a8480b98725bbffffe35dc0af9f3c9ff2440cd8871d84989c9bbf61508a3",
+        "test_patients": 16,
+        "test_beats": 6588,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 33699,
+            "validation_beats": 15576,
+            "train_patients": 98,
+            "validation_patients": 50,
+            "train_patients_sha256": "b12b5d204b045196f0ac41253cd751f12a520ab20152da53303f852807628a12",
+            "validation_patients_sha256": "a0f25b66cf8ec5b41c89c9b02f0693f847100394bfaf2290aa11a2c07ee07bcf"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 32164,
+            "validation_beats": 17111,
+            "train_patients": 99,
+            "validation_patients": 49,
+            "train_patients_sha256": "1e66e36f1fa52c38bf208a5c0ab7eb2a9a4c609a61a20e94e2cf5c09bcc5b4b3",
+            "validation_patients_sha256": "962940b2d7c7410989c70c09bae9ce572182c0fb34604fca571d78f6c1c5d3b3"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 32687,
+            "validation_beats": 16588,
+            "train_patients": 99,
+            "validation_patients": 49,
+            "train_patients_sha256": "4f59572ac1928038b5e3d63f87d60b68d59040207fafdb8616b96a05ef339e2c",
+            "validation_patients_sha256": "5c9d16c0e0f327da4404740cda8dd67a21ec67d57b96dfb8602a8d317301bd50"
+          }
+        ]
+      },
+      "6": {
+        "fraction": 1.0,
+        "available_train_patients": 148,
+        "train_patients": 148,
+        "train_beats": 49980,
+        "class_patient_counts": {
+          "AMI": 15,
+          "ALMI": 15,
+          "ASMI": 24,
+          "IMI": 26,
+          "ILMI": 21,
+          "HC": 47
+        },
+        "train_patients_sha256": "c541bec39be126155bba2cb472f1d1d5bbaf429253d9487cba15ba56e81680a8",
+        "test_patients": 16,
+        "test_beats": 5883,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 34341,
+            "validation_beats": 15639,
+            "train_patients": 98,
+            "validation_patients": 50,
+            "train_patients_sha256": "02f7d215439fc56b31f27a8f00f7786523e317e8aec6f828a88dcf0b985c0046",
+            "validation_patients_sha256": "76f9d775be1288285c34dbf87f6de266c50c975572f5a84469331b7840041090"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 32393,
+            "validation_beats": 17587,
+            "train_patients": 99,
+            "validation_patients": 49,
+            "train_patients_sha256": "8a009f9b488dda48fc032d593afad368598da802579314e6d0e6a7f7a5d4ad48",
+            "validation_patients_sha256": "20ffd557969362f460b0c219eea72a6e57c49f33e961cc79b8b9a1a8b581e7f8"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 33226,
+            "validation_beats": 16754,
+            "train_patients": 99,
+            "validation_patients": 49,
+            "train_patients_sha256": "573b7b96fd6150cd245cff328fdd31ef34cf343f4e29afdb14bc94765bdf8243",
+            "validation_patients_sha256": "a2fe97cdf44cd829d63af2ee1212b78f85c0b6cc4cd83372efe9c477d617ae17"
+          }
+        ]
+      },
+      "7": {
+        "fraction": 1.0,
+        "available_train_patients": 148,
+        "train_patients": 148,
+        "train_beats": 50459,
+        "class_patient_counts": {
+          "AMI": 15,
+          "ALMI": 14,
+          "ASMI": 24,
+          "IMI": 27,
+          "ILMI": 21,
+          "HC": 47
+        },
+        "train_patients_sha256": "00342eb087792122a3c64f359be47681ec832bbcfb874a75d17fe54f33967bd7",
+        "test_patients": 16,
+        "test_beats": 5404,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 32407,
+            "validation_beats": 18052,
+            "train_patients": 98,
+            "validation_patients": 50,
+            "train_patients_sha256": "f145755c0c7c0d50b9917f3da2033e60f81d876aa9ff15e30aedf805edc670bc",
+            "validation_patients_sha256": "09878bddd3bb46a3c6b53e31464476f443894119bae403c4fd1d3c36282953e6"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 35101,
+            "validation_beats": 15358,
+            "train_patients": 99,
+            "validation_patients": 49,
+            "train_patients_sha256": "9cd6d7abfdcdc8c71babf1d9c8dce0480278cf55cdb288d2d8f6cd94ab027ce8",
+            "validation_patients_sha256": "c71195a1a9613c17840de7c3ae0d1a337965fd00a3198c44c2c49fe62839027d"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 33410,
+            "validation_beats": 17049,
+            "train_patients": 99,
+            "validation_patients": 49,
+            "train_patients_sha256": "3450a605dff91b649c764b284a21944f1589d000169ecf1fc515006e7c74806e",
+            "validation_patients_sha256": "c1c1957faa40a041c07526c3736baa7118237283fd1033c24764a3222c264cdb"
+          }
+        ]
+      },
+      "8": {
+        "fraction": 1.0,
+        "available_train_patients": 148,
+        "train_patients": 148,
+        "train_beats": 50111,
+        "class_patient_counts": {
+          "AMI": 15,
+          "ALMI": 14,
+          "ASMI": 25,
+          "IMI": 26,
+          "ILMI": 21,
+          "HC": 47
+        },
+        "train_patients_sha256": "23ec71af41819bc3e3e2876aa1515e39581c92bc681f8bf9747697b050ff57ab",
+        "test_patients": 16,
+        "test_beats": 5752,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 33382,
+            "validation_beats": 16729,
+            "train_patients": 98,
+            "validation_patients": 50,
+            "train_patients_sha256": "46e7d926e4e30bb1e25138942dd293617064003abd10881b32896316fbd33f4c",
+            "validation_patients_sha256": "f641a5f0aaa85160756aa421ace71808cb863263d0d64e6f35c663a4301ff662"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 34147,
+            "validation_beats": 15964,
+            "train_patients": 99,
+            "validation_patients": 49,
+            "train_patients_sha256": "140c49166e5cf883fa728c92bd219ccd8f287a6edbe12d1031e698a5a3c9fe06",
+            "validation_patients_sha256": "da322247ea2a863939bb66528b2e6b180069afd5f4b8a41d81d5b94b9aadae4a"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 32693,
+            "validation_beats": 17418,
+            "train_patients": 99,
+            "validation_patients": 49,
+            "train_patients_sha256": "4f95571daeae126bef92ad0b2ea214545260ae16a0e70eed04e717d7c4851db0",
+            "validation_patients_sha256": "3432ef59f130ffe8157d6a4925d662d98cb978a02b8233e1097cb94db0ebda48"
+          }
+        ]
+      },
+      "9": {
+        "fraction": 1.0,
+        "available_train_patients": 148,
+        "train_patients": 148,
+        "train_beats": 50492,
+        "class_patient_counts": {
+          "AMI": 15,
+          "ALMI": 14,
+          "ASMI": 25,
+          "IMI": 26,
+          "ILMI": 21,
+          "HC": 47
+        },
+        "train_patients_sha256": "0e263e7c60525350f3b78e9f04614d2c714832c66f53afb17e2cfdd1eaf4656c",
+        "test_patients": 16,
+        "test_beats": 5371,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 33733,
+            "validation_beats": 16759,
+            "train_patients": 98,
+            "validation_patients": 50,
+            "train_patients_sha256": "79500b471e1195dd6fb09496fbd02bdb6dc730931f1e9ea7caefec5c43e1a161",
+            "validation_patients_sha256": "9293601ac61ab5a148a2f36f44b9365c9598dbe7f5ad246b83744766a7ee3ba3"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 34413,
+            "validation_beats": 16079,
+            "train_patients": 99,
+            "validation_patients": 49,
+            "train_patients_sha256": "db2d4c4d34f5bce84b7299cfffd0709f705ff8d4086edf68e515bfc217dd05be",
+            "validation_patients_sha256": "425d7ec719775e98de9fc914fa4aeb7fdc45a92141995902b38c3d3bf38b5b41"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 32838,
+            "validation_beats": 17654,
+            "train_patients": 99,
+            "validation_patients": 49,
+            "train_patients_sha256": "de171a7c7a17cbe8e5cd8ac4675c67ee2f47f9455adc70b231eba1a131791d04",
+            "validation_patients_sha256": "b2353f98f701101560eb8d0f0641977402fbd7de996dcde4d8120206b2b73c0c"
+          }
+        ]
+      },
+      "10": {
+        "fraction": 1.0,
+        "available_train_patients": 148,
+        "train_patients": 148,
+        "train_beats": 49874,
+        "class_patient_counts": {
+          "AMI": 15,
+          "ALMI": 14,
+          "ASMI": 25,
+          "IMI": 26,
+          "ILMI": 21,
+          "HC": 47
+        },
+        "train_patients_sha256": "15ce1488980060ea8f14a3184e30603b1cf00a41f3edf5ff32a0533d74daf610",
+        "test_patients": 16,
+        "test_beats": 5989,
+        "inner_folds": [
+          {
+            "inner_fold": 1,
+            "train_beats": 31649,
+            "validation_beats": 18225,
+            "train_patients": 98,
+            "validation_patients": 50,
+            "train_patients_sha256": "44a7b82a54d729ff968e6e34a4377bde4a588f6ead08780818e6a6c1e838185e",
+            "validation_patients_sha256": "9456a272f3ec10a4d381d10e961bf9f245136e2080f0f195b1caaeda1b755de8"
+          },
+          {
+            "inner_fold": 2,
+            "train_beats": 34270,
+            "validation_beats": 15604,
+            "train_patients": 99,
+            "validation_patients": 49,
+            "train_patients_sha256": "96b77ef4b5b9c8e8750efa587498696e6c184e1e658c9f1a247c454a8c6bfbd9",
+            "validation_patients_sha256": "3eef0a2b5ee518ef4aeda3f4cf5459dfe09ea791eb49336c9d1a82c1a00d439c"
+          },
+          {
+            "inner_fold": 3,
+            "train_beats": 33829,
+            "validation_beats": 16045,
+            "train_patients": 99,
+            "validation_patients": 49,
+            "train_patients_sha256": "aeb32f8d729470f1e18d878de7d9b5f310d7697841bf9d4fd17e0689aa3d2acb",
+            "validation_patients_sha256": "bbe3decaccf40e6209ae5f7f5a905f23cc5adbfc08448aaf556d98757a42fc21"
+          }
+        ]
+      }
+    }
+  },
+  "runtime": {
+    "torch": "2.15.0",
+    "numpy": "2.5.3",
+    "platform": "macOS-26.5-arm64-arm-64bit",
+    "device": "mps",
+    "deterministic_kernels": false,
+    "code_sha256": "f8dcf7cfc751cb422deb7d9b9c4110fbc5707a06ff63a6ac829689b8892c0122",
+    "fit_code_sha256": "28e974b992c15ae70901c99554cd86801b6f3f28a4c9f437e8c6f9130e7d0bb6",
+    "neural_code_sha256": "7aa44cba432693dca59ccb2587d1f3bd2c5cee195ed74c4259c456de1fa56f97",
+    "loader_code_sha256": "b1692068f880746d0e91059392d58940fbb15ef8d476c304309fc5d6cff05a65",
+    "benchmark_code_sha256": "8f1bb5168adfadec6e60e68cb256cf7dad240d3f7d6bb35fa54b47876f312589"
+  },
+  "study_fingerprint": "e98560b90ee6124407e1868c3f3cba8b51804251af03eea553993290e1f78e56"
+}
