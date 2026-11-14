@@ -178,6 +178,20 @@ The [preprocessing study](docs/preprocessing_vcg_plan.md) audits the existing 16
 
 The completed [signal audit](results/neural_preprocessing_v1/audit/REPORT.md) verifies header/cache consistency and exact reproduction of all denoised crops. Interval and signal-change diagnostics are screening findings; they do not establish detector accuracy or denoising harm. No data were removed or relabeled. Raw review plots remain local. Configuration is in `configs/preprocessing_vcg.yaml`; new study results go to `results/neural_preprocessing_v1/complete/`. The final report requires all folds/seeds and validates paired predictions and training audits before describing any gain. These are development comparisons on repeatedly inspected PTB patients, with no promised target score or SOTA claim.
 
+## Longer-context denoised VCG
+
+The [longer-context experiment](docs/context_vcg_plan.md) compares the original −250/+400 ms crop (651 samples) with a fixed −350/+650 ms crop (1,001 samples). Both arms retain denoised measured XYZ, all original beat positions and frozen patient folds, and freshly train the same ResNet over three seeds. No time resizing or additional model parameters are introduced. Recording-boundary gaps use declared reflection padding; the original central samples must reproduce the short cache exactly.
+
+```bash
+.venv/bin/python -m mi_localization.context_bank
+.venv/bin/python -m mi_localization.context_study
+.venv/bin/python -m mi_localization.context_report
+# Read-only progress:
+.venv/bin/python -m mi_localization.context_study --status
+```
+
+Configuration: `configs/context_vcg.yaml`. New aggregate cache audits and experiment outputs: `results/neural_context_v1/`. The comparison preserves matched initializations/sampled rows, separate training-only normalization and inner-patient stopping. Longer inputs require more computation and change pooling coordinates; they are not adjudicated cardiac phases. The final report validates every seed/fold before assessing benefit, and no improvement is claimed in advance.
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:
