@@ -164,6 +164,20 @@ The first matched study completed at 0.479 mean macro F1 for CE and 0.516 for cr
 .venv/bin/python -m mi_localization.contrastive --config configs/contrastive_vcg_diverse.yaml --status
 ```
 
+## Raw versus denoised measured VCG
+
+The [preprocessing study](docs/preprocessing_vcg_plan.md) audits the existing 164-patient, 391-record, 55,863-beat cohort, then compares fresh raw/denoised ResNet fits over three seeds. All original beat positions and frozen patient folds are retained. Both arms have matching initial weights and shared-epoch sampled rows, with separate training-only scaling and inner-patient stopping.
+
+```bash
+.venv/bin/python -m mi_localization.signal_audit
+.venv/bin/python -m mi_localization.preprocessing_study
+.venv/bin/python -m mi_localization.preprocessing_report
+# Read-only progress:
+.venv/bin/python -m mi_localization.preprocessing_study --status
+```
+
+The completed [signal audit](results/neural_preprocessing_v1/audit/REPORT.md) verifies header/cache consistency and exact reproduction of all denoised crops. Interval and signal-change diagnostics are screening findings; they do not establish detector accuracy or denoising harm. No data were removed or relabeled. Raw review plots remain local. Configuration is in `configs/preprocessing_vcg.yaml`; new study results go to `results/neural_preprocessing_v1/complete/`. The final report requires all folds/seeds and validates paired predictions and training audits before describing any gain. These are development comparisons on repeatedly inspected PTB patients, with no promised target score or SOTA claim.
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:

@@ -38,7 +38,7 @@ def check_matching_fits(ce, supcon, config):
             raise ValueError("Matched arms did not receive identical batch draws")
 
 
-def paired_seed_bootstrap(truth, predictions, n_classes, draws=5000, seed=42):
+def paired_seed_bootstrap(truth, predictions, n_classes, draws=5000, seed=42, arms=ARMS):
     """Resample each patient once per draw, shared across all seeds and arms.
 
     Average F1 across the fixed seeds; NEVER flatten seed/patient pairs into
@@ -53,11 +53,13 @@ def paired_seed_bootstrap(truth, predictions, n_classes, draws=5000, seed=42):
     rng = np.random.default_rng(seed)
     indices = np.column_stack([rng.choice(pool, (draws, len(pool))) for pool in pools])
     offsets = np.arange(draws)[:, None] * n_classes ** 2
-    distributions = {arm: [] for arm in ARMS}
+    if len(arms) != 2 or len(set(arms)) != 2:
+        raise ValueError("Need exactly two distinct paired arms")
+    distributions = {arm: [] for arm in arms}
     per_seed = {}
     for training_seed, paired in predictions.items():
         seed_distributions = {}
-        for arm in ARMS:
+        for arm in arms:
             pred = np.asarray(paired[arm])
             if pred.shape != truth.shape or not np.issubdtype(pred.dtype, np.integer) or np.any(pred < 0) or np.any(pred >= n_classes):
                 raise ValueError("Invalid paired prediction labels")
@@ -68,10 +70,10 @@ def paired_seed_bootstrap(truth, predictions, n_classes, draws=5000, seed=42):
             values = np.divide(numerator, denominator, out=np.zeros_like(numerator, dtype=float), where=denominator != 0).mean(1)
             seed_distributions[arm] = values
             distributions[arm].append(values)
-        difference = seed_distributions[ARMS[1]] - seed_distributions[ARMS[0]]
+        difference = seed_distributions[arms[1]] - seed_distributions[arms[0]]
         per_seed[str(training_seed)] = {"paired_macro_f1_difference_95_interval": np.quantile(difference, [0.025, 0.975]).tolist()}
     means = {arm: np.mean(values, axis=0) for arm, values in distributions.items()}
-    delta = means[ARMS[1]] - means[ARMS[0]]
+    delta = means[arms[1]] - means[arms[0]]
     return {"draws": draws, "seed": seed, "unique_patients": len(truth), "fixed_training_seeds": list(predictions),
         "method": "class-stratified paired patient bootstrap, identical patient draws across ALL arms/seeds; mean of seed-wise macro F1 differences",
         "per_seed": per_seed, "mean_macro_f1_intervals": {arm: np.quantile(values, [0.025, 0.975]).tolist() for arm, values in means.items()},
