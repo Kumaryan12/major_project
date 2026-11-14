@@ -1,0 +1,44 @@
+{
+  "complete": true,
+  "study_fingerprint": "ec82aa8da288a5a7c46dae10e6e4d1095a3ab5ac7289fc8f716d312ece664fd4",
+  "n_patients": 164,
+  "n_beats": 55863,
+  "training_seeds": [
+    42,
+    123,
+    2026
+  ],
+  "arms": {
+    "denoised": {
+      "macro_f1_mean": 0.5501078970006266,
+      "macro_f1_sample_std": 0.03979258705922586
+    },
+    "raw": {
+      "macro_f1_mean": 0.5208519213796751,
+      "macro_f1_sample_std": 0.011210418589141515
+    }
+  },
+  "per_seed": [
+    {
+      "training_seed": 42,
+      "denoised_macro_f1": 0.5862319741567313,
+      "raw_macro_f1": 0.533428908884699,
+      "raw_minus_denoised_macro_f1": -0.05280306527203238
+    },
+    {
+      "training_seed": 123,
+      "denoised_macro_f1": 0.5566372852230043,
+      "raw_macro_f1": 0.5172163550512788,
+      "raw_minus_denoised_macro_f1": -0.03942093017172543
+    },
+    {
+      "training_seed": 2026,
+      "denoised_macro_f1": 0.5074544316221441,
+      "raw_macro_f1": 0.5119105002030475,
+      "raw_minus_denoised_macro_f1": 0.004456068580903416
+    }
+  ],
+  "mean_raw_minus_denoised_macro_f1": -0.029255975620951464,
+  "matching": "same architecture, initial weights, patient/beat membership and shared-epoch sampled-row hashes; separate training-only scaling per arm",
+  "limits": "Previously inspected PTB development patients; fixed fitted predictions/seeds; no independent confirmation, best-seed selection or SOTA claim."
+}

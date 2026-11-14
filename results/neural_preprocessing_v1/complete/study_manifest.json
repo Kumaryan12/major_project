@@ -1,0 +1,74 @@
+{
+  "config": {
+    "seed": 42,
+    "split_seed": 42,
+    "training_seeds": [
+      42,
+      123,
+      2026
+    ],
+    "paper_config": "configs/paper.yaml",
+    "beats_path": "data/processed/beats.csv",
+    "denoised_bank_dir": "data/processed/neural_vcg_v1",
+    "raw_bank_dir": "data/processed/neural_raw_v1",
+    "output_dir": "results/neural_preprocessing_v1",
+    "audit_dir": "results/neural_preprocessing_v1/audit",
+    "folds_path": "configs/patient_folds.csv",
+    "classes": [
+      "AMI",
+      "ALMI",
+      "ASMI",
+      "IMI",
+      "ILMI",
+      "HC"
+    ],
+    "outer_splits": 10,
+    "inner_splits": 3,
+    "arms": [
+      "denoised",
+      "raw"
+    ],
+    "feature_n_jobs": 2,
+    "review_patients_per_class": 2,
+    "device": "auto",
+    "torch_threads": 2,
+    "widths": [
+      16,
+      32,
+      64
+    ],
+    "pool_bins": 4,
+    "dropout": 0.2,
+    "learning_rate": 0.001,
+    "weight_decay": 0.01,
+    "batch_size": 128,
+    "samples_per_epoch": 8192,
+    "max_epochs": 25,
+    "patience": 6
+  },
+  "raw_bank_fingerprint": "f657e9a7294c10a9baab30e65939c2a90919b96bd057e2e7a97df51606cae0eb",
+  "denoised_bank_fingerprint": "f44e31cff8230dc5ce971997f80ee0d0d921eb5f72a8ab75d0327692271192e7",
+  "folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625",
+  "evaluated_folds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "runtime": {
+    "torch": "2.15.0",
+    "numpy": "2.5.3",
+    "platform": "macOS-26.5-arm64-arm-64bit",
+    "device": "mps",
+    "deterministic_kernels": false,
+    "code_sha256": "28e974b992c15ae70901c99554cd86801b6f3f28a4c9f437e8c6f9130e7d0bb6",
+    "neural_code_sha256": "7aa44cba432693dca59ccb2587d1f3bd2c5cee195ed74c4259c456de1fa56f97"
+  },
+  "study_fingerprint": "ec82aa8da288a5a7c46dae10e6e4d1095a3ab5ac7289fc8f716d312ece664fd4"
+}

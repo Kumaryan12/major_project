@@ -1,0 +1,47 @@
+{
+  "draws": 5000,
+  "seed": 42,
+  "unique_patients": 164,
+  "fixed_training_seeds": [
+    42,
+    123,
+    2026
+  ],
+  "method": "class-stratified paired patient bootstrap, identical patient draws across ALL arms/seeds; mean of seed-wise macro F1 differences",
+  "per_seed": {
+    "42": {
+      "paired_macro_f1_difference_95_interval": [
+        -0.12694109879793003,
+        0.02406482659446362
+      ]
+    },
+    "123": {
+      "paired_macro_f1_difference_95_interval": [
+        -0.11686871734611831,
+        0.03439284888927711
+      ]
+    },
+    "2026": {
+      "paired_macro_f1_difference_95_interval": [
+        -0.06661362752148166,
+        0.07679737093476603
+      ]
+    }
+  },
+  "mean_macro_f1_intervals": {
+    "denoised": [
+      0.48652167913750527,
+      0.6088638325788607
+    ],
+    "raw": [
+      0.4643665667712772,
+      0.5730767588062861
+    ]
+  },
+  "mean_paired_macro_f1_difference_95_interval": [
+    -0.07800236108783493,
+    0.019457965950183013
+  ],
+  "limitations": "Conditional on fixed fitted predictions and these seeds. No model refits or seed resampling; no correction for correlated training folds, repeated development or multiple comparisons. Not independent confirmation.",
+  "study_fingerprint": "ec82aa8da288a5a7c46dae10e6e4d1095a3ab5ac7289fc8f716d312ece664fd4"
+}
