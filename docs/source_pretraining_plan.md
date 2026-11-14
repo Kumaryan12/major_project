@@ -53,6 +53,8 @@ Configuration: [`configs/source_pretraining_vcg.yaml`](../configs/source_pretrai
 
 ## Subsequent transfer stage
 
+The separately declared exploratory transfer stage has now completed. Its [protocol and result](transfer_vcg_plan.md) preserve the unresolved identity limitation. All 420 matched target fits completed: scratch mean patient macro F1 **0.553 ± 0.052**, pretrained **0.520 ± 0.007**, paired difference **−0.033** with descriptive interval **[−0.091, +0.023]**. Thus this pilot's reconstruction gain did not demonstrate better target localization. The remainder of this section records the original requirements for that subsequent stage.
+
 Before a clean patient-independent PTB transfer claim, address the unresolved source-target overlap issue through stronger provenance/recording checks or an alternative source with suitable provenance. If identity cannot be resolved, a target transfer experiment must remain explicitly exploratory; different anonymized IDs cannot be treated as a clearance certificate. No such target experiment is part of this pilot.
 
 Then declare a matched scratch-versus-pretrained comparison on measured PTB VCG, using the same three target seeds, fixed patient folds, all target patients/beats and equal inner-fold fine-tuning search budgets. Source pretraining is additional compute and must be reported. Target classifier heads should have matched fresh initialization; backbone initialization is the intended experimental difference. Target normalization and stopping remain training-patient-only. The previously evaluated PTB-XL fold 10 is not a fresh test and is not rescored.

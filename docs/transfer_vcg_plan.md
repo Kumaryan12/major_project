@@ -2,6 +2,23 @@
 
 This phase asks whether the completed, source-only masked-reconstruction encoder helps measured-Frank VCG localization relative to fresh scratch training. It does not claim new tensor novelty or established SOTA. Measured VCG stays the primary target input; a joint ECG + VCG classifier remains a separate extension.
 
+## Completed result and decision
+
+All **420 target fits** completed: 360 inner fits and 60 outer refits, covering both arms, all ten frozen outer folds and all three prespecified target seeds. The [final report](../results/neural_transfer_v1/complete/REPORT.md) revalidated initialization provenance, nested selection, normalization, matched sampling, prediction checkpoint hashes and pooled patient probabilities. No training process remains from this completed run.
+
+| Target seed | Scratch macro F1 | Pretrained macro F1 | Pretrained − scratch |
+|---|---:|---:|---:|
+| 42 | 0.589 | 0.515 | −0.075 |
+| 123 | 0.577 | 0.528 | −0.049 |
+| 2026 | 0.494 | 0.518 | +0.024 |
+| Mean ± sample SD | 0.553 ± 0.052 | 0.520 ± 0.007 | −0.033 |
+
+The descriptive paired patient-bootstrap interval for the mean difference is **[−0.091, +0.023]**. The average score was lower with pretraining and two of three target seeds declined. The interval includes zero, so this study neither demonstrates a transfer gain nor establishes definitive harm. The lower observed seed SD is descriptive across only three target seeds and one fixed source encoder; it is not a robustness claim.
+
+Both arms selected learning rate 0.001 most often (scratch 22/30 refits, pretrained 24/30). Mean outer-refit lengths were similar: 5.6 scratch versus 5.7 pretrained epochs. These diagnostics do not indicate a missing arm or incomplete run. Mean class F1 declined most for AMI (0.414 → 0.325) and ILMI (0.583 → 0.509), while HC remained approximately 0.84. These class comparisons are exploratory descriptions of the same inspected predictions, not new confirmatory endpoints.
+
+**Decision:** retain scratch training as the reference procedure. Do not adopt this source-pretrained encoder as a demonstrated improvement or expand it purely because source reconstruction improved. A new domain-alignment or representation hypothesis would need its own declared matched experiment. The measured-versus-derived domain difference is a plausible explanation, not an established cause of these results. No target labels, patients or folds were altered, and no favorable seed was selected. The 0.80–0.90 target remains unmet.
+
 ## Recording-overlap screen
 
 `configs/source_target_overlap.yaml` freezes a bounded recording-copy screen. It uses all 1,152 retained source records, including source validation, and all 391 target recordings from the unchanged 164-patient cohort. No target predictions, persistent-error lists, diagnostic selection or label changes enter this screen. PTB-XL fold 10 is excluded before source waveform access.
