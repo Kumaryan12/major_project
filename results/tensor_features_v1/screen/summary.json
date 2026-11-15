@@ -1,0 +1,32 @@
+{
+  "complete": true,
+  "study_fingerprint": "1f31093832bd631bd08f3a61bebefa5088790929053281a8941d8d37cf1bfa16",
+  "scope": "Feature development inside outer-training patients only. Inner scores are selection diagnostics, not held-out project macro F1. No outer-test inference or final neural training.",
+  "n_patients": 164,
+  "probe_fit_count": 660,
+  "outer_test_predictions": 0,
+  "selection_counts": {
+    "combined": 3,
+    "morphology": 7
+  },
+  "selected_features_per_context": [
+    24,
+    24,
+    64,
+    24,
+    64,
+    24,
+    64,
+    24,
+    64,
+    64
+  ],
+  "bank_feature_dimensions": {
+    "statistics": 384,
+    "morphology": 480,
+    "multiscale": 1200,
+    "relations": 1800,
+    "combined": 3864
+  },
+  "next_step": "Freeze the per-fold selection procedure, then evaluate final classifiers on held-out outer patients. No outer-test score exists for this screen."
+}

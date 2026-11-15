@@ -1,0 +1,62 @@
+{
+  "config": {
+    "seed": 42,
+    "split_seed": 42,
+    "paper_config": "configs/paper.yaml",
+    "beats_path": "data/processed/beats.csv",
+    "bank_dir": "data/processed/neural_vcg_v1",
+    "raw_bank_dir": "data/processed/neural_raw_v1",
+    "template_bank_dir": "data/processed/multiview_vcg_v1",
+    "feature_bank_dir": "data/processed/tensor_features_v1",
+    "output_dir": "results/tensor_features_v1",
+    "folds_path": "configs/patient_folds.csv",
+    "classes": [
+      "AMI",
+      "ALMI",
+      "ASMI",
+      "IMI",
+      "ILMI",
+      "HC"
+    ],
+    "outer_splits": 10,
+    "inner_splits": 3,
+    "wavelet": "sym4",
+    "level": 4,
+    "dct_coefficients": 16,
+    "windows": {
+      "pre": [
+        50,
+        170
+      ],
+      "central": [
+        170,
+        350
+      ],
+      "early_post": [
+        350,
+        470
+      ],
+      "late_post": [
+        470,
+        651
+      ]
+    },
+    "chunk_size": 64,
+    "feature_counts": [
+      24,
+      64
+    ],
+    "linear_c": [
+      0.1,
+      1.0
+    ],
+    "correlation_threshold": 0.95
+  },
+  "bank_manifest_sha256": "6e5a6c0621142dd40ace221931f8e40178abbc577aeb2a74900b630819783a91",
+  "folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625",
+  "code_sha256": "ee3d41db18a6cf0d87e19aaa548534bd8d4636b0ff2dd45384e597e738e8dafa",
+  "sklearn": "1.9.1",
+  "numpy": "2.5.3",
+  "scope": "Feature development inside outer-training patients only. Inner scores are selection diagnostics, not held-out project macro F1. No outer-test inference or final neural training.",
+  "study_fingerprint": "1f31093832bd631bd08f3a61bebefa5088790929053281a8941d8d37cf1bfa16"
+}
