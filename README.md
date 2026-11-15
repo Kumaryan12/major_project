@@ -364,6 +364,12 @@ tail -f tmp/feature_stability_run.log
 
 Configuration: `configs/feature_stability.yaml`; isolated outputs: `results/feature_stability_v1/`. Bootstrap draws keep repeated patients' multiplicity and never include validation/test patients. These development folds do not provide independent confirmation or formal stability-selection error guarantees.
 
+## Modern architecture roadmap
+
+The [literature and architecture review](docs/modern_architecture_roadmap.md) recommends a pinned local TabPFN benchmark on existing selected tensor features as the immediate small-patient-cohort experiment. The longer neural research direction is a pretrained waveform encoder with real within-record chronological context and a separately tested direction-preserving trajectory branch. LVCG, recent VCG point-cloud work and ECG-FM are reviewed with their input/checkpoint limitations. ECG-assisted training remains a separate extension.
+
+This is a research proposal, not an implemented architecture, new score or SOTA claim. No new model training has started from this review. Comparable patient-level macro F1 and independent confirmation, rather than architecture names, determine the eventual claim.
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:
