@@ -1,6 +1,6 @@
 # Start here: project handoff for a new collaborator and Codex
 
-Last reviewed: **15 November 2026**, after validated healthy-reference publication `3a0caf2` and ordered-signature implementation/testing. This document reconstructs the useful project context without the original conversation. It is a dated handoff, not an automatically updated training monitor. Later validated reports and Git commits take precedence.
+Last reviewed: **15 November 2026**, after validated healthy-reference publication `3a0caf2`, ordered-signature implementation/testing, and the approved consecutive-beat/RR implementation. This document reconstructs the useful project context without the original conversation. It is a dated handoff, not an automatically updated training monitor. Later validated reports and Git commits take precedence.
 
 ## 1. Objective and current decisions
 
@@ -82,9 +82,13 @@ Each member builds two medoids from a disjoint reference part and trains its cla
 
 The five arms keep full training-patient sets: morphology, morphology plus signed areas, same-size endpoint polynomials, signatures through degree two, or signatures through degree three. They use (seconds, signed X/Y/Z mV) paths over the original beats and fixed windows, preserving parallel physical means. Schema-defined clock-only constants are excluded without inspecting labels/data. Planned: **1,050 fresh contexts** (900 inner/150 outer), two budgets 24/64 and three feature-selection sampling seeds. Those seeds do not change the fixed PFN inference-seed policy. Logs for the approved background run are local in `tmp/signature_vcg_v1.log`; a clone does not inherit that process.
 
+**Approved next, implemented for queued execution:** true consecutive 16-beat windows from one recording, compact ResNet/GRU and preceding-RR timing. Controls are `mean_rr`, `ordered_no_rr`, `ordered_rr`, `shuffled_rr`. The recurrent controls share initialization/capacity and sampled windows. Shuffling moves waveform/RR pairs jointly, without inventing RR from shuffled timestamps. Evaluation tiles all beats once, masks tails, weights window probabilities by real-beat count within each record, then averages records equally. There are 480 planned fits across three optimization seeds, with patient-nested epoch selection and fresh outer fits. Tests and actual MPS forward/backward/disk-restore smoke passed. No classification gain is established. See [chronology plan](chronological_vcg_plan.md) and [config](../configs/chronological_vcg.yaml).
+
+The local queue command is `python scripts/run_chronological_vcg.py --wait-for-signature --publish`. It pins the active signature fingerprint and waits for complete independent verification before starting the neural sweep. Read `results/neural_chronological_v1/queue/progress.json` or the portable status tool for saved state; do not mistake a saved queue for active neural training. A new machine must prepare compatible banks and use direct execution rather than assume it can wait on another machine's PID. Local combined log: `tmp/chronological_vcg_v1.log`.
+
 **Paused:** the earlier six-arm multiview neural sweep. Local partial checkpoints are preserved. Do not call it complete or resume it automatically.
 
-**Proposed, not trained:** true contiguous within-record beat context against a shuffled-order control; later combination only if component ablations help. Small confusion-specialist branches and properly nested waveform/tabular combinations were discussed, not implemented by the handoff. See [research plan](deviation_tensor_research_plan.md) and [architecture roadmap](modern_architecture_roadmap.md). Signature methods and their ECG application are prior art; no model name establishes a score, originality or SOTA on measured Frank VCG.
+**Still proposed:** later combination only if component ablations help, small confusion-specialist branches, and properly nested waveform/tabular combinations. They were discussed, not implemented by the handoff. See [research plan](deviation_tensor_research_plan.md) and [architecture roadmap](modern_architecture_roadmap.md). Signature methods and their ECG application are prior art; no model name establishes a score, originality or SOTA on measured Frank VCG.
 
 ## 6. Repository map and missing local state
 
@@ -95,9 +99,11 @@ The five arms keep full training-patient sets: morphology, morphology plus signe
 - `docs/`: detailed experiment contracts; `output/`: presentation/report artifacts.
 - `data/raw/`, `data/processed/`, `data/models/`, `.venv/`, `tmp/`: ignored local state.
 
-At this handoff the full macOS suite passed **192 tests**. Windows has not been validated. Do not copy a Mac `.venv`, claim byte-identical cross-platform training, or disable source/runtime checks to reuse a cache.
+At this handoff the full macOS suite passed **199 tests**. Windows has not been validated. Do not copy a Mac `.venv`, claim byte-identical cross-platform training, or disable source/runtime checks to reuse a cache.
 
 The completed deviation study is **not a standalone one-command cold-start pipeline**. Its loader follows `deviation_study → tabpfn_study → stability_study → tensor_refinement_study → tensor_feature_screen`, with verified source banks and completed prerequisite manifests. The newer signature study instead consumes the verified original morphology/raw/denoised/template banks directly; it does not require completed refinement/stability classifier studies. It still needs those local source/feature banks, not just a clone.
+
+The chronology study needs the verified denoised beat bank and original `beats.csv`/folds, then builds original R/RR record metadata. It does not require the signature features or PFN models to train. Waiting for signature verification is the approved current-machine scheduling policy, not a feature dependency.
 
 A fresh clone lacks feature arrays, patient-level prediction checkpoints and fitted model files. Some compatible local artifacts may be transferable, while fingerprints using paths, file mtimes, package versions, numerical content and platform can require a controlled rebuild/migration.
 

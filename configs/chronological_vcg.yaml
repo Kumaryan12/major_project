@@ -1,0 +1,29 @@
+seed: 42
+split_seed: 42
+training_seeds: [42, 123, 2026]
+paper_config: configs/paper.yaml
+beats_path: data/processed/beats.csv
+bank_dir: data/processed/neural_vcg_v1
+sequence_bank_dir: data/processed/chronological_vcg_v1
+folds_path: configs/patient_folds.csv
+output_dir: results/neural_chronological_v1
+classes: [AMI, ALMI, ASMI, IMI, ILMI, HC]
+outer_splits: 10
+inner_splits: 3
+arms: [mean_rr, ordered_no_rr, ordered_rr, shuffled_rr]
+device: auto
+torch_threads: 2
+widths: [16, 32, 64]
+pool_bins: 4
+dropout: 0.2
+rr_embedding: 8
+hidden_size: 32
+sequence_length: 16
+windows_per_epoch: 512
+batch_size: 8
+inference_batch_size: 16
+max_epochs: 25
+patience: 6
+learning_rate: 0.001
+weight_decay: 0.01
+bootstrap_draws: 5000

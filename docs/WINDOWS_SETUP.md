@@ -92,3 +92,17 @@ After the source-bank and namespace plan is ready, the native Python execution c
 ```
 
 Use the prepared Windows config path when rebuilding under a new namespace. Run the smoke first; the full study is not an onboarding check. A Mac background process is not transferred through Git, and model predictions need not be bitwise identical across platforms.
+
+## Approved next: consecutive beats and RR
+
+The [chronological study](chronological_vcg_plan.md) uses the existing denoised beat bank plus original beat metadata and patient folds. It does not need signature features or a completed signature run to train on a separate prepared machine. The signature dependency queue is only our current-machine sequencing policy.
+
+On Windows, after source banks and a fresh compatible config/output namespace are ready:
+
+```powershell
+.\.venv\Scripts\python.exe -m mi_localization.chronology_study --smoke
+.\.venv\Scripts\python.exe -m mi_localization.chronology_study
+.\.venv\Scripts\python.exe -m mi_localization.chronology_report
+```
+
+Pass `--config` for the prepared Windows configuration. The portable runner `python scripts/run_chronological_vcg.py` combines these default-config steps. Do not use `--wait-for-signature` on a clone to wait on Aryan's Mac process. The full neural run is 480 fits, not an installation check. Native Windows remains unvalidated until its own tests/smoke pass.
