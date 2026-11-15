@@ -6,6 +6,8 @@ This repository is an end-to-end, reproducible reimplementation of Zhang et al.,
 
 **Current research phase:** [ordered VCG path signatures](docs/signature_vcg_plan.md), with matched morphology, signed-area and endpoint-polynomial controls. The previous [healthy-reference experiment](results/deviation_vcg_v1/complete/REPORT.md) is fully verified and did not demonstrate a gain. Signature classification results are pending until their own complete report passes verification.
 
+For an end-to-end explanation from the research problem through representations, training, patient-level evaluation and improvement opportunities, see the [pipeline overview](docs/PIPELINE_OVERVIEW.md).
+
 > Research code only. It is not a medical device and must not be used for clinical diagnosis.
 
 For professor-facing material, see the four-page [project summary](output/pdf/mi_localization_summary_report.pdf) or the more detailed [major-project progress report](output/pdf/mi_localization_progress_report.pdf). Rebuild them with `pip install -e '.[report]'`, followed by `python scripts/build_summary_report.py` or `python scripts/build_professor_progress_report.py`.
