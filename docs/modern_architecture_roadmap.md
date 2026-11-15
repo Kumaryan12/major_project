@@ -1,6 +1,6 @@
 # Modern architectures for the next VCG experiments
 
-Research review: 15 November 2026. This is a proposal and feasibility review, not an implemented model, completed benchmark or SOTA claim. Existing experiments remain unchanged and no new training run is started by this document.
+Research review: 15 November 2026. This document records architecture proposals and feasibility findings; experiment completion is tracked separately in the follow-up below. It does not establish a SOTA model or start training by itself.
 
 Follow-up status: the [TabPFN-v2 feature benchmark](tabpfn_v2_plan.md) has now completed, reaching 0.542 macro F1 versus matched XGBoost 0.513, with a descriptive difference interval including zero. The chronological/geometric neural directions below remain proposals. This is not a new SOTA claim.
 

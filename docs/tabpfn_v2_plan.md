@@ -10,7 +10,7 @@ The [validated report](../results/tabpfn_v2_v1/complete/REPORT.md) completed all
 | Raw TabPFN-v2 | **0.542** | **61.6%** |
 | Prior-corrected TabPFN-v2 | 0.498 | 56.7% |
 
-Raw PFN's mean paired point difference is **+0.030** versus XGBoost, descriptive interval **[−0.055, +0.115]**. This is a higher point score, not a conclusive or independently confirmed gain. Corrected PFN is −0.014 versus XGBoost (**[−0.095, +0.070]**) and −0.044 versus raw PFN (**[−0.097, +0.009]**). Correction-policy variants independently selected their masks using inner scores; their difference is not a pure correction-only causal comparison with masks held fixed.
+Raw PFN's pooled macro-F1 point difference is **+0.030** versus XGBoost, descriptive interval **[−0.055, +0.115]**. This is a higher point score, not a conclusive or independently confirmed gain. Corrected PFN is −0.014 versus XGBoost (**[−0.095, +0.070]**) and −0.044 versus raw PFN (**[−0.097, +0.009]**). Correction-policy variants independently selected their masks using inner scores; their difference is not a pure correction-only causal comparison with masks held fixed.
 
 Compared with the matched tree, raw PFN improved AMI F1 **0.294→0.357**, ASMI **0.414→0.500**, IMI **0.500→0.517** and HC **0.811→0.870**. ALMI stayed **0.452** and ILMI declined **0.605→0.558**. Rare-location weaknesses remain; the result is not uniformly improved localization.
 
