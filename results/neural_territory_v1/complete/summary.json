@@ -1,0 +1,45 @@
+{
+  "complete": true,
+  "study_fingerprint": "b070a85b70ceeb56ab426ac285ca2817bf324e495f5d84b57dc3706bfce818b2",
+  "n_patients": 164,
+  "n_records": 391,
+  "n_beats": 55863,
+  "training_seeds": [
+    42,
+    123,
+    2026
+  ],
+  "arms": {
+    "ce": {
+      "macro_f1_mean": 0.5501078970006266,
+      "macro_f1_sample_std": 0.03979258705922586
+    },
+    "territory": {
+      "macro_f1_mean": 0.5384751182924653,
+      "macro_f1_sample_std": 0.026179506402383736
+    }
+  },
+  "per_seed": [
+    {
+      "training_seed": 42,
+      "ce_macro_f1": 0.5862319741567313,
+      "territory_macro_f1": 0.5578418814050997,
+      "territory_minus_ce": -0.028390092751631624
+    },
+    {
+      "training_seed": 123,
+      "ce_macro_f1": 0.5566372852230043,
+      "territory_macro_f1": 0.548893053120325,
+      "territory_minus_ce": -0.0077442321026792715
+    },
+    {
+      "training_seed": 2026,
+      "ce_macro_f1": 0.5074544316221441,
+      "territory_macro_f1": 0.5086904203519712,
+      "territory_minus_ce": 0.0012359887298271088
+    }
+  ],
+  "unique_fit_count": 240,
+  "mean_territory_minus_ce": -0.011632778708161262,
+  "claim_scope": "VCG-only development on repeatedly inspected patient folds; auxiliary targets are source-label mentions, not independently verified anatomical diagnoses."
+}
