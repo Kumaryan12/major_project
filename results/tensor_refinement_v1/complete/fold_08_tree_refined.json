@@ -1,0 +1,140 @@
+{
+  "patient_overlap": 0,
+  "training_patients": 148,
+  "validation_patients": 16,
+  "train_membership_sha256": "23ec71af41819bc3e3e2876aa1515e39581c92bc681f8bf9747697b050ff57ab",
+  "validation_membership_sha256": "4a84bbe8eefb7a34d5b19babc59bd9915275f505a9b3d8cd35c2ddf95364ddb3",
+  "training_features_sha256": "483d21c3a2a1614925a717ba9dbefa1873fcfa001a2465d6d946d4ac7c134cc6",
+  "training_labels_sha256": "1e0e4aa402309c43cd5efc1e6a324aacbbf3adce2168fa1728d7b6b62cc3a9bb",
+  "training_weights_sha256": "21e36a9ad9f838492d37df80c5275d39400b935185df4e3fe86ae9b791e0b7d9",
+  "scaler_mean_sha256": "03f4c0c6bff011fb33647466f28b4a86a9f84cfac56ab59beab78f0efbce261b",
+  "scaler_scale_sha256": "3feca0ae7dc7cfba7cdcca9da0b1ae0ed377bae6b532cf3e6b33c95b8e1f0037",
+  "selected_indices": [
+    219,
+    196,
+    385,
+    1,
+    211,
+    273,
+    216,
+    281,
+    453,
+    278,
+    901,
+    550,
+    803,
+    265,
+    228,
+    898,
+    276,
+    918,
+    926,
+    900,
+    270,
+    389,
+    260,
+    125
+  ],
+  "n_selected": 24,
+  "dropped_redundant_before_budget": 25,
+  "training_ranking_sha256": "44aab62647d00f749ec6a3de4b9111f2048d3ed39ec1265aabc0f9420ddb7cf5",
+  "study_fingerprint": "6c44e995b85e3ec2b700b6c7692f584b9ffb284d9012e8c1be585ba224f5b30e",
+  "fold": 8,
+  "learner": "tree",
+  "procedure": "refined",
+  "candidate_id": 31,
+  "candidate": {
+    "family": "all_dct32",
+    "k": 24,
+    "params": {
+      "max_depth": 3
+    }
+  },
+  "selection_sha256": "faa7c5f9e9eb225c4a26d93da0e06ec01d6e9566c612e18f37ac120c0099ccc2",
+  "model_sha256": "a12f4da798ea48f79adc10f441b9c4550bbe8d61f768a45a8436767c3efd1949",
+  "checkpoint_sha256": "80715a35f9aaf3214f9eb61aa2057fdf1e47227495c3c54165c18710de35fd55",
+  "patient_metrics": {
+    "accuracy": 0.4375,
+    "balanced_accuracy": 0.3333333333333333,
+    "macro_f1": 0.26153846153846155,
+    "macro_roc_auc_ovr": 0.8385447885447884,
+    "macro_average_precision": 0.5841269841269842,
+    "classification_report": {
+      "AMI": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 2.0
+      },
+      "ALMI": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 2.0
+      },
+      "ASMI": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 2.0
+      },
+      "IMI": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      },
+      "ILMI": {
+        "precision": 0.6666666666666666,
+        "recall": 1.0,
+        "f1-score": 0.8,
+        "support": 2.0
+      },
+      "HC": {
+        "precision": 0.625,
+        "recall": 1.0,
+        "f1-score": 0.7692307692307693,
+        "support": 5.0
+      },
+      "accuracy": 0.4375,
+      "macro avg": {
+        "precision": 0.21527777777777776,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.26153846153846155,
+        "support": 16.0
+      },
+      "weighted avg": {
+        "precision": 0.2786458333333333,
+        "recall": 0.4375,
+        "f1-score": 0.3403846153846154,
+        "support": 16.0
+      }
+    }
+  },
+  "selected_feature_names": [
+    "record_median/record_median/X/dct_27",
+    "record_median/record_median/X/dct_04",
+    "record_median/filter_residual/X/dct_01",
+    "record_median/raw/X/dct_01",
+    "record_median/record_median/X/dct_19",
+    "record_median/record_median/Z/dct_17",
+    "record_median/record_median/X/dct_24",
+    "record_median/record_median/Z/dct_25",
+    "record_median/filter_residual/Z/dct_05",
+    "record_median/record_median/Z/dct_22",
+    "record_iqr/filter_residual/Y/dct_05",
+    "record_iqr/raw/Z/dct_06",
+    "record_iqr/beat_residual/Y/dct_03",
+    "record_median/record_median/Z/dct_09",
+    "record_median/record_median/Y/dct_04",
+    "record_iqr/filter_residual/Y/dct_02",
+    "record_median/record_median/Z/dct_20",
+    "record_iqr/filter_residual/Y/dct_22",
+    "record_iqr/filter_residual/Y/dct_30",
+    "record_iqr/filter_residual/Y/dct_04",
+    "record_median/record_median/Z/dct_14",
+    "record_median/filter_residual/X/dct_05",
+    "record_median/record_median/Z/dct_04",
+    "record_median/denoised/X/dct_29"
+  ]
+}

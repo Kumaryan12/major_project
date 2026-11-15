@@ -1,0 +1,117 @@
+{
+  "study_fingerprint": "6c44e995b85e3ec2b700b6c7692f584b9ffb284d9012e8c1be585ba224f5b30e",
+  "learners": {
+    "linear": {
+      "draws": 5000,
+      "seed": 42,
+      "method": "paired class-stratified patient bootstrap, percentile 95% intervals",
+      "limitations": "Conditional on fitted cross-validation predictions; no model refits, no correction for repeated development or multiple comparisons. Not independent confirmation.",
+      "arms": {
+        "linear_statistics": {
+          "macro_f1_95_interval": [
+            0.35340559612666544,
+            0.5051435111289078
+          ],
+          "paired_comparisons": {
+            "linear_legacy": {
+              "macro_f1_difference_95_interval": [
+                -0.16508303833826357,
+                0.031029951622598608
+              ]
+            }
+          }
+        },
+        "linear_legacy": {
+          "macro_f1_95_interval": [
+            0.41735273657395705,
+            0.572864009451802
+          ],
+          "paired_comparisons": {
+            "linear_statistics": {
+              "macro_f1_difference_95_interval": [
+                -0.031029951622598615,
+                0.16508303833826354
+              ]
+            }
+          }
+        },
+        "linear_refined": {
+          "macro_f1_95_interval": [
+            0.34818565077200797,
+            0.4987843222489775
+          ],
+          "paired_comparisons": {
+            "linear_statistics": {
+              "macro_f1_difference_95_interval": [
+                -0.09272280031552688,
+                0.0834138161372419
+              ]
+            },
+            "linear_legacy": {
+              "macro_f1_difference_95_interval": [
+                -0.14377554893355324,
+                -0.005204611195284488
+              ]
+            }
+          }
+        }
+      }
+    },
+    "tree": {
+      "draws": 5000,
+      "seed": 42,
+      "method": "paired class-stratified patient bootstrap, percentile 95% intervals",
+      "limitations": "Conditional on fitted cross-validation predictions; no model refits, no correction for repeated development or multiple comparisons. Not independent confirmation.",
+      "arms": {
+        "tree_statistics": {
+          "macro_f1_95_interval": [
+            0.36130216216354355,
+            0.5142935143987094
+          ],
+          "paired_comparisons": {
+            "tree_legacy": {
+              "macro_f1_difference_95_interval": [
+                -0.06750146701733047,
+                0.10390960672782301
+              ]
+            }
+          }
+        },
+        "tree_legacy": {
+          "macro_f1_95_interval": [
+            0.3417086178033108,
+            0.4961735040470583
+          ],
+          "paired_comparisons": {
+            "tree_statistics": {
+              "macro_f1_difference_95_interval": [
+                -0.10390960672782334,
+                0.06750146701733044
+              ]
+            }
+          }
+        },
+        "tree_refined": {
+          "macro_f1_95_interval": [
+            0.3816346107501368,
+            0.5207731726634456
+          ],
+          "paired_comparisons": {
+            "tree_statistics": {
+              "macro_f1_difference_95_interval": [
+                -0.07394548909995244,
+                0.10602863254026983
+              ]
+            },
+            "tree_legacy": {
+              "macro_f1_difference_95_interval": [
+                -0.03772930730662981,
+                0.10271650832548401
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

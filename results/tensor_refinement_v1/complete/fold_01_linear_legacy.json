@@ -1,0 +1,140 @@
+{
+  "patient_overlap": 0,
+  "training_patients": 147,
+  "validation_patients": 17,
+  "train_membership_sha256": "4109a0130049a74474662093363ff4a366ddabc2bb979417137187cc01519244",
+  "validation_membership_sha256": "1051ca32ae3690626716b67732dff911879ec3374649fddb8d3c82b88eed754d",
+  "training_features_sha256": "b5382bd8962270e0faa0b0e3ceb7c4533b600136f5c535332029150947fff734",
+  "training_labels_sha256": "618feb2c197174c119c23b9f41c65e490bd6c10e46965afa8a22f5fb59aeda06",
+  "training_weights_sha256": "4290c25a270b7dcfb22fcc4af8196bb26f5f2caa385da5986c250cd29ef9f256",
+  "scaler_mean_sha256": "2f84627c262d9088eccd905a4c42c57f71b53ec01d884fbcf4a98847d225057e",
+  "scaler_scale_sha256": "802b7026ccdaa769f0f4bede249e5c523c8da7773ec66117b447148755c69cc1",
+  "selected_indices": [
+    484,
+    2817,
+    2313,
+    577,
+    385,
+    3717,
+    2006,
+    1393,
+    1350,
+    29,
+    2001,
+    1991,
+    1998,
+    1387,
+    2637,
+    2262,
+    2457,
+    1993,
+    1389,
+    1407,
+    1994,
+    1995,
+    834,
+    1542
+  ],
+  "n_selected": 24,
+  "dropped_redundant_before_budget": 18,
+  "training_ranking_sha256": "09e2fbd84aa457c4d4a331a9e4c85864430bee1653de9df1c68caa6c928bf5ce",
+  "study_fingerprint": "6c44e995b85e3ec2b700b6c7692f584b9ffb284d9012e8c1be585ba224f5b30e",
+  "fold": 1,
+  "learner": "linear",
+  "procedure": "legacy",
+  "candidate_id": 18,
+  "candidate": {
+    "family": "combined",
+    "k": 24,
+    "params": {
+      "C": 0.1
+    }
+  },
+  "selection_sha256": "398ed91245af29bc61d70129254bc15f87c110c0b9f6c4c71bd58f7414ed48f4",
+  "model_sha256": "c021a7ca8ff5060d0f58527451e8123bbe807c777d6ab6242a8a66791a01046d",
+  "checkpoint_sha256": "1a8df5a86c7b0e780ef6746cbaadbd33f5d7b446abbfae80a6e9a3f3150ae08b",
+  "patient_metrics": {
+    "accuracy": 0.6470588235294118,
+    "balanced_accuracy": 0.5277777777777778,
+    "macro_f1": 0.5119047619047619,
+    "macro_roc_auc_ovr": 0.7624999999999998,
+    "macro_average_precision": 0.5040404040404041,
+    "classification_report": {
+      "AMI": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 1.0
+      },
+      "ALMI": {
+        "precision": 0.25,
+        "recall": 0.5,
+        "f1-score": 0.3333333333333333,
+        "support": 2.0
+      },
+      "ASMI": {
+        "precision": 0.6666666666666666,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.6666666666666666,
+        "support": 3.0
+      },
+      "IMI": {
+        "precision": 0.5,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.5714285714285714,
+        "support": 3.0
+      },
+      "ILMI": {
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.5,
+        "support": 3.0
+      },
+      "HC": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5.0
+      },
+      "accuracy": 0.6470588235294118,
+      "macro avg": {
+        "precision": 0.5694444444444444,
+        "recall": 0.5277777777777778,
+        "f1-score": 0.5119047619047619,
+        "support": 17.0
+      },
+      "weighted avg": {
+        "precision": 0.7058823529411765,
+        "recall": 0.6470588235294118,
+        "f1-score": 0.6400560224089635,
+        "support": 17.0
+      }
+    }
+  },
+  "selected_feature_names": [
+    "morphology/record_median/record_median/X/dct_04",
+    "relations/record_median/filter_residual/A4/late_post/corr_XY",
+    "relations/record_median/denoised/D4/late_post/corr_XY",
+    "morphology/record_median/filter_residual/X/dct_01",
+    "morphology/record_median/raw/X/dct_01",
+    "relations/record_iqr/filter_residual/A4/late_post/corr_XY",
+    "multiscale/record_iqr/filter_residual/Y/D3/late_post/mean",
+    "multiscale/record_median/filter_residual/Y/D4/pre/rms",
+    "multiscale/record_median/filter_residual/X/A4/late_post/mean",
+    "statistics/record_median/baseline/X/D5/log_energy",
+    "multiscale/record_iqr/filter_residual/Y/D3/pre/rms",
+    "multiscale/record_iqr/filter_residual/Y/A4/late_post/rms",
+    "multiscale/record_iqr/filter_residual/Y/D4/late_post/mean",
+    "multiscale/record_median/filter_residual/Y/A4/central/rms",
+    "relations/record_median/beat_residual/A4/late_post/corr_XY",
+    "relations/record_median/denoised/A4/early_post/cov_XX",
+    "relations/record_median/record_median/A4/late_post/corr_XY",
+    "multiscale/record_iqr/filter_residual/Y/D4/pre/rms",
+    "multiscale/record_median/filter_residual/Y/A4/early_post/rms",
+    "multiscale/record_median/filter_residual/Y/D3/late_post/rms",
+    "multiscale/record_iqr/filter_residual/Y/D4/central/mean",
+    "multiscale/record_iqr/filter_residual/Y/D4/central/rms",
+    "morphology/record_iqr/filter_residual/Y/dct_02",
+    "multiscale/record_iqr/raw/Y/D1/late_post/mean"
+  ]
+}
