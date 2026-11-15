@@ -1,0 +1,189 @@
+{
+  "config": {
+    "seed": 42,
+    "split_seed": 42,
+    "sampling_seeds": [
+      42,
+      123,
+      2026
+    ],
+    "source_config": "configs/tensor_features.yaml",
+    "tabpfn_config": "configs/tabpfn_v2.yaml",
+    "feature_bank_dir": "data/processed/signature_vcg_v1",
+    "output_dir": "results/signature_vcg_v1",
+    "arms": [
+      "morphology",
+      "signed_area",
+      "endpoint_polynomial",
+      "signature2",
+      "signature3"
+    ],
+    "feature_counts": [
+      24,
+      64
+    ],
+    "bootstrap_replicates": 64,
+    "audit_replicates": 32,
+    "bootstrap_draws": 5000,
+    "chunk_size": 64,
+    "sampling_rate": 1000,
+    "r_index": 250,
+    "windows": {
+      "whole": [
+        0,
+        651
+      ],
+      "pre": [
+        50,
+        170
+      ],
+      "central": [
+        170,
+        350
+      ],
+      "early_post": [
+        350,
+        470
+      ],
+      "late_post": [
+        470,
+        651
+      ]
+    },
+    "jitter_samples": 4,
+    "exclude_clock_only": true
+  },
+  "source": {
+    "bank_manifest_sha256": "63b122f266f01858a9e4a87abeea38d6cb036258f76b80c68c3168ec5b5eb4ab",
+    "bank_build_sha256": "68407296fab39e71494ccdeb3da5c703630eb16619d4e20b7428740a3753bd61",
+    "excluded_structural_clock_columns": {
+      "signed_area": 10,
+      "endpoint_polynomial": 30,
+      "signature2": 20,
+      "signature3": 30
+    },
+    "source_config": {
+      "seed": 42,
+      "split_seed": 42,
+      "paper_config": "configs/paper.yaml",
+      "beats_path": "data/processed/beats.csv",
+      "bank_dir": "data/processed/neural_vcg_v1",
+      "raw_bank_dir": "data/processed/neural_raw_v1",
+      "template_bank_dir": "data/processed/multiview_vcg_v1",
+      "feature_bank_dir": "data/processed/tensor_features_v1",
+      "output_dir": "results/tensor_features_v1",
+      "folds_path": "configs/patient_folds.csv",
+      "classes": [
+        "AMI",
+        "ALMI",
+        "ASMI",
+        "IMI",
+        "ILMI",
+        "HC"
+      ],
+      "outer_splits": 10,
+      "inner_splits": 3,
+      "wavelet": "sym4",
+      "level": 4,
+      "dct_coefficients": 16,
+      "windows": {
+        "pre": [
+          50,
+          170
+        ],
+        "central": [
+          170,
+          350
+        ],
+        "early_post": [
+          350,
+          470
+        ],
+        "late_post": [
+          470,
+          651
+        ]
+      },
+      "chunk_size": 64,
+      "feature_counts": [
+        24,
+        64
+      ],
+      "linear_c": [
+        0.1,
+        1.0
+      ],
+      "correlation_threshold": 0.95
+    },
+    "folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625",
+    "pfn_config": {
+      "seed": 42,
+      "split_seed": 42,
+      "stability_config": "configs/feature_stability.yaml",
+      "output_dir": "results/tabpfn_v2_v1",
+      "arms": [
+        "xgboost",
+        "tabpfn",
+        "tabpfn_balanced"
+      ],
+      "package_version": "9.2.0",
+      "checkpoint_path": "data/models/tabpfn_v2/tabpfn-v2-classifier-v2_default.ckpt",
+      "checkpoint_url": "https://huggingface.co/Prior-Labs/TabPFN-v2-clf/resolve/275f19d2add9c2c0de38f9ebaded3856599fa2e7/tabpfn-v2-classifier-v2_default.ckpt",
+      "checkpoint_revision": "275f19d2add9c2c0de38f9ebaded3856599fa2e7",
+      "checkpoint_sha256": "cf8c519c01eaf1613ee91239006d57b1c806ff5f23ac1aeb1315ba1015210e49",
+      "checkpoint_bytes": 29009539,
+      "device": "cpu",
+      "torch_threads": 2,
+      "worker_timeout_seconds": 180,
+      "n_estimators": 8,
+      "softmax_temperature": 0.9,
+      "bootstrap_draws": 5000
+    },
+    "checkpoint": {
+      "package_version": "9.2.0",
+      "architecture": "TabPFN-v2",
+      "checkpoint_revision": "275f19d2add9c2c0de38f9ebaded3856599fa2e7",
+      "checkpoint_sha256": "cf8c519c01eaf1613ee91239006d57b1c806ff5f23ac1aeb1315ba1015210e49",
+      "checkpoint_bytes": 29009539,
+      "checkpoint_url": "https://huggingface.co/Prior-Labs/TabPFN-v2-clf/resolve/275f19d2add9c2c0de38f9ebaded3856599fa2e7/tabpfn-v2-classifier-v2_default.ckpt",
+      "checkpoint_model_card": "https://huggingface.co/Prior-Labs/TabPFN-v2-clf/blob/275f19d2add9c2c0de38f9ebaded3856599fa2e7/README.md",
+      "inference": "local, frozen foundation weights; no external prediction service"
+    },
+    "backend_runtime": {
+      "versions": {
+        "tabpfn": "9.2.0",
+        "torch": "2.15.0",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1",
+        "scikit-learn": "1.9.1",
+        "pandas": "3.0.6",
+        "joblib": "1.6.0",
+        "skrub": "0.10.1",
+        "lightgbm": "4.7.0",
+        "einops": "0.8.2",
+        "pydantic": "2.14.3",
+        "safetensors": "0.8.0"
+      },
+      "python": "3.12.14 (main, Aug 12 2026, 13:57:54) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "platform": "macOS-26.5-arm64-arm-64bit",
+      "classifier_code_sha256": "fd31eca98cccf66c8c8f3669fe69f22e91fc3fb20e57c6a0a107d48c95165478",
+      "loader_code_sha256": "4d0cbc16ab160fcc61ef774b8a68e586cfb071153854cb4d381bd23c8e296986",
+      "preprocessing_code_sha256": "ccdb941fc61292a8fa313fd74161478a9e93524d50bc06af249b8b95bc814038",
+      "execution": "fresh local Python process for every PFN fit/restore; no forked numerical state",
+      "worker_thread_environment": {
+        "OMP_NUM_THREADS": "2",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1"
+      }
+    }
+  },
+  "claim_scope": "Ordered-trajectory representation development on repeatedly inspected PTB patient folds; no independent confirmation, clinical validity, novel signature theory or demonstrated MI SOTA.",
+  "code_sha256": "369f216877f0071ea2f7d3ae8fa03c8e7e91f9e3eedd9e0c82d3b95f323c7db5",
+  "bank_code_sha256": "213100a6c2244dfba8f863c7a44b5745e729938568c0b6e6e70a70e901abe643",
+  "tensor_code_sha256": "a93846b7e39edb181e0461ce17717d603da594b05df0aac4c4191a057807e4b9",
+  "selector_code_sha256": "f77c7f88d552b600f7170e7a9d62151f3ffcf877079322777eabbbad8d6e3327",
+  "base_selector_code_sha256": "ee3d41db18a6cf0d87e19aaa548534bd8d4636b0ff2dd45384e597e738e8dafa",
+  "backend_code_sha256": "87ce13d1a297dae317cb394ca168c52f5ac9550c035fe834cb4f17caf88398d0",
+  "metric_helper_code_sha256": "fba6e8a6669855a9849072b5c8909bb4a8192fc07998243f6dd43b1fdcc21a8f",
+  "study_fingerprint": "b386276ada9617abc64379ece4bd22cd599539023bf7ba3a4c6192dac615d914"
+}
