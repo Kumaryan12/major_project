@@ -2,6 +2,8 @@
 
 Research review: 15 November 2026. This is a proposal and feasibility review, not an implemented model, completed benchmark or SOTA claim. Existing experiments remain unchanged and no new training run is started by this document.
 
+Follow-up status: the [TabPFN-v2 feature benchmark](tabpfn_v2_plan.md) has now completed, reaching 0.542 macro F1 versus matched XGBoost 0.513, with a descriptive difference interval including zero. The chronological/geometric neural directions below remain proposals. This is not a new SOTA claim.
+
 ## Recommendation
 
 Use a pretrained tabular foundation model as the immediate benchmark on our tensor-derived features. For the main neural research contribution, test a compact, pretrained geometric and chronological VCG model in controlled stages. Keep measured Frank XYZ as the primary input. ECG-assisted or ECG+VCG experiments remain a separate extension.

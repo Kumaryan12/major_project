@@ -368,13 +368,15 @@ Configuration: `configs/feature_stability.yaml`; isolated outputs: `results/feat
 
 The [literature and architecture review](docs/modern_architecture_roadmap.md) recommends a pinned local TabPFN benchmark on existing selected tensor features as the immediate small-patient-cohort experiment. The longer neural research direction is a pretrained waveform encoder with real within-record chronological context and a separately tested direction-preserving trajectory branch. LVCG, recent VCG point-cloud work and ECG-FM are reviewed with their input/checkpoint limitations. ECG-assisted training remains a separate extension.
 
-This is a research proposal, not an implemented architecture, new score or SOTA claim. No new model training has started from this review. Comparable patient-level macro F1 and independent confirmation, rather than architecture names, determine the eventual claim.
+The chronological/geometric neural architecture remains a research proposal. The immediate TabPFN-v2 benchmark has now completed as described below; neither phase establishes MI SOTA. Comparable patient-level macro F1 and independent confirmation determine the eventual claim.
 
 ## Pinned TabPFN-v2 classifier benchmark
 
 The [foundation-model benchmark](docs/tabpfn_v2_plan.md) implements local TabPFN-v2 inference on the unchanged bootstrap-selected morphology/combined features, with raw and training-prior-corrected probabilities reported separately against matched XGBoost. Package, public checkpoint revision/checksum, preprocessing and inference settings are pinned. This is the published v2 checkpoint, not the latest v3.5 or an established MI SOTA result.
 
-The nested comparison has 390 fit/context slots: 240 verified prior tree inner fits, 120 new PFN inner contexts, 20 PFN outer contexts and 10 fresh tree outer refits. All feature selection remains training-patient-only. The real six-class backend smoke passed save/load, batch-independence, balancing and runtime-coexistence checks. No accuracy improvement is claimed before complete outer evaluation and independent report validation.
+All **390 fit/context slots completed** in the [validated report](results/tabpfn_v2_v1/complete/REPORT.md): 240 verified prior tree inner fits, 120 new PFN inner contexts, 20 PFN outer contexts and 10 fresh tree outer refits. Raw TabPFN-v2 reached **0.542 macro F1**, versus matched XGBoost **0.513**; difference **+0.030**, descriptive interval **[−0.055, +0.115]**. Prior-corrected PFN reached **0.498**. The raw model has a higher point score, but the interval includes zero and no conclusive gain is established. The historical neural **0.550 ± 0.040** is a different protocol.
+
+All feature selection used training patients only. Every saved PFN context reproduced its outer predictions, and all ten tree controls matched the prior benchmark. After an in-process macOS OpenMP conflict, foundation operations were isolated in fresh local workers; the full real-data run and restoration validation then passed. **179 tests passed.** Full interpretation and remaining checks are in the [benchmark plan](docs/tabpfn_v2_plan.md).
 
 ```bash
 .venv/bin/python -m mi_localization.tabpfn_study

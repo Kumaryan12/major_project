@@ -1,5 +1,23 @@
 # Pinned TabPFN-v2 benchmark on selected VCG tensor features
 
+## Completed findings and decision
+
+The [validated report](../results/tabpfn_v2_v1/complete/REPORT.md) completed all ten outer folds and **390 fit/context slots**: 240 verified prior XGBoost inner fits, 120 new PFN inner contexts, 20 new PFN outer contexts and 10 fresh XGBoost outer fits. Every saved PFN context restored in an isolated worker and reproduced its outer probabilities/classes. All ten fresh tree controls matched their prior predictions. Relevant bootstrap-selector replay covered 72 caches. **179 tests passed**, alongside real-checkpoint synthetic and real-project context checks.
+
+| Classifier | Patient macro F1 | Patient accuracy |
+|---|---:|---:|
+| Matched bootstrap-XGBoost | 0.513 | 57.3% |
+| Raw TabPFN-v2 | **0.542** | **61.6%** |
+| Prior-corrected TabPFN-v2 | 0.498 | 56.7% |
+
+Raw PFN's mean paired point difference is **+0.030** versus XGBoost, descriptive interval **[−0.055, +0.115]**. This is a higher point score, not a conclusive or independently confirmed gain. Corrected PFN is −0.014 versus XGBoost (**[−0.095, +0.070]**) and −0.044 versus raw PFN (**[−0.097, +0.009]**). Correction-policy variants independently selected their masks using inner scores; their difference is not a pure correction-only causal comparison with masks held fixed.
+
+Compared with the matched tree, raw PFN improved AMI F1 **0.294→0.357**, ASMI **0.414→0.500**, IMI **0.500→0.517** and HC **0.811→0.870**. ALMI stayed **0.452** and ILMI declined **0.605→0.558**. Rare-location weaknesses remain; the result is not uniformly improved localization.
+
+Raw PFN selected combined/64 features in three outer folds, morphology/64 in four, and morphology/24 in three. XGBoost selected combined/64 once, morphology/64 three times, morphology/24 six times. This is consistent with learner-dependent feature preferences, without proving why performance differs. Only the fixed 24/64 selected-feature inputs were tested; all-feature PFN, learned embeddings and newer checkpoints are separate untested hypotheses.
+
+**Decision:** retain raw TabPFN-v2 as a promising feature-model candidate and keep XGBoost as the matched control. Do not adopt the tested prior correction as an improvement. The historical waveform ResNet **0.550 ± 0.040** remains a different, slightly higher point of reference; this experiment has not reached 0.80–0.90 or demonstrated MI SOTA. Repeatability across inference/resampling seeds and independent-cohort confirmation remain outstanding. The proposed chronological/geometric neural architecture has not been trained by this benchmark.
+
 ## Fixed question
 
 Does a pretrained tabular transformer improve the existing bootstrap-feature pipeline over its matched shallow-tree classifier? Measured Frank XYZ remains the sole signal source. Keep the two existing patient feature pools, morphology and combined, the same 164 patients / 391 recordings / 55,863 beats, original six classes, ten frozen outer patient folds and three fixed inner folds. No waveform, R position, label, feature family, clinical annotation or patient exclusion changes.
