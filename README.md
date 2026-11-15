@@ -317,6 +317,20 @@ tail -f tmp/multiview_vcg_run.log
 
 Configuration: `configs/multiview_vcg.yaml`; isolated outputs: `results/neural_multiview_v1/`. Completed fits support guarded resumption. The optional `scripts/run_multiview_vcg.sh --publish` wrapper validates the complete report before publishing aggregate results. Alignment, quality weighting and phase geometry remain separate later ablations. These repeatedly inspected folds are development data; favorable results still need new-cohort confirmation.
 
+## Current priority: tensor design and feature selection
+
+The broad multiview neural run was **stopped with checkpoints preserved** to follow the [feature-first workflow](docs/tensor_feature_design_plan.md). Build and audit a **view × XYZ × wavelet-band × original-time** tensor, compare signed morphology/multiscale/XYZ-relation feature families with existing statistics, then select compact feature packages inside patient-separated training folds before final classifier evaluation.
+
+The screen uses 22 predefined candidates and 660 small inner probe fits. It makes **no outer-test predictions** and reports no final macro F1. Learned scaling, feature ranking and correlation pruning use training patients only. Optimized inner scores and feature frequencies are development diagnostics; they do not establish an improvement over the historical 0.550 baseline.
+
+```bash
+.venv/bin/python -m mi_localization.tensor_feature_bank
+.venv/bin/python -m mi_localization.tensor_feature_screen
+tail -f tmp/tensor_feature_screen.log
+```
+
+Configuration: `configs/tensor_features.yaml`; isolated outputs: `results/tensor_features_v1/`. The next final model will use a frozen selection procedure refitted separately within each outer fold. Do not construct a global feature mask from all patients before evaluation.
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:
