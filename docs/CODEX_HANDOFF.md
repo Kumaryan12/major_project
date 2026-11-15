@@ -1,6 +1,6 @@
 # Start here: project handoff for a new collaborator and Codex
 
-Last reviewed: **15 November 2026**, after implementation commit `e81d26e`. This document reconstructs the useful project context without the original conversation. It is a dated handoff, not an automatically updated training monitor. Later validated reports and Git commits take precedence.
+Last reviewed: **15 November 2026**, after validated healthy-reference publication `3a0caf2` and ordered-signature implementation/testing. This document reconstructs the useful project context without the original conversation. It is a dated handoff, not an automatically updated training monitor. Later validated reports and Git commits take precedence.
 
 ## 1. Objective and current decisions
 
@@ -62,12 +62,13 @@ Use the links for exact controls, populations, seed policies and limitations. Do
 | Compression refinement | Higher DCT ranks improved fidelity without consistent score gains. Expanded procedure: linear 0.425/tree 0.452; legacy linear 0.498/tree 0.420. | [Refinement report](../results/tensor_refinement_v1/complete/REPORT.md) |
 | Bootstrap feature consensus | Tree 0.420→0.513, descriptive paired interval for gain [+0.027,+0.158]; one fixed resampling seed policy. Hard semantic grouping hurt. Seed-robustness confirmation remains outstanding. | [Stability report](../results/feature_stability_v1/complete/REPORT.md) |
 | Local TabPFN-v2 | Raw 0.542 versus matched bootstrap-XGB 0.513; difference interval includes zero. Fixed prior correction 0.498. Not above the historical neural mean conclusively. | [PFN report](../results/tabpfn_v2_v1/complete/REPORT.md) |
+| Healthy-reference deviation tensor | Fully verified: mean 0.479 versus matched morphology ensemble 0.499; difference −0.020 [−0.061,+0.017]. Mixed references 0.463; full-training morphology 0.513 under its fixed policy. No demonstrated gain. | [Deviation report](../results/deviation_vcg_v1/complete/REPORT.md) |
 
 The model still struggles with MI subtypes, especially AMI/ALMI; HC classification is stronger. Recurring confusions include IMI↔ILMI and AMI/ALMI/ASMI. Do not mine outer labels for new tuning decisions and then call the same folds untouched tests.
 
 ## 5. Active, paused and proposed work
 
-**Active at this handoff:** healthy-reference deviation study, launched on Aryan's Mac on 15 November. Code/config/smoke were pushed in `e81d26e`. It has four arms: full morphology, matched three-member morphology ensemble, healthy-reference features, and size-matched mixed-reference features. Reference seeds: 42/123/2026. Planned: **1,960 member fits**, 100 outer arm/seed evaluations, then independent report verification including restoration of 280 outer member contexts.
+**Completed:** healthy-reference deviation study, launched on Aryan's Mac on 15 November. Code/config/smoke were pushed in `e81d26e`, and the fully validated result in `3a0caf2`. Four arms: full morphology, matched three-member morphology ensemble, healthy-reference features, size-matched mixed-reference features. Reference seeds: 42/123/2026. All **1,960 member fits**, 100 outer arm/seed evaluations and report verification passed, including restoration of 280 outer member contexts. The tested recipe did not improve macro F1.
 
 Each member builds two medoids from a disjoint reference part and trains its classifier on the other two parts. All query patients are separate. Signed five-band deviations from recording templates yield 240 window summaries plus three distance features, appended to 480 morphology features. Two budgets (24/64) are selected inside the inner folds. Healthy-reference construction uses HC labels and is supervised; residuals are not a patient's counterfactual healthy heart.
 
@@ -75,11 +76,15 @@ Each member builds two medoids from a disjoint reference part and trains its cla
 - [Configuration](../configs/deviation_vcg.yaml)
 - Core: `deviation_tensor.py`, `deviation_study.py`, `deviation_report.py`
 - Local log on the launching Mac: `tmp/deviation_vcg_v1.log`. That file/process does not appear on a fresh clone.
-- Final location: `results/deviation_vcg_v1/complete/REPORT.md`, accompanied by a completed validated summary. Until then there is no complete improvement result. A `smoke/summary.json` or `progress.json` is not a performance result.
+- Final location: `results/deviation_vcg_v1/complete/REPORT.md`, accompanied by the completed validated summary. A `smoke/summary.json` or `progress.json` alone is not a performance result.
+
+**Current phase: ordered trajectory signatures.** The user authorized moving on after the negative healthy-reference result. Implementation, all-beat feature construction, mathematical/sensitivity audits and actual PFN save/load smoke checks passed. Full evaluation state must be checked locally; there is no new classification result until `results/signature_vcg_v1/complete/REPORT.md` is independently verified. See the [signature plan](signature_vcg_plan.md) and [config](../configs/signature_vcg.yaml).
+
+The five arms keep full training-patient sets: morphology, morphology plus signed areas, same-size endpoint polynomials, signatures through degree two, or signatures through degree three. They use (seconds, signed X/Y/Z mV) paths over the original beats and fixed windows, preserving parallel physical means. Schema-defined clock-only constants are excluded without inspecting labels/data. Planned: **1,050 fresh contexts** (900 inner/150 outer), two budgets 24/64 and three feature-selection sampling seeds. Those seeds do not change the fixed PFN inference-seed policy. Logs for the approved background run are local in `tmp/signature_vcg_v1.log`; a clone does not inherit that process.
 
 **Paused:** the earlier six-arm multiview neural sweep. Local partial checkpoints are preserved. Do not call it complete or resume it automatically.
 
-**Proposed, not trained:** time-augmented signed path-signature features; true contiguous within-record beat context against a shuffled-order control; later combination only if component ablations help. Small confusion-specialist branches and properly nested waveform/tabular combinations were discussed, not implemented by the handoff. See [research plan](deviation_tensor_research_plan.md) and [architecture roadmap](modern_architecture_roadmap.md). A recent ECG paper is inspiration, not evidence for a score or originality claim on measured Frank VCG.
+**Proposed, not trained:** true contiguous within-record beat context against a shuffled-order control; later combination only if component ablations help. Small confusion-specialist branches and properly nested waveform/tabular combinations were discussed, not implemented by the handoff. See [research plan](deviation_tensor_research_plan.md) and [architecture roadmap](modern_architecture_roadmap.md). Signature methods and their ECG application are prior art; no model name establishes a score, originality or SOTA on measured Frank VCG.
 
 ## 6. Repository map and missing local state
 
@@ -90,9 +95,11 @@ Each member builds two medoids from a disjoint reference part and trains its cla
 - `docs/`: detailed experiment contracts; `output/`: presentation/report artifacts.
 - `data/raw/`, `data/processed/`, `data/models/`, `.venv/`, `tmp/`: ignored local state.
 
-At this handoff the full macOS suite passed **185 tests**. Windows has not been validated. Do not copy a Mac `.venv`, claim byte-identical cross-platform training, or disable source/runtime checks to reuse a cache.
+At this handoff the full macOS suite passed **192 tests**. Windows has not been validated. Do not copy a Mac `.venv`, claim byte-identical cross-platform training, or disable source/runtime checks to reuse a cache.
 
-The newest study is **not a standalone one-command cold-start pipeline**. Its loader follows `deviation_study → tabpfn_study → stability_study → tensor_refinement_study → tensor_feature_screen`, with verified source banks and completed prerequisite manifests. A fresh clone lacks feature arrays, patient-level prediction checkpoints and fitted model files. Some compatible local artifacts may be transferable, while fingerprints using paths, file mtimes, package versions, numerical content and platform can require a controlled rebuild/migration.
+The completed deviation study is **not a standalone one-command cold-start pipeline**. Its loader follows `deviation_study → tabpfn_study → stability_study → tensor_refinement_study → tensor_feature_screen`, with verified source banks and completed prerequisite manifests. The newer signature study instead consumes the verified original morphology/raw/denoised/template banks directly; it does not require completed refinement/stability classifier studies. It still needs those local source/feature banks, not just a clone.
+
+A fresh clone lacks feature arrays, patient-level prediction checkpoints and fitted model files. Some compatible local artifacts may be transferable, while fingerprints using paths, file mtimes, package versions, numerical content and platform can require a controlled rebuild/migration.
 
 Inspect these dependencies before launching anything expensive. Rebuilding predecessor studies under new Windows namespaces requires corresponding config references; changing only the final output directory does not fix an incompatible ancestor manifest. Never edit a historical manifest to pretend it matches.
 

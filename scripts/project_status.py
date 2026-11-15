@@ -18,6 +18,7 @@ ARTIFACTS = {
     "recording_templates": "data/processed/multiview_vcg_v1/templates.npy",
     "patient_tensor_features": "data/processed/tensor_features_v1/patient_features.npz",
     "refined_tensor_features": "data/processed/tensor_refinement_v1/patient_features.npz",
+    "ordered_signature_features": "data/processed/signature_vcg_v1/patient_features.npz",
     "foundation_checkpoint": "data/models/tabpfn_v2/tabpfn-v2-classifier-v2_default.ckpt",
 }
 REPORTS = {
@@ -26,6 +27,7 @@ REPORTS = {
     "bootstrap_feature_consensus": "results/feature_stability_v1/complete/REPORT.md",
     "tabpfn_v2": "results/tabpfn_v2_v1/complete/REPORT.md",
     "healthy_reference_deviation": "results/deviation_vcg_v1/complete/REPORT.md",
+    "ordered_signatures": "results/signature_vcg_v1/complete/REPORT.md",
 }
 
 
@@ -49,6 +51,8 @@ def inventory(root=ROOT):
     summary_path, progress_path = study/"summary.json", study/"progress.json"
     summary = read_json(summary_path) if summary_path.exists() else {}
     progress = read_json(progress_path) if progress_path.exists() else None
+    signature = root/"results/signature_vcg_v1/complete"
+    signature_summary = read_json(signature/"summary.json") if (signature/"summary.json").is_file() else {}
     return {
         "repository_revision": revision,
         "interpreter": sys.version.split()[0],
@@ -66,6 +70,16 @@ def inventory(root=ROOT):
             "saved_progress": progress,
             "live_process_status": "Not checked. Saved files/PIDs cannot prove a process is alive, especially on another computer.",
             "fresh_clone_note": "Missing local study artifacts are expected. Aryan's running process and ignored checkpoints do not transfer through Git.",
+        },
+        "ordered_signature_study": {
+            "study_manifest_present": (signature/"study_manifest.json").is_file(),
+            "completed_context_audit_files": len(list(signature.glob("inner_*.json")))+len(list(signature.glob("outer_*.json"))),
+            "planned_contexts": 1050,
+            "outer_evaluation_files": len(list(signature.glob("fold_*.json"))),
+            "planned_outer_evaluations": 150,
+            "completed_summary_and_report_present": signature_summary.get("complete") is True and (signature/"REPORT.md").is_file(),
+            "saved_progress": read_json(signature/"progress.json") if (signature/"progress.json").is_file() else None,
+            "live_process_status": "Not checked. Saved progress does not establish a live process or transfer it to another computer.",
         },
     }
 
@@ -95,6 +109,13 @@ def main():
         print("Last saved progress: "+json.dumps(study["saved_progress"], ensure_ascii=True))
     print(study["live_process_status"])
     print(study["fresh_clone_note"])
+    signature = value["ordered_signature_study"]
+    print(f"\nOrdered-signature saved contexts: {signature['completed_context_audit_files']}/{signature['planned_contexts']}")
+    print(f"Saved outer evaluations: {signature['outer_evaluation_files']}/{signature['planned_outer_evaluations']}")
+    print(f"Completed summary and report present: {signature['completed_summary_and_report_present']}")
+    if signature["saved_progress"] is not None:
+        print("Last saved progress: "+json.dumps(signature["saved_progress"], ensure_ascii=True))
+    print(signature["live_process_status"])
 
 
 if __name__ == "__main__":

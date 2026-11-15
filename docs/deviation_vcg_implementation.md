@@ -2,6 +2,19 @@
 
 Implemented 15 November 2026. This is the first experiment in the [research plan](deviation_tensor_research_plan.md), not its later path-signature or chronological neural extensions. Implementation and smoke completion do not establish a classification gain.
 
+## Completed result
+
+All **1,960 fit contexts**, 100 outer arm/seed evaluations and the independent report have completed. Every outer model restored and every relevant bootstrap selector cache replayed. [Full validated report](../results/deviation_vcg_v1/complete/REPORT.md).
+
+| Procedure | Patient macro F1 |
+|---|---:|
+| Full-training morphology, one fixed seed policy | 0.513 |
+| Matched morphology ensemble, mean ± reference-seed sample SD | 0.499 ± 0.019 |
+| Healthy-reference features, mean ± reference-seed sample SD | 0.479 ± 0.034 |
+| Mixed-reference features, mean ± reference-seed sample SD | 0.463 ± 0.047 |
+
+Healthy minus matched morphology: **−0.020**, descriptive paired patient interval **[−0.061,+0.017]**. The tested recipe did not demonstrate an improvement. Healthy references also did not establish superiority over mixed references: +0.017 [−0.022,+0.056]. Do not choose the favorable reference seed or infer that all healthy-reference methods fail. Preserve this result and move to the separately controlled [ordered-trajectory study](signature_vcg_plan.md).
+
 ## Frozen first comparison
 
 Measured Frank XYZ, the same 164 patients, 391 recording templates, six original classes and frozen ten outer/three inner patient folds. Two feature budgets (24/64) are selected using mean inner patient macro F1, separately for each arm/reference seed. No outer-score selection.
@@ -52,4 +65,4 @@ Synthetic tests exercise exact medoid selection, disjoint participation, query/c
 
 The final report reconstructs every reference/feature context, replays the relevant bootstrap selector caches, verifies every inner selection, and restores all **280 outer member contexts**. It reports six-class and MI-only macro F1, per-class scores, all reference seeds and their mean/sample SD. MI-only scoring retains six-way predictions, so an MI patient predicted HC stays an error. Paired descriptive intervals resample the same patients jointly across seeds; they do not count seeds as independent subjects or refit models.
 
-Completed results will appear in `results/deviation_vcg_v1/complete/REPORT.md` only after report verification. These repeatedly inspected PTB folds are development data. An apparent gain requires repeatability and independent cohort confirmation; the 0.80–0.90 target and SOTA status remain unproven.
+The completed report is in `results/deviation_vcg_v1/complete/REPORT.md`. These repeatedly inspected PTB folds are development data. An apparent gain requires repeatability and independent cohort confirmation; the 0.80–0.90 target and SOTA status remain unproven.

@@ -4,6 +4,8 @@ Research review: 15 November 2026. **Proposal only: no new model has been traine
 
 Follow-up: the first healthy-reference study is now [implemented and tested](deviation_vcg_implementation.md), including a real-data backend/save-load smoke check. Full study completion and scores are tracked separately; the trajectory-signature and chronological extensions below remain proposals.
 
+Completed follow-up: all healthy-reference fits and independent report verification passed. Healthy-reference mean macro F1 was **0.479**, versus matched morphology ensemble **0.499**; the descriptive difference interval includes zero. The recipe did not improve performance. See the [validated report](../results/deviation_vcg_v1/complete/REPORT.md). The user authorized moving to the separately controlled [path-signature experiment](signature_vcg_plan.md); chronological neural context is still proposed work.
+
 ## Why change the representation question?
 
 The completed [TabPFN benchmark](../results/tabpfn_v2_v1/complete/REPORT.md) reached patient macro F1 **0.542**, versus matched bootstrap-XGBoost **0.513**. Its paired descriptive difference interval includes zero. The historical waveform model reached **0.550 ± 0.040** across three seeds under a different procedure. Finer tensor compression improved reconstruction without a consistent classification gain. Neither result supports a claim of 0.80–0.90 or SOTA.

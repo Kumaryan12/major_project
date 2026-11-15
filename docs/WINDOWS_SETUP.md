@@ -65,9 +65,9 @@ For example, the original neural bank depends on existing beat rows and a relati
 
 Raw/processed artifacts may be shared separately by the project owners, preserving their metadata and keeping them outside Git. Transfer does not guarantee resume compatibility: some fingerprints include file paths/mtimes, package versions, platform or numerical hashes. On a mismatch, identify the incompatible ancestor, rebuild or explicitly migrate under new configs/namespaces, and rerun verification. Never rewrite a manifest or remove a guard to force a match. Do not put Windows-generated results into an old Mac namespace.
 
-## Continuing the newest experiment
+## Continuing the completed deviation experiment
 
-The active study at handoff remains on the originating Mac. A fresh clone cannot resume, monitor its live PID, or reproduce it from public aggregate JSON alone. First arrange the required artifact handoff or implement a separate, reviewed cold-start rebuild. Do not duplicate the full 1,960-fit sweep during orientation.
+The deviation study has completed and been published with no demonstrated gain. A fresh clone cannot reproduce it from public aggregate JSON alone. First arrange the required artifact handoff or implement a separate, reviewed cold-start rebuild if a new reproduction is needed. Do not duplicate the full 1,960-fit sweep during orientation.
 
 Once all prerequisites are genuinely available and matched under the chosen configs, the portable equivalents of its zsh launcher are the following **execution commands**, not installation checks:
 
@@ -78,3 +78,17 @@ Once all prerequisites are genuinely available and matched under the chosen conf
 ```
 
 Those default config paths describe the original experiment; use the prepared Windows config path when a new namespace/dependency chain is required. The Python entry points do not themselves auto-publish Git changes. Preserve completed reports, use task-specific branches and push only intended source/docs or validated aggregate results. Check Git status before staging so partial results, local patient data and model files are not accidentally included.
+
+## Current ordered-signature study
+
+The [signature study](signature_vcg_plan.md) is the current approved phase. It consumes verified original morphology and raw/denoised/template banks directly, without requiring completed refinement/stability classifier studies. Those source banks/data must still be transferred or built compatibly; a fresh clone alone is insufficient. Its source config is `configs/tensor_features.yaml`, and the 1,050-fit run uses `configs/signature_vcg.yaml`. Inspect local availability with `scripts/project_status.py` before doing any expensive work.
+
+After the source-bank and namespace plan is ready, the native Python execution commands are:
+
+```powershell
+.\.venv\Scripts\python.exe -m mi_localization.signature_study --smoke --config configs/signature_vcg.yaml
+.\.venv\Scripts\python.exe -m mi_localization.signature_study --config configs/signature_vcg.yaml
+.\.venv\Scripts\python.exe -m mi_localization.signature_report --config configs/signature_vcg.yaml
+```
+
+Use the prepared Windows config path when rebuilding under a new namespace. Run the smoke first; the full study is not an onboarding check. A Mac background process is not transferred through Git, and model predictions need not be bitwise identical across platforms.

@@ -4,6 +4,8 @@ This repository is an end-to-end, reproducible reimplementation of Zhang et al.,
 
 **New collaborator or Codex session:** start with [the project handoff](docs/CODEX_HANDOFF.md), [Windows setup](docs/WINDOWS_SETUP.md), and [the ready-to-paste Codex prompt](docs/CODEX_START_PROMPT.txt). Run `python scripts/project_status.py` for a read-only inventory of local artifacts and saved experiment state. The historical presentation below predates the neural and later tensor experiments; use the handoff's evidence links for current completed results.
 
+**Current research phase:** [ordered VCG path signatures](docs/signature_vcg_plan.md), with matched morphology, signed-area and endpoint-polynomial controls. The previous [healthy-reference experiment](results/deviation_vcg_v1/complete/REPORT.md) is fully verified and did not demonstrate a gain. Signature classification results are pending until their own complete report passes verification.
+
 > Research code only. It is not a medical device and must not be used for clinical diagnosis.
 
 For professor-facing material, see the four-page [project summary](output/pdf/mi_localization_summary_report.pdf) or the more detailed [major-project progress report](output/pdf/mi_localization_progress_report.pdf). Rebuild them with `pip install -e '.[report]'`, followed by `python scripts/build_summary_report.py` or `python scripts/build_professor_progress_report.py`.

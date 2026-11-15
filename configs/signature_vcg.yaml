@@ -1,0 +1,23 @@
+seed: 42
+split_seed: 42
+sampling_seeds: [42, 123, 2026]
+source_config: configs/tensor_features.yaml
+tabpfn_config: configs/tabpfn_v2.yaml
+feature_bank_dir: data/processed/signature_vcg_v1
+output_dir: results/signature_vcg_v1
+arms: [morphology, signed_area, endpoint_polynomial, signature2, signature3]
+feature_counts: [24, 64]
+bootstrap_replicates: 64
+audit_replicates: 32
+bootstrap_draws: 5000
+chunk_size: 64
+sampling_rate: 1000
+r_index: 250
+windows:
+  whole: [0, 651]
+  pre: [50, 170]
+  central: [170, 350]
+  early_post: [350, 470]
+  late_post: [470, 651]
+jitter_samples: 4
+exclude_clock_only: true
