@@ -1,0 +1,101 @@
+"""Dependency-free, read-only orientation for a fresh or existing checkout."""
+from __future__ import annotations
+
+import argparse
+import json
+from pathlib import Path
+import subprocess
+import sys
+
+
+ROOT = Path(__file__).resolve().parents[1]
+ARTIFACTS = {
+    "raw_ptb_manifest": "data/raw/ptbdb/manifest.csv",
+    "beat_table": "data/processed/beats.csv",
+    "relational_statistics": "data/processed/relational_vcg_v1/statistics_short.npy",
+    "denoised_waveforms": "data/processed/neural_vcg_v1/waveforms.npy",
+    "raw_waveforms": "data/processed/neural_raw_v1/waveforms.npy",
+    "recording_templates": "data/processed/multiview_vcg_v1/templates.npy",
+    "patient_tensor_features": "data/processed/tensor_features_v1/patient_features.npz",
+    "refined_tensor_features": "data/processed/tensor_refinement_v1/patient_features.npz",
+    "foundation_checkpoint": "data/models/tabpfn_v2/tabpfn-v2-classifier-v2_default.ckpt",
+}
+REPORTS = {
+    "presentation_notes": "docs/implementation_presentation_notes.md",
+    "resnet_seed_repeatability": "results/neural_repeat_v1/REPORT.md",
+    "bootstrap_feature_consensus": "results/feature_stability_v1/complete/REPORT.md",
+    "tabpfn_v2": "results/tabpfn_v2_v1/complete/REPORT.md",
+    "healthy_reference_deviation": "results/deviation_vcg_v1/complete/REPORT.md",
+}
+
+
+def read_json(path):
+    try:
+        value = json.loads(path.read_text(encoding="utf-8"))
+        return value if isinstance(value, dict) else {"read_error": "ExpectedJSONObject"}
+    except (OSError, ValueError) as error:
+        return {"read_error": type(error).__name__}
+
+
+def inventory(root=ROOT):
+    root = Path(root)
+    try:
+        result = subprocess.run(["git", "rev-parse", "--short", "HEAD"], cwd=root,
+                                capture_output=True, text=True, timeout=10, check=False)
+        revision = result.stdout.strip() if result.returncode == 0 else "unavailable"
+    except (OSError, subprocess.SubprocessError):
+        revision = "unavailable"
+    study = root/"results/deviation_vcg_v1/complete"
+    summary_path, progress_path = study/"summary.json", study/"progress.json"
+    summary = read_json(summary_path) if summary_path.exists() else {}
+    progress = read_json(progress_path) if progress_path.exists() else None
+    return {
+        "repository_revision": revision,
+        "interpreter": sys.version.split()[0],
+        "scope": "Read-only file inventory. No training, downloads, numerical imports or independent result verification.",
+        "read_first": ["AGENTS.md", "docs/CODEX_HANDOFF.md", "docs/WINDOWS_SETUP.md"],
+        "local_artifacts": {name: {"path": path, "present": (root/path).is_file()} for name, path in ARTIFACTS.items()},
+        "report_files": {name: {"path": path, "present": (root/path).is_file()} for name, path in REPORTS.items()},
+        "healthy_reference_study": {
+            "study_manifest_present": (study/"study_manifest.json").is_file(),
+            "completed_member_audit_files": len(list(study.glob("inner_*.json")))+len(list(study.glob("outer_*.json"))),
+            "planned_member_contexts": 1960,
+            "outer_evaluation_files": len(list(study.glob("fold_*.json"))),
+            "planned_outer_evaluations": 100,
+            "completed_summary_and_report_present": summary.get("complete") is True and (study/"REPORT.md").is_file(),
+            "saved_progress": progress,
+            "live_process_status": "Not checked. Saved files/PIDs cannot prove a process is alive, especially on another computer.",
+            "fresh_clone_note": "Missing local study artifacts are expected. Aryan's running process and ignored checkpoints do not transfer through Git.",
+        },
+    }
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--json", action="store_true", help="Print the same inventory as JSON")
+    args = parser.parse_args()
+    value = inventory()
+    if args.json:
+        print(json.dumps(value, indent=2, ensure_ascii=True))
+        return
+    print(f"Project checkout: {value['repository_revision']} | Python {value['interpreter']}")
+    print(value["scope"])
+    print("Read first: "+", ".join(value["read_first"]))
+    print("\nLocal artifacts (not included in Git):")
+    for item in value["local_artifacts"].values():
+        print(f"  {'present' if item['present'] else 'missing'}: {item['path']}")
+    print("\nAggregate report files (presence is not verification):")
+    for item in value["report_files"].values():
+        print(f"  {'present' if item['present'] else 'missing'}: {item['path']}")
+    study = value["healthy_reference_study"]
+    print(f"\nHealthy-reference saved member audits: {study['completed_member_audit_files']}/{study['planned_member_contexts']}")
+    print(f"Saved outer evaluations: {study['outer_evaluation_files']}/{study['planned_outer_evaluations']}")
+    print(f"Completed summary and report present: {study['completed_summary_and_report_present']}")
+    if study["saved_progress"] is not None:
+        print("Last saved progress: "+json.dumps(study["saved_progress"], ensure_ascii=True))
+    print(study["live_process_status"])
+    print(study["fresh_clone_note"])
+
+
+if __name__ == "__main__":
+    main()
