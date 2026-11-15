@@ -1,5 +1,25 @@
 # Patient-bootstrap feature consensus in a fixed tensor pool
 
+## Completed result and decision
+
+The [validated report](../results/feature_stability_v1/complete/REPORT.md) completed all **1,500 classifier fit slots**: 960 new inner fits, 480 verified prior inner fits and 60 fresh outer refits. All **80 caches / 7,680 resampled base-selector fits** were independently replayed. Every fitted final classifier reproduced its held-out predictions; all **20 original-control refits** also matched their compatible prior predictions. Test suite: **175 passed**, with the end-to-end tests rerun after strengthening support-only cache replay.
+
+| Selector | Linear macro F1 | Shallow-tree macro F1 |
+|---|---:|---:|
+| Original | 0.498 | 0.420 |
+| Bootstrap consensus | 0.497 | **0.513** |
+| Group bootstrap consensus | 0.463 | 0.357 |
+
+For trees, bootstrap consensus improved the matched original procedure by **+0.092 macro F1**, descriptive paired patient interval **[+0.027, +0.158]**. Linear bootstrap was essentially unchanged (−0.001, **[−0.084, +0.081]**). Group bootstrap hurt trees relative to bootstrap (−0.155, **[−0.234, −0.078]**) and did not improve linear performance. These are conditional development intervals without refits or repeated-search/multiple-comparison adjustment; they are not independent confirmation.
+
+The bootstrap-tree result improved all five MI class F1 values relative to its tree control: AMI **0.270→0.294**, ALMI **0.320→0.452**, ASMI **0.310→0.414**, IMI **0.298→0.500**, ILMI **0.491→0.605**; HC decreased **0.833→0.811**. AMI remains weak. A higher macro score must not be presented as uniformly reliable localization.
+
+Support gains were small: matched audit feature support changed morphology/24 **0.589→0.594**, morphology/64 **0.656→0.658**, combined/24 **0.486→0.494**, combined/64 **0.503→0.512**. Grouping corresponding features across views reduced this support. The one-feature-per-semantic-group restriction is not supported by this test; different views should not be presumed interchangeable.
+
+The gain belongs to the **complete nested bootstrap-tree procedure**. Inner selection also chose different budgets/depths: original trees used 24 features in 4 folds and depth 3 in 3 folds; bootstrap trees used 24 features in 6 folds and depth 3 in 5 folds. The result does not isolate a frequency-only causal effect with classifier settings held fixed.
+
+**Decision:** retain ordinary bootstrap consensus with shallow trees as a promising feature-pipeline candidate, preserve the original linear selector as its reference, and do not adopt the group constraint. Next confirm the fixed bootstrap procedure across independent resampling seeds before expanding the search. That seed-robustness phase has not run. The historical neural **0.550 ± 0.040** uses different aggregation/models and three training seeds; the new 0.513 does not supersede it or reach the 0.80–0.90 target. New-cohort confirmation remains necessary.
+
 ## Question and fixed scope
 
 The previous [tensor refinement](tensor_refinement_plan.md) improved signal reconstruction but did not improve localization consistently. Its original feature procedure reached linear macro F1 0.498; expanded representations reached 0.425 with linear and 0.452 with shallow trees. Higher optimized inner scores did not predict better outer performance.

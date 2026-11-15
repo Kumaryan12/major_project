@@ -352,7 +352,9 @@ Config: `configs/tensor_refinement.yaml`; new outputs: `results/tensor_refinemen
 
 The [patient-bootstrap experiment](docs/feature_stability_plan.md) keeps the existing signed-morphology and combined representations and compares original ANOVA selection, bootstrap frequency consensus, and consensus over corresponding feature groups across views. Each training partition uses 64 class-stratified patient resamples plus a separate 32-resample support audit. No new tensors or patients are added.
 
-The same eight family/budget/model candidates are evaluated for each selector and learner inside patient-separated folds. There are **1,500 classifier fit slots**, including 480 verified prior inner fits and **1,020 new fits**. All 80 resampling caches are independently replayed during final validation. Support under resampling is reported separately from patient macro F1; no gain is claimed before complete outer evaluation.
+All **1,500 classifier fit slots completed** in the [validated report](results/feature_stability_v1/complete/REPORT.md), including 480 verified prior inner fits and **1,020 new fits**. Bootstrap consensus improved shallow-tree macro F1 **0.420→0.513**, paired difference **+0.092**, descriptive interval **[+0.027, +0.158]**. Linear scores were essentially unchanged (**0.498→0.497**). Group bootstrap hurt performance (**0.463 linear / 0.357 tree**) and is not adopted. All 80 caches / 7,680 resampled selectors replayed; all 20 original outer-control predictions reproduced.
+
+This is a promising matched gain for the feature-based tree procedure on development folds. Resampling support increased only slightly, and the single fixed sampling seed needs a robustness check. The historical neural **0.550 ± 0.040** remains a different, stronger point of reference; the 0.80–0.90 target is not reached. Full findings and next-step boundaries are in the [stability plan](docs/feature_stability_plan.md).
 
 ```bash
 .venv/bin/python -m mi_localization.stability_study

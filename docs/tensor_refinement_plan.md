@@ -20,6 +20,8 @@ Class errors also matter: the expanded tree achieved IMI/ILMI F1 0.533/0.591 but
 
 **Decision:** preserve these representations as completed ablations and do not adopt the expanded candidate pool as an improvement. For another feature-design iteration, a bounded next hypothesis is training-patient bootstrap stability and group-aware redundancy selection within a fixed small representation pool, compared with the original selector. This would test selection reliability rather than keep expanding resolution. Such a method is not implemented or validated by this study. A new selection policy must be specified and refitted inside the training folds, and favorable results still require new-cohort confirmation.
 
+The separate [bootstrap-consensus follow-up](feature_stability_plan.md) has now completed: ordinary bootstrap consensus improved its matched tree pipeline from 0.420 to 0.513, while the tested group constraint hurt performance. This is a distinct experiment; it does not change the tensor-refinement results above.
+
 ## Reason for this refinement
 
 The first training-only feature screen selected signed morphology in 7/10 contexts and the combined pool in 3/10. Across the ten selected packages, 210 of 440 feature occurrences came from the **filter residual R−D**. This can represent removed physiology, acquisition effects or artifacts; occurrence frequency is neither clinical importance nor independent stability. The truncated global DCT16 summary retained about 70% energy under its original aggregate diagnostic. Complete tensors reconstructed their input, but the summaries did not.
