@@ -44,10 +44,10 @@
       "dropout": 0.2,
       "rr_embedding": 8,
       "hidden_size": 32,
-      "sequence_length": 16,
-      "windows_per_epoch": 512,
-      "batch_size": 8,
-      "inference_batch_size": 16,
+      "sequence_length": 4,
+      "windows_per_epoch": 2048,
+      "batch_size": 32,
+      "inference_batch_size": 64,
       "max_epochs": 25,
       "patience": 6,
       "learning_rate": 0.001,
@@ -92,7 +92,7 @@
       "device": "mps",
       "deterministic_kernels": false
     },
-    "study_fingerprint": "49f626613ef49520e9b11ba29093cc1de41da89d75d92fbbf05d9a667807497e"
+    "study_fingerprint": "0ff6bdb65ec1844232b41ee2a3877211aa5da88369e9d5abf6333fbb264a89f6"
   },
   "fit": {
     "seed": 42,
@@ -125,12 +125,12 @@
     "history": [
       {
         "epoch": 1,
-        "training_loss": 1.8505511283874512,
-        "window_plan_sha256": "f8d153294ea61a6095391e929dcd718ac4e1bcbb7cc8ac41800b641eb973ec7d",
-        "token_order_sha256": "8fd87dcfc29488a23fc4c01400292ade8a5d99b466b82f8c27b1dcee0d9350f7",
+        "training_loss": 1.842280387878418,
+        "window_plan_sha256": "c128d27d8a964b428b5a385e12e15cd93d16c3a0130d8cd20b6934a3a4b58022",
+        "token_order_sha256": "8b6d9d503bdd7de69c38f99ba1e70141fdc0d28c00902fb16b6390cabce26a61",
         "windows": 8,
-        "valid_beat_presentations": 128,
-        "nominal_beat_slots": 128,
+        "valid_beat_presentations": 32,
+        "nominal_beat_slots": 32,
         "nonidentity_window_orders": 0
       }
     ],
@@ -142,11 +142,11 @@
     "query_patients": 2,
     "query_records": 5,
     "query_beats": 695,
-    "windows": 46,
+    "windows": 175,
     "coverage_sha256": "090221f22e51f5ce9815031a0447d8c9f9bb8d53f16e14cd4b579edc62a6d73b",
-    "plan_sha256": "c9f04dce9a8a16e79ea1fd710afb48ae90d1ebe26a12439e9b88761bfec0187e",
+    "plan_sha256": "ede35eb4f7f29d42e8f592dff0fb79239c4fee21887c268bf9c458ce18050c9e",
     "all_beats_exactly_once": true,
-    "token_order_sha256": "98deb8fa3aa579231af6092de286530bdefafbc307e2c1562dc4b77e9b09e810"
+    "token_order_sha256": "68ed4f33a521273e11fa2948ebbcd95c4fbce837abea4b98b2cac1d18c93e8ee"
   },
   "state_restore_verified": true
 }

@@ -65,11 +65,14 @@ def summarize_study(config):
     outer = len(config["arms"])*len(config["training_seeds"])*config["outer_splits"]
     summary = {"complete": True, "study_fingerprint": scope["study_fingerprint"], "claim_scope": study.CLAIM,
                "n_patients": len(bank.ids), "classes": config["classes"], "training_seeds": config["training_seeds"],
+               "sequence_length": config["sequence_length"], "windows_per_epoch": config["windows_per_epoch"],
+               "nominal_beat_slots_per_epoch": config["sequence_length"]*config["windows_per_epoch"],
                "fits": outer*(config["inner_splits"]+1), "outer_models_restored": outer,
                "matched_gru_partition_checks": checked, "all_query_beats_covered": True, "metrics": metrics, "contrasts": contrasts}
     _save_json(root/"summary.json", summary)
     lines = ["# Consecutive VCG beats and RR timing", "", study.CLAIM, "",
              f"All {len(bank.ids)} original patients. {summary['fits']} fits verified; {outer} outer models restored; {checked} matched-GRU partition checks passed.", "",
+             f"Window length: {config['sequence_length']} consecutive beats. Training windows per epoch: {config['windows_per_epoch']}; nominal beat slots: {summary['nominal_beat_slots_per_epoch']}. Window batch size: {config['batch_size']}.", "",
              "| Procedure | Training seed | Patient macro F1 | MI-only macro F1 |", "|---|---:|---:|---:|"]
     for arm, values in metrics.items():
         for seed, row in values.items(): lines.append(f"| {arm} | {seed} | {row['macro_f1']:.3f} | {row['mi_only_macro_f1_six_way_predictions']:.3f} |")

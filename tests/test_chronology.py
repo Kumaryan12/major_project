@@ -168,6 +168,14 @@ def test_complete_nested_actual_training_resume_restore_and_tamper(tmp_path, mon
 
 
 def test_queue_requires_complete_verified_signature_dependency(tmp_path):
+    config_root = Path(__file__).resolve().parents[1]/"configs"
+    main = yaml.safe_load((config_root/"chronological_vcg.yaml").read_text())
+    alternative = yaml.safe_load((config_root/"chronological_vcg_16.yaml").read_text())
+    assert main["sequence_length"] == 4 and alternative["sequence_length"] == 16
+    assert main["sequence_length"]*main["windows_per_epoch"] == alternative["sequence_length"]*alternative["windows_per_epoch"] == 8192
+    assert main["sequence_length"]*main["batch_size"] == alternative["sequence_length"]*alternative["batch_size"] == 128
+    assert main["windows_per_epoch"]//main["batch_size"] == alternative["windows_per_epoch"]//alternative["batch_size"] == 64
+    assert main["output_dir"] != alternative["output_dir"]
     source = Path(__file__).resolve().parents[1]/"scripts/run_chronological_vcg.py"
     spec = importlib.util.spec_from_file_location("chronology_queue", source)
     queue = importlib.util.module_from_spec(spec);spec.loader.exec_module(queue)

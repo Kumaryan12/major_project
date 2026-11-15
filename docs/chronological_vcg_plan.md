@@ -2,6 +2,8 @@
 
 Implemented 15 November 2026, after the user approved testing true chronology as the next patient-aggregation experiment. This study is separate from the active path-signature comparison and the older paused multiview sweep. Full execution is queued behind the signature study's complete independent verification. There is no new classification score at implementation time.
 
+The user clarified that the desired group is **four consecutive heartbeats within one recording**. The primary configuration was changed from 16 to four before any full chronological fit or study manifest existed. The waiting queue was stopped and re-established; no active signature fit was changed. The 16-beat alternative remains in [chronological_vcg_16.yaml](../configs/chronological_vcg_16.yaml) under a separate, unrun output namespace. Its earlier finite hardware smoke is historical evidence, not a completed 16-versus-four performance comparison.
+
 ## Hypotheses and four controls
 
 The existing patient feature summaries and old unordered bags discard real beat order. Test whether a small chronological module can use information beyond the morphology and RR content of the same consecutive window.
@@ -21,7 +23,7 @@ Primary contrast: **ordered_rr versus shuffled_rr**. Additional contrasts: order
 
 Keep all **164 patients, 391 recordings, 55,863 cached XYZ beats**, original labels, R positions and frozen patient folds. Each beat remains the original 651-sample denoised waveform at 1,000 Hz. No new R detector, delineation, rotation, amplitude normalization, interval clipping or quality-based removal.
 
-Record metadata is sorted by original cached R positions, with strict checks that each recording belongs to one patient/label and retained beat indices are consecutive. Actual recording lengths range from **33 to 269 beats**, median **141**. Every recording supports a full 16-beat training window. Padding remains implemented for short windows and inference tails.
+Record metadata is sorted by original cached R positions, with strict checks that each recording belongs to one patient/label and retained beat indices are consecutive. Actual recording lengths range from **33 to 269 beats**, median **141**. Every recording supports a full four-beat training window. Padding remains implemented for short windows and inference tails.
 
 RR is the difference between adjacent **retained detector R positions**, in seconds. It is not independently annotated clinical RR. The first retained beat of each recording has missing preceding RR, represented by a zero-valued normalized input and availability flag zero; subsequent beats retain their original positive intervals. No RR threshold excludes a beat. Only the preceding gap is supplied, not both neighboring gaps or absolute elapsed time.
 
@@ -33,7 +35,7 @@ The controls never feed patient IDs, record identifiers, beat indices or absolut
 
 ## Training windows and shuffled control
 
-For each epoch, sample **512 windows of 16 consecutive beats**. Sampling is class/patient balanced, then uniform among that patient's recordings, then uniform among valid contiguous starts. A window never crosses a recording or patient boundary. All arms share the same sampled-window plan at every common epoch. Window cross-entropy is optimized; it is not a differentiable patient-macro-F1 loss.
+For each epoch, sample **2,048 windows of four consecutive beats**. Sampling is class/patient balanced, then uniform among that patient's recordings, then uniform among valid contiguous starts. A window never crosses a recording or patient boundary. All arms share the same sampled-window plan at every common epoch. Window cross-entropy is optimized; it is not a differentiable patient-macro-F1 loss.
 
 The shuffled control permutes only valid tokens, moving each waveform and its original preceding-RR/missingness pair together. It does not compute fictitious gaps between shuffled timestamps. Permutation RNG is separate from the sampling/model random streams. This tests the added value of order **conditional on the same token-level RR information**, not removal of every temporal clue.
 
@@ -41,7 +43,7 @@ Training permutations vary deterministically by fit seed, epoch and sampled-wind
 
 ## Inference and masks
 
-Tile every query recording into nonoverlapping windows of up to 16 beats. Pad the final incomplete window on the right, with explicit masks. GRU updates and mean pooling ignore padded tokens. Every original query beat appears exactly once.
+Tile every query recording into nonoverlapping windows of up to four beats. Pad the final incomplete window on the right, with explicit masks. GRU updates and mean pooling ignore padded tokens. Every original query beat appears exactly once.
 
 Weight each window's probabilities by its valid-beat count within the recording, then average recordings equally within each patient. This is a declared aggregation policy; it differs from the historical beat-probability mean and the old all-patient embedding bag. The examination's own full recording is available, so the procedure is offline, not a streaming clinical predictor.
 
@@ -50,11 +52,11 @@ Weight each window's probabilities by its valid-beat count within the recording,
 - Ten frozen outer folds, three fixed inner patient folds; six original classes and patient macro F1.
 - Training seeds **42, 123, 2026**, all retained. These are optimization seeds, unlike the signature study's selector-resampling seeds.
 - Waveform and valid-RR moments use training patients only, with class/patient-balanced weights. RR availability is explicit; no learned imputation uses validation/test patients.
-- AdamW, rate 0.001, weight decay 0.01, batch eight windows, gradient clipping at five. Up to 25 epochs; patience six on inner patient macro F1. Earliest best epoch wins.
+- AdamW, rate 0.001, weight decay 0.01, batch 32 four-beat windows, gradient clipping at five. Up to 25 epochs; patience six on inner patient macro F1. Earliest best epoch wins.
 - Rounded median of three inner selected epochs sets a fresh outer refit's fixed training length. No outer monitoring or outer-trained initialization enters inner fits.
 - **480 fits:** four arms × three seeds × ten outer folds × (three inner + one outer). Max epoch/patience caps match; selected lengths and actual compute may differ by arm.
 
-The nominal epoch has 8,192 beat slots. This cohort's sampled training windows are full length; shorter future windows would reduce valid-beat presentations, which are audited rather than silently equated to slots.
+The nominal epoch still has **8,192 beat slots** and 64 optimizer batches: 2,048×4 slots, with 32×4 beats per batch. This matches the original 512×16/eight-window-batch plan's nominal beat exposure and update count. Inference batches are 64 four-beat windows, retaining 256 beat slots like the original 16-window batches. A four-versus-16 comparison would still change sequence context and number of window labels; it is not a perfectly isolated change of one computational quantity. The alternative is not run or selected from outer scores. Short future windows with padding would reduce valid-beat presentations, which are audited rather than equated to slots.
 
 ## Verification and reporting
 
