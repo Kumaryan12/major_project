@@ -370,6 +370,21 @@ The [literature and architecture review](docs/modern_architecture_roadmap.md) re
 
 This is a research proposal, not an implemented architecture, new score or SOTA claim. No new model training has started from this review. Comparable patient-level macro F1 and independent confirmation, rather than architecture names, determine the eventual claim.
 
+## Pinned TabPFN-v2 classifier benchmark
+
+The [foundation-model benchmark](docs/tabpfn_v2_plan.md) implements local TabPFN-v2 inference on the unchanged bootstrap-selected morphology/combined features, with raw and training-prior-corrected probabilities reported separately against matched XGBoost. Package, public checkpoint revision/checksum, preprocessing and inference settings are pinned. This is the published v2 checkpoint, not the latest v3.5 or an established MI SOTA result.
+
+The nested comparison has 390 fit/context slots: 240 verified prior tree inner fits, 120 new PFN inner contexts, 20 PFN outer contexts and 10 fresh tree outer refits. All feature selection remains training-patient-only. The real six-class backend smoke passed save/load, batch-independence, balancing and runtime-coexistence checks. No accuracy improvement is claimed before complete outer evaluation and independent report validation.
+
+```bash
+.venv/bin/python -m mi_localization.tabpfn_study
+.venv/bin/python -m mi_localization.tabpfn_report
+.venv/bin/python -m mi_localization.tabpfn_study --status
+tail -f tmp/tabpfn_v2_run.log
+```
+
+Config: `configs/tabpfn_v2.yaml`; new outputs: `results/tabpfn_v2_v1/`. Source numerical-library versions and earlier results remain unchanged. Feature matrices, checkpoint weights, fitted contexts and patient predictions stay local.
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:

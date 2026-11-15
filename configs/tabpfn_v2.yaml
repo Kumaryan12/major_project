@@ -1,0 +1,16 @@
+seed: 42
+split_seed: 42
+stability_config: configs/feature_stability.yaml
+output_dir: results/tabpfn_v2_v1
+arms: [xgboost, tabpfn, tabpfn_balanced]
+package_version: 9.2.0
+checkpoint_path: data/models/tabpfn_v2/tabpfn-v2-classifier-v2_default.ckpt
+checkpoint_url: https://huggingface.co/Prior-Labs/TabPFN-v2-clf/resolve/275f19d2add9c2c0de38f9ebaded3856599fa2e7/tabpfn-v2-classifier-v2_default.ckpt
+checkpoint_revision: 275f19d2add9c2c0de38f9ebaded3856599fa2e7
+checkpoint_sha256: cf8c519c01eaf1613ee91239006d57b1c806ff5f23ac1aeb1315ba1015210e49
+checkpoint_bytes: 29009539
+device: cpu
+torch_threads: 2
+n_estimators: 8
+softmax_temperature: 0.9
+bootstrap_draws: 5000
