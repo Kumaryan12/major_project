@@ -112,7 +112,13 @@
     "platform": "macOS-26.5-arm64-arm-64bit",
     "classifier_code_sha256": "fd31eca98cccf66c8c8f3669fe69f22e91fc3fb20e57c6a0a107d48c95165478",
     "loader_code_sha256": "4d0cbc16ab160fcc61ef774b8a68e586cfb071153854cb4d381bd23c8e296986",
-    "preprocessing_code_sha256": "ccdb941fc61292a8fa313fd74161478a9e93524d50bc06af249b8b95bc814038"
+    "preprocessing_code_sha256": "ccdb941fc61292a8fa313fd74161478a9e93524d50bc06af249b8b95bc814038",
+    "execution": "fresh local Python process for every PFN fit/restore; no forked numerical state",
+    "worker_thread_environment": {
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    }
   },
   "fit_and_checks_seconds": 2.5402111249968584,
   "training_rows": 72,
@@ -121,5 +127,8 @@
   "save_load_passed": true,
   "official_balancing_equivalence": true,
   "xgboost_coexistence_passed": true,
-  "additional_64_feature_context_and_save_load_passed": true
+  "additional_64_feature_context_and_save_load_passed": true,
+  "real_project_isolated_fit_restore_passed": true,
+  "isolated_project_training_patients": 98,
+  "isolated_project_validation_patients": 49
 }

@@ -19,6 +19,12 @@ The checkpoint downloads from its pinned public revision and must match both siz
 
 The package adds its optional dependencies, but installation constrained existing numerical versions. NumPy 2.5.3, SciPy 1.18.1, scikit-learn 1.9.1, PyTorch 2.15.0, XGBoost 3.4.1, pandas 3.0.6, joblib 1.6.0 and PyWavelets 1.10.0 remain unchanged. `pip check` passed. Full backend/runtime/source versions are recorded in the study manifest. Checkpoint, context states and patient feature arrays remain local; no hosted prediction API is used.
 
+### macOS numerical-runtime isolation
+
+The first in-process attempt hit a native OpenMP mutex failure while loading foundation weights after the full feature-selection path. Startup thread limits alone did not resolve it. No PFN model or outer prediction completed in that attempt; its cached tree-inner prefix is preserved under `tmp/tabpfn_failed_inprocess_attempt/`.
+
+Foundation fitting and restored prediction now run in **fresh local Python subprocesses** with serialized training/query arrays in short-lived ignored temporary directories. The parent feature-selection process does not import TabPFN/LightGBM. Worker thread settings are fixed and recorded, and each worker has a timeout. This avoids inheriting initialized numerical-library state without modifying library binaries. Checkpoint, data, masks, seeds and inference settings are unchanged. The real-data path passed a 98-patient training-context fit, separate validation prediction and independent-process state restoration before the full run restarted.
+
 ## Three retained arms
 
 1. **xgboost:** the existing bootstrap-feature procedure, depth 2/3, 100 trees, rate 0.05, lambda 1, full row/column sampling, one CPU thread, class-balanced training weights. Its inner predictions are reused only after checking complete source/selector/membership/hash provenance. Outer models are freshly fitted and must reproduce the earlier 0.513 procedure's predictions.
@@ -47,6 +53,8 @@ Thus new work is **140 PFN contexts plus 10 XGBoost refits**. A context fit is n
 ## Runtime smoke and independent report checks
 
 The real public checkpoint has a six-class, 24-feature synthetic smoke test with uneven class counts. It checks finite normalized predictions, save/load equality, manual versus official balancing, insensitivity of one query to other query rows, and XGBoost coexistence in the same process. This is runtime evidence, not clinical performance. Aggregate smoke audit: `results/tabpfn_v2_v1/backend_audit/summary.json`.
+
+A separate real-checkpoint 64-feature context/save-load check passed. Worker-boundary tests verify that only training labels enter a fit request and restore requests carry query features without labels. End-to-end context checks also cover the actual project-loader path, beyond the synthetic numerical smoke.
 
 End-to-end tests use a lightweight fake context backend to verify the clinical workflow without network/model downloads: raw training context membership, labels, inner-only selection, probability correction, source-control reuse, complete reporting, guarded resumption and corruption rejection. The real checkpoint smoke supplies the separate numerical/backend test.
 

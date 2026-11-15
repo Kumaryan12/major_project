@@ -4,10 +4,14 @@ from __future__ import annotations
 import argparse
 import dataclasses
 import importlib.metadata
+import importlib.util
 import json
+import os
 import platform
 import sys
 import time
+import subprocess
+import tempfile
 from pathlib import Path
 import urllib.request
 
@@ -65,10 +69,14 @@ def make_classifier(config,seed):
 
 
 def runtime_info():
-    from tabpfn import classifier,model_loading,preprocessing
+    # Do not import TabPFN/LightGBM into the feature-selection process. Their
+    # OpenMP runtimes can conflict after sklearn's real-data reductions on macOS.
+    folder = Path(importlib.util.find_spec("tabpfn").origin).parent
     packages = ("tabpfn","torch","numpy","scipy","scikit-learn","pandas","joblib","skrub","lightgbm","einops","pydantic","safetensors")
     return {"versions":{name:importlib.metadata.version(name) for name in packages},"python":sys.version,"platform":platform.platform(),
-        "classifier_code_sha256":file_hash(classifier.__file__),"loader_code_sha256":file_hash(model_loading.__file__),"preprocessing_code_sha256":file_hash(preprocessing.__file__)}
+        "classifier_code_sha256":file_hash(folder/"classifier.py"),"loader_code_sha256":file_hash(folder/"model_loading.py"),"preprocessing_code_sha256":file_hash(folder/"preprocessing/__init__.py"),
+        "execution":"fresh local Python process for every PFN fit/restore; no forked numerical state",
+        "worker_thread_environment":{"OMP_NUM_THREADS":"2","OPENBLAS_NUM_THREADS":"1","MKL_NUM_THREADS":"1"}}
 
 
 def fit_context(config,seed,X,y):
@@ -123,6 +131,54 @@ def load(path,config):
     return TabPFNClassifier.load_from_fit_state(path,device=config["device"])
 
 
+def _worker_task(path):
+    task = json.loads(Path(path).read_text())
+    config = task["config"]
+    prepare_checkpoint(config)
+    with np.load(task["arrays"]) as saved:
+        query = saved["query"]
+        if task["mode"]=="fit":
+            model = fit_context(config,task["seed"],saved["training"],saved["labels"])
+        elif task["mode"]=="predict":
+            model = load(task["state_path"],config)
+        else:
+            raise ValueError("Unknown local PFN worker mode")
+    probabilities = predict(model,query,config)
+    if task["mode"]=="fit" and task.get("state_path"):
+        save(model,task["state_path"])
+    np.save(task["probabilities"],probabilities)
+    Path(task["audit"]).write_text(json.dumps(settings_audit(model,config)))
+
+
+def _run_worker(config,mode,query,training=None,labels=None,seed=None,state_path=None):
+    Path("tmp").mkdir(exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="tabpfn-worker-",dir="tmp") as temporary:
+        root = Path(temporary).resolve()
+        arrays = {"query":query}
+        if mode=="fit":
+            arrays.update(training=training,labels=labels)
+        np.savez_compressed(root/"arrays.npz",**arrays)
+        task = {"mode":mode,"config":config,"seed":seed,"arrays":str(root/"arrays.npz"),
+            "probabilities":str(root/"probabilities.npy"),"audit":str(root/"audit.json"),
+            "state_path":None if state_path is None else str(Path(state_path).resolve())}
+        (root/"task.json").write_text(json.dumps(task))
+        environment = dict(os.environ,OMP_NUM_THREADS=str(config["torch_threads"]),OPENBLAS_NUM_THREADS="1",MKL_NUM_THREADS="1")
+        result = subprocess.run([sys.executable,"-m","mi_localization.tabpfn_backend","--worker",str(root/"task.json")],
+            env=environment,capture_output=True,text=True,timeout=config["worker_timeout_seconds"])
+        if result.returncode:
+            Path("tmp/tabpfn_worker_error.log").write_text(result.stdout+"\n"+result.stderr)
+            raise RuntimeError(f"Local TabPFN worker failed ({result.returncode}); see tmp/tabpfn_worker_error.log")
+        return np.load(root/"probabilities.npy"),json.loads((root/"audit.json").read_text())
+
+
+def run_fit(config,seed,X,y,query,state_path=None):
+    return _run_worker(config,"fit",query,training=X,labels=y,seed=seed,state_path=state_path)
+
+
+def run_predict(config,state_path,query):
+    return _run_worker(config,"predict",query,state_path=state_path)
+
+
 def smoke_test(config):
     checkpoint = prepare_checkpoint(config)
     rng = np.random.default_rng(42)
@@ -168,6 +224,10 @@ if __name__=="__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config",default="configs/tabpfn_v2.yaml")
     parser.add_argument("--smoke",action="store_true")
+    parser.add_argument("--worker")
     args = parser.parse_args()
-    config = yaml.safe_load(Path(args.config).read_text())
-    print(json.dumps(smoke_test(config) if args.smoke else prepare_checkpoint(config),indent=2))
+    if args.worker:
+        _worker_task(args.worker)
+    else:
+        config = yaml.safe_load(Path(args.config).read_text())
+        print(json.dumps(smoke_test(config) if args.smoke else prepare_checkpoint(config),indent=2))

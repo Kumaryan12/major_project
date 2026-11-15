@@ -7,6 +7,7 @@ import joblib
 import numpy as np
 import pytest
 import yaml
+from types import SimpleNamespace
 from sklearn.naive_bayes import GaussianNB
 
 from mi_localization import tabpfn_backend as backend, tabpfn_study as study, tabpfn_report as report
@@ -57,6 +58,30 @@ def test_prior_correction_uses_training_counts_and_keeps_all_classes():
         backend.balance(p,np.array([0,0]),2)
 
 
+def test_worker_boundary_keeps_training_and_queries_separate(tmp_path,monkeypatch):
+    cfg=yaml.safe_load((Path(__file__).resolve().parents[1]/"configs/tabpfn_v2.yaml").read_text())
+    X=np.arange(24,dtype=float).reshape(8,3);y=np.repeat([0,1],4);query=np.ones((2,3))*100
+    modes=[]
+    def fake_process(command,**kwargs):
+        assert command[-2]=="--worker" and kwargs["env"]["OMP_NUM_THREADS"]==str(cfg["torch_threads"])
+        task=json.loads(Path(command[-1]).read_text());modes.append(task["mode"])
+        with np.load(task["arrays"]) as arrays:
+            np.testing.assert_array_equal(arrays["query"],query)
+            if task["mode"]=="fit":
+                np.testing.assert_array_equal(arrays["training"],X);np.testing.assert_array_equal(arrays["labels"],y)
+                assert task["seed"]==42
+            else:
+                assert arrays.files==["query"] and task["state_path"]==str((tmp_path/"model.tabpfn_fit").resolve())
+        np.save(task["probabilities"],np.tile([.4,.6],(len(query),1)))
+        Path(task["audit"]).write_text(json.dumps({"classes":[0,1]}))
+        return SimpleNamespace(returncode=0,stdout="",stderr="")
+    monkeypatch.setattr(backend.subprocess,"run",fake_process)
+    p,audit=backend.run_fit(cfg,42,X,y,query,tmp_path/"model.tabpfn_fit")
+    restored,_=backend.run_predict(cfg,tmp_path/"model.tabpfn_fit",query)
+    assert modes==["fit","predict"] and audit["classes"]==[0,1]
+    np.testing.assert_array_equal(p,restored)
+
+
 def test_nested_benchmark_raw_contexts_reuse_resume_and_complete_report(tmp_path,monkeypatch):
     stability_cfg,ref_cfg,source=stability_fixture(tmp_path)
     tensor_feature_screen.run_screen(source)
@@ -95,14 +120,23 @@ def test_nested_benchmark_raw_contexts_reuse_resume_and_complete_report(tmp_path
         calls.append(key)
         return FakeContext(config,seed,X,y)
     monkeypatch.setattr(study,"prepare",tracked_prepare)
-    monkeypatch.setattr(backend,"fit_context",fake_fit)
+    def fake_run(config,seed,X,y,query,state_path=None):
+        model=fake_fit(config,seed,X,y)
+        if state_path is not None:
+            joblib.dump(model,state_path)
+        return model.estimator.predict_proba(query),fake_backend_audit(model,config)
+    def fake_predict(config,state_path,query):
+        model=joblib.load(state_path)
+        return model.estimator.predict_proba(query),fake_backend_audit(model,config)
+    monkeypatch.setattr(backend,"run_fit",fake_run)
+    monkeypatch.setattr(backend,"run_predict",fake_predict)
     root=study.run_study(cfg)
     summary=report.summarize_study(cfg)
     assert summary["total_fit_context_slots"]==57 and summary["reused_xgboost_inner_fits"]==24
     assert summary["new_tabpfn_inner_context_fits"]==24 and summary["new_tabpfn_outer_context_fits"]==6
     assert summary["new_xgboost_outer_fits"]==3 and summary["matching_reference_outer_predictions"]==3
     assert len(calls)==30 and len(summary["metrics"])==3 and len(summary["contrasts"])==3
-    monkeypatch.setattr(backend,"fit_context",lambda *a,**k:pytest.fail("Completed contexts must resume"))
+    monkeypatch.setattr(backend,"run_fit",lambda *a,**k:pytest.fail("Completed contexts must resume"))
     monkeypatch.setattr(study.prior,"fit_selected",lambda *a,**k:pytest.fail("Completed tree control must resume"))
     assert study.run_study(cfg)==root and report.summarize_study(cfg)==summary
     with pytest.raises(ValueError,match="changed"):

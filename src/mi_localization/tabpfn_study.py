@@ -123,11 +123,10 @@ def pfn_inner(data,config,scope,root,fold,inner,candidate_id,candidate,train,val
         values = read_probabilities(checkpoint,audit,valid,len(source["classes"]))
     else:
         X = features[candidate["family"]]
-        model = backend.fit_context(config,seed,X[train][:,selector.selected],y[train])
-        values = {"tabpfn":backend.predict(model,X[valid][:,selector.selected],config)}
+        raw_p,actual = backend.run_fit(config,seed,X[train][:,selector.selected],y[train],X[valid][:,selector.selected])
+        values = {"tabpfn":raw_p}
         values["tabpfn_balanced"] = backend.balance(values["tabpfn"],y[train],len(source["classes"]))
-        audit = dict(expected,backend=backend.settings_audit(model,config),checkpoint_sha256=save_probabilities(checkpoint,valid,**values))
-        del model
+        audit = dict(expected,backend=actual,checkpoint_sha256=save_probabilities(checkpoint,valid,**values))
     check_backend(audit["backend"],selector,len(source["classes"]),config,seed)
     if set(values)!={"tabpfn","tabpfn_balanced"} or not np.allclose(values["tabpfn_balanced"],backend.balance(values["tabpfn"],y[train],len(source["classes"])),rtol=1e-12,atol=1e-12):
         raise ValueError("TabPFN class-prior correction changed")
@@ -191,15 +190,11 @@ def run_study(config):
                     model.update(arm=arm,study_fingerprint=scope["study_fingerprint"],fold=fold)
                     extra = {}
                 else:
-                    estimator = backend.fit_context(config,seed,X[train][:,selector.selected],y[train])
-                    raw_p = backend.predict(estimator,X[test][:,selector.selected],config)
+                    raw_p,actual = backend.run_fit(config,seed,X[train][:,selector.selected],y[train],X[test][:,selector.selected],state_path)
                     p = backend.balance(raw_p,y[train],len(source["classes"])) if arm=="tabpfn_balanced" else raw_p
-                    actual = backend.settings_audit(estimator,config)
                     check_backend(actual,selector,len(source["classes"]),config,seed)
-                    backend.save(estimator,state_path)
                     model = {"selector":selector,"candidate":candidate,"arm":arm,"study_fingerprint":scope["study_fingerprint"],"fold":fold,"backend":actual}
                     extra = {"backend":actual,"fit_state_sha256":file_hash(state_path)}
-                    del estimator
                 temporary = model_path.with_suffix(".partial.joblib")
                 joblib.dump(model,temporary);temporary.replace(model_path)
                 audit = dict(expected,**extra,model_sha256=file_hash(model_path),checkpoint_sha256=save_probabilities(checkpoint,test,probabilities=p))

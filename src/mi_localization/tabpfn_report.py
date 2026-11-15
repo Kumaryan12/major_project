@@ -102,14 +102,11 @@ def summarize_study(config):
                 state = root/f"model_{fold:02d}_{arm}.tabpfn_fit"
                 if audit["fit_state_sha256"]!=file_hash(state):
                     raise ValueError("TabPFN fitted context state changed")
-                estimator = study.backend.load(state,config)
-                actual = study.backend.settings_audit(estimator,config)
+                raw,actual = study.backend.run_predict(config,state,X[test][:,selector.selected])
                 study.check_backend(actual,selector,len(source["classes"]),config,seed)
                 if actual!=audit["backend"] or actual!=model["backend"]:
                     raise ValueError("Restored TabPFN inference settings changed")
-                raw = study.backend.predict(estimator,X[test][:,selector.selected],config)
                 reproduced = study.backend.balance(raw,y[train],len(source["classes"])) if arm=="tabpfn_balanced" else raw
-                del estimator
                 outer_pfn += 1
             if not np.allclose(reproduced,p,rtol=1e-6,atol=1e-7) or not np.array_equal(reproduced.argmax(1),p.argmax(1)) or audit["patient_metrics"]!=metric_bundle(y[test],p,source["classes"]):
                 raise ValueError("Saved TabPFN benchmark model does not reproduce outer predictions")
