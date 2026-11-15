@@ -331,6 +331,21 @@ tail -f tmp/tensor_feature_screen.log
 
 Configuration: `configs/tensor_features.yaml`; isolated outputs: `results/tensor_features_v1/`. The next final model will use a frozen selection procedure refitted separately within each outer fold. Do not construct a global feature mask from all patients before evaluation.
 
+## Signed tensor refinement and final classifier comparison
+
+The [next fixed comparison](docs/tensor_refinement_plan.md) tests global signed DCT ranks 32/64 with denoised-only controls, plus native-wavelet signed time cores at ranks 16/32. An exact check must reproduce the original DCT16 features. Per-view waveform reconstruction and fixed-window errors audit what compression loses. Adding coefficients is not assumed to improve diagnostic information.
+
+Linear and shallow-tree classifiers each compare statistics, the original feature-selection procedure, and its expanded tensor candidate pool. All feature/model selection remains inside inner training folds before a fresh outer refit. The six predefined procedures require **2,820 fit slots**, including 660 verified reused linear probes and **2,160 new fits**. No improvement is claimed before complete validated outer results.
+
+```bash
+.venv/bin/python -m mi_localization.tensor_refinement_bank
+.venv/bin/python -m mi_localization.tensor_refinement_study
+.venv/bin/python -m mi_localization.tensor_refinement_report
+tail -f tmp/tensor_refinement_run.log
+```
+
+Config: `configs/tensor_refinement.yaml`; new outputs: `results/tensor_refinement_v1/`. The earlier neural sweep remains stopped with checkpoints preserved. These PTB folds remain development data; matched controls and later independent confirmation are required for improvement claims.
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:

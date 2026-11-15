@@ -1,0 +1,13 @@
+seed: 42
+split_seed: 42
+source_config: configs/tensor_features.yaml
+refined_bank_dir: data/processed/tensor_refinement_v1
+output_dir: results/tensor_refinement_v1
+global_ranks: [32, 64]
+wavelet_ranks: [16, 32]
+chunk_size: 64
+learners: [linear, tree]
+tree_depths: [2, 3]
+tree_estimators: 100
+tree_learning_rate: 0.05
+bootstrap_draws: 5000
