@@ -30,6 +30,7 @@ REPORTS = {
     "healthy_reference_deviation": "results/deviation_vcg_v1/complete/REPORT.md",
     "ordered_signatures": "results/signature_vcg_v1/complete/REPORT.md",
     "consecutive_beats_rr": "results/neural_chronological_v1/complete/REPORT.md",
+    "nested_beat_lengths": "results/neural_chronological_lengths_v1/complete/REPORT.md",
 }
 
 
@@ -58,6 +59,9 @@ def inventory(root=ROOT):
     chronology = root/"results/neural_chronological_v1/complete"
     chronology_summary = read_json(chronology/"summary.json") if (chronology/"summary.json").is_file() else {}
     queue_progress = root/"results/neural_chronological_v1/queue/progress.json"
+    lengths = root/"results/neural_chronological_lengths_v1/complete"
+    length_summary = read_json(lengths/"summary.json") if (lengths/"summary.json").is_file() else {}
+    length_queue = root/"results/neural_chronological_lengths_v1/queue/progress.json"
     return {
         "repository_revision": revision,
         "interpreter": sys.version.split()[0],
@@ -87,12 +91,22 @@ def inventory(root=ROOT):
             "live_process_status": "Not checked. Saved progress does not establish a live process or transfer it to another computer.",
         },
         "chronological_study": {
+            "scope": "Superseded fixed-length proposal; no full fit was started",
             "completed_fit_audit_files": len(list(chronology.glob("inner_*.json")))+len(list(chronology.glob("outer_*.json"))),
             "planned_fits": 480, "outer_evaluation_files": len(list(chronology.glob("outer_*.json"))), "planned_outer_evaluations": 120,
             "completed_summary_and_report_present": chronology_summary.get("complete") is True and (chronology/"REPORT.md").is_file(),
             "saved_training_progress": read_json(chronology/"progress.json") if (chronology/"progress.json").is_file() else None,
             "saved_queue_progress": read_json(queue_progress) if queue_progress.is_file() else None,
             "live_process_status": "Not checked. A saved queue, active training and a completed result are different states.",
+        },
+        "chronological_length_study": {
+            "candidate_lengths": [4, 8, 16], "planned_fits": 1200, "planned_outer_evaluations": 120,
+            "completed_fit_audit_files": len(list(lengths.glob("inner_*.json")))+len(list(lengths.glob("outer_*.json"))),
+            "outer_evaluation_files": len(list(lengths.glob("outer_*.json"))),
+            "completed_summary_and_report_present": length_summary.get("complete") is True and (lengths/"REPORT.md").is_file(),
+            "saved_training_progress": read_json(lengths/"progress.json") if (lengths/"progress.json").is_file() else None,
+            "saved_queue_progress": read_json(length_queue) if length_queue.is_file() else None,
+            "live_process_status": "Not checked by this inventory. Use python scripts/live_status.py --watch for live PID/command checks.",
         },
     }
 
@@ -130,11 +144,17 @@ def main():
         print("Last saved progress: "+json.dumps(signature["saved_progress"], ensure_ascii=True))
     print(signature["live_process_status"])
     chronology = value["chronological_study"]
-    print(f"\nChronological saved fits: {chronology['completed_fit_audit_files']}/{chronology['planned_fits']}")
+    print(f"\nSuperseded fixed-length saved fits: {chronology['completed_fit_audit_files']}/{chronology['planned_fits']}")
     print(f"Completed summary and report present: {chronology['completed_summary_and_report_present']}")
     for key in ("saved_queue_progress", "saved_training_progress"):
         if chronology[key] is not None: print(key+": "+json.dumps(chronology[key], ensure_ascii=True))
     print(chronology["live_process_status"])
+    lengths = value["chronological_length_study"]
+    print(f"\nCurrent 4/8/16-length saved fits: {lengths['completed_fit_audit_files']}/{lengths['planned_fits']}")
+    print(f"Completed summary and report present: {lengths['completed_summary_and_report_present']}")
+    for key in ("saved_queue_progress", "saved_training_progress"):
+        if lengths[key] is not None: print(key+": "+json.dumps(lengths[key], ensure_ascii=True))
+    print(lengths["live_process_status"])
 
 
 if __name__ == "__main__":

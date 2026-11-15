@@ -1,5 +1,7 @@
 # Consecutive VCG beats and RR timing
 
+**Superseded before full training:** the user requested a 4/8/16 comparison. The active queued protocol is now [nested length selection](chronological_lengths_plan.md), with a new config/output namespace and live monitor. The fixed-four setup below remains historical context; its full sweep was never started.
+
 Implemented 15 November 2026, after the user approved testing true chronology as the next patient-aggregation experiment. This study is separate from the active path-signature comparison and the older paused multiview sweep. Full execution is queued behind the signature study's complete independent verification. There is no new classification score at implementation time.
 
 The user clarified that the desired group is **four consecutive heartbeats within one recording**. The primary configuration was changed from 16 to four before any full chronological fit or study manifest existed. The waiting queue was stopped and re-established; no active signature fit was changed. The 16-beat alternative remains in [chronological_vcg_16.yaml](../configs/chronological_vcg_16.yaml) under a separate, unrun output namespace. Its earlier finite hardware smoke is historical evidence, not a completed 16-versus-four performance comparison.

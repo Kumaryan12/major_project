@@ -1,0 +1,289 @@
+{
+  "complete": true,
+  "claim": "Finite device/gradient/restore checks, not classification results",
+  "scope": {
+    "config": {
+      "base_config": "configs/chronological_vcg.yaml",
+      "output_dir": "results/neural_chronological_lengths_v1",
+      "lengths": [
+        4,
+        8,
+        16
+      ],
+      "beat_slots_per_epoch": 8192,
+      "beat_slots_per_batch": 128,
+      "inference_beat_slots": 256,
+      "length_selection": "paired_inner_mean"
+    },
+    "base_protocol": {
+      "config": {
+        "seed": 42,
+        "split_seed": 42,
+        "training_seeds": [
+          42,
+          123,
+          2026
+        ],
+        "paper_config": "configs/paper.yaml",
+        "beats_path": "data/processed/beats.csv",
+        "bank_dir": "data/processed/neural_vcg_v1",
+        "sequence_bank_dir": "data/processed/chronological_vcg_v1",
+        "folds_path": "configs/patient_folds.csv",
+        "output_dir": "results/neural_chronological_v1",
+        "classes": [
+          "AMI",
+          "ALMI",
+          "ASMI",
+          "IMI",
+          "ILMI",
+          "HC"
+        ],
+        "outer_splits": 10,
+        "inner_splits": 3,
+        "arms": [
+          "mean_rr",
+          "ordered_no_rr",
+          "ordered_rr",
+          "shuffled_rr"
+        ],
+        "device": "auto",
+        "torch_threads": 2,
+        "widths": [
+          16,
+          32,
+          64
+        ],
+        "pool_bins": 4,
+        "dropout": 0.2,
+        "rr_embedding": 8,
+        "hidden_size": 32,
+        "sequence_length": 4,
+        "windows_per_epoch": 2048,
+        "batch_size": 32,
+        "inference_batch_size": 64,
+        "max_epochs": 25,
+        "patience": 6,
+        "learning_rate": 0.001,
+        "weight_decay": 0.01,
+        "bootstrap_draws": 5000
+      },
+      "source": {
+        "source": {
+          "fingerprint": "f44e31cff8230dc5ce971997f80ee0d0d921eb5f72a8ab75d0327692271192e7",
+          "files": {
+            "manifest.json": "b939ab2bf76e25d7569152ac60005f61b3fc99533b028a6413b1ee9b267f0b2c",
+            "waveforms.npy": "118fbfb2d8b2fbc2c32ba6449e301874cc1a79c7ad2d8692652129c224f91fba",
+            "y.npy": "e0aca562cb4beabb0d59119035baf5b997ffc678a0cd21822751f393339ef7f8",
+            "groups.npy": "729880b095d4a225551db982d107754df9ca442f0eafee2145a61cd5db963ab0"
+          },
+          "beats_sha256": "277e2f1498d54db23061c3bb60969f05ce506b941d9dfa7c07e835713950358b",
+          "paper_sha256": "5aea297dd03a5a214de3fc8142b77c58a9e9074e6dbf26288499f360e36892b0",
+          "n_beats": 55863,
+          "n_patients": 164,
+          "n_records": 391,
+          "shape": [
+            55863,
+            3,
+            651
+          ]
+        },
+        "metadata_manifest_sha256": "169f7a631ed8267cc8bc69d232aa5750a57a14ba23a469db48e43a8f448be223",
+        "metadata_sha256": "aad1348d454d7bb4509fb71456ce40426d3514b7bde077f77544ea268bad09a9",
+        "bank_fingerprint": "cdca321641ee810018c17efb2c42005e8a091779fc74fef238709cf9ceb5d263"
+      },
+      "claim_scope": "Chronological VCG development on repeatedly inspected patient folds; detector-based RR, no independent confirmation or demonstrated SOTA.",
+      "folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625",
+      "code_sha256": "aa6fd7194971c997f384ab9d3e9e7adc851bc1e7a3bd87e58ba8fc9e98f36061",
+      "model_code_sha256": "19829997fa6fbef0a63f2103add469dcc719dfeabe83eff3d07dea5152527528",
+      "metadata_code_sha256": "88ef4fdcbd2ca0b116c76dbc12cf954e8b0474eb86c17cfbd38b376437dee864",
+      "neural_code_sha256": "7aa44cba432693dca59ccb2587d1f3bd2c5cee195ed74c4259c456de1fa56f97",
+      "metric_helper_code_sha256": "fba6e8a6669855a9849072b5c8909bb4a8192fc07998243f6dd43b1fdcc21a8f",
+      "runtime": {
+        "torch": "2.15.0",
+        "numpy": "2.5.3",
+        "platform": "macOS-26.5-arm64-arm-64bit",
+        "device": "mps",
+        "deterministic_kernels": false
+      },
+      "study_fingerprint": "0ff6bdb65ec1844232b41ee2a3877211aa5da88369e9d5abf6333fbb264a89f6"
+    },
+    "claim_scope": "Nested chronological length selection on repeatedly inspected PTB patient folds; shared length chosen symmetrically from ordered/shuffled inner F1, not outer scores or independent confirmation.",
+    "code_sha256": "08c2198bf51ce71b4cc0becf594b55e2c750439567b6172717b6a4be1158d0bd",
+    "legacy_study_code_sha256": "aa6fd7194971c997f384ab9d3e9e7adc851bc1e7a3bd87e58ba8fc9e98f36061",
+    "study_fingerprint": "f0395be14a09abb1cd54036f276ad0adce6944e93e39d65e215cf170c89dad39"
+  },
+  "device": "mps",
+  "lengths": {
+    "4": {
+      "fit": {
+        "seed": 42,
+        "arm": "ordered_rr",
+        "initial_state_sha256": "496c8f06a45b46b964ee475f2b295b0b937a1061337edc4028e4b1627f0f44bd",
+        "parameter_count": 88206,
+        "normalization": {
+          "wave": {
+            "wave_mean_": [
+              0.010765615850687027,
+              0.012401838786900043,
+              0.000274468504358083
+            ],
+            "wave_scale_": [
+              0.36052191257476807,
+              0.7089307308197021,
+              0.41850635409355164
+            ],
+            "stat_mean_": [],
+            "stat_scale_": []
+          },
+          "rr_mean_seconds": 0.8163223622010368,
+          "rr_scale_seconds": 0.2926977661173204,
+          "training_patients": 147,
+          "fit_beats": 51073,
+          "valid_rr": 50716
+        },
+        "selected_epoch": 1,
+        "best_validation_macro_f1": null,
+        "history": [
+          {
+            "epoch": 1,
+            "training_loss": 1.842280387878418,
+            "window_plan_sha256": "c128d27d8a964b428b5a385e12e15cd93d16c3a0130d8cd20b6934a3a4b58022",
+            "token_order_sha256": "8b6d9d503bdd7de69c38f99ba1e70141fdc0d28c00902fb16b6390cabce26a61",
+            "windows": 8,
+            "valid_beat_presentations": 32,
+            "nominal_beat_slots": 32,
+            "nonidentity_window_orders": 0
+          }
+        ],
+        "patient_overlap": 0,
+        "train_patients": 147,
+        "validation_patients": 0
+      },
+      "coverage": {
+        "query_patients": 2,
+        "query_records": 5,
+        "query_beats": 695,
+        "windows": 175,
+        "coverage_sha256": "090221f22e51f5ce9815031a0447d8c9f9bb8d53f16e14cd4b579edc62a6d73b",
+        "plan_sha256": "ede35eb4f7f29d42e8f592dff0fb79239c4fee21887c268bf9c458ce18050c9e",
+        "all_beats_exactly_once": true,
+        "token_order_sha256": "68ed4f33a521273e11fa2948ebbcd95c4fbce837abea4b98b2cac1d18c93e8ee"
+      },
+      "restore_verified": true
+    },
+    "8": {
+      "fit": {
+        "seed": 42,
+        "arm": "ordered_rr",
+        "initial_state_sha256": "496c8f06a45b46b964ee475f2b295b0b937a1061337edc4028e4b1627f0f44bd",
+        "parameter_count": 88206,
+        "normalization": {
+          "wave": {
+            "wave_mean_": [
+              0.010765615850687027,
+              0.012401838786900043,
+              0.000274468504358083
+            ],
+            "wave_scale_": [
+              0.36052191257476807,
+              0.7089307308197021,
+              0.41850635409355164
+            ],
+            "stat_mean_": [],
+            "stat_scale_": []
+          },
+          "rr_mean_seconds": 0.8163223622010368,
+          "rr_scale_seconds": 0.2926977661173204,
+          "training_patients": 147,
+          "fit_beats": 51073,
+          "valid_rr": 50716
+        },
+        "selected_epoch": 1,
+        "best_validation_macro_f1": null,
+        "history": [
+          {
+            "epoch": 1,
+            "training_loss": 1.8478370904922485,
+            "window_plan_sha256": "9182bd7d89421f6c320f930735ad0d65541c6a64ec59a8180c0b554958a5186a",
+            "token_order_sha256": "4f4ef50c73f1d216a70503ff6bc871e28eb3a6fdc741b993536fbf1ec5883a64",
+            "windows": 8,
+            "valid_beat_presentations": 64,
+            "nominal_beat_slots": 64,
+            "nonidentity_window_orders": 0
+          }
+        ],
+        "patient_overlap": 0,
+        "train_patients": 147,
+        "validation_patients": 0
+      },
+      "coverage": {
+        "query_patients": 2,
+        "query_records": 5,
+        "query_beats": 695,
+        "windows": 90,
+        "coverage_sha256": "090221f22e51f5ce9815031a0447d8c9f9bb8d53f16e14cd4b579edc62a6d73b",
+        "plan_sha256": "c1602682a71ba9a92aef65047ad88d6b14818017ab6320ee14c330e21b12b156",
+        "all_beats_exactly_once": true,
+        "token_order_sha256": "34721fc3ccb737edc2b275dd88a8a38189a8a57007ec06413584fcdcba8a592e"
+      },
+      "restore_verified": true
+    },
+    "16": {
+      "fit": {
+        "seed": 42,
+        "arm": "ordered_rr",
+        "initial_state_sha256": "496c8f06a45b46b964ee475f2b295b0b937a1061337edc4028e4b1627f0f44bd",
+        "parameter_count": 88206,
+        "normalization": {
+          "wave": {
+            "wave_mean_": [
+              0.010765615850687027,
+              0.012401838786900043,
+              0.000274468504358083
+            ],
+            "wave_scale_": [
+              0.36052191257476807,
+              0.7089307308197021,
+              0.41850635409355164
+            ],
+            "stat_mean_": [],
+            "stat_scale_": []
+          },
+          "rr_mean_seconds": 0.8163223622010368,
+          "rr_scale_seconds": 0.2926977661173204,
+          "training_patients": 147,
+          "fit_beats": 51073,
+          "valid_rr": 50716
+        },
+        "selected_epoch": 1,
+        "best_validation_macro_f1": null,
+        "history": [
+          {
+            "epoch": 1,
+            "training_loss": 1.8505511283874512,
+            "window_plan_sha256": "f8d153294ea61a6095391e929dcd718ac4e1bcbb7cc8ac41800b641eb973ec7d",
+            "token_order_sha256": "8fd87dcfc29488a23fc4c01400292ade8a5d99b466b82f8c27b1dcee0d9350f7",
+            "windows": 8,
+            "valid_beat_presentations": 128,
+            "nominal_beat_slots": 128,
+            "nonidentity_window_orders": 0
+          }
+        ],
+        "patient_overlap": 0,
+        "train_patients": 147,
+        "validation_patients": 0
+      },
+      "coverage": {
+        "query_patients": 2,
+        "query_records": 5,
+        "query_beats": 695,
+        "windows": 46,
+        "coverage_sha256": "090221f22e51f5ce9815031a0447d8c9f9bb8d53f16e14cd4b579edc62a6d73b",
+        "plan_sha256": "c9f04dce9a8a16e79ea1fd710afb48ae90d1ebe26a12439e9b88761bfec0187e",
+        "all_beats_exactly_once": true,
+        "token_order_sha256": "98deb8fa3aa579231af6092de286530bdefafbc307e2c1562dc4b77e9b09e810"
+      },
+      "restore_verified": true
+    }
+  }
+}

@@ -2,6 +2,8 @@
 
 Implemented 15 November 2026. This is the next representation hypothesis after the healthy-reference recipe's provisional outputs did not show a gain. Training completion and validated scores are separate milestones; implementation alone establishes neither improvement nor SOTA.
 
+**Completed follow-up:** all 1,050 fits, 150 outer restorations and independent report checks passed. Mean macro F1: morphology **0.515 ± 0.004**, signed areas **0.497 ± 0.023**, endpoint polynomials **0.513 ± 0.032**, signature2 **0.480 ± 0.010**, signature3 **0.508 ± 0.002**. Signature3 minus morphology: **−0.007 [−0.083,+0.066]**, descriptive paired patient interval. The tested signature recipes did not demonstrate an improvement. [Validated report](../results/signature_vcg_v1/complete/REPORT.md). The next approved study is [4/8/16 consecutive-beat length selection](chronological_lengths_plan.md), without changing this completed protocol.
+
 ## Hypothesis and research basis
 
 Ordered interactions along a signed XYZ trajectory may make MI subtype differences easier for a small-sample classifier to learn than morphology compression or zero-lag covariance alone. Existing waveforms and DCT features already contain temporal information: signatures are a different inductive bias, not newly acquired information.

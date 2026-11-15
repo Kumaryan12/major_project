@@ -2,6 +2,8 @@
 
 Reviewed 15 November 2026. This overview separates the completed waveform benchmark from the feature-based route currently under evaluation. Read [CODEX_HANDOFF.md](CODEX_HANDOFF.md) for full history and [signature_vcg_plan.md](signature_vcg_plan.md) for the active protocol. No final signature classification score is available at this review.
 
+Follow-up: [signature verification completed](../results/signature_vcg_v1/complete/REPORT.md) without a demonstrated gain (signature3 0.508 versus morphology 0.515). The current approved protocol is [nested 4/8/16 consecutive-beat selection](chronological_lengths_plan.md). Descriptions below of signatures as pending are retained as the earlier review's context, not current run status.
+
 ## Problem and desired solution
 
 Given a new patient's measured Frank X/Y/Z vectorcardiogram, predict one of the dataset's six classes: anterior MI (AMI), anterior-lateral MI (ALMI), anterior-septal MI (ASMI), inferior MI (IMI), inferior-lateral MI (ILMI), or healthy control (HC). Here AMI names the dataset's anterior-location class; it is not being used as a generic abbreviation for every acute infarction.

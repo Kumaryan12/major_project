@@ -4,9 +4,9 @@ This repository is an end-to-end, reproducible reimplementation of Zhang et al.,
 
 **New collaborator or Codex session:** start with [the project handoff](docs/CODEX_HANDOFF.md), [Windows setup](docs/WINDOWS_SETUP.md), and [the ready-to-paste Codex prompt](docs/CODEX_START_PROMPT.txt). Run `python scripts/project_status.py` for a read-only inventory of local artifacts and saved experiment state. The historical presentation below predates the neural and later tensor experiments; use the handoff's evidence links for current completed results.
 
-**Current research phase:** [ordered VCG path signatures](docs/signature_vcg_plan.md), with matched morphology, signed-area and endpoint-polynomial controls. The previous [healthy-reference experiment](results/deviation_vcg_v1/complete/REPORT.md) is fully verified and did not demonstrate a gain. Signature classification results are pending until their own complete report passes verification.
+**Completed representation studies:** [ordered VCG path signatures](results/signature_vcg_v1/complete/REPORT.md) passed full verification but did not demonstrate a gain (signature3 mean 0.508 versus matched morphology 0.515). The [healthy-reference experiment](results/deviation_vcg_v1/complete/REPORT.md) also did not demonstrate a gain.
 
-**Approved next:** [four consecutive beats and RR timing](docs/chronological_vcg_plan.md), with matched ordered/shuffled GRU controls and a no-RR ablation. The implementation is tested and queued behind signature verification; it has no complete classification result yet.
+**Current research phase:** [4/8/16 consecutive beats and RR timing](docs/chronological_lengths_plan.md), with training-only shared length selection, matched ordered/shuffled GRU controls and a no-RR ablation. This supersedes the fixed-four queue before any full fit. Monitor locally with `python scripts/live_status.py --watch`; there is no completed chronological classification result yet.
 
 For an end-to-end explanation from the research problem through representations, training, patient-level evaluation and improvement opportunities, see the [pipeline overview](docs/PIPELINE_OVERVIEW.md).
 

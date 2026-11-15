@@ -95,6 +95,8 @@ Use the prepared Windows config path when rebuilding under a new namespace. Run 
 
 ## Approved next: consecutive beats and RR
 
+**Revised before full training:** the current protocol is [nested 4/8/16 length selection](chronological_lengths_plan.md), replacing the fixed-four queue. Use `chronology_lengths_study --smoke`, `chronology_lengths_study`, then `chronology_lengths_report`, with `--config` for the prepared Windows grid. The grid's `base_config` must point to the compatible Windows base configuration. Direct runner: `python scripts/run_chronological_lengths.py`; live monitor: `python scripts/live_status.py --watch`. Windows interpreter prefix is `.venv\Scripts\python.exe`. The new run has 1,200 fits and a separate output namespace. The older fixed-length commands below are retained as history, not the active queue.
+
 The [chronological study](chronological_vcg_plan.md) uses the existing denoised beat bank plus original beat metadata and patient folds. It does not need signature features or a completed signature run to train on a separate prepared machine. The signature dependency queue is only our current-machine sequencing policy.
 
 On Windows, after source banks and a fresh compatible config/output namespace are ready:

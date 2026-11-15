@@ -1,0 +1,9 @@
+base_config: configs/chronological_vcg.yaml
+output_dir: results/neural_chronological_lengths_v1
+lengths: [4, 8, 16]
+beat_slots_per_epoch: 8192
+beat_slots_per_batch: 128
+inference_beat_slots: 256
+length_selection: paired_inner_mean
+# Shared length maximizes mean inner patient F1 across ordered_rr/shuffled_rr.
+# All four outer arms use that same length; no outer-score length selection.
