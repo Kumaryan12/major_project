@@ -291,6 +291,16 @@ The [shared-label experiment](docs/territory_vcg_plan.md) keeps the original six
 
 Configuration: `configs/territory_vcg.yaml`. Separate outputs: `results/neural_territory_v1/complete/`. Three target seeds and ten frozen patient folds require 240 fits, retaining training-only normalization and inner-only stopping. No improvement is claimed before complete paired evaluation.
 
+## Data fidelity and within-record tensor exploration
+
+The [record-tensor feasibility study](docs/record_tensor_quality_plan.md) audits cross-beat agreement and prototypes original/template/residual views within one recording. All 391 records and 164 patients are retained. Median patient-level QRS agreement is already 0.9951; that is a morphology diagnostic, not clinical quality or SNR. A prototype keeps all original 651-sample XYZ values through X, median template M and residual X−M. Residuals can contain genuine physiological variation and are never labeled as noise.
+
+```bash
+.venv/bin/python -m mi_localization.record_tensor_audit
+```
+
+The [audit report](results/neural_record_tensor_v1/audit/REPORT.md) and [proposed controls](docs/record_tensor_quality_plan.md) distinguish added capacity, template averaging, residual information and later temporal alignment/quality weighting. This is an implemented feasibility audit and local prototype, not a trained new tensor classifier or demonstrated improvement. It does not alter the shared-label experiment, labels, source signals or patient folds.
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:
