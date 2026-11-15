@@ -2,6 +2,14 @@
 
 The next stage is **construct and audit tensors → extract candidate feature families → select inside training patients → freeze the procedure → evaluate final classifiers**. The long six-model neural comparison was stopped on 15 November 2026 to follow this direction. Its checkpoints remain local and resumable: seed 42 has six completed model/fold checkpoints for outer fold 1 and the original baseline for outer fold 2. Those partial results are not a final comparison. Do not restart `run_multiview_vcg.sh` while this feature-design stage is running.
 
+## First completed construction and screen
+
+The [construction audit](../results/tensor_features_v1/bank_audit/REPORT.md) retains all 164 patients, 391 recordings and 55,863 beats. Maximum additive tensor reconstruction error is **6.40×10⁻¹² mV**, with zero nonfinite features. Mean record-level DCT energy retention, averaged over views/leads/beats, is **0.699**. This is not a diagnostic retention rate: the complete tensor reconstructs the signal, while the compact DCT features lose detail.
+
+All **660 inner probes completed** in the [screen report](../results/tensor_features_v1/screen/REPORT.md). Signed morphology was selected in **7/10** overlapping outer-training contexts and the combined pool in **3/10**. Five contexts selected 24 features and five selected 64. These are initial training-only candidate packages, not a universally best feature set. Relations alone were not the winning family; this does not show that covariance/correlation is useless under every classifier or parameterization. The current evidence favors retaining signed morphology in the next comparison rather than assuming that adding relational axes is sufficient.
+
+No outer-test prediction or final classifier score was produced. Do not compare optimized inner scores to the historical 0.550 outer result. A complete cached-resume validation reconstructs every training selector and checks its scaling/ranking/selection audit without refitting probe classifiers. Test suite: **167 passed**, including exact feature-order, amplitude/covariance behavior, constant signals, record aggregation, patient separation, resumption and corruption guards.
+
 ## Stage 1: explicit, auditable tensors
 
 Use the existing five physical views: raw R, denoised D, recording median M, beat residual D−M and filter residual R−D. M uses only the same recording's unlabeled beats. All held-out recording beats are available for its own template, so this is offline within-exam processing. No cohort/label-conditioned template dictionary is learned. Both residuals may contain genuine pathology; neither is certified noise.
@@ -44,6 +52,8 @@ The screen answers whether representations contain information accessible to thi
 ## Stage 4: final training after inspection
 
 Review the tensor audit, candidate results, retained dimensions and feature-name occurrences. Freeze the selection procedure, then compare final classifiers against matched controls in outer patient folds. Every fold must retain its own scaler, selector and any learned PCA/Tucker basis. Do not combine selected lists into a global feature mask and reuse it on these patients. Feature occurrence across highly overlapping training contexts is descriptive; it does not establish independent stability or clinical biomarkers.
+
+The saved outer-training package is for that fold's final refit. If a new classifier needs further inner tuning, refit scaling and supervised feature selection inside each new inner-training split; do not reuse the outer-training mask on its own inner-validation patients.
 
 This stage implements construction, audit and training-only selection. It does **not** automatically restart the expensive neural sweep, train a final classifier on outer patients, or claim independent confirmation. Favorable later results require a fixed new-cohort validation. No tensor can guarantee a target F1 by adding axes alone.
 

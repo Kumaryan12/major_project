@@ -321,7 +321,7 @@ Configuration: `configs/multiview_vcg.yaml`; isolated outputs: `results/neural_m
 
 The broad multiview neural run was **stopped with checkpoints preserved** to follow the [feature-first workflow](docs/tensor_feature_design_plan.md). Build and audit a **view × XYZ × wavelet-band × original-time** tensor, compare signed morphology/multiscale/XYZ-relation feature families with existing statistics, then select compact feature packages inside patient-separated training folds before final classifier evaluation.
 
-The screen uses 22 predefined candidates and 660 small inner probe fits. It makes **no outer-test predictions** and reports no final macro F1. Learned scaling, feature ranking and correlation pruning use training patients only. Optimized inner scores and feature frequencies are development diagnostics; they do not establish an improvement over the historical 0.550 baseline.
+The [first screen completed](results/tensor_features_v1/screen/REPORT.md): 22 predefined candidates and **660 small inner probe fits**, with **zero outer-test predictions**. Signed morphology was selected in 7/10 training contexts and the combined pool in 3/10, retaining 24 or 64 features per context. Learned scaling, feature ranking and correlation pruning use training patients only. Optimized inner scores and feature frequencies are development diagnostics; they do not establish an improvement over the historical 0.550 baseline. The complete tensor reconstructs its input within 6.40×10⁻¹² mV; selected summaries remain lossy.
 
 ```bash
 .venv/bin/python -m mi_localization.tensor_feature_bank
