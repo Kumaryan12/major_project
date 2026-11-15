@@ -348,6 +348,20 @@ tail -f tmp/tensor_refinement_run.log
 
 Config: `configs/tensor_refinement.yaml`; new outputs: `results/tensor_refinement_v1/`. The earlier neural sweep remains stopped with checkpoints preserved. These PTB folds remain development data; matched controls and later independent confirmation are required for improvement claims.
 
+## Feature-selection reliability in a fixed tensor pool
+
+The [patient-bootstrap experiment](docs/feature_stability_plan.md) keeps the existing signed-morphology and combined representations and compares original ANOVA selection, bootstrap frequency consensus, and consensus over corresponding feature groups across views. Each training partition uses 64 class-stratified patient resamples plus a separate 32-resample support audit. No new tensors or patients are added.
+
+The same eight family/budget/model candidates are evaluated for each selector and learner inside patient-separated folds. There are **1,500 classifier fit slots**, including 480 verified prior inner fits and **1,020 new fits**. All 80 resampling caches are independently replayed during final validation. Support under resampling is reported separately from patient macro F1; no gain is claimed before complete outer evaluation.
+
+```bash
+.venv/bin/python -m mi_localization.stability_study
+.venv/bin/python -m mi_localization.stability_report
+tail -f tmp/feature_stability_run.log
+```
+
+Configuration: `configs/feature_stability.yaml`; isolated outputs: `results/feature_stability_v1/`. Bootstrap draws keep repeated patients' multiplicity and never include validation/test patients. These development folds do not provide independent confirmation or formal stability-selection error guarantees.
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:
