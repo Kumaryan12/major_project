@@ -165,4 +165,3 @@ class ConsensusSelector:
             "bootstrap_cache_key":self.cache_key,"bootstrap_cache_sha256":self.cache_sha256,
             "bootstrap_replicates":self.bootstrap_replicates,"audit_replicates":self.audit_replicates,
             "sampling_scope_sha256":self.draws_sha256}
-
