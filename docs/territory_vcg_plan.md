@@ -1,5 +1,11 @@
 # Shared-label auxiliary supervision: isolated VCG test
 
+## Completed result and decision
+
+All **240 fits completed**. The [validated report](../results/neural_territory_v1/complete/REPORT.md) gives matched CE **0.550 ± 0.040** and shared descriptors **0.538 ± 0.026** patient macro F1 (mean ± sample SD across all three seeds). Mean paired difference is **−0.012**, with descriptive patient interval **[−0.056, +0.032]**. Seed differences are −0.028, −0.008 and +0.001. AMI/ALMI class F1 decline while ILMI/HC improve; the redistribution does not establish an overall gain.
+
+Keep ordinary CE as the reference and leave this fixed auxiliary loss out of the next experiment. Continue the [raw/template/residual view comparison](multiview_vcg_plan.md) to test the original information-preserving tensor hypothesis. This result concerns the tested coefficient/codebook, not every possible multitask method.
+
 ## Why this next step
 
 The completed geometry screen did not establish an improvement over its own controls: linear adaptive geometry was 0.467 versus statistics 0.445 (difference interval −0.061 to +0.107), and tree statistics+geometry was 0.461 versus statistics 0.409 (−0.024 to +0.131). Strict automatic phase consensus covered only 23.2% of beats. These findings do not justify stacking an unvalidated geometry branch into the neural model or claiming a breakthrough.

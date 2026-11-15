@@ -1,0 +1,25 @@
+seed: 42
+split_seed: 42
+training_seeds: [42, 123, 2026]
+paper_config: configs/paper.yaml
+beats_path: data/processed/beats.csv
+bank_dir: data/processed/neural_vcg_v1
+raw_bank_dir: data/processed/neural_raw_v1
+template_bank_dir: data/processed/multiview_vcg_v1
+output_dir: results/neural_multiview_v1
+folds_path: configs/patient_folds.csv
+classes: [AMI, ALMI, ASMI, IMI, ILMI, HC]
+arms: [vcg, capacity_control, raw_denoised, template_only, template_residual, full_tensor]
+outer_splits: 10
+inner_splits: 3
+device: auto
+torch_threads: 2
+widths: [16, 32, 64]
+pool_bins: 4
+dropout: 0.2
+learning_rate: 0.001
+weight_decay: 0.01
+batch_size: 128
+samples_per_epoch: 8192
+max_epochs: 25
+patience: 6

@@ -289,7 +289,7 @@ The [shared-label experiment](docs/territory_vcg_plan.md) keeps the original six
 .venv/bin/python -m mi_localization.territory_study --status
 ```
 
-Configuration: `configs/territory_vcg.yaml`. Separate outputs: `results/neural_territory_v1/complete/`. Three target seeds and ten frozen patient folds require 240 fits, retaining training-only normalization and inner-only stopping. No improvement is claimed before complete paired evaluation.
+All **240 fits completed** in the [validated report](results/neural_territory_v1/complete/REPORT.md). Shared descriptors reached **0.538 ± 0.026 macro F1**, versus matched CE **0.550 ± 0.040**; mean paired difference **−0.012**, descriptive patient interval **[−0.056, +0.032]**. AMI and ALMI declined while ILMI and HC improved. This fixed auxiliary objective did not establish an overall gain; ordinary CE remains the reference. Configuration: `configs/territory_vcg.yaml`; outputs: `results/neural_territory_v1/complete/`.
 
 ## Data fidelity and within-record tensor exploration
 
@@ -299,7 +299,23 @@ The [record-tensor feasibility study](docs/record_tensor_quality_plan.md) audits
 .venv/bin/python -m mi_localization.record_tensor_audit
 ```
 
-The [audit report](results/neural_record_tensor_v1/audit/REPORT.md) and [proposed controls](docs/record_tensor_quality_plan.md) distinguish added capacity, template averaging, residual information and later temporal alignment/quality weighting. This is an implemented feasibility audit and local prototype, not a trained new tensor classifier or demonstrated improvement. It does not alter the shared-label experiment, labels, source signals or patient folds.
+The [audit report](results/neural_record_tensor_v1/audit/REPORT.md) and [proposed controls](docs/record_tensor_quality_plan.md) distinguish added capacity, template averaging, residual information and later temporal alignment/quality weighting. The feasibility audit itself does not establish a classification improvement. The next experiment implements the following matched controls.
+
+## Raw, template and residual VCG views
+
+The [multiview experiment](docs/multiview_vcg_plan.md) returns to the data-preserving tensor plan: **raw R, denoised D, recording median M, beat residual D−M, filter residual R−D**. All 164 patients, 391 recordings and 55,863 original beats are retained. The [bank audit](results/neural_multiview_v1/bank_audit/REPORT.md) verifies source matching and reconstruction. Median templates use only the same recording's unlabeled beats, including a held-out exam's own beats; this is offline within-exam context. Residuals can contain disease-related variation and are retained.
+
+Six predefined models compare original XYZ, duplicate-input capacity control, raw+denoised, template only, denoised+template+residual and all five views. Five-view models share 81,078 parameters and identical initial weights; the original has 78,198. Views are flattened into the input convolution, so this stage tests signal representation and record context, rather than a learned Tucker contraction. Full nested evaluation requires **720 fits** across three seeds and ten frozen patient folds, with training-only normalization and inner-only stopping. No classification improvement is established yet.
+
+```bash
+.venv/bin/python -m mi_localization.multiview_bank
+.venv/bin/python -m mi_localization.multiview_study
+.venv/bin/python -m mi_localization.multiview_report
+.venv/bin/python -m mi_localization.multiview_study --status
+tail -f tmp/multiview_vcg_run.log
+```
+
+Configuration: `configs/multiview_vcg.yaml`; isolated outputs: `results/neural_multiview_v1/`. Completed fits support guarded resumption. The optional `scripts/run_multiview_vcg.sh --publish` wrapper validates the complete report before publishing aggregate results. Alignment, quality weighting and phase geometry remain separate later ablations. These repeatedly inspected folds are development data; favorable results still need new-cohort confirmation.
 
 ## Reproduction boundaries
 
