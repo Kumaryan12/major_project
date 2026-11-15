@@ -266,6 +266,19 @@ Five prespecified models compare VCG alone, ECG alone, a capacity-matched VCG-on
 
 Configuration: `configs/paired_ecg_vcg.yaml`; separate output: `results/neural_paired_ecg_v1/`. Normalization and early stopping remain training-patient-only. Complete-record denoising is offline/noncausal; constant ECG leads are retained and a zero-threshold shrinkage identity avoids nonfinite coefficients. These repeatedly inspected PTB folds remain development data. Tensor basis: [low-rank bilinear pooling](https://arxiv.org/abs/1610.04325); this adaptation has no established novelty/SOTA claim.
 
+## VCG phase geometry: first utility screen
+
+The [geometry study](docs/geometry_vcg_plan.md) adds a VCG-only boundary audit, 78 physical loop/motion descriptors per beat and cached 3 × 7 × 32 phase tensors. It retains every original patient, label and R position and verifies exact agreement with the existing Frank crops. The first screen compares patient-aggregated wavelet statistics, fixed-window geometry, adaptive geometry and combined features using small regularized linear and shallow-tree models, with inner-only selection on the frozen patient folds.
+
+```bash
+.venv/bin/python -m pip install -e '.[neural,geometry,dev]'
+.venv/bin/python -m mi_localization.geometry_bank
+.venv/bin/python -m mi_localization.geometry_study
+.venv/bin/python -m mi_localization.geometry_study --report
+```
+
+The [boundary audit](results/neural_geometry_v1/boundary_audit/REPORT.md) accepted multi-axis estimates for 23.2% of beats; all others use a declared fallback. Coverage differs by class, and there are no independent boundary annotations. This is a feature utility test, not clinically validated delineation, a completed neural geometry branch or shared-territory auxiliary training. Configuration: `configs/geometry_vcg.yaml`; new outputs: `results/neural_geometry_v1/`. No improvement or target score is established by feature construction.
+
 ## Reproduction boundaries
 
 The paper specifies bior6.8 wavelet denoising, Pan-Tompkins R-peak detection, D3-D9 plus the original signal, rank `(3, 3, 8)`, 72 features, 500 trees, and random 10-fold beat CV. It does **not** publish its code or fully specify:

@@ -1,0 +1,26 @@
+seed: 42
+split_seed: 42
+paper_config: configs/paper.yaml
+beats_path: data/processed/beats.csv
+bank_dir: data/processed/neural_vcg_v1
+geometry_bank_dir: data/processed/geometry_vcg_v1
+output_dir: results/neural_geometry_v1
+folds_path: configs/patient_folds.csv
+classes: [AMI, ALMI, ASMI, IMI, ILMI, HC]
+outer_splits: 10
+inner_splits: 3
+workers: 2
+phase_points: 32
+# Full recordings are used, but all phase ends are capped before the next R.
+maximum_post_r_ms: 650
+next_r_guard_ms: 80
+fixed_offsets_ms: [-60, 80, 140]
+minimum_consensus_leads: 2
+maximum_qrs_spread_ms: 40
+maximum_t_spread_ms: 80
+savgol_samples: 11
+review_patients_per_class: 2
+linear_c: [0.01, 1.0]
+tree_depths: [2, 3]
+tree_estimators: 100
+tree_learning_rate: 0.05
