@@ -1,0 +1,72 @@
+{
+  "complete": true,
+  "study_fingerprint": "8541f97a8bb4ddd760affc4170315d55f3049e474cbbc47b4873c701208b7a54",
+  "n_patients": 164,
+  "n_beats": 55863,
+  "n_records": 391,
+  "training_seeds": [
+    42,
+    123,
+    2026
+  ],
+  "arms": {
+    "vcg": {
+      "macro_f1_mean": 0.5501078970006266,
+      "macro_f1_sample_std": 0.03979258705922586,
+      "parameter_count": 78198
+    },
+    "ecg": {
+      "macro_f1_mean": 0.5089173074413618,
+      "macro_f1_sample_std": 0.02280007804744664,
+      "parameter_count": 80358
+    },
+    "vcg_twin": {
+      "macro_f1_mean": 0.5105258971408783,
+      "macro_f1_sample_std": 0.01721856343790016,
+      "parameter_count": 160694
+    },
+    "joint_additive": {
+      "macro_f1_mean": 0.5363469995970881,
+      "macro_f1_sample_std": 0.03511412331522695,
+      "parameter_count": 160694
+    },
+    "joint_bilinear": {
+      "macro_f1_mean": 0.5335606587087837,
+      "macro_f1_sample_std": 0.01562584236276432,
+      "parameter_count": 160694
+    }
+  },
+  "prespecified_contrasts": {
+    "joint_bilinear_minus_vcg": {
+      "mean_macro_f1_difference": -0.016547238291842903,
+      "descriptive_95_interval": [
+        -0.0730156137526778,
+        0.04122241484936441
+      ]
+    },
+    "joint_bilinear_minus_vcg_twin": {
+      "mean_macro_f1_difference": 0.023034761567905404,
+      "descriptive_95_interval": [
+        -0.025340643601831747,
+        0.07461607532574009
+      ]
+    },
+    "joint_bilinear_minus_joint_additive": {
+      "mean_macro_f1_difference": -0.0027863408883044283,
+      "descriptive_95_interval": [
+        -0.04551658628869605,
+        0.042330545899328435
+      ]
+    },
+    "joint_bilinear_minus_ecg": {
+      "mean_macro_f1_difference": 0.024643351267421898,
+      "descriptive_95_interval": [
+        -0.03286511173677323,
+        0.0845430551235615
+      ]
+    }
+  },
+  "unique_fit_count": 600,
+  "claim_scope": "Separate measured ECG extension; repeatedly inspected PTB patient folds are development data, not independent confirmation or SOTA.",
+  "bootstrap_limits": "Conditional on fixed fitted predictions; no training/seed resampling or correction for correlated folds, repeated development or multiple contrasts."
+}

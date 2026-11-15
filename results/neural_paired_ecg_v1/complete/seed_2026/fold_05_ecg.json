@@ -1,0 +1,564 @@
+{
+  "study_fingerprint": "8541f97a8bb4ddd760affc4170315d55f3049e474cbbc47b4873c701208b7a54",
+  "arm": "ecg",
+  "training_seed": 2026,
+  "fold": 5,
+  "patient_overlap": 0,
+  "train_beats": 49275,
+  "test_beats": 6588,
+  "train_patients": 148,
+  "test_patients": 16,
+  "inner_selection": [
+    {
+      "initial_state_sha256": "78198e567f0ccf162c9d193b9dbce0590e5bf61f0c35f6fcef3e3faf5ef398ef",
+      "initial_classifier_sha256": "6f6262577d51cf7796df98edd5c4beccd6f37a5cee57897da715e27bb5e5a0ea",
+      "initial_primary_encoder_sha256": "70bb7fa18ead40908dd8b74c6a4d1d263235ca49f855e6dbb2da6745c7160eeb",
+      "seed": 7027,
+      "arm": "ecg",
+      "patient_overlap": 0,
+      "parameter_count": 80358,
+      "selected_epoch": 3,
+      "best_validation_macro_f1": 0.616358024691358,
+      "history": [
+        {
+          "epoch": 1,
+          "training_loss": 1.1670131823047996,
+          "sampled_rows_sha256": "88fb8e284f43359837b730e4c15ec9c50bc49975ccc073dc7980a279bd6cd794",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.44592691259357925
+        },
+        {
+          "epoch": 2,
+          "training_loss": 0.6021341430023313,
+          "sampled_rows_sha256": "68d1d8a65c101683c93df173d840a839318b9b8f1dd5b09819aba2330bee0fcf",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.49545296243089115
+        },
+        {
+          "epoch": 3,
+          "training_loss": 0.24785429006442428,
+          "sampled_rows_sha256": "e747744083d9b32cb0078dfe559d4bfbb1d1e011bc9f665ec12bb507756d6ad2",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.616358024691358
+        },
+        {
+          "epoch": 4,
+          "training_loss": 0.1546447016298771,
+          "sampled_rows_sha256": "141349ac5864096356885fbc5d3a102a05eafd61838aae90179b5c491c617bbf",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.5111899932386748
+        },
+        {
+          "epoch": 5,
+          "training_loss": 0.10214703029487282,
+          "sampled_rows_sha256": "cfd76bbd166a21081ad27dccce868429b196ee9da0e903822500a6e12da13674",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.5434884681842086
+        },
+        {
+          "epoch": 6,
+          "training_loss": 0.08597179342177697,
+          "sampled_rows_sha256": "7864c28829bfdd768f756367c18ce557a951eecfb78891bae6a5f060a26c8b82",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.6077586206896551
+        },
+        {
+          "epoch": 7,
+          "training_loss": 0.06124374977662228,
+          "sampled_rows_sha256": "416e4d0814c3890f9ac6347ed6e8863198b418027be91462ce8e5f2559b59edf",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.5565514944825289
+        },
+        {
+          "epoch": 8,
+          "training_loss": 0.047975866255001165,
+          "sampled_rows_sha256": "d8aea3ce659715c4ee21268f0a27c57e4a44545e4239a8dd9d988174329f8bc6",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.4726220016542597
+        },
+        {
+          "epoch": 9,
+          "training_loss": 0.0318467189790681,
+          "sampled_rows_sha256": "ca56c47be2c30e0920088aa961a0e5c9f7d9f606bc376a6b64bfd38afa5e6100",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.568617206548241
+        }
+      ],
+      "train_patients": 98,
+      "validation_patients": 50,
+      "normalizer_fit_beats": 33699,
+      "normalization": {
+        "vcg": null,
+        "ecg": {
+          "wave_mean_": [
+            0.005594503600150347,
+            0.01628938503563404,
+            0.010678211227059364,
+            -0.010944933630526066,
+            -0.002538311528041959,
+            0.013489874079823494,
+            -0.007277803961187601,
+            -0.002622663974761963,
+            0.001655210042372346,
+            0.005587718915194273,
+            0.00818986352533102,
+            0.007776770740747452
+          ],
+          "wave_scale_": [
+            0.5911577343940735,
+            1.0010535717010498,
+            0.9683588743209839,
+            0.6643142104148865,
+            0.6269578337669373,
+            0.9394434094429016,
+            0.5932528376579285,
+            0.6547976732254028,
+            0.6586560606956482,
+            0.6286466121673584,
+            0.5987293124198914,
+            0.6013929843902588
+          ]
+        }
+      },
+      "study_fingerprint": "8541f97a8bb4ddd760affc4170315d55f3049e474cbbc47b4873c701208b7a54",
+      "inner_fold": 1
+    },
+    {
+      "initial_state_sha256": "2bd82bcb3ba1961523d166924e2d3ea0b40ebe882b1ee6aa5bde6a670dd4b526",
+      "initial_classifier_sha256": "511f371999f595b0bf330e06363c8766cbc2d6bffc0b9b8ed2fe21ab2935f1e4",
+      "initial_primary_encoder_sha256": "7d229e17dabe54b113b5dc49056c8af0bcfd7c6e2a68b38aa5ee1cff3d5d2047",
+      "seed": 7028,
+      "arm": "ecg",
+      "patient_overlap": 0,
+      "parameter_count": 80358,
+      "selected_epoch": 5,
+      "best_validation_macro_f1": 0.5276358354789727,
+      "history": [
+        {
+          "epoch": 1,
+          "training_loss": 1.1653430964797735,
+          "sampled_rows_sha256": "23790498b5587b2f52499b735138a4f1c48d8bd29d749691cbf9cfbf1f84d87c",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.4059115312791783
+        },
+        {
+          "epoch": 2,
+          "training_loss": 0.4809471480548382,
+          "sampled_rows_sha256": "bf04771a39a55e96783c4f79be7c9ba26c498561fffcda1d7a3fa87ce5b2ef18",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.4166666666666667
+        },
+        {
+          "epoch": 3,
+          "training_loss": 0.2351783508202061,
+          "sampled_rows_sha256": "0ebba025ed6b486d4335950e65bda55bf8a2e780b75893cba2bd16b233186f99",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.46493945868945863
+        },
+        {
+          "epoch": 4,
+          "training_loss": 0.14582800376228988,
+          "sampled_rows_sha256": "69aeba96d2768126b58687d9fbdee34429ed2e8b7080291815eb12aaf518c9f7",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.4008604398697278
+        },
+        {
+          "epoch": 5,
+          "training_loss": 0.10756869905162603,
+          "sampled_rows_sha256": "39eaa645ee7d10fd3f4a87d4ad0c7132491c8f5b3ddb737093b22882a6dfbd70",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.5276358354789727
+        },
+        {
+          "epoch": 6,
+          "training_loss": 0.07415029469120782,
+          "sampled_rows_sha256": "9339d979a803dd0fe4c33ba2dce625f7de253be30fe94d6ecd7fcb708ca68b95",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.38098774863480744
+        },
+        {
+          "epoch": 7,
+          "training_loss": 0.055501668772194535,
+          "sampled_rows_sha256": "616ced307547b99a3dea98a68ac9e9e33e670dfa1cf1d1e86f07aa8eb6f25657",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.37833919892743423
+        },
+        {
+          "epoch": 8,
+          "training_loss": 0.04440205255377805,
+          "sampled_rows_sha256": "f279df4aa0703e9ec6e3cad0cf56ea8b2cff0cf96b0d42b122aac109a3f5dc6d",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.37624743677375255
+        },
+        {
+          "epoch": 9,
+          "training_loss": 0.042199466850433964,
+          "sampled_rows_sha256": "543d38f3149c84e46ca9f4de2d2c011724274bb46c54e59ae6a8c6553871439b",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.4117532889462714
+        },
+        {
+          "epoch": 10,
+          "training_loss": 0.026818226608156692,
+          "sampled_rows_sha256": "018f1fb53b807a0c09b5e0e40f29ff8acac24c42269427ac00e2b09a1737b1f5",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.42791005291005285
+        },
+        {
+          "epoch": 11,
+          "training_loss": 0.021441465767566115,
+          "sampled_rows_sha256": "7028f53b7ba4c857472f9748ae668c2046e93c26e62c0cc4d34fcdf804541220",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.3998050682261208
+        }
+      ],
+      "train_patients": 99,
+      "validation_patients": 49,
+      "normalizer_fit_beats": 32164,
+      "normalization": {
+        "vcg": null,
+        "ecg": {
+          "wave_mean_": [
+            0.001885720412246883,
+            0.012183592654764652,
+            0.010276525281369686,
+            -0.007048421539366245,
+            -0.004199441522359848,
+            0.011219222098588943,
+            -0.008389930240809917,
+            -0.003732464974746108,
+            0.0008046422153711319,
+            0.003528938628733158,
+            0.00675865588709712,
+            0.007599574513733387
+          ],
+          "wave_scale_": [
+            0.5781018137931824,
+            1.05635404586792,
+            0.9540747404098511,
+            0.7053003311157227,
+            0.5858674645423889,
+            0.9641097784042358,
+            0.6821191310882568,
+            0.723050057888031,
+            0.667940616607666,
+            0.6689186692237854,
+            0.6047533750534058,
+            0.6214996576309204
+          ]
+        }
+      },
+      "study_fingerprint": "8541f97a8bb4ddd760affc4170315d55f3049e474cbbc47b4873c701208b7a54",
+      "inner_fold": 2
+    },
+    {
+      "initial_state_sha256": "b7ed50af0f5ae559ec3e050e78e6d7f1bc401f154843a3b3691a88d9504ac248",
+      "initial_classifier_sha256": "abeb83c16acde2dd852911058589abc0cd0b8313e55ee9efc7c2c0afe0efca56",
+      "initial_primary_encoder_sha256": "d66f70f17d7af88168cf0f5ae65603358bfdd0212382c114211cb599d9f07a01",
+      "seed": 7029,
+      "arm": "ecg",
+      "patient_overlap": 0,
+      "parameter_count": 80358,
+      "selected_epoch": 11,
+      "best_validation_macro_f1": 0.45706145706145707,
+      "history": [
+        {
+          "epoch": 1,
+          "training_loss": 1.177055275067687,
+          "sampled_rows_sha256": "e97fd90e9a21426cc8732695fddbc41075033091d3c598a31fd196a3497743d7",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.3391932141932142
+        },
+        {
+          "epoch": 2,
+          "training_loss": 0.5733609851449728,
+          "sampled_rows_sha256": "859c6b72bcc655c581bf977e8499d50ecdcf1e4f9ff51641beb03ccdebf13cd7",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.38032407407407404
+        },
+        {
+          "epoch": 3,
+          "training_loss": 0.3202305731829256,
+          "sampled_rows_sha256": "b21818e62a5455bf9654a6f7a51a4db5268beac2ae38fffe2dee49de556f0ee6",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.4211328976034858
+        },
+        {
+          "epoch": 4,
+          "training_loss": 0.18537202989682555,
+          "sampled_rows_sha256": "f4e750752f19fd0d6e254911c9a7b83b25b2b9935d7663a6342ce2e6ce52fe18",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.3941336441336441
+        },
+        {
+          "epoch": 5,
+          "training_loss": 0.12763132766121998,
+          "sampled_rows_sha256": "514e0decae4c3cf371e0bd34e4e1f514f161f21bbb98fc51dc952f29279a28e6",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.4276556776556777
+        },
+        {
+          "epoch": 6,
+          "training_loss": 0.10044626565650105,
+          "sampled_rows_sha256": "bf9beafcc1c92d7fb1adb5d9eb72ac0aa94e83d0be0baa7c25b73ab102fd2c05",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.43313916475681186
+        },
+        {
+          "epoch": 7,
+          "training_loss": 0.07170507949194871,
+          "sampled_rows_sha256": "3abd984229c53bc9d786522fe83b7c187407ded6b06ad50c50530045fded0b51",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.39735819735819744
+        },
+        {
+          "epoch": 8,
+          "training_loss": 0.06828205607598647,
+          "sampled_rows_sha256": "e3c730010bf2045b39275a5ef6dfd31d32854fc732c98e4e3a35566259f6959a",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.447701104152717
+        },
+        {
+          "epoch": 9,
+          "training_loss": 0.046798317722277716,
+          "sampled_rows_sha256": "e6e1e6147e875ac6419c50d765b8eec86e26b721ccfeb1e7567f10f777d270fd",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.36081541646759036
+        },
+        {
+          "epoch": 10,
+          "training_loss": 0.03880769413080998,
+          "sampled_rows_sha256": "b95a3af610cf810ec924bfe29e1ebc28c6eb0e639d497191f33f6df939c8761f",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.4001485442661914
+        },
+        {
+          "epoch": 11,
+          "training_loss": 0.03802058400469832,
+          "sampled_rows_sha256": "409b82872ebe232053732c8e65e94bc2c13aadedca46202e550e937141010315",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.45706145706145707
+        },
+        {
+          "epoch": 12,
+          "training_loss": 0.03286847755225608,
+          "sampled_rows_sha256": "c3d50924758124458953e06397c8d9b0f4a424a86086b027d9a7f3b8120b583e",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.36337181337181335
+        },
+        {
+          "epoch": 13,
+          "training_loss": 0.033752480609109625,
+          "sampled_rows_sha256": "c99c0d6b71fb5d97987024b330aff856dc0ab6652cb141fe021f7518803f7eb9",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.33372926093514327
+        },
+        {
+          "epoch": 14,
+          "training_loss": 0.03501814923947677,
+          "sampled_rows_sha256": "c45369fa59f621327d79af23b2407f15bd478fec6c2b6e121fbf06e4dc44be4f",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.4255411255411255
+        },
+        {
+          "epoch": 15,
+          "training_loss": 0.019771804385527503,
+          "sampled_rows_sha256": "0db5f8537f3734f4ea466051db5f8df560da3634fc2ef762ce77b478ea78c09c",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.37193198957904844
+        },
+        {
+          "epoch": 16,
+          "training_loss": 0.015229556120175403,
+          "sampled_rows_sha256": "24bd3fa1b73102eba533936e7ab5e80d2338a032ca11a23c924992bef9b247da",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.29365079365079366
+        },
+        {
+          "epoch": 17,
+          "training_loss": 0.02846952001709724,
+          "sampled_rows_sha256": "ce6cd0cc6113f403ce17dac90e6ee8cd747aee418da7f1724a47f864d3a1b2bc",
+          "beat_presentations": 8192,
+          "validation_patient_macro_f1": 0.2971632773356911
+        }
+      ],
+      "train_patients": 99,
+      "validation_patients": 49,
+      "normalizer_fit_beats": 32687,
+      "normalization": {
+        "vcg": null,
+        "ecg": {
+          "wave_mean_": [
+            0.007168723735958338,
+            0.016661394387483597,
+            0.009533031843602657,
+            -0.011934841051697731,
+            -0.0011678533628582954,
+            0.013090047985315323,
+            -0.006898972205817699,
+            -0.0019084059167653322,
+            0.00180284574162215,
+            0.005571434739977121,
+            0.009402386844158173,
+            0.008228355087339878
+          ],
+          "wave_scale_": [
+            0.571755588054657,
+            0.9835345149040222,
+            0.9034129977226257,
+            0.6656073331832886,
+            0.5741963982582092,
+            0.9000223875045776,
+            0.6573945879936218,
+            0.6740455627441406,
+            0.6353445053100586,
+            0.6272355914115906,
+            0.6228981018066406,
+            0.6052592396736145
+          ]
+        }
+      },
+      "study_fingerprint": "8541f97a8bb4ddd760affc4170315d55f3049e474cbbc47b4873c701208b7a54",
+      "inner_fold": 3
+    }
+  ],
+  "final_epochs": 5,
+  "final_fit": {
+    "initial_state_sha256": "3d82f0becdc36ff3ced9782d6ec124a55b5beb675686f5d26746ee403f54b635",
+    "initial_classifier_sha256": "619a0d2fb33078bbb274de280b59a478cbc1a0cd99ecf229319e910cbeececfa",
+    "initial_primary_encoder_sha256": "bb3ae3d174045b74508f94d9434136aa2543f0bea8ffdbda5f89a611f04e5e11",
+    "seed": 2031,
+    "arm": "ecg",
+    "patient_overlap": 0,
+    "parameter_count": 80358,
+    "selected_epoch": 5,
+    "best_validation_macro_f1": null,
+    "history": [
+      {
+        "epoch": 1,
+        "training_loss": 1.2811129102483392,
+        "sampled_rows_sha256": "01598f28ee2106bff1c17ecf9f45364cff99409c7d29ad158b263055ef89188e",
+        "beat_presentations": 8192
+      },
+      {
+        "epoch": 2,
+        "training_loss": 0.7873726729303598,
+        "sampled_rows_sha256": "15eb76bffa5a06c166a74252b624dbad5b931714714c20e4e77ecdc1c3955266",
+        "beat_presentations": 8192
+      },
+      {
+        "epoch": 3,
+        "training_loss": 0.5046384022571146,
+        "sampled_rows_sha256": "00ab4e6311b188e946ffb237d984b7a27e4497820a397e792537ed99547e19e3",
+        "beat_presentations": 8192
+      },
+      {
+        "epoch": 4,
+        "training_loss": 0.3155864430591464,
+        "sampled_rows_sha256": "a5c5f6d8a2b3e2bb601a0924124c9849ecac9d5adc44244223bc6320ff023880",
+        "beat_presentations": 8192
+      },
+      {
+        "epoch": 5,
+        "training_loss": 0.21452165872324258,
+        "sampled_rows_sha256": "c6e9436c81db77abf275434639f5f5050ae7559cbc7480c5c98b49ed9bcfc95a",
+        "beat_presentations": 8192
+      }
+    ],
+    "train_patients": 148,
+    "validation_patients": 0,
+    "normalizer_fit_beats": 49275,
+    "normalization": {
+      "vcg": null,
+      "ecg": {
+        "wave_mean_": [
+          0.004884079564362764,
+          0.015046140179038048,
+          0.01016279961913824,
+          -0.00997738353908062,
+          -0.002634854055941105,
+          0.012600396759808064,
+          -0.007524909917265177,
+          -0.0027659402694553137,
+          0.0014033791376277804,
+          0.004874838050454855,
+          0.008100472390651703,
+          0.007855451665818691
+        ],
+        "wave_scale_": [
+          0.5800483226776123,
+          1.0138148069381714,
+          0.9418944120407104,
+          0.6784580945968628,
+          0.5956969261169434,
+          0.9345496892929077,
+          0.6452880501747131,
+          0.6843687891960144,
+          0.6538405418395996,
+          0.641718864440918,
+          0.608786940574646,
+          0.6092290878295898
+        ]
+      }
+    }
+  },
+  "prediction_checkpoint_sha256": "a65b466f878c1180e0decc95482e68d8e49b59b815d69147377ec8b63b2ab8bc",
+  "patient_metrics": {
+    "accuracy": 0.75,
+    "balanced_accuracy": 0.7999999999999999,
+    "macro_f1": 0.7611111111111111,
+    "macro_roc_auc_ovr": 0.9062132312132313,
+    "macro_average_precision": 0.673015873015873,
+    "classification_report": {
+      "AMI": {
+        "precision": 0.6666666666666666,
+        "recall": 1.0,
+        "f1-score": 0.8,
+        "support": 2.0
+      },
+      "ALMI": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1.0
+      },
+      "ASMI": {
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.8,
+        "support": 3.0
+      },
+      "IMI": {
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.5,
+        "support": 3.0
+      },
+      "ILMI": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1-score": 0.6666666666666666,
+        "support": 2.0
+      },
+      "HC": {
+        "precision": 0.8,
+        "recall": 0.8,
+        "f1-score": 0.8,
+        "support": 5.0
+      },
+      "accuracy": 0.75,
+      "macro avg": {
+        "precision": 0.8277777777777776,
+        "recall": 0.7999999999999999,
+        "f1-score": 0.7611111111111111,
+        "support": 16.0
+      },
+      "weighted avg": {
+        "precision": 0.8333333333333333,
+        "recall": 0.75,
+        "f1-score": 0.7395833333333333,
+        "support": 16.0
+      }
+    }
+  }
+}
