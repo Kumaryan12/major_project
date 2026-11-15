@@ -335,7 +335,9 @@ Configuration: `configs/tensor_features.yaml`; isolated outputs: `results/tensor
 
 The [next fixed comparison](docs/tensor_refinement_plan.md) tests global signed DCT ranks 32/64 with denoised-only controls, plus native-wavelet signed time cores at ranks 16/32. An exact check must reproduce the original DCT16 features. Per-view waveform reconstruction and fixed-window errors audit what compression loses. Adding coefficients is not assumed to improve diagnostic information.
 
-Linear and shallow-tree classifiers each compare statistics, the original feature-selection procedure, and its expanded tensor candidate pool. All feature/model selection remains inside inner training folds before a fresh outer refit. The six predefined procedures require **2,820 fit slots**, including 660 verified reused linear probes and **2,160 new fits**. No improvement is claimed before complete validated outer results.
+All **2,820 fit slots completed** in the [validated classifier report](results/tensor_refinement_v1/complete/REPORT.md), including 660 verified reused linear probes and **2,160 new fits**. Linear macro F1 was statistics **0.432**, original features **0.498**, expanded tensor **0.425**. Shallow-tree scores were **0.440 / 0.420 / 0.452** respectively. The expanded tree's +0.012 over statistics has a descriptive interval [−0.074, +0.106]; the expanded linear procedure declined. The expansion did not establish an accuracy improvement.
+
+The [fidelity audit](results/tensor_refinement_v1/bank_audit/REPORT.md) found denoised reconstruction relative squared error decreased from 0.1527 to 0.0025 at global rank 16→64, but this did not translate into better localization. Keep the original linear feature procedure as this study's reference. All feature/model selection used inner training patients before fresh outer refits; every saved final model reproduced its held-out predictions. These repeatedly inspected folds remain development data.
 
 ```bash
 .venv/bin/python -m mi_localization.tensor_refinement_bank

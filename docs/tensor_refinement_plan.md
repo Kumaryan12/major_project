@@ -1,5 +1,25 @@
 # Signed tensor compression and final classifier comparison
 
+## Completed findings and decision
+
+All **2,820 fit slots** completed and passed independent report validation: **2,100 fresh inner fits, 660 verified reused probes and 60 fresh outer refits**. All 171 tests pass. Every saved final model reproduced its held-out predictions. The [full report](../results/tensor_refinement_v1/complete/REPORT.md) retains every predefined model and class result.
+
+| Feature procedure | Linear macro F1 | Shallow-tree macro F1 |
+|---|---:|---:|
+| Statistics control | 0.432 | 0.440 |
+| Original feature procedure | **0.498** | 0.420 |
+| Expanded tensor procedure | 0.425 | **0.452** |
+
+The expanded linear procedure fell **0.073** below its original-feature control (descriptive paired interval **[−0.144, −0.005]**). The expanded tree procedure was **0.012** above statistics (**[−0.074, +0.106]**) and **0.032** above its original-feature control (**[−0.038, +0.103]**). This establishes no repeatable accuracy gain from the expansion. The original linear feature procedure's +0.066 over statistics also has an interval including zero (**[−0.031, +0.165]**). These intervals are conditional development diagnostics, not formal independent significance tests.
+
+The fidelity gain was large: global DCT16→64 reduced mean-record denoised relative squared reconstruction error **0.1527→0.0025** and central-window RMS error **0.14035→0.01573 mV**. The [fidelity plot](../results/tensor_refinement_v1/bank_audit/compression_fidelity.png) separates relative loss from absolute amplitude. The filter residual's relative error remains high even though its absolute error is small. Better reconstruction did not imply better localization.
+
+Mean selected inner scores rose **0.476→0.500** for linear and **0.456→0.489** for trees when the pool expanded, while outer performance did not improve consistently. This is consistent with unstable selection in a small development cohort; it does not prove a single causal explanation. Do not choose the expanded tensor based on its higher optimized inner score. Linear original features remain the reference **within this feature protocol**; the historical neural 0.550 ± 0.040 is a different protocol and remains unchanged.
+
+Class errors also matter: the expanded tree achieved IMI/ILMI F1 0.533/0.591 but AMI F1 only 0.069. Its overall 0.452 must not be presented as reliable localization across all MI classes. No method reached the 0.80–0.90 target.
+
+**Decision:** preserve these representations as completed ablations and do not adopt the expanded candidate pool as an improvement. For another feature-design iteration, a bounded next hypothesis is training-patient bootstrap stability and group-aware redundancy selection within a fixed small representation pool, compared with the original selector. This would test selection reliability rather than keep expanding resolution. Such a method is not implemented or validated by this study. A new selection policy must be specified and refitted inside the training folds, and favorable results still require new-cohort confirmation.
+
 ## Reason for this refinement
 
 The first training-only feature screen selected signed morphology in 7/10 contexts and the combined pool in 3/10. Across the ten selected packages, 210 of 440 feature occurrences came from the **filter residual R−D**. This can represent removed physiology, acquisition effects or artifacts; occurrence frequency is neither clinical importance nor independent stability. The truncated global DCT16 summary retained about 70% energy under its original aggregate diagnostic. Complete tensors reconstructed their input, but the summaries did not.
@@ -64,3 +84,5 @@ caffeinate -i /bin/zsh scripts/run_tensor_refinement.sh --publish > tmp/tensor_r
 Config: `configs/tensor_refinement.yaml`. New bank: `data/processed/tensor_refinement_v1/`. New aggregate output: `results/tensor_refinement_v1/`. Guarded record caches and inner/outer predictions resume only with matching data/config/code/runtime. Saved progress is not by itself proof of a live process. Final reporting reconstructs all training selectors, verifies every inner choice, checks prediction membership and hashes, and requires every saved final model to reproduce its outer predictions. Waveforms, features, models, patient prediction files and private mappings stay local. Public results contain aggregate metrics, feature-name selections and fit audits.
 
 Sources: [SciPy orthonormal DCT](https://docs.scipy.org/doc/scipy/reference/generated/scipy.fft.dct.html), [PyWavelets DWT](https://pywavelets.readthedocs.io/en/latest/ref/dwt-discrete-wavelet-transform.html), [scikit-learn feature selection and leakage](https://scikit-learn.org/stable/common_pitfalls.html). These methods motivate the implementation, not a guaranteed improvement.
+
+Reproduce the saved fidelity figure with `.venv/bin/python scripts/plot_tensor_fidelity.py`.
