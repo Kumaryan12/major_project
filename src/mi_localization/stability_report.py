@@ -118,6 +118,10 @@ def summarize_study(config):
             for budget in source["feature_counts"]:
                 candidate = {"family":family,"k":budget,"params":{"C":source["linear_c"][0]}}
                 for method in config["selectors"]:
+                    # Some family/outer-training combinations were never chosen
+                    # by a final model. Build any missing support-only cache
+                    # first, then independently replay it in verification mode.
+                    study.prepare_selector(features[family],y,ids,train,test,names[family],candidate,method,config,source,config["seed"]+fold,root,memo,verify=False)
                     selector,_,_ = study.prepare_selector(features[family],y,ids,train,test,names[family],candidate,method,config,source,config["seed"]+fold,root,memo,verify=True)
                     a = selector.audit()
                     support.append({"outer_training_context":fold,"family":family,"budget":budget,"method":method,
