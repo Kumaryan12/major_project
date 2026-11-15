@@ -63,6 +63,10 @@ Config: `configs/geometry_vcg.yaml`. Cache: `data/processed/geometry_vcg_v1/`. A
 
 ## Interpretation and next gate
 
+All 560 fits completed and the [final report](../results/neural_geometry_v1/complete/REPORT.md) validated. Linear adaptive geometry scored **0.467** versus its statistics control **0.445**, descriptive paired difference interval **[−0.061, +0.107]**. Tree statistics+geometry scored **0.461** versus statistics **0.409**, interval **[−0.024, +0.131]**. No contrast establishes a gain. These are different aggregation/classifier procedures from the historical 0.550 ResNet, so that score is context rather than a matched control.
+
+The low boundary coverage and inconclusive feature gains do not justify adopting a geometry branch yet. The [separate shared-label objective study](territory_vcg_plan.md) tests the other proposed idea independently, without any delineation or geometry inputs. The source-label auxiliary objective described below is not part of this geometry screen.
+
 A favorable feature-screen result would motivate a separate controlled neural test, not establish a breakthrough. Weak adaptive-boundary coverage must be addressed or made explicit before describing a physiological phase model. A negative result applies to these descriptors/aggregation/learners and does not prove all VCG geometry is uninformative.
 
 The separate shared-label hypothesis would add auxiliary predictions derived from the source label names (anterior/inferior/lateral/septal descriptors). These would be label-derived supervision, not independently verified anatomical diagnoses. The original six-class endpoint must remain unchanged. It has not been fitted by this geometry screen.

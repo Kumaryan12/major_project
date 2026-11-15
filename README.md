@@ -277,7 +277,19 @@ The [geometry study](docs/geometry_vcg_plan.md) adds a VCG-only boundary audit, 
 .venv/bin/python -m mi_localization.geometry_study --report
 ```
 
-The [boundary audit](results/neural_geometry_v1/boundary_audit/REPORT.md) accepted multi-axis estimates for 23.2% of beats; all others use a declared fallback. Coverage differs by class, and there are no independent boundary annotations. This is a feature utility test, not clinically validated delineation, a completed neural geometry branch or shared-territory auxiliary training. Configuration: `configs/geometry_vcg.yaml`; new outputs: `results/neural_geometry_v1/`. No improvement or target score is established by feature construction.
+The [boundary audit](results/neural_geometry_v1/boundary_audit/REPORT.md) accepted multi-axis estimates for 23.2% of beats; all others use a declared fallback. Coverage differs by class, and there are no independent boundary annotations. All **560 fits completed** in the [validated feature screen](results/neural_geometry_v1/complete/REPORT.md): linear adaptive geometry reached **0.467** versus its statistics control **0.445**, and tree statistics+geometry **0.461** versus statistics **0.409**. Paired intervals include zero. These different classifier/aggregation procedures do not establish a gain over the historical ResNet. This is not clinically validated delineation or a completed neural geometry branch. Configuration: `configs/geometry_vcg.yaml`; outputs: `results/neural_geometry_v1/`.
+
+## Shared-label supervision as a separate VCG test
+
+The [shared-label experiment](docs/territory_vcg_plan.md) keeps the original six-class ResNet endpoint and adds auxiliary predictions for anterior/inferior/lateral/septal mentions derived from existing label names. These are source-label encodings, not new anatomical ground truth. Both matched arms have the same auxiliary head, initialized weights and sampled beats; only its BCE coefficient changes from zero to 0.2. The six-class output alone is used at inference. No geometry, ECG, external data or relabeling enters this experiment.
+
+```bash
+.venv/bin/python -m mi_localization.territory_study
+.venv/bin/python -m mi_localization.territory_report
+.venv/bin/python -m mi_localization.territory_study --status
+```
+
+Configuration: `configs/territory_vcg.yaml`. Separate outputs: `results/neural_territory_v1/complete/`. Three target seeds and ten frozen patient folds require 240 fits, retaining training-only normalization and inner-only stopping. No improvement is claimed before complete paired evaluation.
 
 ## Reproduction boundaries
 

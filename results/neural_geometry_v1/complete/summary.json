@@ -1,0 +1,59 @@
+{
+  "complete": true,
+  "study_fingerprint": "8777f3c2631bf215734edbd04c34fb20a8dd6ea405753342b6ca1f9915c54e61",
+  "n_patients": 164,
+  "n_beats": 55863,
+  "unique_fit_count": 560,
+  "procedures": [
+    {
+      "procedure": "linear_statistics",
+      "patient_macro_f1": 0.445387553131914,
+      "patient_accuracy": 0.5060975609756098,
+      "n_features": 384
+    },
+    {
+      "procedure": "linear_fixed_geometry",
+      "patient_macro_f1": 0.44830312188521987,
+      "patient_accuracy": 0.5304878048780488,
+      "n_features": 156
+    },
+    {
+      "procedure": "linear_adaptive_geometry",
+      "patient_macro_f1": 0.4666920228652742,
+      "patient_accuracy": 0.5487804878048781,
+      "n_features": 156
+    },
+    {
+      "procedure": "linear_statistics_geometry",
+      "patient_macro_f1": 0.45366282556536414,
+      "patient_accuracy": 0.5426829268292683,
+      "n_features": 540
+    },
+    {
+      "procedure": "tree_statistics",
+      "patient_macro_f1": 0.40877572494914904,
+      "patient_accuracy": 0.5,
+      "n_features": 384
+    },
+    {
+      "procedure": "tree_fixed_geometry",
+      "patient_macro_f1": 0.4335851648351648,
+      "patient_accuracy": 0.5182926829268293,
+      "n_features": 156
+    },
+    {
+      "procedure": "tree_adaptive_geometry",
+      "patient_macro_f1": 0.40780538905538904,
+      "patient_accuracy": 0.4878048780487805,
+      "n_features": 156
+    },
+    {
+      "procedure": "tree_statistics_geometry",
+      "patient_macro_f1": 0.46053500899319927,
+      "patient_accuracy": 0.5304878048780488,
+      "n_features": 540
+    }
+  ],
+  "claim_scope": "VCG-only feature utility screen on repeatedly inspected PTB development patients; no independent confirmation, clinical boundary validation or SOTA.",
+  "limits": "Fixed deterministic classifier procedures; no repeated-seed uncertainty. Different aggregation/model/input context from the historical ResNet; compare each geometry view with its own classifier control."
+}

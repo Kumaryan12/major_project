@@ -1,0 +1,96 @@
+{
+  "config": {
+    "seed": 42,
+    "split_seed": 42,
+    "paper_config": "configs/paper.yaml",
+    "beats_path": "data/processed/beats.csv",
+    "bank_dir": "data/processed/neural_vcg_v1",
+    "geometry_bank_dir": "data/processed/geometry_vcg_v1",
+    "output_dir": "results/neural_geometry_v1",
+    "folds_path": "configs/patient_folds.csv",
+    "classes": [
+      "AMI",
+      "ALMI",
+      "ASMI",
+      "IMI",
+      "ILMI",
+      "HC"
+    ],
+    "outer_splits": 10,
+    "inner_splits": 3,
+    "workers": 2,
+    "phase_points": 32,
+    "maximum_post_r_ms": 650,
+    "next_r_guard_ms": 80,
+    "fixed_offsets_ms": [
+      -60,
+      80,
+      140
+    ],
+    "minimum_consensus_leads": 2,
+    "maximum_qrs_spread_ms": 40,
+    "maximum_t_spread_ms": 80,
+    "savgol_samples": 11,
+    "review_patients_per_class": 2,
+    "linear_c": [
+      0.01,
+      1.0
+    ],
+    "tree_depths": [
+      2,
+      3
+    ],
+    "tree_estimators": 100,
+    "tree_learning_rate": 0.05
+  },
+  "bank": {
+    "bank_fingerprint": "2cb0934069a6d69ef78679254532eaf0e8d77ea5ffd5a3ec3907292d34f5e718",
+    "manifest_sha256": "4e430e466b6e86da38bdffb3062ad70d0a147a094f80f783a8a56f3457fa7f28",
+    "patient_features_sha256": "ea564f84aeb1449686069a9756cbc15860b6a7f82a1e7c1603bd8fd0c07d87c5",
+    "summary": {
+      "bank_fingerprint": "2cb0934069a6d69ef78679254532eaf0e8d77ea5ffd5a3ec3907292d34f5e718",
+      "n_patients": 164,
+      "n_records": 391,
+      "n_beats": 55863,
+      "accepted_consensus_beats": 12977,
+      "accepted_fraction": 0.2323004493134991,
+      "fallback_beats": 42886,
+      "view_dimensions": {
+        "statistics": 384,
+        "fixed_geometry": 156,
+        "adaptive_geometry": 156,
+        "statistics_geometry": 540
+      },
+      "beat_geometry_dimensions": 78,
+      "tensor_shape": [
+        55863,
+        3,
+        7,
+        32
+      ],
+      "independent_boundary_annotations_available": false,
+      "patient_exclusions": 0,
+      "label_changes": 0,
+      "limits": "Single-lead ECG DWT adapted to XYZ with median consensus; plausible limits are not annotation accuracy. Fallbacks retained. Review plots are illustrative, not expert adjudication."
+    }
+  },
+  "folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625",
+  "evaluated_folds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "code_sha256": "01a8c75f5948dfcff5497ed2e39f3562bc48ff3d68a423f908fffd07488da042",
+  "numpy": "2.5.3",
+  "sklearn": "1.9.1",
+  "xgboost": "3.4.1",
+  "claim_scope": "VCG-only feature utility screen on repeatedly inspected PTB development patients; no independent confirmation, clinical boundary validation or SOTA.",
+  "study_fingerprint": "8777f3c2631bf215734edbd04c34fb20a8dd6ea405753342b6ca1f9915c54e61"
+}
