@@ -1,0 +1,57 @@
+{
+  "draws": 5000,
+  "seed": 42,
+  "method": "paired class-stratified patient bootstrap, percentile 95% intervals",
+  "limitations": "Conditional on fitted cross-validation predictions; no model refits, no correction for repeated development or multiple comparisons. Not independent confirmation.",
+  "arms": {
+    "xgboost": {
+      "macro_f1_95_interval": [
+        0.4320236390287616,
+        0.5910909488030779
+      ],
+      "paired_comparisons": {
+        "tabpfn": {
+          "macro_f1_difference_95_interval": [
+            -0.11453033468952882,
+            0.05519465856134312
+          ]
+        }
+      }
+    },
+    "tabpfn": {
+      "macro_f1_95_interval": [
+        0.45896333773347786,
+        0.6208484690247952
+      ],
+      "paired_comparisons": {
+        "xgboost": {
+          "macro_f1_difference_95_interval": [
+            -0.05519465856134318,
+            0.11453033468952878
+          ]
+        }
+      }
+    },
+    "tabpfn_balanced": {
+      "macro_f1_95_interval": [
+        0.4209277320643206,
+        0.5755693926091066
+      ],
+      "paired_comparisons": {
+        "xgboost": {
+          "macro_f1_difference_95_interval": [
+            -0.0952989368398639,
+            0.07030884633272438
+          ]
+        },
+        "tabpfn": {
+          "macro_f1_difference_95_interval": [
+            -0.09740494536146449,
+            0.008618704978464582
+          ]
+        }
+      }
+    }
+  },
+  "study_fingerprint": "08809f78f72bcb9a8fb5388fc93cb3e5b717eced29092f153ba2dc3f1c6c5b04"
+}

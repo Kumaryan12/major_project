@@ -1,0 +1,577 @@
+{
+  "config": {
+    "seed": 42,
+    "split_seed": 42,
+    "stability_config": "configs/feature_stability.yaml",
+    "output_dir": "results/tabpfn_v2_v1",
+    "arms": [
+      "xgboost",
+      "tabpfn",
+      "tabpfn_balanced"
+    ],
+    "package_version": "9.2.0",
+    "checkpoint_path": "data/models/tabpfn_v2/tabpfn-v2-classifier-v2_default.ckpt",
+    "checkpoint_url": "https://huggingface.co/Prior-Labs/TabPFN-v2-clf/resolve/275f19d2add9c2c0de38f9ebaded3856599fa2e7/tabpfn-v2-classifier-v2_default.ckpt",
+    "checkpoint_revision": "275f19d2add9c2c0de38f9ebaded3856599fa2e7",
+    "checkpoint_sha256": "cf8c519c01eaf1613ee91239006d57b1c806ff5f23ac1aeb1315ba1015210e49",
+    "checkpoint_bytes": 29009539,
+    "device": "cpu",
+    "torch_threads": 2,
+    "worker_timeout_seconds": 180,
+    "n_estimators": 8,
+    "softmax_temperature": 0.9,
+    "bootstrap_draws": 5000
+  },
+  "source": {
+    "prior_scope": {
+      "config": {
+        "seed": 42,
+        "split_seed": 42,
+        "reference_config": "configs/tensor_refinement.yaml",
+        "output_dir": "results/feature_stability_v1",
+        "families": [
+          "morphology",
+          "combined"
+        ],
+        "selectors": [
+          "original",
+          "bootstrap",
+          "group_bootstrap"
+        ],
+        "bootstrap_replicates": 64,
+        "audit_replicates": 32,
+        "bootstrap_draws": 5000
+      },
+      "source_config": {
+        "seed": 42,
+        "split_seed": 42,
+        "paper_config": "configs/paper.yaml",
+        "beats_path": "data/processed/beats.csv",
+        "bank_dir": "data/processed/neural_vcg_v1",
+        "raw_bank_dir": "data/processed/neural_raw_v1",
+        "template_bank_dir": "data/processed/multiview_vcg_v1",
+        "feature_bank_dir": "data/processed/tensor_features_v1",
+        "output_dir": "results/tensor_features_v1",
+        "folds_path": "configs/patient_folds.csv",
+        "classes": [
+          "AMI",
+          "ALMI",
+          "ASMI",
+          "IMI",
+          "ILMI",
+          "HC"
+        ],
+        "outer_splits": 10,
+        "inner_splits": 3,
+        "wavelet": "sym4",
+        "level": 4,
+        "dct_coefficients": 16,
+        "windows": {
+          "pre": [
+            50,
+            170
+          ],
+          "central": [
+            170,
+            350
+          ],
+          "early_post": [
+            350,
+            470
+          ],
+          "late_post": [
+            470,
+            651
+          ]
+        },
+        "chunk_size": 64,
+        "feature_counts": [
+          24,
+          64
+        ],
+        "linear_c": [
+          0.1,
+          1.0
+        ],
+        "correlation_threshold": 0.95
+      },
+      "reference_config": {
+        "seed": 42,
+        "split_seed": 42,
+        "source_config": "configs/tensor_features.yaml",
+        "refined_bank_dir": "data/processed/tensor_refinement_v1",
+        "output_dir": "results/tensor_refinement_v1",
+        "global_ranks": [
+          32,
+          64
+        ],
+        "wavelet_ranks": [
+          16,
+          32
+        ],
+        "chunk_size": 64,
+        "learners": [
+          "linear",
+          "tree"
+        ],
+        "tree_depths": [
+          2,
+          3
+        ],
+        "tree_estimators": 100,
+        "tree_learning_rate": 0.05,
+        "bootstrap_draws": 5000
+      },
+      "reference": {
+        "reference_scope": {
+          "config": {
+            "seed": 42,
+            "split_seed": 42,
+            "source_config": "configs/tensor_features.yaml",
+            "refined_bank_dir": "data/processed/tensor_refinement_v1",
+            "output_dir": "results/tensor_refinement_v1",
+            "global_ranks": [
+              32,
+              64
+            ],
+            "wavelet_ranks": [
+              16,
+              32
+            ],
+            "chunk_size": 64,
+            "learners": [
+              "linear",
+              "tree"
+            ],
+            "tree_depths": [
+              2,
+              3
+            ],
+            "tree_estimators": 100,
+            "tree_learning_rate": 0.05,
+            "bootstrap_draws": 5000
+          },
+          "source_config": {
+            "seed": 42,
+            "split_seed": 42,
+            "paper_config": "configs/paper.yaml",
+            "beats_path": "data/processed/beats.csv",
+            "bank_dir": "data/processed/neural_vcg_v1",
+            "raw_bank_dir": "data/processed/neural_raw_v1",
+            "template_bank_dir": "data/processed/multiview_vcg_v1",
+            "feature_bank_dir": "data/processed/tensor_features_v1",
+            "output_dir": "results/tensor_features_v1",
+            "folds_path": "configs/patient_folds.csv",
+            "classes": [
+              "AMI",
+              "ALMI",
+              "ASMI",
+              "IMI",
+              "ILMI",
+              "HC"
+            ],
+            "outer_splits": 10,
+            "inner_splits": 3,
+            "wavelet": "sym4",
+            "level": 4,
+            "dct_coefficients": 16,
+            "windows": {
+              "pre": [
+                50,
+                170
+              ],
+              "central": [
+                170,
+                350
+              ],
+              "early_post": [
+                350,
+                470
+              ],
+              "late_post": [
+                470,
+                651
+              ]
+            },
+            "chunk_size": 64,
+            "feature_counts": [
+              24,
+              64
+            ],
+            "linear_c": [
+              0.1,
+              1.0
+            ],
+            "correlation_threshold": 0.95
+          },
+          "bank": {
+            "original_bank": {
+              "bank_fingerprint": "356f2c38b3e6fa3b4a14417624bb4a10f3b34dddb0a6b6078cbabbaa339f8c12",
+              "n_patients": 164,
+              "n_records": 391,
+              "n_beats": 55863,
+              "tensor_axes": [
+                "beat",
+                "view",
+                "XYZ",
+                "band",
+                "original_time"
+              ],
+              "tensor_shape": [
+                55863,
+                5,
+                3,
+                5,
+                651
+              ],
+              "feature_dimensions": {
+                "statistics": 384,
+                "morphology": 480,
+                "multiscale": 1200,
+                "relations": 1800,
+                "combined": 3864
+              },
+              "max_tensor_reconstruction_error_mv": 6.403766406037903e-12,
+              "mean_record_dct_retained_energy": 0.6990397329440354,
+              "nonfinite_features": 0,
+              "globally_constant_columns_audit_only": {
+                "statistics": 0,
+                "morphology": 48,
+                "multiscale": 120,
+                "relations": 180,
+                "combined": 348
+              },
+              "scope": "Label-free construction and fidelity diagnostics only; summaries are lossy; neither reconstruction nor retained energy is diagnostic accuracy.",
+              "files": {
+                "patient_features.npz": "77772105e5df7f42a8075e6f9fade00f5c0d77063d50e880d36cbd455dd38597",
+                "feature_names.json": "af691a60db0ddd6849bd61c06bc0f3b505d16be4e2d8487193861172a9cabbb5"
+              }
+            },
+            "refined_bank": {
+              "bank_fingerprint": "727226cfe37b53b62ef7b692af1491b44ea57fdb072da68d3272f4cff04c7e7d",
+              "n_patients": 164,
+              "n_records": 391,
+              "n_beats": 55863,
+              "feature_dimensions": {
+                "denoised_dct32": 192,
+                "all_dct32": 960,
+                "denoised_dct64": 384,
+                "all_dct64": 1920,
+                "wavelet_core16": 2400,
+                "wavelet_core32": 4800
+              },
+              "original_dct_exact_match": true,
+              "fidelity": {
+                "global16": {
+                  "raw": {
+                    "mean_record_relative_squared_error": 0.15514466701412805,
+                    "window_rms_error_mv": {
+                      "pre": 0.03397419536869977,
+                      "central": 0.1418148284683657,
+                      "early_post": 0.03161808265850011,
+                      "late_post": 0.02342412264483575
+                    }
+                  },
+                  "denoised": {
+                    "mean_record_relative_squared_error": 0.15274875644253036,
+                    "window_rms_error_mv": {
+                      "pre": 0.03293827394035031,
+                      "central": 0.1403520139326563,
+                      "early_post": 0.03109758805832267,
+                      "late_post": 0.02262100815150984
+                    }
+                  },
+                  "record_median": {
+                    "mean_record_relative_squared_error": 0.22326321046189795,
+                    "window_rms_error_mv": {
+                      "pre": 0.027201476429820938,
+                      "central": 0.13316357554509234,
+                      "early_post": 0.028804901056571224,
+                      "late_post": 0.019917919146879213
+                    }
+                  },
+                  "beat_residual": {
+                    "mean_record_relative_squared_error": 0.0890894453412721,
+                    "window_rms_error_mv": {
+                      "pre": 0.023070519914656723,
+                      "central": 0.08099064665787367,
+                      "early_post": 0.017813863049279524,
+                      "late_post": 0.01546576239014368
+                    }
+                  },
+                  "filter_residual": {
+                    "mean_record_relative_squared_error": 0.8845562725349942,
+                    "window_rms_error_mv": {
+                      "pre": 0.004749759094714318,
+                      "central": 0.005433529953013245,
+                      "early_post": 0.004201317729677843,
+                      "late_post": 0.004233651722022752
+                    }
+                  }
+                },
+                "global32": {
+                  "raw": {
+                    "mean_record_relative_squared_error": 0.026056395612464568,
+                    "window_rms_error_mv": {
+                      "pre": 0.01596372109065356,
+                      "central": 0.05314432418287135,
+                      "early_post": 0.015490478386799135,
+                      "late_post": 0.012792909733909133
+                    }
+                  },
+                  "denoised": {
+                    "mean_record_relative_squared_error": 0.02424186979441904,
+                    "window_rms_error_mv": {
+                      "pre": 0.014432356555817736,
+                      "central": 0.05172640996683096,
+                      "early_post": 0.014487966070160578,
+                      "late_post": 0.011545541285853275
+                    }
+                  },
+                  "record_median": {
+                    "mean_record_relative_squared_error": 0.037619256183122125,
+                    "window_rms_error_mv": {
+                      "pre": 0.010756487978496947,
+                      "central": 0.0490749629994302,
+                      "early_post": 0.012427964966244712,
+                      "late_post": 0.00872009777291819
+                    }
+                  },
+                  "beat_residual": {
+                    "mean_record_relative_squared_error": 0.02962689208925575,
+                    "window_rms_error_mv": {
+                      "pre": 0.012285456129716573,
+                      "central": 0.03413388687360275,
+                      "early_post": 0.010328259155791308,
+                      "late_post": 0.00978913806052148
+                    }
+                  },
+                  "filter_residual": {
+                    "mean_record_relative_squared_error": 0.7883856323639004,
+                    "window_rms_error_mv": {
+                      "pre": 0.004492754761545041,
+                      "central": 0.005108934798715764,
+                      "early_post": 0.004045575829501778,
+                      "late_post": 0.004054238062040573
+                    }
+                  }
+                },
+                "global64": {
+                  "raw": {
+                    "mean_record_relative_squared_error": 0.0037059732323014485,
+                    "window_rms_error_mv": {
+                      "pre": 0.008531315325738325,
+                      "central": 0.01767220895983109,
+                      "early_post": 0.007856078740895965,
+                      "late_post": 0.007960238960180324
+                    }
+                  },
+                  "denoised": {
+                    "mean_record_relative_squared_error": 0.0025251274326086974,
+                    "window_rms_error_mv": {
+                      "pre": 0.006647666474989509,
+                      "central": 0.01572697613645327,
+                      "early_post": 0.006056507322871829,
+                      "late_post": 0.006322880526139319
+                    }
+                  },
+                  "record_median": {
+                    "mean_record_relative_squared_error": 0.003792304897542605,
+                    "window_rms_error_mv": {
+                      "pre": 0.0035538124109839755,
+                      "central": 0.013634961783697013,
+                      "early_post": 0.0024040622696904304,
+                      "late_post": 0.0020565638584755103
+                    }
+                  },
+                  "beat_residual": {
+                    "mean_record_relative_squared_error": 0.009298117844190329,
+                    "window_rms_error_mv": {
+                      "pre": 0.0067124883751098745,
+                      "central": 0.01322483939577683,
+                      "early_post": 0.006106525465484214,
+                      "late_post": 0.006492913555845669
+                    }
+                  },
+                  "filter_residual": {
+                    "mean_record_relative_squared_error": 0.650829890669331,
+                    "window_rms_error_mv": {
+                      "pre": 0.004021577542315828,
+                      "central": 0.004702693048852159,
+                      "early_post": 0.0037907851273550354,
+                      "late_post": 0.0037511458988898436
+                    }
+                  }
+                },
+                "wavelet16": {
+                  "raw": {
+                    "mean_record_relative_squared_error": 0.1843058185458189,
+                    "window_rms_error_mv": {
+                      "pre": 0.036787955755043907,
+                      "central": 0.15670167602789525,
+                      "early_post": 0.031875528338135464,
+                      "late_post": 0.023264053855868806
+                    }
+                  },
+                  "denoised": {
+                    "mean_record_relative_squared_error": 0.1821112314940653,
+                    "window_rms_error_mv": {
+                      "pre": 0.03587165794072748,
+                      "central": 0.1552903578338054,
+                      "early_post": 0.03135775695731026,
+                      "late_post": 0.022411096372366997
+                    }
+                  },
+                  "record_median": {
+                    "mean_record_relative_squared_error": 0.26800510403414823,
+                    "window_rms_error_mv": {
+                      "pre": 0.030183242649470525,
+                      "central": 0.14786196002886143,
+                      "early_post": 0.029176597834411077,
+                      "late_post": 0.020066867609942477
+                    }
+                  },
+                  "beat_residual": {
+                    "mean_record_relative_squared_error": 0.09685988789118449,
+                    "window_rms_error_mv": {
+                      "pre": 0.024559169726562895,
+                      "central": 0.08710445286369901,
+                      "early_post": 0.017141637125006014,
+                      "late_post": 0.014975415683364975
+                    }
+                  },
+                  "filter_residual": {
+                    "mean_record_relative_squared_error": 0.812686831685355,
+                    "window_rms_error_mv": {
+                      "pre": 0.004538427069900996,
+                      "central": 0.00521382393201262,
+                      "early_post": 0.004040537926864724,
+                      "late_post": 0.004068397000208717
+                    }
+                  }
+                },
+                "wavelet32": {
+                  "raw": {
+                    "mean_record_relative_squared_error": 0.039553776394432555,
+                    "window_rms_error_mv": {
+                      "pre": 0.019423130109391094,
+                      "central": 0.06801096193904682,
+                      "early_post": 0.01824884602407359,
+                      "late_post": 0.013424851606876285
+                    }
+                  },
+                  "denoised": {
+                    "mean_record_relative_squared_error": 0.03832106360382573,
+                    "window_rms_error_mv": {
+                      "pre": 0.018476683194543965,
+                      "central": 0.06698596309375388,
+                      "early_post": 0.017674699077672613,
+                      "late_post": 0.0126469686998314
+                    }
+                  },
+                  "record_median": {
+                    "mean_record_relative_squared_error": 0.057101605291963925,
+                    "window_rms_error_mv": {
+                      "pre": 0.015447904943441585,
+                      "central": 0.0635022105786018,
+                      "early_post": 0.015793745857723404,
+                      "late_post": 0.010521051367661703
+                    }
+                  },
+                  "beat_residual": {
+                    "mean_record_relative_squared_error": 0.03265220362870374,
+                    "window_rms_error_mv": {
+                      "pre": 0.01385272065467584,
+                      "central": 0.04201260982821739,
+                      "early_post": 0.011804236349072506,
+                      "late_post": 0.009860812351885745
+                    }
+                  },
+                  "filter_residual": {
+                    "mean_record_relative_squared_error": 0.6030663578898185,
+                    "window_rms_error_mv": {
+                      "pre": 0.003904715990407954,
+                      "central": 0.004485639992537528,
+                      "early_post": 0.003467133007427445,
+                      "late_post": 0.0034524081079053766
+                    }
+                  }
+                }
+              },
+              "scope": "Label-free compression diagnostics; reconstruction is not diagnostic accuracy; native bands have different coefficient sampling resolutions.",
+              "files": {
+                "patient_features.npz": "9ca718f0996a689f97346c82c4431e81ef41464a7200c5cfd92932a6905b8524",
+                "feature_names.json": "e3c7f43af90450b759ae46e7935b905fa98112a71032563bf4b34613c3292d79"
+              }
+            },
+            "legacy": {
+              "path": "results/tensor_features_v1/screen",
+              "study_fingerprint": "1f31093832bd631bd08f3a61bebefa5088790929053281a8941d8d37cf1bfa16",
+              "manifest_sha256": "3481ffdade406c4ae92b2b45db04b6ada9227a4b11a6710dde342edbb5983ddd"
+            }
+          },
+          "folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625",
+          "code_sha256": "7e6d421ff9630196d665b2dba0cb4522fb87885e959906f0a2804ed7ef68e016",
+          "selector_code_sha256": "ee3d41db18a6cf0d87e19aaa548534bd8d4636b0ff2dd45384e597e738e8dafa",
+          "claim_scope": "Measured-VCG patient-level development on repeatedly inspected frozen PTB folds. Nested feature/parameter selection; no independent confirmation, clinical validation or SOTA.",
+          "runtime": {
+            "numpy": "2.5.3",
+            "sklearn": "1.9.1",
+            "xgboost": "3.4.1",
+            "platform": "macOS-26.5-arm64-arm-64bit"
+          },
+          "study_fingerprint": "6c44e995b85e3ec2b700b6c7692f584b9ffb284d9012e8c1be585ba224f5b30e"
+        },
+        "reference_summary_sha256": "04bd96375e42ba08dcbe69e111149a6f7d5941f4895bc2e86cd45ba9227f063f",
+        "reference_root": "results/tensor_refinement_v1/complete"
+      },
+      "code_sha256": "962df0783a9396b5648b5b02f372770cef5d75bd1ee17304208ce4e52d6a2137",
+      "selector_code_sha256": "f77c7f88d552b600f7170e7a9d62151f3ffcf877079322777eabbbad8d6e3327",
+      "claim_scope": "Bootstrap feature-consensus development on repeatedly inspected PTB patient folds; no independent confirmation, clinical biomarker or formal stability-selection error guarantees.",
+      "study_fingerprint": "4d970b840d90b1122ae08b774da8fa9ebf230e42c6295e126f8cadbc1be0841c"
+    },
+    "prior_root": "results/feature_stability_v1/complete",
+    "prior_summary_sha256": "6d359be724c1c387743a7857a5013ec3b0f04c12ff5316f30a86a31d29c0c28c",
+    "checkpoint": {
+      "package_version": "9.2.0",
+      "architecture": "TabPFN-v2",
+      "checkpoint_revision": "275f19d2add9c2c0de38f9ebaded3856599fa2e7",
+      "checkpoint_sha256": "cf8c519c01eaf1613ee91239006d57b1c806ff5f23ac1aeb1315ba1015210e49",
+      "checkpoint_bytes": 29009539,
+      "checkpoint_url": "https://huggingface.co/Prior-Labs/TabPFN-v2-clf/resolve/275f19d2add9c2c0de38f9ebaded3856599fa2e7/tabpfn-v2-classifier-v2_default.ckpt",
+      "checkpoint_model_card": "https://huggingface.co/Prior-Labs/TabPFN-v2-clf/blob/275f19d2add9c2c0de38f9ebaded3856599fa2e7/README.md",
+      "inference": "local, frozen foundation weights; no external prediction service"
+    },
+    "backend_runtime": {
+      "versions": {
+        "tabpfn": "9.2.0",
+        "torch": "2.15.0",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1",
+        "scikit-learn": "1.9.1",
+        "pandas": "3.0.6",
+        "joblib": "1.6.0",
+        "skrub": "0.10.1",
+        "lightgbm": "4.7.0",
+        "einops": "0.8.2",
+        "pydantic": "2.14.3",
+        "safetensors": "0.8.0"
+      },
+      "python": "3.12.14 (main, Aug 12 2026, 13:57:54) [Clang 21.0.0 (clang-2100.1.1.101)]",
+      "platform": "macOS-26.5-arm64-arm-64bit",
+      "classifier_code_sha256": "fd31eca98cccf66c8c8f3669fe69f22e91fc3fb20e57c6a0a107d48c95165478",
+      "loader_code_sha256": "4d0cbc16ab160fcc61ef774b8a68e586cfb071153854cb4d381bd23c8e296986",
+      "preprocessing_code_sha256": "ccdb941fc61292a8fa313fd74161478a9e93524d50bc06af249b8b95bc814038",
+      "execution": "fresh local Python process for every PFN fit/restore; no forked numerical state",
+      "worker_thread_environment": {
+        "OMP_NUM_THREADS": "2",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1"
+      }
+    }
+  },
+  "code_sha256": "8d724728a3e2d6c7f7f8655200dd5696612cb622d6995307b1d82a83d4ac976f",
+  "backend_code_sha256": "87ce13d1a297dae317cb394ca168c52f5ac9550c035fe834cb4f17caf88398d0",
+  "claim_scope": "Pinned TabPFN-v2 feature-classifier development on repeatedly inspected PTB patient folds; local frozen synthetic-prior foundation model, not demonstrated MI SOTA or independent confirmation.",
+  "study_fingerprint": "08809f78f72bcb9a8fb5388fc93cb3e5b717eced29092f153ba2dc3f1c6c5b04"
+}
