@@ -127,3 +127,74 @@ def test_prepared_bank_restores_hashes_groups_native_states_and_qc(tmp_path,monk
     private.write_text('changed')
     with pytest.raises(ValueError,match='report/review content changed'):
         bank.prepare(config)
+
+
+def test_native_mask_conventions_have_zero_gradients_for_unknown_entries():
+    import torch
+    from mi_localization import supervised_source_train as train
+    train.neural._seed(42,dict(device='cpu',torch_threads=1))
+    states=np.array([[0,1,2,3]],np.uint8)
+    y,mask=train.targets(states,'certain')
+    assert y.tolist()==[[0,0,0,1]] and mask.tolist()==[[1,0,0,1]]
+    yy,mm=train.targets(states,'positive_intermediate')
+    assert yy.tolist()==[[0,0,1,1]] and mm.tolist()==[[1,0,1,1]]
+    logits=torch.zeros((1,4),requires_grad=True)
+    train.masked_loss(logits,torch.tensor(y),torch.tensor(mask),torch.ones(4)).backward()
+    assert logits.grad[0,1]==logits.grad[0,2]==0
+    assert logits.grad[0,0]>0 and logits.grad[0,3]<0
+
+
+def test_normalization_and_active_heads_ignore_validation_values():
+    from mi_localization import supervised_source_train as train
+    waves=np.zeros((3,4,3,651),np.float32)
+    waves[0]=1;waves[1]=3;waves[2]=1000
+    waves[0,1:]=9000 # padding must not influence fitted means
+    counts=np.array([1,4,4]);groups=np.array([1,1,2]);indices=np.array([0,1])
+    first=train.fit_normalizer(waves,counts,groups,indices)
+    assert np.allclose(first['mean'],[2,2,2])
+    waves[2]=-100000
+    assert train.fit_normalizer(waves,counts,groups,indices)==first
+    states=np.array([[3,3],[3,0],[0,3]],np.uint8)
+    assert train.active_columns(states,groups,indices,2).size==0 # visits are not patients
+    states[2]=3
+    assert train.active_columns(states,groups,indices,2).size==0
+
+
+def test_pooling_masks_padding_and_source_metrics_weight_patients_equally():
+    import torch
+    from mi_localization import supervised_source_train as train
+    train.neural._seed(42,dict(device='cpu',torch_threads=1))
+    config=dict(widths=[4,8,8],pool_bins=2,dropout=0)
+    model=train.RecordModel(2,config).eval();x=torch.randn(2,4,3,651);mask=torch.tensor([[1,1,0,0],[1,0,0,0]],dtype=torch.bool)
+    with torch.no_grad():
+        expected=model(x,mask);x[~mask]=1000
+        assert torch.allclose(expected,model(x,mask),atol=1e-6)
+    y=np.array([[1],[0],[1]],np.float32);m=np.ones_like(y);p=np.array([[.8],[.6],[.9]])
+    a=train.metrics(y,m,p,np.array([1,2,3]),['AMI'])
+    b=train.metrics(y[[0,0,1,2]],m[[0,0,1,2]],p[[0,0,1,2]],np.array([1,1,2,3]),['AMI'])
+    for k in ['macro_average_precision','macro_auroc','macro_f1_at_05']:
+        assert a[k]==b[k]
+    assert not a['target_six_class_metric'] and not a['clinical_negatives']
+
+
+def test_both_objectives_train_restore_export_and_refuse_tampered_predictions(tmp_path,monkeypatch):
+    from mi_localization import supervised_source_train as train
+    config,root=synthetic_bank(tmp_path,monkeypatch)
+    results=train.run(config)
+    assert len(results)==2 and {r['objective'] for r in results}=={'certain','positive_intermediate'}
+    assert results[0]['initial_hash']==results[1]['initial_hash']
+    assert all(r['epochs_completed']==2 for r in results)
+    assert all(not r['target_evaluated'] for r in results)
+    assert train.run(config,verify=True)==results
+    assert train.run(config)==results
+    public=json.loads((Path(config['output_dir'])/'summary.json').read_text())
+    assert not public['next_stage_automatically_launched'] and not public['cross_dataset_identity_cleared']
+    member=Path(config['output_dir'])/'runs/certain_42/summary.json';original=member.read_bytes()
+    altered=json.loads(original);altered['metrics']['macro_auroc']=-1;member.write_text(json.dumps(altered))
+    with pytest.raises(ValueError,match='Restored source metrics'):
+        train.run(config,verify=True)
+    member.write_bytes(original)
+    prediction=Path(config['output_dir'])/'runs/certain_42/validation.npz'
+    prediction.write_bytes(b'changed')
+    with pytest.raises(ValueError,match='artifact changed'):
+        train.run(config,verify=True)
