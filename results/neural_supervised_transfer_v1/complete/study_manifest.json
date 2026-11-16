@@ -1,0 +1,145 @@
+{
+  "config": {
+    "seed": 42,
+    "split_seed": 42,
+    "training_seeds": [
+      42,
+      123,
+      2026
+    ],
+    "paper_config": "configs/paper.yaml",
+    "beats_path": "data/processed/beats.csv",
+    "bank_dir": "data/processed/neural_vcg_v1",
+    "output_dir": "results/neural_supervised_transfer_v1",
+    "folds_path": "configs/patient_folds.csv",
+    "source_config": "configs/supervised_source_pilot_v1.yaml",
+    "overlap_config": "configs/supervised_source_overlap_v1.yaml",
+    "source_training_seed": 42,
+    "classes": [
+      "AMI",
+      "ALMI",
+      "ASMI",
+      "IMI",
+      "ILMI",
+      "HC"
+    ],
+    "arms": [
+      "scratch",
+      "source_certain",
+      "source_positive_intermediate"
+    ],
+    "outer_splits": 10,
+    "inner_splits": 3,
+    "device": "auto",
+    "torch_threads": 2,
+    "widths": [
+      16,
+      32,
+      64
+    ],
+    "pool_bins": 4,
+    "dropout": 0.2,
+    "weight_decay": 0.01,
+    "learning_rates": [
+      0.001,
+      0.0001
+    ],
+    "batch_size": 128,
+    "samples_per_epoch": 8192,
+    "max_epochs": 25,
+    "patience": 6,
+    "bootstrap_draws": 5000
+  },
+  "bank": {
+    "fingerprint": "f44e31cff8230dc5ce971997f80ee0d0d921eb5f72a8ab75d0327692271192e7",
+    "files": {
+      "manifest.json": "b939ab2bf76e25d7569152ac60005f61b3fc99533b028a6413b1ee9b267f0b2c",
+      "waveforms.npy": "118fbfb2d8b2fbc2c32ba6449e301874cc1a79c7ad2d8692652129c224f91fba",
+      "y.npy": "e0aca562cb4beabb0d59119035baf5b997ffc678a0cd21822751f393339ef7f8",
+      "groups.npy": "729880b095d4a225551db982d107754df9ca442f0eafee2145a61cd5db963ab0"
+    },
+    "beats_sha256": "277e2f1498d54db23061c3bb60969f05ce506b941d9dfa7c07e835713950358b",
+    "paper_sha256": "5aea297dd03a5a214de3fc8142b77c58a9e9074e6dbf26288499f360e36892b0",
+    "n_beats": 55863,
+    "n_patients": 164,
+    "n_records": 391,
+    "shape": [
+      55863,
+      3,
+      651
+    ]
+  },
+  "source": {
+    "source": {
+      "report_manifest_sha256": "1e7d1827d985a309f28efd6f3669bbecb63ca1691c45ed93f4693d2973ce5a33",
+      "training_manifest_sha256": "e625be3a3d166a2ba27fc8a9a43a68ce222cdca0c6ab3ffa57b05a074e74e15c",
+      "summary_sha256": "6c37ffcb2faf0310c5e1f686ffad6619a5c37b401244a1515825f874ab08a589"
+    },
+    "exports": {
+      "source_certain": {
+        "objective": "certain",
+        "source_seed": 42,
+        "best_source_epoch": 13,
+        "export_sha256": "3f49f14ad95fe5237cbc0bee6fe8978e83c4521923051cef6e755379b32ef552",
+        "encoder_state_sha256": "e758c9daf2977c6095deddcad5585001ccc55a56b405a952468d2bc1b0663441",
+        "member_summary_sha256": "b3787855777a15c34e5a8bad82980d904246d385fdd80e0d6526dc9a00128cc1",
+        "source_only_normalization_transferred": false
+      },
+      "source_positive_intermediate": {
+        "objective": "positive_intermediate",
+        "source_seed": 42,
+        "best_source_epoch": 13,
+        "export_sha256": "cea34328e51968b64aa636f7f614a596cfb702dc9467f72a2b1ed8e91c18839c",
+        "encoder_state_sha256": "309efc2a67340361e0faa70fc8c3336241e0f16f8777723d2e1de1896eb26147",
+        "member_summary_sha256": "e064bcd98b637165da6a147c9b2f323ba7c1b79a1e8366cc05a759216cfe4ab4",
+        "source_only_normalization_transferred": false
+      }
+    },
+    "source_training_seed": 42,
+    "source_training_patients": 4096,
+    "source_validation_patients": 1942,
+    "expanded_screen_fingerprint": "2a1817f714aafa10f58108bb5ee5347978d423a8435e865ee5fd7dce88fb4ab9",
+    "expanded_screen_manifest_sha256": "4d4d8031e61ab2c2dbe854a51b2a2ac930bd55bdf32478211f8a8c76606b7929",
+    "expanded_screen_output_manifest_sha256": "c3b75601b43371847fc268c59032462af7405a2f41df6aeadaf97b5f788a4820",
+    "expanded_screen_summary_sha256": "a7f2a4b4e35a80b506482872d3b1a151c49957a1f67cb6170ae395b02cab369e",
+    "expanded_recording_screen": {
+      "source_records": 7246,
+      "target_records": 391,
+      "continuous_pairs_checked": 57968,
+      "positive_controls": 20,
+      "positive_controls_retrieved_and_confirmed": 20
+    },
+    "patient_identity_independence_cleared": false,
+    "claim_scope": "Exploratory measured-VCG PTB development; source-target patient identity remains unresolved; no independent confirmation, clinical validity or SOTA claim."
+  },
+  "folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625",
+  "evaluated_folds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "claim_scope": "Exploratory measured-VCG PTB development; source-target patient identity remains unresolved; no independent confirmation, clinical validity or SOTA claim.",
+  "code_sha256": "436d093ee28e8b668f60c19e89b1e8271acce5c56622624ab150ebe7a8d33cd0",
+  "backend_code_sha256": "28e5ebcfddaa8c45e2d307b95f4b4788b99e46c2a07d5002934cd59c4e5a6902",
+  "neural_code_sha256": "7aa44cba432693dca59ccb2587d1f3bd2c5cee195ed74c4259c456de1fa56f97",
+  "scratch_code_sha256": "28e974b992c15ae70901c99554cd86801b6f3f28a4c9f437e8c6f9130e7d0bb6",
+  "bank_loader_code_sha256": "b1692068f880746d0e91059392d58940fbb15ef8d476c304309fc5d6cff05a65",
+  "report_code_sha256": "cc6a64e69f6d1275775cd32c259ba6ada9daa86c2c046282fdbb1127b9f6373c",
+  "runtime": {
+    "torch": "2.15.0",
+    "numpy": "2.5.3",
+    "sklearn": "1.9.1",
+    "pandas": "3.0.6",
+    "platform": "macOS-26.5-arm64-arm-64bit",
+    "device": "mps",
+    "deterministic_kernels": false
+  },
+  "study_fingerprint": "116b25f7df9226bbf39b61be65926e0825de19cde26dad58a325de5bd5231072"
+}

@@ -12,7 +12,7 @@ Does native-diagnostic supervised source learning give a more useful initializat
 | `source_certain` | Fixed source seed42, likelihood100/unlisted objective | Primary transfer procedure |
 | `source_positive_intermediate` | Fixed source seed42, intermediate-positive sensitivity | Sensitivity transfer procedure |
 
-Use both native source objectives irrespective of their tiny source-validation AP difference (0.317456/0.317306). Both were selected at source epoch13; neither is selected using target outcomes. Their source multiclass heads, source normalization/optimizer and source positive weights are discarded. Only encoder weights transfer; initialize matching fresh six-class target heads and fine-tune the whole same network. There is no automatic source-NORM→target-HC mapping or change to target territories.
+Use both native source objectives irrespective of their tiny source-validation AP difference (0.317456/0.317306). Both were selected at source epoch13; neither is selected using target outcomes. Their source diagnostic heads, source normalization/optimizer and source positive weights are discarded. Only encoder weights transfer; initialize matching fresh six-class target heads and fine-tune the whole same network. There is no automatic source-NORM→target-HC mapping or change to target territories.
 
 Primary endpoint: patient macro F1 of the prespecified **equal-probability ensemble of all three target seeds**, with `source_certain`−matched `scratch` the primary comparison. Report the intermediate-positive comparison separately as sensitivity, with no source-objective/seed-subset/weight selection from outer scores. Also report every seed's patient metrics, mean seed F1±sample SD and ensemble per-class results. Mean seed F1 is not ensemble F1.
 
@@ -51,6 +51,8 @@ Use5,000 class-stratified paired patient bootstrap draws, shared across arms and
 ## Commands and stopping boundary
 
 Pre-launch validation: **289 tests passed**, including eight new encoder/provenance/record-screen/preflight-gate, three-arm matching, training-only selection/normalization, full small-study135model restoration/report, tamper and paired-ensemble bootstrap checks. The actual input loader confirmed the original164/391/55,863target cohort and both fixed source encoders. A real MPS smoke fitted/restored all three arms on six inner-training and six inner-query patients, with matching heads/sampling/normalization and no outer-test patients. It is not a final performance result.
+
+Launch observation: implementation `4a41e32` was pushed before the full sweep. Fresh independent source-model verification and the full57,968pair expanded-screen replay passed; the matching private preflight receipt was frozen. The detached launcher started on16November2026 at16:40UTC (22:10IST), PID48689, with macOS idle-sleep inhibition. The monitor subsequently confirmed an active target worker on seed42 / outer fold1 / scratch / rate0 / inner1. This is active training, not a completed result. `launch.json` and the public study manifest record the declared scope; use the live monitor for current phase/counts. No following experiment is queued.
 
 ```bash
 .venv/bin/python scripts/run_supervised_transfer.py --preflight-only
