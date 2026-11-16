@@ -69,4 +69,19 @@ At implementation, eleven targeted tests passed, covering a slow NumPy convoluti
 - [Dempster et al., HYDRA, Data Mining and Knowledge Discovery 2023](https://arxiv.org/abs/2203.13652), [pinned multivariate source](https://github.com/angus924/hydra/blob/144bb7aa3186654042f00f36b078370c620acb06/code/hydra_multivariate.py).
 - [Cüppers and Vreeken, MASHT preprint, 2026](https://arxiv.org/abs/2607.19234). Its MultiRocket/HYDRA plus tabular foundation-model combination is prior art. This first bounded phase does not reproduce MASHT, use TabPFN or inherit its benchmark scores.
 
-Full study launched **16 November 2026, 16:35 IST** from implementation commit `24071aa`. Launcher and worker were observed alive, with the first seed/fold advancing through its inner feature contexts. Final performance is pending; this is a dated launch record, not a live status claim.
+Full study launched **16 November 2026, 16:35 IST** from implementation commit `24071aa`. Launcher and worker were observed alive, with the first seed/fold advancing through its inner feature contexts. This launch record is historical; full verification and publication subsequently completed in `20e7325`. No worker/launcher was alive at completion review.
+
+## Completed outcome — 16 November 2026
+
+[Verified report](../results/rocket_vcg_v1/complete/REPORT.md), [summary](../results/rocket_vcg_v1/complete/summary.json), result commit `20e7325`. All 120 feature contexts were independently reconstructed from their own training patients, all 840 classifiers restored, and all 120 outer models verified. At review, the current scope and all transform/feature/classifier/probability artifact hashes matched. Training and automatic GitHub publication completed; no new training was started during review.
+
+| Features + ridge | Mean member macro F1 ± transform-seed SD | Prespecified ensemble F1 |
+|---|---:|---:|
+| DCT | 0.446 ± 0.000 | 0.445781 |
+| MultiRocket-style | 0.551 ± 0.017 | 0.561442 |
+| HYDRA | 0.538 ± 0.012 | 0.548100 |
+| Combined | 0.573 ± 0.019 | 0.584266 |
+
+Combined−DCT is **+0.138485 [+0.047546,+0.228367]**, a positive matched-control development comparison. Combined−MultiRocket **+0.022825 [−0.020183,+0.069062]** and combined−HYDRA **+0.036166 [−0.045640,+0.115638]** remain uncertain. These intervals do not correct for repeated development or multiple comparisons. All seeds are retained; the combined member scores are 0.553775/0.572111/0.592695, and their mean is not the ensemble score. DCT has identical member predictions across seeds.
+
+The combined point score is effectively level with the historical neural ensemble **0.584570**, lower by 0.000304. That earlier procedure is not the matched control, and the present result does not establish equivalence or a new highest ensemble score. It supplies a competitive feature-based alternative and evidence against the simple DCT template baseline, not independent confirmation or SOTA. Combined AMI/ALMI F1 remain .345/.483 while HC is .925; weaknesses in MI localization remain. No larger kernel budget, beat-variation extension, TabPFN classifier or neural/feature combination was fitted as part of this bounded study or review.
