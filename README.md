@@ -6,7 +6,7 @@ This repository is an end-to-end, reproducible reimplementation of Zhang et al.,
 
 **Completed representation studies:** [ordered VCG path signatures](results/signature_vcg_v1/complete/REPORT.md) passed full verification but did not demonstrate a gain (signature3 mean 0.508 versus matched morphology 0.515). The [healthy-reference experiment](results/deviation_vcg_v1/complete/REPORT.md) also did not demonstrate a gain.
 
-**Current research phase:** [4/8/16 consecutive beats and RR timing](docs/chronological_lengths_plan.md), with training-only shared length selection, matched ordered/shuffled GRU controls and a no-RR ablation. This supersedes the fixed-four queue before any full fit. Monitor locally with `python scripts/live_status.py --watch`; there is no completed chronological classification result yet.
+**Latest completed research:** [4/8/16 consecutive beats and RR timing](docs/chronological_lengths_plan.md). All 1,200 fits and 120 outer model restorations passed verification. Ordered+RR macro F1 was **0.524 ± 0.018**, versus shuffled+RR **0.533 ± 0.013**; the paired difference was −0.008 [−0.057,+0.039], a descriptive patient interval. Chronological order did not demonstrate a gain. Lengths 4/8/16 were selected inside training folds 18/11/1 times, not ranked by outer scores. See the [validated report](results/neural_chronological_lengths_v1/complete/REPORT.md). The historical ResNet reference remains 0.550 ± 0.040 under its different procedure. Local process status: `python scripts/live_status.py --watch`.
 
 For an end-to-end explanation from the research problem through representations, training, patient-level evaluation and improvement opportunities, see the [pipeline overview](docs/PIPELINE_OVERVIEW.md).
 

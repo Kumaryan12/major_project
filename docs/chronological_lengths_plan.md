@@ -2,6 +2,8 @@
 
 Revised 15 November 2026 at the user's request, **before any full chronological fit started**. This replaces the waiting fixed-four queue, under a new experiment namespace. Fixed-four and fixed-sixteen configs/history remain available but are not queued. The existing signature study is undisturbed. No beat-length classification result is available at implementation time.
 
+**Completed 16 November 2026:** all **1,200 fits**, **120 outer model restorations**, **300 matched recurrent-partition checks** and complete query-beat coverage passed verification. Mean ± seed SD macro F1: mean+RR **0.485 ± 0.055**, ordered/no-RR **0.509 ± 0.039**, ordered+RR **0.524 ± 0.018**, shuffled+RR **0.533 ± 0.013**. Ordered minus shuffled: **−0.008 [−0.057,+0.039]**, descriptive paired patient interval; no demonstrated ordering benefit. RR versus no-RR: **+0.016 [−0.029,+0.061]**, also uncertain and conditional on the shared length policy. Lengths 4/8/16 were selected 18/11/1 times in the 30 overlapping training decisions; these are not per-length outer scores or a universally optimal length. The historical ResNet mean remains 0.550 under a different procedure. [Validated report](../results/neural_chronological_lengths_v1/complete/REPORT.md), result commit `e4377f4`. No new full sweep is started by reviewing this result.
+
 ## What is being compared
 
 Use the existing measured-XYZ ResNet/GRU, preceding-RR features, original patients/labels/R positions and ten outer/three inner patient folds. The same four arms are evaluated: mean_rr, ordered_no_rr, ordered_rr, shuffled_rr. See [the base chronology protocol](chronological_vcg_plan.md) for the model, masks, source metadata and inference aggregation.
