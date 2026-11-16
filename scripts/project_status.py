@@ -40,6 +40,7 @@ REPORTS = {
     "selected_convolution_tabpfn": "results/rocket_tabpfn_v1/complete/REPORT.md",
     "supervised_source_feasibility": "results/supervised_source_audit_v1/REPORT.md",
     "supervised_source_pilot": "results/supervised_source_pilot_v1/REPORT.md",
+    "supervised_source_overlap": "results/supervised_source_overlap_v1/REPORT.md",
 }
 
 

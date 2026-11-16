@@ -1,0 +1,15 @@
+source_config: configs/supervised_source_pilot_v1.yaml
+output_dir: results/supervised_source_overlap_v1
+cache_dir: data/processed/supervised_source_overlap_v1
+seed: 42
+screen_rate: 250
+query_seconds: 8
+template_points: 66
+candidate_counts: [8, 16, 32]
+candidate_batch_size: 128
+positive_controls: 20
+mean_correlation_threshold: 0.995
+minimum_lead_correlation: 0.98
+minimum_active_leads: 6
+minimum_lead_sd_mv: 0.00001
+workers: 2
