@@ -1,0 +1,127 @@
+{
+  "mean_seed_comparisons": {
+    "source_certain": {
+      "draws": 5000,
+      "seed": 42,
+      "unique_patients": 164,
+      "fixed_training_seeds": [
+        42,
+        123,
+        2026
+      ],
+      "method": "class-stratified paired patient bootstrap, identical patient draws across ALL arms/seeds; mean of seed-wise macro F1 differences",
+      "per_seed": {
+        "42": {
+          "paired_macro_f1_difference_95_interval": [
+            -0.15282189107864885,
+            0.03740643569085924
+          ]
+        },
+        "123": {
+          "paired_macro_f1_difference_95_interval": [
+            -0.0910463508150576,
+            0.08595084596165616
+          ]
+        },
+        "2026": {
+          "paired_macro_f1_difference_95_interval": [
+            0.015820393564185346,
+            0.20111918920873015
+          ]
+        }
+      },
+      "mean_macro_f1_intervals": {
+        "scratch": [
+          0.49004603401211655,
+          0.6118902916545336
+        ],
+        "source_certain": [
+          0.5062436806968539,
+          0.6302416840006804
+        ]
+      },
+      "mean_paired_macro_f1_difference_95_interval": [
+        -0.04632735822088803,
+        0.07793435245756133
+      ],
+      "limitations": "Conditional on fixed fitted predictions and these seeds. No model refits or seed resampling; no correction for correlated training folds, repeated development or multiple comparisons. Not independent confirmation."
+    },
+    "source_positive_intermediate": {
+      "draws": 5000,
+      "seed": 42,
+      "unique_patients": 164,
+      "fixed_training_seeds": [
+        42,
+        123,
+        2026
+      ],
+      "method": "class-stratified paired patient bootstrap, identical patient draws across ALL arms/seeds; mean of seed-wise macro F1 differences",
+      "per_seed": {
+        "42": {
+          "paired_macro_f1_difference_95_interval": [
+            -0.1290419115774145,
+            0.06136592032584906
+          ]
+        },
+        "123": {
+          "paired_macro_f1_difference_95_interval": [
+            -0.18307175232395834,
+            -0.006934119468510691
+          ]
+        },
+        "2026": {
+          "paired_macro_f1_difference_95_interval": [
+            -0.0746352076085406,
+            0.10062516530972522
+          ]
+        }
+      },
+      "mean_macro_f1_intervals": {
+        "scratch": [
+          0.49004603401211655,
+          0.6118902916545336
+        ],
+        "source_positive_intermediate": [
+          0.44751104075464954,
+          0.5785072807580006
+        ]
+      },
+      "mean_paired_macro_f1_difference_95_interval": [
+        -0.09717073219748977,
+        0.021497448539084404
+      ],
+      "limitations": "Conditional on fixed fitted predictions and these seeds. No model refits or seed resampling; no correction for correlated training folds, repeated development or multiple comparisons. Not independent confirmation."
+    }
+  },
+  "equal_seed_ensemble_comparison": {
+    "draws": 5000,
+    "unique_patients": 164,
+    "seed": 42,
+    "arm_macro_f1_intervals": {
+      "scratch": [
+        0.4575269135221458,
+        0.6184625742150195
+      ],
+      "source_certain": [
+        0.49401747871799695,
+        0.6492108782309767
+      ],
+      "source_positive_intermediate": [
+        0.46647822202848616,
+        0.6246272350295866
+      ]
+    },
+    "paired_difference_intervals": {
+      "source_certain_minus_scratch": [
+        -0.046511047689251926,
+        0.11380024891687249
+      ],
+      "source_positive_intermediate_minus_scratch": [
+        -0.059197112169794196,
+        0.07886763294435434
+      ]
+    },
+    "method": "Class-stratified paired patient bootstrap; identical patient draws across all fixed three-seed probability ensembles",
+    "limits": "Conditional on fixed predictions and two fixed source encoders; no refitting/seed resampling, independent cohort or correction for shared training folds, repeated development or multiple comparisons"
+  }
+}
