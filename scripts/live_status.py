@@ -74,7 +74,7 @@ def study_status(root, relative, runner_file, expected, fits, outer):
     elif progress or queue or runner: phase = "not running: saved state only"
     else: phase = "not started on this checkout"
     return {"phase": phase, "completed_fits": len(list(complete.glob("inner_*.json")))+len(list(complete.glob("outer_*.json"))),
-            "planned_fits": fits, "completed_outer": len(list(complete.glob("outer_*.json"))) if "lengths" in relative else len(list(complete.glob("fold_*.json"))),
+            "planned_fits": fits, "completed_outer": len(list(complete.glob("outer_*.json"))) or len(list(complete.glob("fold_*.json"))),
             "planned_outer": outer, "worker_pid": progress.get("pid"), "worker_process": worker,
             "launcher_pid": runner.get("runner_pid"), "launcher_process": launcher,
             "saved_progress_age_seconds": age_seconds(progress), "progress": progress, "queue": queue,
@@ -86,13 +86,16 @@ def snapshot(root=ROOT):
             "signature": study_status(root, "results/signature_vcg_v1", "tmp/signature_vcg_v1_runner.json",
                 ["run_signature_vcg.sh", "mi_localization.signature_study", "mi_localization.signature_report"], 1050, 150),
             "beat_lengths": study_status(root, "results/neural_chronological_lengths_v1", "tmp/chronological_lengths_v1_runner.json",
-                ["run_chronological_lengths.py", "mi_localization.chronology_lengths_study", "mi_localization.chronology_lengths_report"], 1200, 120)}
+                ["run_chronological_lengths.py", "mi_localization.chronology_lengths_study", "mi_localization.chronology_lengths_report"], 1200, 120),
+            "residual_context": study_status(root, "results/neural_residual_context_v1", "tmp/residual_context_v1_runner.json",
+                ["run_residual_context.py", "mi_localization.residual_context_study", "mi_localization.residual_context_report"], 720, 180)}
 
 
 def display(value):
     india = timezone(timedelta(hours=5, minutes=30), name="IST")
     print("Live experiment status | "+datetime.now(timezone.utc).astimezone(india).strftime("%H:%M:%S IST"))
-    for key, title in (("signature", "SIGNATURE STUDY"), ("beat_lengths", "4 / 8 / 16 BEAT STUDY")):
+    for key, title in (("signature", "SIGNATURE STUDY"), ("beat_lengths", "4 / 8 / 16 BEAT STUDY"),
+                       ("residual_context", "DIRECT BEATS + GATED CONTEXT")):
         row = value[key];p = row["progress"]
         print(f"\n{title}: {row['phase']}")
         print(f"  Fits {row['completed_fits']}/{row['planned_fits']} | outer evaluations {row['completed_outer']}/{row['planned_outer']}")
@@ -100,6 +103,7 @@ def display(value):
         fields = {k: p[k] for k in ("arm", "training_seed", "sampling_seed", "outer_fold", "inner_fold", "sequence_length", "epoch", "max_epochs", "final_epochs") if k in p}
         if fields: print("  Current: "+", ".join(f"{k}={v}" for k, v in fields.items()))
         if "training_loss" in p: print(f"  Training loss: {p['training_loss']:.4f}")
+        if "gate_mean" in p: print(f"  Window loss: {p['window_loss']:.4f} | beat loss: {p['beat_loss']:.4f} | mean gate: {p['gate_mean']:.4f}")
         if "inner_validation_macro_f1" in p: print(f"  Inner-validation F1: {p['inner_validation_macro_f1']:.4f} (not final performance)")
         if row["saved_progress_age_seconds"] is not None: print(f"  Last training/checkpoint update: {row['saved_progress_age_seconds']} s ago")
         if row["phase"] == "FAILED": print("  Error: "+str(p.get("error", row["queue"].get("error", "inspect log"))))

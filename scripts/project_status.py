@@ -31,6 +31,8 @@ REPORTS = {
     "ordered_signatures": "results/signature_vcg_v1/complete/REPORT.md",
     "consecutive_beats_rr": "results/neural_chronological_v1/complete/REPORT.md",
     "nested_beat_lengths": "results/neural_chronological_lengths_v1/complete/REPORT.md",
+    "chronology_diagnostics": "results/neural_chronological_diagnostics_v1/REPORT.md",
+    "residual_context": "results/neural_residual_context_v1/complete/REPORT.md",
 }
 
 
@@ -62,6 +64,8 @@ def inventory(root=ROOT):
     lengths = root/"results/neural_chronological_lengths_v1/complete"
     length_summary = read_json(lengths/"summary.json") if (lengths/"summary.json").is_file() else {}
     length_queue = root/"results/neural_chronological_lengths_v1/queue/progress.json"
+    residual = root/"results/neural_residual_context_v1/complete"
+    residual_summary = read_json(residual/"summary.json") if (residual/"summary.json").is_file() else {}
     return {
         "repository_revision": revision,
         "interpreter": sys.version.split()[0],
@@ -107,6 +111,14 @@ def inventory(root=ROOT):
             "saved_training_progress": read_json(lengths/"progress.json") if (lengths/"progress.json").is_file() else None,
             "saved_queue_progress": read_json(length_queue) if length_queue.is_file() else None,
             "live_process_status": "Not checked by this inventory. Use python scripts/live_status.py --watch for live PID/command checks.",
+        },
+        "residual_context_study": {
+            "planned_fits": 720, "planned_outer_evaluations": 180, "sequence_length": 4,
+            "completed_fit_audit_files": len(list(residual.glob("inner_*.json")))+len(list(residual.glob("outer_*.json"))),
+            "outer_evaluation_files": len(list(residual.glob("outer_*.json"))),
+            "completed_summary_and_report_present": residual_summary.get("complete") is True and (residual/"REPORT.md").is_file(),
+            "saved_training_progress": read_json(residual/"progress.json") if (residual/"progress.json").is_file() else None,
+            "live_process_status": "Not checked. Use python scripts/live_status.py --watch for live PID/command checks.",
         },
     }
 
@@ -155,6 +167,10 @@ def main():
     for key in ("saved_queue_progress", "saved_training_progress"):
         if lengths[key] is not None: print(key+": "+json.dumps(lengths[key], ensure_ascii=True))
     print(lengths["live_process_status"])
+    residual = value["residual_context_study"]
+    print(f"\nDirect beat + residual-context saved fits: {residual['completed_fit_audit_files']}/{residual['planned_fits']}")
+    print(f"Completed summary and report present: {residual['completed_summary_and_report_present']}")
+    print(residual["live_process_status"])
 
 
 if __name__ == "__main__":
