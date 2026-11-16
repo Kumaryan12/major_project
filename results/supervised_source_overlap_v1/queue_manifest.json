@@ -1,0 +1,37 @@
+{
+  "config": {
+    "source_config": "configs/supervised_source_pilot_v1.yaml",
+    "output_dir": "results/supervised_source_overlap_v1",
+    "cache_dir": "data/processed/supervised_source_overlap_v1",
+    "seed": 42,
+    "screen_rate": 250,
+    "query_seconds": 8,
+    "template_points": 66,
+    "candidate_counts": [
+      8,
+      16,
+      32
+    ],
+    "candidate_batch_size": 128,
+    "positive_controls": 20,
+    "mean_correlation_threshold": 0.995,
+    "minimum_lead_correlation": 0.98,
+    "minimum_active_leads": 6,
+    "minimum_lead_sd_mv": 1e-05,
+    "workers": 2
+  },
+  "config_sha256": "6103dcf59fb9ce734e506b8c433782558ee13e9bbac6bdb908f9a2eb384a5b6e",
+  "source_config_sha256": "763e548179cb0267f4454e7fd72ce4805c7cbde63e16edb5d1f7280cffc76394",
+  "script_sha256": "11ff801a44b949b02ac2edc5b74c8ed87892961618ce6edfddaccc969a90444b",
+  "code_sha256": {
+    "supervised_source_overlap.py": "2754486ff3f12948a5d5b47d2eb55f147f20fa3ca401c62309d566039a410bfb",
+    "overlap_screen.py": "5d87cbd9fd3403d2fabdf536075a40ec1eccf694b05404d69b40bfcc7e5cf23f",
+    "supervised_source_train.py": "bbcc90ea15d6d150965b5c94dec368074672a8ed79484a681ba654383ab3eab9",
+    "supervised_source_pilot_report.py": "aab634b516ed658b7b134b11b0d96dd586dca400836dbe1edb01009ca9408304",
+    "supervised_source_bank.py": "3d2ba5d8e33b1e333d6e5d0a3c29df9d277042cf0342d643d2bf903180c27c8e",
+    "neural.py": "7aa44cba432693dca59ccb2587d1f3bd2c5cee195ed74c4259c456de1fa56f97"
+  },
+  "source_output_dir": "results/supervised_source_pilot_v1",
+  "target_classification_queued": false,
+  "stop_after": "independently verified expanded recording-overlap audit and aggregate publication"
+}

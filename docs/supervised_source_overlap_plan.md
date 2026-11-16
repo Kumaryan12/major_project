@@ -41,6 +41,8 @@ Even a passed screen does not resolve the identity of different visits, copies s
 
 Validation before queue registration: **281 tests passed** on the originating Mac, including eight new prerequisite/completion, copy-control, chunked-retrieval/fallback, cache/pair replay, tamper and waiting-queue checks. An I/O smoke on three real cached source and three original PTB target records passed header/common-lead validation and raw cache decode/replay. These checks produce no target score or completed full-screen result.
 
+Registered after implementation commit `b3ad9d0`: queue PID40092 on the originating Mac, waiting for the existing source launcher PID36265 plus its worker. The combined monitor confirmed both source commands active and the queue in `waiting_for_source_pilot`; no full overlap screen had started. These are dated process observations, not a persistent live-state guarantee. The committed `queue_manifest.json` freezes the queued code/config and the stopping boundary. Read the monitor for current status.
+
 ```bash
 # Queue behind the actual source launcher; substitute its verified local PID.
 .venv/bin/python scripts/queue_supervised_source_overlap.py --wait-for-pilot-pid PID --publish
