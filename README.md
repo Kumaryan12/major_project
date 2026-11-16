@@ -24,6 +24,8 @@ This repository is an end-to-end, reproducible reimplementation of Zhang et al.,
 
 For an end-to-end explanation from the research problem through representations, training, patient-level evaluation and improvement opportunities, see the [pipeline overview](docs/PIPELINE_OVERVIEW.md).
 
+**Completed source-data feasibility audit:** [PTB-XL native supervised-source audit](docs/supervised_source_audit.md) retains overlapping diagnoses and all visits from **15,023 training / 1,942 validation patients**, excluding fold 10 before label/waveform reads. There are 44 native diagnostic codes; 34 meet a proposed training-only support threshold. Maximum-likelihood AMI/ALMI training support is **87/138 patients**, but only **9/9** are in the existing compatible cache. Just 1,024 training / 128 validation recordings are cached. This supports a broader source-only diagnostic pilot, not a new target result or cleared patient-independent transfer. No new downloads or training were launched; measured Frank VCG, the 164-patient target and prior results remain unchanged. [Verified aggregate report](results/supervised_source_audit_v1/REPORT.md).
+
 > Research code only. It is not a medical device and must not be used for clinical diagnosis.
 
 For professor-facing material, see the four-page [project summary](output/pdf/mi_localization_summary_report.pdf) or the more detailed [major-project progress report](output/pdf/mi_localization_progress_report.pdf). Rebuild them with `pip install -e '.[report]'`, followed by `python scripts/build_summary_report.py` or `python scripts/build_professor_progress_report.py`.

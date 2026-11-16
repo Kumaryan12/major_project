@@ -1,0 +1,107 @@
+{
+  "scope": {
+    "config": {
+      "version": "1.0.3",
+      "metadata_path": "data/raw/ptbxl/ptbxl_database.csv",
+      "metadata_sha256": "7600de9c1b27d181d850b3c6038a35d7c3ddb6bb33b702e3a20252a6859d216b",
+      "statements_path": "data/raw/ptbxl/scp_statements.csv",
+      "statements_sha256": "ad05b0b1fcae83bb1230755ad9cfc7c96f303feddc08a4a9ad5bdc9ca63bac8f",
+      "waveform_dir": "data/raw/ptbxl",
+      "output_dir": "results/supervised_source_audit_v1",
+      "train_folds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "validation_fold": 9,
+      "excluded_fold": 10,
+      "review_codes": [
+        "AMI",
+        "ALMI",
+        "ASMI",
+        "IMI",
+        "ILMI",
+        "NORM"
+      ],
+      "minimum_training_positive_patients": 20,
+      "validation_support_caution_below": 5,
+      "target_beats_path": "data/processed/beats.csv",
+      "target_beats_sha256": "277e2f1498d54db23061c3bb60969f05ce506b941d9dfa7c07e835713950358b",
+      "target_folds_path": "configs/patient_folds.csv",
+      "target_folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625",
+      "target_waveform_dir": "data/raw/ptbdb",
+      "target_classes": [
+        "AMI",
+        "ALMI",
+        "ASMI",
+        "IMI",
+        "ILMI",
+        "HC"
+      ],
+      "expected_target": {
+        "patients": 164,
+        "records": 391,
+        "beats": 55863
+      },
+      "prior_cohort_path": "results/neural_source_pretraining_v1/source_audit/review/selected_cohort.csv",
+      "prior_cohort_manifest": "results/neural_source_pretraining_v1/source_audit/cohort_manifest.json",
+      "prior_screen_manifest": "results/neural_transfer_v1/overlap_audit/screen_manifest.json",
+      "prior_screen_summary": "results/neural_transfer_v1/overlap_audit/summary.json"
+    },
+    "metadata_sha256": "7600de9c1b27d181d850b3c6038a35d7c3ddb6bb33b702e3a20252a6859d216b",
+    "statements_sha256": "ad05b0b1fcae83bb1230755ad9cfc7c96f303feddc08a4a9ad5bdc9ca63bac8f",
+    "source_inventory_sha256": "63e3b05603ab5a6a53c85b5ec383a50e9073ffe6b24afa397153bcf3fe636156",
+    "target": {
+      "patients": 164,
+      "records": 391,
+      "beats": 55863,
+      "data_files_present": 391,
+      "beats_sha256": "277e2f1498d54db23061c3bb60969f05ce506b941d9dfa7c07e835713950358b",
+      "folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625"
+    },
+    "target_inventory_sha256": "f64e5cff47574fa112160ab540f538c80d82e8ee44006b54a9b35a94065995db",
+    "historical": {
+      "files": {
+        "prior_cohort_path": "dfce6baac00c848d6674a740a697228d9ffb37597e5837d81f1e5ea6735eda88",
+        "prior_cohort_manifest": "83487e683d42a625b4c2a986fb253257b620cffda11ab1d98ad2368b044405b8",
+        "prior_screen_manifest": "89ab23f319c69867dc09b310319226405db22024c74f8aa6e27271b18292b72c",
+        "prior_screen_summary": "360f63c1c0248d4b088f9a55a4a9266b2aad9bd61687349d3fffa2e9ad2b15e0"
+      },
+      "historical_only": true,
+      "expanded_cohort_screened": false,
+      "patient_identity_independence_cleared": false,
+      "historical_screen_source_records": 1152,
+      "candidate_records_in_historical_cohort": 1152,
+      "historical_screen_candidate_pairs": 9216,
+      "historical_screen_known_copy_controls": 20,
+      "historical_screen_passed": true,
+      "note": "Historical report/cohort linkage only; old waveform hashes and the full historical execution were not replayed here. Coverage must not be extended to the expanded source."
+    },
+    "code_sha256": "ceba3576ada9d95eb9a02a58cc05af8f2a17ccadd3974573945904cb80d4631b",
+    "report_code_sha256": "8ca5f6ee0cc2e3095d21cad5a6e8473489554bd7f8b09aeb0dc76df668db680e",
+    "old_label_rule_code_sha256": "4c069b734e49dfd89bb9c2eeb5f3bffab47f39fbe958370b10a1d4dc70666f1d",
+    "runtime": {
+      "numpy": "2.5.3",
+      "pandas": "3.0.6",
+      "wfdb": "4.3.1",
+      "platform": "macOS-26.5-arm64-arm-64bit"
+    },
+    "claim_scope": "Source-only native-label/provenance feasibility on PTB-XL; no clinical label adjudication, patient-identity clearance, training result or MI SOTA claim.",
+    "audit_fingerprint": "a751af6cf3e08004954fdea758209ab20d588f30616b742e9226b1b2000d631c"
+  },
+  "files": {
+    "summary.json": "171d1b8f4ba0fb7ff37915b90a60dbfc16891ecaa64749fe33c8c888508f88eb",
+    "REPORT.md": "7feeeb06790c740b796567a0cc0a20e35007482639e0e7bca7f78a029b9bce76",
+    "label_counts.csv": "21bae479d7b1cff6c4865bfc82e1491187fb3eef1255281a4a411ef16f014c10",
+    "compatibility_review.csv": "79de4cffc85246f2080fcda37a5a436021463a6f5db8b1e3246d903729496352",
+    "review/source_records.csv": "cc6af288eb6cc5b6d1f93d1c30ed916fea0e0470d09977c1905ccc3ccaed9c07",
+    "review/waveform_inventory.csv": "63e3b05603ab5a6a53c85b5ec383a50e9073ffe6b24afa397153bcf3fe636156",
+    "review/native_label_states.npz": "cc3977262df84019b5e6b216881ed054de9cee8d03f33698e18912a877591fe2",
+    "review/duplicate_groups.json": "d70d246a0fe3e1a912b934ab7fe1fece1b423554eede7db2abc5eb461cfc0f7e"
+  }
+}
