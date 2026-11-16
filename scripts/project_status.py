@@ -35,6 +35,7 @@ REPORTS = {
     "residual_context": "results/neural_residual_context_v1/complete/REPORT.md",
     "uniform_seed_ensembles": "results/neural_residual_seed_ensemble_v1/complete/REPORT.md",
     "neural_tensor_fusion": "results/neural_tensor_fusion_v1/complete/REPORT.md",
+    "staged_context": "results/neural_staged_context_v1/complete/REPORT.md",
 }
 
 

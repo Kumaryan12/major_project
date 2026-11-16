@@ -1,0 +1,400 @@
+{
+  "complete": true,
+  "scope": {
+    "config": {
+      "seed": 42,
+      "split_seed": 42,
+      "training_seeds": [
+        42,
+        123,
+        2026
+      ],
+      "paper_config": "configs/paper.yaml",
+      "beats_path": "data/processed/beats.csv",
+      "bank_dir": "data/processed/neural_vcg_v1",
+      "sequence_bank_dir": "data/processed/chronological_vcg_v1",
+      "folds_path": "configs/patient_folds.csv",
+      "output_dir": "results/neural_staged_context_v1",
+      "classes": [
+        "AMI",
+        "ALMI",
+        "ASMI",
+        "IMI",
+        "ILMI",
+        "HC"
+      ],
+      "outer_splits": 10,
+      "inner_splits": 3,
+      "arms": [
+        "morphology",
+        "continued_morphology",
+        "joint_context",
+        "frozen_context",
+        "frozen_shuffled"
+      ],
+      "device": "auto",
+      "torch_threads": 2,
+      "widths": [
+        16,
+        32,
+        64
+      ],
+      "pool_bins": 4,
+      "dropout": 0.2,
+      "rr_embedding": 8,
+      "hidden_size": 32,
+      "sequence_length": 4,
+      "windows_per_epoch": 2048,
+      "batch_size": 32,
+      "inference_batch_size": 64,
+      "auxiliary_weight": 0.5,
+      "gate_initial_bias": -3.0,
+      "stage2_seed_offset": 500000003,
+      "max_epochs": 25,
+      "patience": 6,
+      "learning_rate": 0.001,
+      "weight_decay": 0.01,
+      "bootstrap_draws": 5000
+    },
+    "source_protocol": {
+      "config": {
+        "seed": 42,
+        "split_seed": 42,
+        "training_seeds": [
+          42,
+          123,
+          2026
+        ],
+        "paper_config": "configs/paper.yaml",
+        "beats_path": "data/processed/beats.csv",
+        "bank_dir": "data/processed/neural_vcg_v1",
+        "sequence_bank_dir": "data/processed/chronological_vcg_v1",
+        "folds_path": "configs/patient_folds.csv",
+        "output_dir": "results/neural_staged_context_v1",
+        "classes": [
+          "AMI",
+          "ALMI",
+          "ASMI",
+          "IMI",
+          "ILMI",
+          "HC"
+        ],
+        "outer_splits": 10,
+        "inner_splits": 3,
+        "arms": [
+          "morphology",
+          "continued_morphology",
+          "joint_context",
+          "frozen_context",
+          "frozen_shuffled"
+        ],
+        "device": "auto",
+        "torch_threads": 2,
+        "widths": [
+          16,
+          32,
+          64
+        ],
+        "pool_bins": 4,
+        "dropout": 0.2,
+        "rr_embedding": 8,
+        "hidden_size": 32,
+        "sequence_length": 4,
+        "windows_per_epoch": 2048,
+        "batch_size": 32,
+        "inference_batch_size": 64,
+        "auxiliary_weight": 0.5,
+        "gate_initial_bias": -3.0,
+        "stage2_seed_offset": 500000003,
+        "max_epochs": 25,
+        "patience": 6,
+        "learning_rate": 0.001,
+        "weight_decay": 0.01,
+        "bootstrap_draws": 5000
+      },
+      "source": {
+        "source": {
+          "fingerprint": "f44e31cff8230dc5ce971997f80ee0d0d921eb5f72a8ab75d0327692271192e7",
+          "files": {
+            "manifest.json": "b939ab2bf76e25d7569152ac60005f61b3fc99533b028a6413b1ee9b267f0b2c",
+            "waveforms.npy": "118fbfb2d8b2fbc2c32ba6449e301874cc1a79c7ad2d8692652129c224f91fba",
+            "y.npy": "e0aca562cb4beabb0d59119035baf5b997ffc678a0cd21822751f393339ef7f8",
+            "groups.npy": "729880b095d4a225551db982d107754df9ca442f0eafee2145a61cd5db963ab0"
+          },
+          "beats_sha256": "277e2f1498d54db23061c3bb60969f05ce506b941d9dfa7c07e835713950358b",
+          "paper_sha256": "5aea297dd03a5a214de3fc8142b77c58a9e9074e6dbf26288499f360e36892b0",
+          "n_beats": 55863,
+          "n_patients": 164,
+          "n_records": 391,
+          "shape": [
+            55863,
+            3,
+            651
+          ]
+        },
+        "metadata_manifest_sha256": "169f7a631ed8267cc8bc69d232aa5750a57a14ba23a469db48e43a8f448be223",
+        "metadata_sha256": "aad1348d454d7bb4509fb71456ce40426d3514b7bde077f77544ea268bad09a9",
+        "bank_fingerprint": "cdca321641ee810018c17efb2c42005e8a091779fc74fef238709cf9ceb5d263"
+      },
+      "claim_scope": "Fixed-four-beat direct morphology plus gated context development on repeatedly inspected patient folds; no independent confirmation or established SOTA.",
+      "folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625",
+      "code_sha256": "3bb4fb864bbc0496cc7721e2b9e76426ee7d4b3fc05c50b784033b41537776c3",
+      "model_code_sha256": "d7a8e2a2abde2cfeae82117cc604dedced71a46557ef87deeba0151c6a7bcc60",
+      "metadata_code_sha256": "88ef4fdcbd2ca0b116c76dbc12cf954e8b0474eb86c17cfbd38b376437dee864",
+      "shared_model_code_sha256": "19829997fa6fbef0a63f2103add469dcc719dfeabe83eff3d07dea5152527528",
+      "cache_code_sha256": "aa6fd7194971c997f384ab9d3e9e7adc851bc1e7a3bd87e58ba8fc9e98f36061",
+      "neural_code_sha256": "7aa44cba432693dca59ccb2587d1f3bd2c5cee195ed74c4259c456de1fa56f97",
+      "metric_code_sha256": "8f1bb5168adfadec6e60e68cb256cf7dad240d3f7d6bb35fa54b47876f312589",
+      "report_code_sha256": "9b6daa7256056415ffbc540d6e340827f9bdf4947304311fa39a17bfb99c2c78",
+      "runtime": {
+        "torch": "2.15.0",
+        "numpy": "2.5.3",
+        "platform": "macOS-26.5-arm64-arm-64bit",
+        "device": "mps",
+        "deterministic_kernels": false
+      },
+      "study_fingerprint": "117a8d7fc4a5502093bdd302adc30c4160bfc60a6e05cbad30e9dbf00bada1a5"
+    },
+    "claim_scope": "Staged morphology/context development on repeatedly inspected PTB patient folds; fold-local teachers, prespecified seed ensembles, no independent confirmation or established SOTA.",
+    "code_sha256": "998ba12d2938f364d5700e88185e5b97c7b82af027d6d2aac16e1c8f067b44ba",
+    "model_code_sha256": "13642d8d4abd33f243e5d3b335678dae7f48781d951b11f8447740e95ab326e8",
+    "report_code_sha256": "c2c15bfb9856ce5e1e35216a070da86290d092d5fab62e380942b212e0398685",
+    "study_fingerprint": "a70e20b15a04561509c789b13f647ad09b2e75c4d6375976e3b52da5c8b73bfc"
+  },
+  "claim": "Finite staged device/gradient/freeze/restore smoke, not classification performance",
+  "arms": {
+    "continued_morphology": {
+      "fit": {
+        "phase": "adaptation",
+        "arm": "continued_morphology",
+        "seed": 500000046,
+        "initial_state_sha256": "7f982367fca2f890578ea2be224d9ed770f192a030663c622e23153f1e15b6fa",
+        "initial_morphology_sha256": "f574d07463a081ae3904d3a0b39d1216755a3d7819d02f580209ce69b51eb63f",
+        "final_morphology_sha256": "456a6772712eeca9c4e0e4eb1c16d2f168f696ac946493af1e04b9979c55e9f9",
+        "parameter_count": 88693,
+        "trainable_parameter_count": 78198,
+        "normalization": {
+          "wave": {
+            "wave_mean_": [
+              0.010765615850687027,
+              0.012401838786900043,
+              0.000274468504358083
+            ],
+            "wave_scale_": [
+              0.36052191257476807,
+              0.7089307308197021,
+              0.41850635409355164
+            ],
+            "stat_mean_": [],
+            "stat_scale_": []
+          },
+          "rr_mean_seconds": 0.8163223622010368,
+          "rr_scale_seconds": 0.2926977661173204,
+          "training_patients": 147,
+          "fit_beats": 51073,
+          "valid_rr": 50716
+        },
+        "initial_validation_macro_f1": null,
+        "best_validation_macro_f1": null,
+        "selected_epoch": 1,
+        "history": [
+          {
+            "epoch": 1,
+            "training_loss": 1.8067702054977417,
+            "gate_mean": 0.0,
+            "morphology_sha256": "456a6772712eeca9c4e0e4eb1c16d2f168f696ac946493af1e04b9979c55e9f9",
+            "window_plan_sha256": "f288b865bec3bd80db8741565388dbd359a4667f6effed6aef2d6dba0d49bd83",
+            "token_order_sha256": "8b6d9d503bdd7de69c38f99ba1e70141fdc0d28c00902fb16b6390cabce26a61",
+            "windows": 8,
+            "valid_beat_presentations": 32,
+            "nominal_beat_slots": 32,
+            "nonidentity_window_orders": 0,
+            "direct_token_order_sha256": "8b6d9d503bdd7de69c38f99ba1e70141fdc0d28c00902fb16b6390cabce26a61"
+          }
+        ],
+        "patient_overlap": 0,
+        "train_patients": 147,
+        "validation_patients": 0,
+        "direct_dropout_enabled": false,
+        "fresh_optimizer": true,
+        "optimizer_steps": 2
+      },
+      "restore_verified": true
+    },
+    "joint_context": {
+      "fit": {
+        "phase": "adaptation",
+        "arm": "joint_context",
+        "seed": 500000046,
+        "initial_state_sha256": "7f982367fca2f890578ea2be224d9ed770f192a030663c622e23153f1e15b6fa",
+        "initial_morphology_sha256": "f574d07463a081ae3904d3a0b39d1216755a3d7819d02f580209ce69b51eb63f",
+        "final_morphology_sha256": "1cbf062586c4b19d427ea71f97ba257cc56bd69dcea82de30b2349d4c48c900d",
+        "parameter_count": 88693,
+        "trainable_parameter_count": 88693,
+        "normalization": {
+          "wave": {
+            "wave_mean_": [
+              0.010765615850687027,
+              0.012401838786900043,
+              0.000274468504358083
+            ],
+            "wave_scale_": [
+              0.36052191257476807,
+              0.7089307308197021,
+              0.41850635409355164
+            ],
+            "stat_mean_": [],
+            "stat_scale_": []
+          },
+          "rr_mean_seconds": 0.8163223622010368,
+          "rr_scale_seconds": 0.2926977661173204,
+          "training_patients": 147,
+          "fit_beats": 51073,
+          "valid_rr": 50716
+        },
+        "initial_validation_macro_f1": null,
+        "best_validation_macro_f1": null,
+        "selected_epoch": 1,
+        "history": [
+          {
+            "epoch": 1,
+            "training_loss": 1.806686520576477,
+            "gate_mean": 0.04742655158042908,
+            "morphology_sha256": "1cbf062586c4b19d427ea71f97ba257cc56bd69dcea82de30b2349d4c48c900d",
+            "window_plan_sha256": "f288b865bec3bd80db8741565388dbd359a4667f6effed6aef2d6dba0d49bd83",
+            "token_order_sha256": "8b6d9d503bdd7de69c38f99ba1e70141fdc0d28c00902fb16b6390cabce26a61",
+            "windows": 8,
+            "valid_beat_presentations": 32,
+            "nominal_beat_slots": 32,
+            "nonidentity_window_orders": 0,
+            "direct_token_order_sha256": "8b6d9d503bdd7de69c38f99ba1e70141fdc0d28c00902fb16b6390cabce26a61"
+          }
+        ],
+        "patient_overlap": 0,
+        "train_patients": 147,
+        "validation_patients": 0,
+        "direct_dropout_enabled": false,
+        "fresh_optimizer": true,
+        "optimizer_steps": 2
+      },
+      "restore_verified": true
+    },
+    "frozen_context": {
+      "fit": {
+        "phase": "adaptation",
+        "arm": "frozen_context",
+        "seed": 500000046,
+        "initial_state_sha256": "7f982367fca2f890578ea2be224d9ed770f192a030663c622e23153f1e15b6fa",
+        "initial_morphology_sha256": "f574d07463a081ae3904d3a0b39d1216755a3d7819d02f580209ce69b51eb63f",
+        "final_morphology_sha256": "f574d07463a081ae3904d3a0b39d1216755a3d7819d02f580209ce69b51eb63f",
+        "parameter_count": 88693,
+        "trainable_parameter_count": 10495,
+        "normalization": {
+          "wave": {
+            "wave_mean_": [
+              0.010765615850687027,
+              0.012401838786900043,
+              0.000274468504358083
+            ],
+            "wave_scale_": [
+              0.36052191257476807,
+              0.7089307308197021,
+              0.41850635409355164
+            ],
+            "stat_mean_": [],
+            "stat_scale_": []
+          },
+          "rr_mean_seconds": 0.8163223622010368,
+          "rr_scale_seconds": 0.2926977661173204,
+          "training_patients": 147,
+          "fit_beats": 51073,
+          "valid_rr": 50716
+        },
+        "initial_validation_macro_f1": null,
+        "best_validation_macro_f1": null,
+        "selected_epoch": 1,
+        "history": [
+          {
+            "epoch": 1,
+            "training_loss": 1.8651162385940552,
+            "gate_mean": 0.04742655158042908,
+            "morphology_sha256": "f574d07463a081ae3904d3a0b39d1216755a3d7819d02f580209ce69b51eb63f",
+            "window_plan_sha256": "f288b865bec3bd80db8741565388dbd359a4667f6effed6aef2d6dba0d49bd83",
+            "token_order_sha256": "8b6d9d503bdd7de69c38f99ba1e70141fdc0d28c00902fb16b6390cabce26a61",
+            "windows": 8,
+            "valid_beat_presentations": 32,
+            "nominal_beat_slots": 32,
+            "nonidentity_window_orders": 0,
+            "direct_token_order_sha256": "8b6d9d503bdd7de69c38f99ba1e70141fdc0d28c00902fb16b6390cabce26a61"
+          }
+        ],
+        "patient_overlap": 0,
+        "train_patients": 147,
+        "validation_patients": 0,
+        "direct_dropout_enabled": false,
+        "fresh_optimizer": true,
+        "optimizer_steps": 2
+      },
+      "restore_verified": true
+    },
+    "frozen_shuffled": {
+      "fit": {
+        "phase": "adaptation",
+        "arm": "frozen_shuffled",
+        "seed": 500000046,
+        "initial_state_sha256": "7f982367fca2f890578ea2be224d9ed770f192a030663c622e23153f1e15b6fa",
+        "initial_morphology_sha256": "f574d07463a081ae3904d3a0b39d1216755a3d7819d02f580209ce69b51eb63f",
+        "final_morphology_sha256": "f574d07463a081ae3904d3a0b39d1216755a3d7819d02f580209ce69b51eb63f",
+        "parameter_count": 88693,
+        "trainable_parameter_count": 10495,
+        "normalization": {
+          "wave": {
+            "wave_mean_": [
+              0.010765615850687027,
+              0.012401838786900043,
+              0.000274468504358083
+            ],
+            "wave_scale_": [
+              0.36052191257476807,
+              0.7089307308197021,
+              0.41850635409355164
+            ],
+            "stat_mean_": [],
+            "stat_scale_": []
+          },
+          "rr_mean_seconds": 0.8163223622010368,
+          "rr_scale_seconds": 0.2926977661173204,
+          "training_patients": 147,
+          "fit_beats": 51073,
+          "valid_rr": 50716
+        },
+        "initial_validation_macro_f1": null,
+        "best_validation_macro_f1": null,
+        "selected_epoch": 1,
+        "history": [
+          {
+            "epoch": 1,
+            "training_loss": 1.8651163578033447,
+            "gate_mean": 0.04742655158042908,
+            "morphology_sha256": "f574d07463a081ae3904d3a0b39d1216755a3d7819d02f580209ce69b51eb63f",
+            "window_plan_sha256": "f288b865bec3bd80db8741565388dbd359a4667f6effed6aef2d6dba0d49bd83",
+            "token_order_sha256": "d7acb413f579585cc55f4405e8e8da1fa0bbfb44dc515c460490b78a211f7e7e",
+            "windows": 8,
+            "valid_beat_presentations": 32,
+            "nominal_beat_slots": 32,
+            "nonidentity_window_orders": 8,
+            "direct_token_order_sha256": "8b6d9d503bdd7de69c38f99ba1e70141fdc0d28c00902fb16b6390cabce26a61"
+          }
+        ],
+        "patient_overlap": 0,
+        "train_patients": 147,
+        "validation_patients": 0,
+        "direct_dropout_enabled": false,
+        "fresh_optimizer": true,
+        "optimizer_steps": 2
+      },
+      "restore_verified": true
+    }
+  },
+  "zero_residual_verified": true
+}

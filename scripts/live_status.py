@@ -67,7 +67,7 @@ def study_status(root, relative, runner_file, expected, fits, outer):
     elif worker == "running": phase = progress.get("state", "running")
     elif launcher == "running":
         if queue.get("state") == "waiting_for_signature_verification": phase = "queued: waiting for signature verification"
-        elif "--smoke" in queue.get("flags", []): phase = "device smoke check: launcher active"
+        elif any(f in queue.get("flags", []) for f in ("--smoke","--ensure-smoke")): phase = "device smoke check: launcher active"
         elif str(queue.get("module", "")).endswith("_report"): phase = "verification starting: launcher active"
         else: phase = "launcher active: "+str(queue.get("module", queue.get("state", "starting")))
     elif worker == "unknown" or launcher == "unknown": phase = "process status unavailable; inspect saved state"
@@ -92,24 +92,29 @@ def snapshot(root=ROOT):
                 ["run_chronological_lengths.py", "mi_localization.chronology_lengths_study", "mi_localization.chronology_lengths_report"], 1200, 120),
             "residual_context": study_status(root, "results/neural_residual_context_v1", "tmp/residual_context_v1_runner.json",
                 ["run_residual_context.py", "mi_localization.residual_context_study", "mi_localization.residual_context_report"], 720, 180),
-            "neural_tensor_fusion":fusion}
+            "neural_tensor_fusion":fusion,
+            "staged_context":study_status(root,"results/neural_staged_context_v1","tmp/staged_context_v1_runner.json",
+                ["run_staged_context.py","mi_localization.staged_context_study","mi_localization.staged_context_report"],600,150)}
 
 
 def display(value):
     india = timezone(timedelta(hours=5, minutes=30), name="IST")
     print("Live experiment status | "+datetime.now(timezone.utc).astimezone(india).strftime("%H:%M:%S IST"))
     for key, title in (("signature", "SIGNATURE STUDY"), ("beat_lengths", "4 / 8 / 16 BEAT STUDY"),
-                       ("residual_context", "DIRECT BEATS + GATED CONTEXT"),("neural_tensor_fusion","NEURAL + TENSOR FUSION")):
+                       ("residual_context", "DIRECT BEATS + GATED CONTEXT"),("neural_tensor_fusion","NEURAL + TENSOR FUSION"),
+                       ("staged_context","STAGED MORPHOLOGY + FROZEN CONTEXT")):
         row = value[key];p = row["progress"]
         print(f"\n{title}: {row['phase']}")
         if key=="neural_tensor_fusion":
             print(f"  Source contexts {row['source_contexts_verified']}/{row['planned_source_contexts']} | outer folds {row['completed_outer']}/{row['planned_outer']} | new fits: 0")
-        else:print(f"  Fits {row['completed_fits']}/{row['planned_fits']} | outer evaluations {row['completed_outer']}/{row['planned_outer']}")
+        else:print(f"  {'Phase fits/checkpoints' if key=='staged_context' else 'Fits'} {row['completed_fits']}/{row['planned_fits']} | outer evaluations {row['completed_outer']}/{row['planned_outer']}")
         print(f"  Worker {row['worker_pid']}: {row['worker_process']} | launcher {row['launcher_pid']}: {row['launcher_process']}")
-        fields = {k: p[k] for k in ("arm", "training_seed", "sampling_seed", "outer_fold", "inner_fold", "sequence_length", "epoch", "max_epochs", "final_epochs","selected_neural_weight") if k in p}
+        fields = {k: p[k] for k in ("phase","arm", "training_seed", "sampling_seed", "outer_fold", "inner_fold", "sequence_length", "epoch", "max_epochs", "final_epochs","selected_neural_weight") if k in p}
         if fields: print("  Current: "+", ".join(f"{k}={v}" for k, v in fields.items()))
         if "training_loss" in p: print(f"  Training loss: {p['training_loss']:.4f}")
-        if "gate_mean" in p: print(f"  Window loss: {p['window_loss']:.4f} | beat loss: {p['beat_loss']:.4f} | mean gate: {p['gate_mean']:.4f}")
+        if "gate_mean" in p:
+            components=[f"{label}: {p[key]:.4f}" for key,label in (("window_loss","Window loss"),("beat_loss","Beat loss"),("gate_mean","Mean gate")) if key in p]
+            print("  "+" | ".join(components))
         if "inner_validation_macro_f1" in p: print(f"  Inner-validation F1: {p['inner_validation_macro_f1']:.4f} (not final performance)")
         if row["saved_progress_age_seconds"] is not None: print(f"  Last training/checkpoint update: {row['saved_progress_age_seconds']} s ago")
         if row["phase"] == "FAILED": print("  Error: "+str(p.get("error", row["queue"].get("error", "inspect log"))))
