@@ -1,0 +1,35 @@
+audit_config: configs/supervised_source_audit_v1.yaml
+base_url: https://physionet-open.s3.amazonaws.com/ptb-xl/1.0.3
+waveform_dir: data/raw/ptbxl_supervised_v1
+reuse_waveform_dir: data/raw/ptbxl
+bank_dir: data/processed/supervised_source_pilot_v1
+output_dir: results/supervised_source_pilot_v1
+cohort_seed: 42
+training_patients: 4096
+minimum_training_positive_patients: 20
+beats_per_record: 4
+download_workers: 8
+conversion_workers: 2
+preprocessing:
+  sampling_rate: 1000
+  before_r: 250
+  after_r: 400
+  wavelet: bior6.8
+  denoise_level: 9
+  rpeak_refractory_ms: 250
+  rpeak_integration_ms: 150
+  rpeak_threshold_scale: 0.06
+device: auto
+torch_threads: 2
+widths: [16, 32, 64]
+pool_bins: 4
+dropout: 0.2
+training_seeds: [42]
+objectives: [certain, positive_intermediate]
+batch_size: 64
+samples_per_epoch: 4096
+max_epochs: 15
+patience: 4
+learning_rate: 0.001
+weight_decay: 0.01
+maximum_positive_weight: 20.0
