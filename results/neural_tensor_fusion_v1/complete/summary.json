@@ -1,0 +1,440 @@
+{
+  "complete": true,
+  "study_fingerprint": "c657f2322cf517e1272e778f690f5a031c3e0c51d5f3c5700e493a2ab30c8eae",
+  "claim_scope": "Neural\u2013tensor late-fusion development on repeatedly inspected PTB patients; scalar blending selected inside outer-training patients, frozen component recipes, no independent confirmation or established SOTA.",
+  "n_patients": 164,
+  "classes": [
+    "AMI",
+    "ALMI",
+    "ASMI",
+    "IMI",
+    "ILMI",
+    "HC"
+  ],
+  "new_model_fits": 0,
+  "completed_outer_folds": 10,
+  "neural_inner_contexts_verified": 90,
+  "tensor_inner_contexts_verified": 120,
+  "neural_outer_members_restored": 30,
+  "tensor_outer_contexts_restored": 10,
+  "total_source_contexts_verified": 250,
+  "tensor_bootstrap_caches_replayed": 70,
+  "decisions": [
+    {
+      "outer_fold": 1,
+      "neural_weight": 0.5,
+      "tensor_candidate": {
+        "family": "combined",
+        "k": 64,
+        "params": {}
+      }
+    },
+    {
+      "outer_fold": 2,
+      "neural_weight": 0.75,
+      "tensor_candidate": {
+        "family": "morphology",
+        "k": 24,
+        "params": {}
+      }
+    },
+    {
+      "outer_fold": 3,
+      "neural_weight": 1.0,
+      "tensor_candidate": {
+        "family": "combined",
+        "k": 64,
+        "params": {}
+      }
+    },
+    {
+      "outer_fold": 4,
+      "neural_weight": 0.75,
+      "tensor_candidate": {
+        "family": "morphology",
+        "k": 24,
+        "params": {}
+      }
+    },
+    {
+      "outer_fold": 5,
+      "neural_weight": 0.75,
+      "tensor_candidate": {
+        "family": "morphology",
+        "k": 64,
+        "params": {}
+      }
+    },
+    {
+      "outer_fold": 6,
+      "neural_weight": 0.75,
+      "tensor_candidate": {
+        "family": "morphology",
+        "k": 64,
+        "params": {}
+      }
+    },
+    {
+      "outer_fold": 7,
+      "neural_weight": 0.5,
+      "tensor_candidate": {
+        "family": "combined",
+        "k": 64,
+        "params": {}
+      }
+    },
+    {
+      "outer_fold": 8,
+      "neural_weight": 0.75,
+      "tensor_candidate": {
+        "family": "morphology",
+        "k": 64,
+        "params": {}
+      }
+    },
+    {
+      "outer_fold": 9,
+      "neural_weight": 0.75,
+      "tensor_candidate": {
+        "family": "morphology",
+        "k": 64,
+        "params": {}
+      }
+    },
+    {
+      "outer_fold": 10,
+      "neural_weight": 1.0,
+      "tensor_candidate": {
+        "family": "morphology",
+        "k": 24,
+        "params": {}
+      }
+    }
+  ],
+  "selected_neural_weight_counts": {
+    "0.5": 2,
+    "0.75": 6,
+    "1.0": 2
+  },
+  "frozen_references_reproduced": true,
+  "metrics": {
+    "neural_only": {
+      "accuracy": 0.6524390243902439,
+      "balanced_accuracy": 0.5849510723103338,
+      "macro_f1": 0.5845699185109049,
+      "macro_roc_auc_ovr": 0.8895986668492432,
+      "macro_average_precision": 0.6133865581069156,
+      "classification_report": {
+        "AMI": {
+          "precision": 0.29411764705882354,
+          "recall": 0.29411764705882354,
+          "f1-score": 0.29411764705882354,
+          "support": 17.0
+        },
+        "ALMI": {
+          "precision": 0.4444444444444444,
+          "recall": 0.5,
+          "f1-score": 0.47058823529411764,
+          "support": 16.0
+        },
+        "ASMI": {
+          "precision": 0.6956521739130435,
+          "recall": 0.5925925925925926,
+          "f1-score": 0.64,
+          "support": 27.0
+        },
+        "IMI": {
+          "precision": 0.6071428571428571,
+          "recall": 0.5862068965517241,
+          "f1-score": 0.5964912280701754,
+          "support": 29.0
+        },
+        "ILMI": {
+          "precision": 0.625,
+          "recall": 0.6521739130434783,
+          "f1-score": 0.6382978723404256,
+          "support": 23.0
+        },
+        "HC": {
+          "precision": 0.8518518518518519,
+          "recall": 0.8846153846153846,
+          "f1-score": 0.8679245283018868,
+          "support": 52.0
+        },
+        "accuracy": 0.6524390243902439,
+        "macro avg": {
+          "precision": 0.5863681624018368,
+          "recall": 0.5849510723103338,
+          "f1-score": 0.5845699185109049,
+          "support": 164.0
+        },
+        "weighted avg": {
+          "precision": 0.6534887741475759,
+          "recall": 0.6524390243902439,
+          "f1-score": 0.6519547799650541,
+          "support": 164.0
+        }
+      },
+      "mi_only_macro_f1_six_way_predictions": 0.5432307387601505
+    },
+    "tensor_only": {
+      "accuracy": 0.6158536585365854,
+      "balanced_accuracy": 0.5383333110342767,
+      "macro_f1": 0.5424178408221833,
+      "macro_roc_auc_ovr": 0.8643682912190392,
+      "macro_average_precision": 0.552366487056656,
+      "classification_report": {
+        "AMI": {
+          "precision": 0.45454545454545453,
+          "recall": 0.29411764705882354,
+          "f1-score": 0.35714285714285715,
+          "support": 17.0
+        },
+        "ALMI": {
+          "precision": 0.4666666666666667,
+          "recall": 0.4375,
+          "f1-score": 0.45161290322580644,
+          "support": 16.0
+        },
+        "ASMI": {
+          "precision": 0.45454545454545453,
+          "recall": 0.5555555555555556,
+          "f1-score": 0.5,
+          "support": 27.0
+        },
+        "IMI": {
+          "precision": 0.5172413793103449,
+          "recall": 0.5172413793103449,
+          "f1-score": 0.5172413793103449,
+          "support": 29.0
+        },
+        "ILMI": {
+          "precision": 0.6,
+          "recall": 0.5217391304347826,
+          "f1-score": 0.5581395348837209,
+          "support": 23.0
+        },
+        "HC": {
+          "precision": 0.8392857142857143,
+          "recall": 0.9038461538461539,
+          "f1-score": 0.8703703703703703,
+          "support": 52.0
+        },
+        "accuracy": 0.6158536585365854,
+        "macro avg": {
+          "precision": 0.5553807782256058,
+          "recall": 0.5383333110342767,
+          "f1-score": 0.5424178408221833,
+          "support": 164.0
+        },
+        "weighted avg": {
+          "precision": 0.6092044134727063,
+          "recall": 0.6158536585365854,
+          "f1-score": 0.6091079486867458,
+          "support": 164.0
+        }
+      },
+      "mi_only_macro_f1_six_way_predictions": 0.4866279993643731
+    },
+    "equal_blend": {
+      "accuracy": 0.6280487804878049,
+      "balanced_accuracy": 0.5413706990354329,
+      "macro_f1": 0.5425300624379765,
+      "macro_roc_auc_ovr": 0.9047164293393989,
+      "macro_average_precision": 0.6238479412785963,
+      "classification_report": {
+        "AMI": {
+          "precision": 0.29411764705882354,
+          "recall": 0.29411764705882354,
+          "f1-score": 0.29411764705882354,
+          "support": 17.0
+        },
+        "ALMI": {
+          "precision": 0.4166666666666667,
+          "recall": 0.3125,
+          "f1-score": 0.35714285714285715,
+          "support": 16.0
+        },
+        "ASMI": {
+          "precision": 0.5333333333333333,
+          "recall": 0.5925925925925926,
+          "f1-score": 0.5614035087719298,
+          "support": 27.0
+        },
+        "IMI": {
+          "precision": 0.625,
+          "recall": 0.5172413793103449,
+          "f1-score": 0.5660377358490566,
+          "support": 29.0
+        },
+        "ILMI": {
+          "precision": 0.5833333333333334,
+          "recall": 0.6086956521739131,
+          "f1-score": 0.5957446808510638,
+          "support": 23.0
+        },
+        "HC": {
+          "precision": 0.8421052631578947,
+          "recall": 0.9230769230769231,
+          "f1-score": 0.8807339449541285,
+          "support": 52.0
+        },
+        "accuracy": 0.6280487804878049,
+        "macro avg": {
+          "precision": 0.5490927072583419,
+          "recall": 0.5413706990354329,
+          "f1-score": 0.5425300624379765,
+          "support": 164.0
+        },
+        "weighted avg": {
+          "precision": 0.6182793110825845,
+          "recall": 0.6280487804878049,
+          "f1-score": 0.620655899926461,
+          "support": 164.0
+        }
+      },
+      "mi_only_macro_f1_six_way_predictions": 0.4851901452520647
+    },
+    "selected_blend": {
+      "accuracy": 0.6524390243902439,
+      "balanced_accuracy": 0.5817963289806413,
+      "macro_f1": 0.5830524453947804,
+      "macro_roc_auc_ovr": 0.9038678614712009,
+      "macro_average_precision": 0.6245591366339113,
+      "classification_report": {
+        "AMI": {
+          "precision": 0.35294117647058826,
+          "recall": 0.35294117647058826,
+          "f1-score": 0.35294117647058826,
+          "support": 17.0
+        },
+        "ALMI": {
+          "precision": 0.5,
+          "recall": 0.4375,
+          "f1-score": 0.4666666666666667,
+          "support": 16.0
+        },
+        "ASMI": {
+          "precision": 0.5517241379310345,
+          "recall": 0.5925925925925926,
+          "f1-score": 0.5714285714285714,
+          "support": 27.0
+        },
+        "IMI": {
+          "precision": 0.6666666666666666,
+          "recall": 0.5517241379310345,
+          "f1-score": 0.6037735849056604,
+          "support": 29.0
+        },
+        "ILMI": {
+          "precision": 0.6,
+          "recall": 0.6521739130434783,
+          "f1-score": 0.625,
+          "support": 23.0
+        },
+        "HC": {
+          "precision": 0.8545454545454545,
+          "recall": 0.9038461538461539,
+          "f1-score": 0.8785046728971962,
+          "support": 52.0
+        },
+        "accuracy": 0.6524390243902439,
+        "macro avg": {
+          "precision": 0.5876462392689573,
+          "recall": 0.5817963289806413,
+          "f1-score": 0.5830524453947804,
+          "support": 164.0
+        },
+        "weighted avg": {
+          "precision": 0.6491844432550908,
+          "recall": 0.6524390243902439,
+          "f1-score": 0.6491580185863197,
+          "support": 164.0
+        }
+      },
+      "mi_only_macro_f1_six_way_predictions": 0.5370308123249299
+    }
+  },
+  "contrasts": {
+    "selected_blend_minus_neural_only": {
+      "six_class": {
+        "delta_macro_f1": -0.0015174731161244903,
+        "descriptive_patient_interval": [
+          -0.05092167303336954,
+          0.05027488393025898
+        ]
+      },
+      "mi_only": {
+        "delta_macro_f1": -0.006199926435220604,
+        "descriptive_patient_interval": [
+          -0.06476110012006091,
+          0.05538481685332221
+        ]
+      }
+    },
+    "equal_blend_minus_neural_only": {
+      "six_class": {
+        "delta_macro_f1": -0.04203985607292837,
+        "descriptive_patient_interval": [
+          -0.11050231357694348,
+          0.027849035305938147
+        ]
+      },
+      "mi_only": {
+        "delta_macro_f1": -0.05804059350808577,
+        "descriptive_patient_interval": [
+          -0.13885191204651298,
+          0.024793613987489676
+        ]
+      }
+    },
+    "selected_blend_minus_tensor_only": {
+      "six_class": {
+        "delta_macro_f1": 0.040634604572597155,
+        "descriptive_patient_interval": [
+          -0.05452012279578493,
+          0.134839127733594
+        ]
+      },
+      "mi_only": {
+        "delta_macro_f1": 0.050402812960556764,
+        "descriptive_patient_interval": [
+          -0.061096548387660855,
+          0.16238732070648582
+        ]
+      }
+    },
+    "selected_blend_minus_equal_blend": {
+      "six_class": {
+        "delta_macro_f1": 0.04052238295680388,
+        "descriptive_patient_interval": [
+          -0.008336988149350069,
+          0.09306983267553244
+        ]
+      },
+      "mi_only": {
+        "delta_macro_f1": 0.051840667072865165,
+        "descriptive_patient_interval": [
+          -0.004168382428620468,
+          0.11401015804193396
+        ]
+      }
+    },
+    "equal_blend_minus_tensor_only": {
+      "six_class": {
+        "delta_macro_f1": 0.00011222161579327317,
+        "descriptive_patient_interval": [
+          -0.07962130045766402,
+          0.07843179030211431
+        ]
+      },
+      "mi_only": {
+        "delta_macro_f1": -0.001437854112308401,
+        "descriptive_patient_interval": [
+          -0.09676193285485823,
+          0.09234029414385751
+        ]
+      }
+    }
+  }
+}
