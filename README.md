@@ -14,6 +14,8 @@ This repository is an end-to-end, reproducible reimplementation of Zhang et al.,
 
 **Post-hoc ensemble candidate:** [uniform averaging of all three seeds](docs/residual_seed_ensemble_plan.md) scored **0.585** for ordered context + auxiliary supervision, versus matched beat-only ensemble **0.545**; difference **+0.039 [−0.035,+0.113]**, descriptive paired patient interval. All six arm ensembles are reported, with no seed/weight/subset tuning. Source verification was replayed and all 180 members independently restored for inference; **220 tests passed**. This does not change the original mean-seed result or establish an independent gain/SOTA. [Report and class results](results/neural_residual_seed_ensemble_v1/complete/REPORT.md), [comparison figure](results/neural_residual_seed_ensemble_v1/complete/ensemble_comparison.png). No new full training sweep was launched for this analysis.
 
+**New approved comparison:** [patient-nested neural–tensor late fusion](docs/neural_tensor_fusion_plan.md). Freeze the neural ensemble and pinned raw TabPFN recipes; compare both alone, equal blending and an inner-selected scalar blend. The audit found exact inner-patient alignment across sources. Planned verification reuses 250 contexts and restores 40 outer members/contexts, without new base-model fits or global-OOF meta-training. No fusion result is established at implementation time.
+
 For an end-to-end explanation from the research problem through representations, training, patient-level evaluation and improvement opportunities, see the [pipeline overview](docs/PIPELINE_OVERVIEW.md).
 
 > Research code only. It is not a medical device and must not be used for clinical diagnosis.

@@ -82,25 +82,31 @@ def study_status(root, relative, runner_file, expected, fits, outer):
 
 
 def snapshot(root=ROOT):
+    fusion=study_status(root,"results/neural_tensor_fusion_v1","tmp/neural_tensor_fusion_v1_runner.json",
+        ["run_neural_tensor_fusion.py","mi_localization.neural_tensor_fusion"],0,10)
+    fusion.update(planned_source_contexts=250,source_contexts_verified=fusion["progress"].get("source_contexts_verified",fusion["completed_outer"]*25),new_model_fits=0)
     return {"scope": "Read-only live PID/command checks plus saved checkpoints; does not verify model results or control training.",
             "signature": study_status(root, "results/signature_vcg_v1", "tmp/signature_vcg_v1_runner.json",
                 ["run_signature_vcg.sh", "mi_localization.signature_study", "mi_localization.signature_report"], 1050, 150),
             "beat_lengths": study_status(root, "results/neural_chronological_lengths_v1", "tmp/chronological_lengths_v1_runner.json",
                 ["run_chronological_lengths.py", "mi_localization.chronology_lengths_study", "mi_localization.chronology_lengths_report"], 1200, 120),
             "residual_context": study_status(root, "results/neural_residual_context_v1", "tmp/residual_context_v1_runner.json",
-                ["run_residual_context.py", "mi_localization.residual_context_study", "mi_localization.residual_context_report"], 720, 180)}
+                ["run_residual_context.py", "mi_localization.residual_context_study", "mi_localization.residual_context_report"], 720, 180),
+            "neural_tensor_fusion":fusion}
 
 
 def display(value):
     india = timezone(timedelta(hours=5, minutes=30), name="IST")
     print("Live experiment status | "+datetime.now(timezone.utc).astimezone(india).strftime("%H:%M:%S IST"))
     for key, title in (("signature", "SIGNATURE STUDY"), ("beat_lengths", "4 / 8 / 16 BEAT STUDY"),
-                       ("residual_context", "DIRECT BEATS + GATED CONTEXT")):
+                       ("residual_context", "DIRECT BEATS + GATED CONTEXT"),("neural_tensor_fusion","NEURAL + TENSOR FUSION")):
         row = value[key];p = row["progress"]
         print(f"\n{title}: {row['phase']}")
-        print(f"  Fits {row['completed_fits']}/{row['planned_fits']} | outer evaluations {row['completed_outer']}/{row['planned_outer']}")
+        if key=="neural_tensor_fusion":
+            print(f"  Source contexts {row['source_contexts_verified']}/{row['planned_source_contexts']} | outer folds {row['completed_outer']}/{row['planned_outer']} | new fits: 0")
+        else:print(f"  Fits {row['completed_fits']}/{row['planned_fits']} | outer evaluations {row['completed_outer']}/{row['planned_outer']}")
         print(f"  Worker {row['worker_pid']}: {row['worker_process']} | launcher {row['launcher_pid']}: {row['launcher_process']}")
-        fields = {k: p[k] for k in ("arm", "training_seed", "sampling_seed", "outer_fold", "inner_fold", "sequence_length", "epoch", "max_epochs", "final_epochs") if k in p}
+        fields = {k: p[k] for k in ("arm", "training_seed", "sampling_seed", "outer_fold", "inner_fold", "sequence_length", "epoch", "max_epochs", "final_epochs","selected_neural_weight") if k in p}
         if fields: print("  Current: "+", ".join(f"{k}={v}" for k, v in fields.items()))
         if "training_loss" in p: print(f"  Training loss: {p['training_loss']:.4f}")
         if "gate_mean" in p: print(f"  Window loss: {p['window_loss']:.4f} | beat loss: {p['beat_loss']:.4f} | mean gate: {p['gate_mean']:.4f}")

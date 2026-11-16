@@ -1,0 +1,10 @@
+neural_ensemble_config: configs/residual_seed_ensemble_v1.yaml
+neural_arm: ordered_context_aux
+tensor_config: configs/tabpfn_v2.yaml
+tensor_arm: tabpfn
+output_dir: results/neural_tensor_fusion_v1
+procedures: [neural_only, tensor_only, equal_blend, selected_blend]
+neural_weight_grid: [1.0, 0.75, 0.5, 0.25, 0.0]
+bootstrap_draws: 5000
+bootstrap_seed: 42
+# Ties favor the first configured weight: retain the frozen neural reference.
