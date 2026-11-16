@@ -33,6 +33,7 @@ REPORTS = {
     "nested_beat_lengths": "results/neural_chronological_lengths_v1/complete/REPORT.md",
     "chronology_diagnostics": "results/neural_chronological_diagnostics_v1/REPORT.md",
     "residual_context": "results/neural_residual_context_v1/complete/REPORT.md",
+    "uniform_seed_ensembles": "results/neural_residual_seed_ensemble_v1/complete/REPORT.md",
 }
 
 

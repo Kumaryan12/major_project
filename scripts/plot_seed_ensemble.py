@@ -24,7 +24,10 @@ def plot(root):
     axes[0].plot(values,y,"D",color="black",label="Uniform-ensemble F1")
     for i,v in enumerate(values): axes[0].annotate(f"{v:.3f}",(v,i),xytext=(5,-10),textcoords="offset points",fontsize=9)
     axes[0].set(yticks=y,yticklabels=[names[a] for a in arms],xlabel="Patient macro F1",title="Three declared seeds; all six arms")
-    axes[0].invert_yaxis();axes[0].legend(fontsize=8,loc="lower left");axes[0].grid(axis="x",alpha=.2)
+    axes[0].invert_yaxis()
+    axes[0].set_xlim(min([*values,*summary["mean_member_f1"].values()])-.01,max(values)+.015)
+    axes[0].legend(fontsize=8,loc="upper center",bbox_to_anchor=(.5,-.16))
+    axes[0].grid(axis="x",alpha=.2)
     pairs=[("ordered_context_aux_minus_beat_only","Combined recipe − beat only"),
            ("ordered_context_aux_minus_beat_aux","Context − beat only (auxiliary matched)"),
            ("ordered_context_aux_minus_shuffled_context_aux","Ordered − shuffled (auxiliary matched)")]

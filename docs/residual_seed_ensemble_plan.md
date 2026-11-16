@@ -4,6 +4,8 @@ Implemented **16 November 2026**, after the source result `07dd9e2`. This is exp
 
 The completed original study has mean patient macro F1 **0.551 ± 0.027** for beat-only versus **0.539 ± 0.032** for ordered context plus auxiliary beat supervision. Its combined-recipe difference interval includes zero. Those results remain intact.
 
+**Completed verification on 16 November 2026:** all 720 source contexts reverified, all 120 matched partition checks passed, and all **180 outer members** were restored again for ensemble inference. The ordered+aux ensemble scored **0.584570**, versus beat-only ensemble **0.545112**: **+0.039458 [−0.034767,+0.112701]**, descriptive paired patient interval. Shuffled+aux ensemble scored **0.556158**; ordered−shuffled **+0.028412 [−0.043095,+0.098762]**. Both intervals span zero. These are promising development point scores, without a demonstrated improvement or chronological mechanism. The full suite passed **220 tests**. [Complete report](../results/neural_residual_seed_ensemble_v1/complete/REPORT.md), [comparison figure](../results/neural_residual_seed_ensemble_v1/complete/ensemble_comparison.png), [PDF figure](../results/neural_residual_seed_ensemble_v1/complete/ensemble_comparison.pdf).
+
 ## Predictor and controls
 
 Average class probabilities with fixed weights **1/3, 1/3, 1/3** over every declared source seed **42/123/2026**, separately for each of the **six original arms**. Do not average across arms, select a seed pair, fit a temperature, tune class thresholds or route patients using labels. All six ensemble results, positive and negative, are reported.
