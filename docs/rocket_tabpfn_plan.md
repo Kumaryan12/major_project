@@ -85,6 +85,28 @@ The actual-data smoke used the real pinned checkpoint in isolated workers. It se
 
 The underlying [MultiRocket](https://arxiv.org/abs/2102.00457), [HYDRA](https://arxiv.org/abs/2203.13652) and [TabPFN](https://doi.org/10.1038/s41586-024-08328-6) are prior methods. Their benchmark scores do not establish MI localization performance. Preserve the source HYDRA vendor attribution/license and the local PFN checkpoint provenance.
 
-Full fits launched **16 November 2026, 17:08 IST** from `eebe494`, after the repeated matching smoke passed. Launcher/worker were observed alive and advancing into outer fold 2; final scores are pending. This is a dated observation, not an automatically updated live status.
+Full fits launched **16 November 2026, 17:08 IST** from `eebe494`, after the repeated matching smoke passed. This launch observation is historical. Fits, independent verification and publication completed in `500f6a1`; no worker/launcher was alive at completion review.
 
 During the run, a [spot numerical diagnostic](../results/rocket_tabpfn_v1/numerical_audit/summary.json) traced sklearn warnings in the first inner partition to weighted constant-feature variance roundoff around −1.46e−43. Across all 96 resampled scalers checked, existing constant-feature handling yielded finite scales/transformed features and unit scales for those entries. This is not an audit of every partition; full verification remains required. No numerical code, installed dependencies or active configuration changed.
+
+## Completed outcome — 16 November 2026
+
+[Verified report](../results/rocket_tabpfn_v1/complete/REPORT.md), [summary](../results/rocket_tabpfn_v1/complete/summary.json), result commit `500f6a1`. All 660 new classifiers restored, all 120 source feature contexts reconstructed, 210 frozen ridge contexts restored, 120 bootstrap caches replayed and 240 masks verified; source artifacts unchanged. Completion review matched the current scope, checked all saved model/probability/selector/cache hashes, and found all 240 final saved selector scales finite ([artifact check](../results/rocket_tabpfn_v1/numerical_audit/completion_check.json)). Training and publication completed normally; no next full run was started during review.
+
+| Procedure | Three-seed ensemble macro F1 |
+|---|---:|
+| Frozen full ridge | 0.584266 |
+| Inner-selected ridge | 0.544036 |
+| Inner-selected PFN | 0.530966 |
+| Fixed32 ridge | 0.495415 |
+| Fixed32 PFN | 0.510066 |
+| Fixed64 ridge | 0.576198 |
+| Fixed64 PFN | 0.532195 |
+
+Selected PFN−full ridge is **−0.053301 [−0.127591,+0.021462]**; selected PFN−selected ridge **−0.013070 [−0.083655,+0.056175]**; selected ridge−full ridge **−0.040231 [−0.126448,+0.051966]**. All are descriptive paired patient intervals including zero; no classifier/selection gain is demonstrated. Full-feature ridge remains the strongest point score within this study, with the historical neural ensemble0.584570 separate.
+
+AMI class F1 fell **0.344828→0.080000** for both selected procedures: 5/17→1/17 correctly classified AMI patients. Fixed32 controls had no correct AMI predictions. The PFN AMI change contributes **−0.044138** arithmetically to the macro-F1 difference **−0.053301**; class contributions are score arithmetic, not proof of a causal mechanism. PFN ASMI also fell .633→.533; smaller ALMI/IMI/ILMI gains did not offset these losses. This pattern is consistent with useful subtype information being lost by this 98–99% feature reduction, but does not prove all compression/feature-selection/PFN recipes fail.
+
+Inner selection favored64 over32 in23/30 ridge and27/30 PFN contexts. These are overlapping training decisions, not proof of a universal optimal budget. Fixed64 ridge's ensemble .576198 exceeds selected ridge's .544036, while its mean member F1 .535982 is lower than selected ridge's .546154. Selection optimized individual inner predictions, and averaging probabilities changes the predictor; this is not evidence of a selection-code error. Do not retroactively select a fixed budget or adjust ensemble weights using these outer results.
+
+The tested switch to bootstrap-selected PFN is not supported as an improvement. Retain the full-feature ridge and historical neural references, preserve all outcomes, and require a separately declared controlled hypothesis before any further fitting.
