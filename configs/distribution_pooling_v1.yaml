@@ -1,0 +1,24 @@
+seed: 42
+split_seed: 42
+projection_seeds: [42, 123, 2026]
+paper_config: configs/paper.yaml
+beats_path: data/processed/beats.csv
+bank_dir: data/processed/neural_vcg_v1
+sequence_bank_dir: data/processed/chronological_vcg_v1
+distribution_bank_dir: data/processed/distribution_pooling_v1
+folds_path: configs/patient_folds.csv
+output_dir: results/distribution_pooling_v1
+classes: [AMI, ALMI, ASMI, IMI, ILMI, HC]
+outer_splits: 10
+inner_splits: 3
+arms: [median_waveform, mean_embedding, mean_spread, quantiles]
+ridge_alphas: [1.0, 100.0]
+# Half-open sample indices. These are approximate R-relative windows, not delineated phases.
+windows: [[0, 200], [200, 310], [310, 450], [450, 651], [0, 651]]
+dct_coefficients: 8
+projections: 16
+quantiles: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+feature_scale_floor: 0.00000001
+chunk_size: 512
+torch_threads: 2
+bootstrap_draws: 5000
