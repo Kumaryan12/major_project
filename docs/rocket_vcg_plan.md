@@ -68,3 +68,5 @@ At implementation, eleven targeted tests passed, covering a slow NumPy convoluti
 - [Tan et al., MultiRocket, Data Mining and Knowledge Discovery 2022](https://arxiv.org/abs/2102.00457), [authors' multivariate implementation](https://github.com/ChangWeiTan/MultiRocket/blob/main/multirocket/multirocket_multivariate.py).
 - [Dempster et al., HYDRA, Data Mining and Knowledge Discovery 2023](https://arxiv.org/abs/2203.13652), [pinned multivariate source](https://github.com/angus924/hydra/blob/144bb7aa3186654042f00f36b078370c620acb06/code/hydra_multivariate.py).
 - [Cüppers and Vreeken, MASHT preprint, 2026](https://arxiv.org/abs/2607.19234). Its MultiRocket/HYDRA plus tabular foundation-model combination is prior art. This first bounded phase does not reproduce MASHT, use TabPFN or inherit its benchmark scores.
+
+Full study launched **16 November 2026, 16:35 IST** from implementation commit `24071aa`. Launcher and worker were observed alive, with the first seed/fold advancing through its inner feature contexts. Final performance is pending; this is a dated launch record, not a live status claim.
