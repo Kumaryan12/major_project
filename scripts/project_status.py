@@ -42,6 +42,8 @@ REPORTS = {
     "supervised_source_pilot": "results/supervised_source_pilot_v1/REPORT.md",
     "supervised_source_overlap": "results/supervised_source_overlap_v1/REPORT.md",
     "supervised_transfer": "results/neural_supervised_transfer_v1/complete/REPORT.md",
+    "beat_distribution_pooling": "results/distribution_pooling_v1/complete/REPORT.md",
+    "intact_base_convolution_distributions": "results/convolution_distribution_v1/complete/REPORT.md",
 }
 
 

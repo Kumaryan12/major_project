@@ -1,0 +1,19 @@
+source_config: configs/rocket_vcg_v1.yaml
+output_dir: results/convolution_distribution_v1
+classes: [AMI, ALMI, ASMI, IMI, ILMI, HC]
+folds_path: configs/patient_folds.csv
+outer_splits: 10
+inner_splits: 3
+split_seed: 42
+seed: 42
+projection_seeds: [42, 123, 2026]
+ridge_alphas: [1.0, 100.0]
+arms: [baseline, plus_mean, plus_spread, plus_quantiles]
+projections: 16
+quantiles: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+projection_seed_offset: 8123
+branch_scale_floor: 0.00000001
+smoke_beats_per_record: 2
+benchmark_records: 4
+torch_threads: 2
+bootstrap_draws: 5000
