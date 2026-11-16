@@ -1,0 +1,173 @@
+{
+  "config": {
+    "seed": 42,
+    "split_seed": 42,
+    "projection_seeds": [
+      42,
+      123,
+      2026
+    ],
+    "paper_config": "configs/paper.yaml",
+    "beats_path": "data/processed/beats.csv",
+    "bank_dir": "data/processed/neural_vcg_v1",
+    "sequence_bank_dir": "data/processed/chronological_vcg_v1",
+    "distribution_bank_dir": "data/processed/distribution_pooling_v1",
+    "folds_path": "configs/patient_folds.csv",
+    "output_dir": "results/distribution_pooling_v1",
+    "classes": [
+      "AMI",
+      "ALMI",
+      "ASMI",
+      "IMI",
+      "ILMI",
+      "HC"
+    ],
+    "outer_splits": 10,
+    "inner_splits": 3,
+    "arms": [
+      "median_waveform",
+      "mean_embedding",
+      "mean_spread",
+      "quantiles"
+    ],
+    "ridge_alphas": [
+      1.0,
+      100.0
+    ],
+    "windows": [
+      [
+        0,
+        200
+      ],
+      [
+        200,
+        310
+      ],
+      [
+        310,
+        450
+      ],
+      [
+        450,
+        651
+      ],
+      [
+        0,
+        651
+      ]
+    ],
+    "dct_coefficients": 8,
+    "projections": 16,
+    "quantiles": [
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9
+    ],
+    "feature_scale_floor": 1e-08,
+    "chunk_size": 512,
+    "torch_threads": 2,
+    "bootstrap_draws": 5000
+  },
+  "bank": {
+    "manifest": {
+      "scope": {
+        "source": {
+          "source": {
+            "fingerprint": "f44e31cff8230dc5ce971997f80ee0d0d921eb5f72a8ab75d0327692271192e7",
+            "files": {
+              "manifest.json": "b939ab2bf76e25d7569152ac60005f61b3fc99533b028a6413b1ee9b267f0b2c",
+              "waveforms.npy": "118fbfb2d8b2fbc2c32ba6449e301874cc1a79c7ad2d8692652129c224f91fba",
+              "y.npy": "e0aca562cb4beabb0d59119035baf5b997ffc678a0cd21822751f393339ef7f8",
+              "groups.npy": "729880b095d4a225551db982d107754df9ca442f0eafee2145a61cd5db963ab0"
+            },
+            "beats_sha256": "277e2f1498d54db23061c3bb60969f05ce506b941d9dfa7c07e835713950358b",
+            "paper_sha256": "5aea297dd03a5a214de3fc8142b77c58a9e9074e6dbf26288499f360e36892b0",
+            "n_beats": 55863,
+            "n_patients": 164,
+            "n_records": 391,
+            "shape": [
+              55863,
+              3,
+              651
+            ]
+          },
+          "metadata_manifest_sha256": "169f7a631ed8267cc8bc69d232aa5750a57a14ba23a469db48e43a8f448be223",
+          "metadata_sha256": "aad1348d454d7bb4509fb71456ce40426d3514b7bde077f77544ea268bad09a9",
+          "bank_fingerprint": "cdca321641ee810018c17efb2c42005e8a091779fc74fef238709cf9ceb5d263"
+        },
+        "windows": [
+          [
+            0,
+            200
+          ],
+          [
+            200,
+            310
+          ],
+          [
+            310,
+            450
+          ],
+          [
+            450,
+            651
+          ],
+          [
+            0,
+            651
+          ]
+        ],
+        "dct_coefficients": 8,
+        "features_sha256": "10510be6cfe3269c49dff5b729ae5e6904d51f5c563224aeb25e2a3f0ee8a1a7",
+        "bank_code_sha256": "c669c490956dda43738f46a603eb7aa75247225a6593a2b8a03d548ffe2e1822",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1",
+        "rule": "All original beats; fixed DCT/sqrt(window length), RMS, mean absolute, signed minimum/maximum; no learned bank state"
+      },
+      "beat_features_sha256": "afbb2972ddfb50b2424a71b469e38d09d36b986603907ef2084fa45a06e97810",
+      "median_features_sha256": "ccc9a0f94953f317d58ea52b611ac01da0cc2c26dbeadd0797d97255a44fbdfd",
+      "n_beats": 55863,
+      "n_records": 391,
+      "n_patients": 164,
+      "shape": [
+        55863,
+        5,
+        36
+      ],
+      "record_membership_sha256": "159f9a3f63b854a7e53b93526d8f1063ef00514f4d2f88e32cd6935cd757d4f1"
+    },
+    "manifest_sha256": "12b5862ba29ba9f83a64076e7cfeb358d86d77b3604f855923696ddb38d1ff4b"
+  },
+  "folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625",
+  "code": {
+    "distribution_features.py": "10510be6cfe3269c49dff5b729ae5e6904d51f5c563224aeb25e2a3f0ee8a1a7",
+    "distribution_bank.py": "c669c490956dda43738f46a603eb7aa75247225a6593a2b8a03d548ffe2e1822",
+    "benchmark.py": "8f1bb5168adfadec6e60e68cb256cf7dad240d3f7d6bb35fa54b47876f312589",
+    "chronology_bank.py": "88ef4fdcbd2ca0b116c76dbc12cf954e8b0474eb86c17cfbd38b376437dee864",
+    "regularization.py": "b1692068f880746d0e91059392d58940fbb15ef8d476c304309fc5d6cff05a65",
+    "neural.py": "7aa44cba432693dca59ccb2587d1f3bd2c5cee195ed74c4259c456de1fa56f97",
+    "multiview_bank.py": "266416ac888ded715d3ad4abff35933bc59d15a5be6b93fa3febc76a75c58fc9",
+    "signal_audit.py": "0c9faa7bd2a496d57958ee54f95cbe56f4333ba5ac4a9d317efe90fff90d4dda",
+    "residual_context_report.py": "9b6daa7256056415ffbc540d6e340827f9bdf4947304311fa39a17bfb99c2c78",
+    "distribution_study.py": "e2cf03e3711a8f397ec14d782ba8ca299878b98a4bc134cd6c2cb86fc57bf92f",
+    "distribution_report.py": "1686b684ceba8562e1fb350367f56a5de1273715918943c256534cdda0ec026d"
+  },
+  "claim_scope": "Prespecified measured-VCG distribution-pooling development on repeatedly inspected PTB patients; no independent confirmation, physiological distribution model or established SOTA.",
+  "runtime": {
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "joblib": "1.6.0",
+    "torch": "2.15.0",
+    "platform": "macOS-26.5-arm64-arm-64bit",
+    "device": "cpu",
+    "blas_threads": 1
+  },
+  "study_fingerprint": "9333b305c97e5115d04bb6bb8eff9bbfe8b06e2e8a8f88535277e19277a2f048"
+}
