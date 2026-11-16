@@ -1,0 +1,188 @@
+{
+  "study_fingerprint": "f0395be14a09abb1cd54036f276ad0adce6944e93e39d65e215cf170c89dad39",
+  "arm": "ordered_no_rr",
+  "training_seed": 42,
+  "outer_fold": 8,
+  "inner_fold": 0,
+  "train_membership_sha256": "23ec71af41819bc3e3e2876aa1515e39581c92bc681f8bf9747697b050ff57ab",
+  "query_membership_sha256": "4a84bbe8eefb7a34d5b19babc59bd9915275f505a9b3d8cd35c2ddf95364ddb3",
+  "training_labels_sha256": "1e0e4aa402309c43cd5efc1e6a324aacbbf3adce2168fa1728d7b6b62cc3a9bb",
+  "train_beats": 50111,
+  "query_beats": 5752,
+  "patient_overlap": 0,
+  "sequence_length": 4,
+  "final_epochs": 5,
+  "inner_choices": [
+    {
+      "selected_epoch": 2,
+      "inner_macro_f1": 0.504563492063492,
+      "audit_sha256": "dc50a13807e27d302e4303f47c7ddb01310aaf4c8ddd7fdd516f959905f1e84a"
+    },
+    {
+      "selected_epoch": 5,
+      "inner_macro_f1": 0.4806660772178013,
+      "audit_sha256": "aa2fb357c41e86ba2e8a4800c03f6921e486406708e20e8d9e00288962f7aa16"
+    },
+    {
+      "selected_epoch": 17,
+      "inner_macro_f1": 0.5532572712879618,
+      "audit_sha256": "38908aa2e97ff83aff47cc92b11d4917438b7302b2b49a0b9e01e4f11e6df367"
+    }
+  ],
+  "selection_sha256": "0846a8bf505d013b192a28111d09201e0dc1b91e3b548769f4f2e1b1506d7a20",
+  "training_config_sha256": "c781ea04a22a0a86597e0cbd8c9d110419872cd944e9e558412c8d9dabcb714e",
+  "fit": {
+    "seed": 50,
+    "arm": "ordered_no_rr",
+    "initial_state_sha256": "8e5e0900970657f00b83821b1687354701965f399f34e41ab0d2f794a8a6dfaa",
+    "parameter_count": 88206,
+    "normalization": {
+      "wave": {
+        "wave_mean_": [
+          0.010073935613036156,
+          0.011941958218812943,
+          -0.000143569937790744
+        ],
+        "wave_scale_": [
+          0.3992860019207001,
+          0.7407099008560181,
+          0.4104381203651428
+        ],
+        "stat_mean_": [],
+        "stat_scale_": []
+      },
+      "rr_mean_seconds": 0.8025445405583144,
+      "rr_scale_seconds": 0.2824415183719711,
+      "training_patients": 148,
+      "fit_beats": 50111,
+      "valid_rr": 49763
+    },
+    "selected_epoch": 5,
+    "best_validation_macro_f1": null,
+    "history": [
+      {
+        "epoch": 1,
+        "training_loss": 1.5739921443164349,
+        "window_plan_sha256": "4c42b57aaa8495ca6ad1098e8a3441054126f0ff01aecfbe7302137fc2c0dbea",
+        "token_order_sha256": "88445cc24fb91490caa13dc986f6a9c6ff56b91d495f23aea9b1ce49e363d484",
+        "windows": 2048,
+        "valid_beat_presentations": 8192,
+        "nominal_beat_slots": 8192,
+        "nonidentity_window_orders": 0
+      },
+      {
+        "epoch": 2,
+        "training_loss": 1.1146486345678568,
+        "window_plan_sha256": "eae2c761c2aa4bbba4ef075b6a3a741fca8c5335072717d37af818c9f88f0123",
+        "token_order_sha256": "88445cc24fb91490caa13dc986f6a9c6ff56b91d495f23aea9b1ce49e363d484",
+        "windows": 2048,
+        "valid_beat_presentations": 8192,
+        "nominal_beat_slots": 8192,
+        "nonidentity_window_orders": 0
+      },
+      {
+        "epoch": 3,
+        "training_loss": 0.9134858334437013,
+        "window_plan_sha256": "e0663a27d2d68955de7180ce27141c5f7afbe3b6d1e3cee0e5b2159f20bfb69a",
+        "token_order_sha256": "88445cc24fb91490caa13dc986f6a9c6ff56b91d495f23aea9b1ce49e363d484",
+        "windows": 2048,
+        "valid_beat_presentations": 8192,
+        "nominal_beat_slots": 8192,
+        "nonidentity_window_orders": 0
+      },
+      {
+        "epoch": 4,
+        "training_loss": 0.7805994655936956,
+        "window_plan_sha256": "a94cba131c4ade6e7436a8b543ba34c9c60e197f8a54c01acbf079cb271431ac",
+        "token_order_sha256": "88445cc24fb91490caa13dc986f6a9c6ff56b91d495f23aea9b1ce49e363d484",
+        "windows": 2048,
+        "valid_beat_presentations": 8192,
+        "nominal_beat_slots": 8192,
+        "nonidentity_window_orders": 0
+      },
+      {
+        "epoch": 5,
+        "training_loss": 0.6660006623715162,
+        "window_plan_sha256": "d138316fdd1f93bb208bcbab978e6001c6e92310ab55784d58060b3d1219880a",
+        "token_order_sha256": "88445cc24fb91490caa13dc986f6a9c6ff56b91d495f23aea9b1ce49e363d484",
+        "windows": 2048,
+        "valid_beat_presentations": 8192,
+        "nominal_beat_slots": 8192,
+        "nonidentity_window_orders": 0
+      }
+    ],
+    "patient_overlap": 0,
+    "train_patients": 148,
+    "validation_patients": 0
+  },
+  "coverage": {
+    "query_patients": 16,
+    "query_records": 43,
+    "query_beats": 5752,
+    "windows": 1455,
+    "coverage_sha256": "cdced94699ebb4236278bad23ffb60cb781fed9ce5c3e49eb5a4a9e17e3c9ea4",
+    "plan_sha256": "21d7ad504f72909a8c63697a70b29e050054e2ac3cf9a92b2b9ad977dc6e8e90",
+    "all_beats_exactly_once": true,
+    "token_order_sha256": "6a52e5174586419c6227914295ab07002eb3e4160dca9d88889a9d377f04d87e"
+  },
+  "probabilities_sha256": "be88a6bc3d4e0d35fab5c94f8ec63814be42e919546134c99f3751c1b3dffd1c",
+  "model_sha256": "e04364541157d3684426c6e1a485096c224c51f3d24c77fdf8675182043788af",
+  "patient_metrics": {
+    "accuracy": 0.625,
+    "balanced_accuracy": 0.5777777777777778,
+    "macro_f1": 0.5759259259259258,
+    "macro_roc_auc_ovr": 0.9122405372405372,
+    "macro_average_precision": 0.7939153439153438,
+    "classification_report": {
+      "AMI": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 2.0
+      },
+      "ALMI": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1-score": 0.6666666666666666,
+        "support": 2.0
+      },
+      "ASMI": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2.0
+      },
+      "IMI": {
+        "precision": 0.2857142857142857,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.4,
+        "support": 3.0
+      },
+      "ILMI": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1-score": 0.5,
+        "support": 2.0
+      },
+      "HC": {
+        "precision": 1.0,
+        "recall": 0.8,
+        "f1-score": 0.8888888888888888,
+        "support": 5.0
+      },
+      "accuracy": 0.625,
+      "macro avg": {
+        "precision": 0.6309523809523809,
+        "recall": 0.5777777777777778,
+        "f1-score": 0.5759259259259258,
+        "support": 16.0
+      },
+      "weighted avg": {
+        "precision": 0.6785714285714286,
+        "recall": 0.625,
+        "f1-score": 0.6236111111111111,
+        "support": 16.0
+      }
+    }
+  }
+}
