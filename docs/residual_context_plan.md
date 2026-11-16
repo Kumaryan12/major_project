@@ -6,6 +6,8 @@ Validation before full launch: **217 tests passed** on macOS, including eight re
 
 **Full training launched on the originating Mac on 16 November 2026**, after implementation publication `f3e597f`. The first inner fit was observed actively advancing epochs. Use the live monitor for current state; this launch note does not establish completion or a final score.
 
+**Completed and verified 16 November 2026**, result commit `07dd9e2`. All **720 fits**, **180 outer model restorations** and **120 matched six-arm partition checks** passed. Mean ± seed SD patient macro F1: beat-only **0.551 ± 0.027**, beat+aux **0.518 ± 0.023**, ordered context **0.520 ± 0.057**, ordered+aux **0.539 ± 0.032**, shuffled context **0.518 ± 0.021**, shuffled+aux **0.510 ± 0.063**. Combined recipe minus beat-only **−0.012 [−0.051,+0.027]**; ordered+aux minus shuffled+aux **+0.029 [−0.009,+0.067]**. These descriptive paired patient intervals include zero; no demonstrated combined-recipe or ordering improvement. [Validated source report](../results/neural_residual_context_v1/complete/REPORT.md). Any later seed-ensemble analysis is a separate post-hoc predictor, not a replacement for these declared mean-seed results.
+
 ## Hypothesis and fixed representation
 
 The preceding sequence recipe replaced direct beat classification with a 32-dimensional context head and did not improve the matched shuffled control. Retaining a direct morphology path and explicit beat supervision may make it easier to learn useful context without making every prediction depend on that bottleneck. This is a testable hypothesis, not an established cause of the earlier result.
