@@ -1,0 +1,104 @@
+{
+  "study_fingerprint": "a70e20b15a04561509c789b13f647ad09b2e75c4d6375976e3b52da5c8b73bfc",
+  "arm": "frozen_shuffled",
+  "training_seed": 42,
+  "outer_fold": 7,
+  "inner_fold": 0,
+  "train_membership_sha256": "00342eb087792122a3c64f359be47681ec832bbcfb874a75d17fe54f33967bd7",
+  "query_membership_sha256": "75bb8d3e8114a7713bbd520050e7e9ec583a2192657da86030df3c1fd10f4f0c",
+  "training_labels_sha256": "40233ca72d08901099447c4b5f68cc15fd4f57a6023d4cd666988f6b4dc20cf0",
+  "train_beats": 50459,
+  "query_beats": 5404,
+  "patient_overlap": 0,
+  "phase": "adaptation",
+  "sequence_length": 4,
+  "final_epochs": 1,
+  "inner_choices": [
+    {
+      "inner_fold": 1,
+      "selected_epoch": 4,
+      "audit_sha256": "d5543b45997ce3ce6e6abd758e8c6790e6a40c5654c21b786b84c1f8d6c5799a"
+    },
+    {
+      "inner_fold": 2,
+      "selected_epoch": 1,
+      "audit_sha256": "312f641510a308f17d3de1516f2631d9b59ad26f08f3e803f9611a4c0ce63a0f"
+    },
+    {
+      "inner_fold": 3,
+      "selected_epoch": 1,
+      "audit_sha256": "eff7e52d1668125d5210b4f3d7d097188a58050192eef37185ba48a72f567d90"
+    }
+  ],
+  "teacher_model_sha256": "0c077818e94cc1515c532f6071c2510a7db56ab50e1524c04ab52e7a94cc5aeb",
+  "teacher_audit_sha256": "4b5a739f071304d0989affefd6d484d68dcd004306dacbec8404f8370077c4a6",
+  "teacher_selected_epoch": 5,
+  "fit": {
+    "phase": "adaptation",
+    "arm": "frozen_shuffled",
+    "seed": 500000052,
+    "initial_state_sha256": "3b84fa5db7e49fa6a7da507ef265d231bb264964d460725919233849708ab7bd",
+    "initial_morphology_sha256": "ac1f43f88c26e6c7647fab8655b84f9f3955e5a08120fe65ca39f0d00a4b1b47",
+    "final_morphology_sha256": "ac1f43f88c26e6c7647fab8655b84f9f3955e5a08120fe65ca39f0d00a4b1b47",
+    "parameter_count": 88693,
+    "trainable_parameter_count": 10495,
+    "normalization": {
+      "wave": {
+        "wave_mean_": [
+          0.010830376297235489,
+          0.011844094842672348,
+          -0.00011866739805554971
+        ],
+        "wave_scale_": [
+          0.41530561447143555,
+          0.772788941860199,
+          0.43913787603378296
+        ],
+        "stat_mean_": [],
+        "stat_scale_": []
+      },
+      "rr_mean_seconds": 0.817875427749033,
+      "rr_scale_seconds": 0.2893117344805557,
+      "training_patients": 148,
+      "fit_beats": 50459,
+      "valid_rr": 50107
+    },
+    "initial_validation_macro_f1": null,
+    "best_validation_macro_f1": null,
+    "selected_epoch": 1,
+    "history": [
+      {
+        "epoch": 1,
+        "training_loss": 0.3568267810624093,
+        "gate_mean": 0.360937784134876,
+        "morphology_sha256": "ac1f43f88c26e6c7647fab8655b84f9f3955e5a08120fe65ca39f0d00a4b1b47",
+        "window_plan_sha256": "14910dac0f409a6ff12cdff66912a8dc04d0e41d95289a15c199c1384150f5e3",
+        "token_order_sha256": "a998b9522123287ac32c78c12c96a3c5f316d6744757df1793e0a388c1618338",
+        "windows": 2048,
+        "valid_beat_presentations": 8192,
+        "nominal_beat_slots": 8192,
+        "nonidentity_window_orders": 1970,
+        "direct_token_order_sha256": "88445cc24fb91490caa13dc986f6a9c6ff56b91d495f23aea9b1ce49e363d484"
+      }
+    ],
+    "patient_overlap": 0,
+    "train_patients": 148,
+    "validation_patients": 0,
+    "direct_dropout_enabled": false,
+    "fresh_optimizer": true,
+    "optimizer_steps": 64
+  },
+  "coverage": {
+    "query_patients": 16,
+    "query_records": 39,
+    "query_beats": 5404,
+    "windows": 1365,
+    "coverage_sha256": "b4f6ca857de9f5abd4354d68ce388958868268533da7e10905bfa761b2ec87fb",
+    "plan_sha256": "5e6b77cf6f7688f0804a34c048f6fb1865b00e3f4fb9ec1c73599c60ade7a3e3",
+    "all_beats_exactly_once": true,
+    "token_order_sha256": "a08b38c28eb024cbe391e2ac352ea03166da4ff9d46db6ee4c87352f0e46402f",
+    "direct_token_order_sha256": "7a56921e9f220eab92bfbf792266fa31b700211e2071d81c4fd6a729a472707f"
+  },
+  "model_sha256": "3f1df4e981eab7e0964e5ca17c4827ade19e07ad3921af2850ca73015d35a133",
+  "probabilities_sha256": "abd98ee8a7ce9f053fe61e5cde812a0183de71f6e5d33339b4888d6c461780fa"
+}

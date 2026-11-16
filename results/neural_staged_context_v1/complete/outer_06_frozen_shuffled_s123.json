@@ -1,0 +1,143 @@
+{
+  "study_fingerprint": "a70e20b15a04561509c789b13f647ad09b2e75c4d6375976e3b52da5c8b73bfc",
+  "arm": "frozen_shuffled",
+  "training_seed": 123,
+  "outer_fold": 6,
+  "inner_fold": 0,
+  "train_membership_sha256": "c541bec39be126155bba2cb472f1d1d5bbaf429253d9487cba15ba56e81680a8",
+  "query_membership_sha256": "8ea2abe8963d83c0b41ad489f5d0ac7a9db11cc51d8cb3ceb3910ce1756f5bd6",
+  "training_labels_sha256": "ee17f3cda188eb088123791e85e30baec715df0533794cecf88060f42249a0d5",
+  "train_beats": 49980,
+  "query_beats": 5883,
+  "patient_overlap": 0,
+  "phase": "adaptation",
+  "sequence_length": 4,
+  "final_epochs": 4,
+  "inner_choices": [
+    {
+      "inner_fold": 1,
+      "selected_epoch": 0,
+      "audit_sha256": "f0a39808636572dca1e12e494114e844a3eab833dba8b73b89c7f6914bb98e2b"
+    },
+    {
+      "inner_fold": 2,
+      "selected_epoch": 12,
+      "audit_sha256": "17cff9e4851924c83d97c3f835b594d0aef264ae6c58f3575f7dcc965a4ea2aa"
+    },
+    {
+      "inner_fold": 3,
+      "selected_epoch": 4,
+      "audit_sha256": "f5b9ecc1850cd63de9581fcdbcf417cd9b94e792c792dda31589478599358315"
+    }
+  ],
+  "teacher_model_sha256": "f2549d4bfa97f262d2d20040df0103f931e10d99a0320b1b7eb0c26539858d94",
+  "teacher_audit_sha256": "0355bdac7999e5e777f031d0d20b728b4a4d6542155c93f49d16b1cc5233f9ee",
+  "teacher_selected_epoch": 4,
+  "fit": {
+    "phase": "adaptation",
+    "arm": "frozen_shuffled",
+    "seed": 500000132,
+    "initial_state_sha256": "f53c7708cfed7bd809547e7db208845f6fadc8a5a425a9bca93eaf8e194da759",
+    "initial_morphology_sha256": "d80750f02360c50e0e38e7d65686bf80e1fa7a17857c9e87a85d4f9409ba924d",
+    "final_morphology_sha256": "d80750f02360c50e0e38e7d65686bf80e1fa7a17857c9e87a85d4f9409ba924d",
+    "parameter_count": 88693,
+    "trainable_parameter_count": 10495,
+    "normalization": {
+      "wave": {
+        "wave_mean_": [
+          0.01120141800493002,
+          0.013089556246995926,
+          -0.00027124598273076117
+        ],
+        "wave_scale_": [
+          0.4145702123641968,
+          0.7829012274742126,
+          0.43308913707733154
+        ],
+        "stat_mean_": [],
+        "stat_scale_": []
+      },
+      "rr_mean_seconds": 0.8170679109942733,
+      "rr_scale_seconds": 0.3033656537221029,
+      "training_patients": 148,
+      "fit_beats": 49980,
+      "valid_rr": 49629
+    },
+    "initial_validation_macro_f1": null,
+    "best_validation_macro_f1": null,
+    "selected_epoch": 4,
+    "history": [
+      {
+        "epoch": 1,
+        "training_loss": 0.5450499970465899,
+        "gate_mean": 0.11523386219050735,
+        "morphology_sha256": "d80750f02360c50e0e38e7d65686bf80e1fa7a17857c9e87a85d4f9409ba924d",
+        "window_plan_sha256": "ee0d27e6d540bd2f82361d01f202c66f75a95dbd51e20e433457ffe7dfaa5816",
+        "token_order_sha256": "5bc8cfff63bf5053ef51c21dfecccdcb11b950d62a8d7a17db61b0c92cfae43e",
+        "windows": 2048,
+        "valid_beat_presentations": 8192,
+        "nominal_beat_slots": 8192,
+        "nonidentity_window_orders": 1962,
+        "direct_token_order_sha256": "88445cc24fb91490caa13dc986f6a9c6ff56b91d495f23aea9b1ce49e363d484"
+      },
+      {
+        "epoch": 2,
+        "training_loss": 0.5287188021466136,
+        "gate_mean": 0.3650784355122596,
+        "morphology_sha256": "d80750f02360c50e0e38e7d65686bf80e1fa7a17857c9e87a85d4f9409ba924d",
+        "window_plan_sha256": "b60124ffd8c21d41c20689ea5a3f928dd73c5394710f0ac902b72f5abc4321f2",
+        "token_order_sha256": "ffc6286757bc2e626a4cc57009f5d9fc281e0b71c8be40e32079332667714548",
+        "windows": 2048,
+        "valid_beat_presentations": 8192,
+        "nominal_beat_slots": 8192,
+        "nonidentity_window_orders": 1979,
+        "direct_token_order_sha256": "88445cc24fb91490caa13dc986f6a9c6ff56b91d495f23aea9b1ce49e363d484"
+      },
+      {
+        "epoch": 3,
+        "training_loss": 0.5128560266457498,
+        "gate_mean": 0.6212756242603064,
+        "morphology_sha256": "d80750f02360c50e0e38e7d65686bf80e1fa7a17857c9e87a85d4f9409ba924d",
+        "window_plan_sha256": "e43422ad25302d114da2ea8803800790d1ee3d70887163d71ea475e719a9a17d",
+        "token_order_sha256": "1ec4e2123347c4453a30558cf3759a04e862b4fb6791df28d6fbcd27a82a2b69",
+        "windows": 2048,
+        "valid_beat_presentations": 8192,
+        "nominal_beat_slots": 8192,
+        "nonidentity_window_orders": 1957,
+        "direct_token_order_sha256": "88445cc24fb91490caa13dc986f6a9c6ff56b91d495f23aea9b1ce49e363d484"
+      },
+      {
+        "epoch": 4,
+        "training_loss": 0.521779338363558,
+        "gate_mean": 0.7415193067863584,
+        "morphology_sha256": "d80750f02360c50e0e38e7d65686bf80e1fa7a17857c9e87a85d4f9409ba924d",
+        "window_plan_sha256": "942b54c89b209875fc895129d94efaf990b9340a1f4cc7dbbcc615b18170a3ca",
+        "token_order_sha256": "821ab04ccf86ba9f160e2590da162b1520e1f4f493fdd8400016845512c1440c",
+        "windows": 2048,
+        "valid_beat_presentations": 8192,
+        "nominal_beat_slots": 8192,
+        "nonidentity_window_orders": 1953,
+        "direct_token_order_sha256": "88445cc24fb91490caa13dc986f6a9c6ff56b91d495f23aea9b1ce49e363d484"
+      }
+    ],
+    "patient_overlap": 0,
+    "train_patients": 148,
+    "validation_patients": 0,
+    "direct_dropout_enabled": false,
+    "fresh_optimizer": true,
+    "optimizer_steps": 256
+  },
+  "coverage": {
+    "query_patients": 16,
+    "query_records": 40,
+    "query_beats": 5883,
+    "windows": 1484,
+    "coverage_sha256": "64db30d85ff6ad8b22c230d22fe647d528b4d9e94297998a46edc6ddcea5a5b8",
+    "plan_sha256": "8c926ac44e60c78f6d82eaf4a95b56374157d1708da3f6b44bb8b2d9a330a33c",
+    "all_beats_exactly_once": true,
+    "token_order_sha256": "9f106b3b3aa5a0da2923b80e4843d4b72293b6fceda9e0a4a9536ab094296a1e",
+    "direct_token_order_sha256": "cc163ef39f5d47f327c4d829d0af3cd8341a1f6ef66e4b538f025c5b3f2a1940"
+  },
+  "model_sha256": "9d30b86e5c4a45e8eaacce581d4bba1352edfc1c50f0d601f5414bba1b9c4a1d",
+  "probabilities_sha256": "d59217633ead7469386b5c203067e650093598e63c40883a0199e84b2813465a"
+}

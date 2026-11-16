@@ -1,0 +1,104 @@
+{
+  "study_fingerprint": "a70e20b15a04561509c789b13f647ad09b2e75c4d6375976e3b52da5c8b73bfc",
+  "arm": "joint_context",
+  "training_seed": 123,
+  "outer_fold": 1,
+  "inner_fold": 0,
+  "train_membership_sha256": "4109a0130049a74474662093363ff4a366ddabc2bb979417137187cc01519244",
+  "query_membership_sha256": "1051ca32ae3690626716b67732dff911879ec3374649fddb8d3c82b88eed754d",
+  "training_labels_sha256": "618feb2c197174c119c23b9f41c65e490bd6c10e46965afa8a22f5fb59aeda06",
+  "train_beats": 51073,
+  "query_beats": 4790,
+  "patient_overlap": 0,
+  "phase": "adaptation",
+  "sequence_length": 4,
+  "final_epochs": 1,
+  "inner_choices": [
+    {
+      "inner_fold": 1,
+      "selected_epoch": 0,
+      "audit_sha256": "a3ed6266507f0da3f184d01833e3996679a16caefc3ea7f34fd43198a170f6bc"
+    },
+    {
+      "inner_fold": 2,
+      "selected_epoch": 1,
+      "audit_sha256": "620ed12d61eb25ffc0234b5b1465827e23562cfa54732bbfdb988fd078005452"
+    },
+    {
+      "inner_fold": 3,
+      "selected_epoch": 5,
+      "audit_sha256": "6ea93429016923ab6c743498c69c27e1aa86cb78175cd1cfd17676c4a9f2c85a"
+    }
+  ],
+  "teacher_model_sha256": "009a800fb82cc80853b4b57a8b9221409314b03fab446e167bb66c9ebae47bb1",
+  "teacher_audit_sha256": "a477c41ccc885e2b5b4068a10a51207ee490818f8e27e1d457705d3142387ae8",
+  "teacher_selected_epoch": 9,
+  "fit": {
+    "phase": "adaptation",
+    "arm": "joint_context",
+    "seed": 500000127,
+    "initial_state_sha256": "4bc4c2d7f691117d9da2a1ad66a0400590b1d46ddfb7e196dbbc07f970b9bb3d",
+    "initial_morphology_sha256": "6993e73d7725efb1289242c89dbd67bf60c27feb679074f16d9dc8f8c9952e16",
+    "final_morphology_sha256": "dea92da74b147fd72791915fc4f58937d75386b3691ae24e908497f0a1d26c13",
+    "parameter_count": 88693,
+    "trainable_parameter_count": 88693,
+    "normalization": {
+      "wave": {
+        "wave_mean_": [
+          0.010765615850687027,
+          0.012401838786900043,
+          0.000274468504358083
+        ],
+        "wave_scale_": [
+          0.36052191257476807,
+          0.7089307308197021,
+          0.41850635409355164
+        ],
+        "stat_mean_": [],
+        "stat_scale_": []
+      },
+      "rr_mean_seconds": 0.8163223622010368,
+      "rr_scale_seconds": 0.2926977661173204,
+      "training_patients": 147,
+      "fit_beats": 51073,
+      "valid_rr": 50716
+    },
+    "initial_validation_macro_f1": null,
+    "best_validation_macro_f1": null,
+    "selected_epoch": 1,
+    "history": [
+      {
+        "epoch": 1,
+        "training_loss": 0.25659240153618157,
+        "gate_mean": 0.016185030843189452,
+        "morphology_sha256": "dea92da74b147fd72791915fc4f58937d75386b3691ae24e908497f0a1d26c13",
+        "window_plan_sha256": "acc8490889923dd50503aa61617458fd4e332753fad96be8e53ef7050f6defdf",
+        "token_order_sha256": "88445cc24fb91490caa13dc986f6a9c6ff56b91d495f23aea9b1ce49e363d484",
+        "windows": 2048,
+        "valid_beat_presentations": 8192,
+        "nominal_beat_slots": 8192,
+        "nonidentity_window_orders": 0,
+        "direct_token_order_sha256": "88445cc24fb91490caa13dc986f6a9c6ff56b91d495f23aea9b1ce49e363d484"
+      }
+    ],
+    "patient_overlap": 0,
+    "train_patients": 147,
+    "validation_patients": 0,
+    "direct_dropout_enabled": false,
+    "fresh_optimizer": true,
+    "optimizer_steps": 64
+  },
+  "coverage": {
+    "query_patients": 17,
+    "query_records": 34,
+    "query_beats": 4790,
+    "windows": 1213,
+    "coverage_sha256": "126d677168bfee6ad64dfb687134022b61cd190119199deaf9f62f922e4ee470",
+    "plan_sha256": "26c44fc4788d4170a6a2ea72ab3d56fd2ed976af7a158a9ab2e0505fe9b22910",
+    "all_beats_exactly_once": true,
+    "token_order_sha256": "b653689c6e59b222984d15f3b31fb64751b62a125271bcfe94a5b8a1c4f235db",
+    "direct_token_order_sha256": "b653689c6e59b222984d15f3b31fb64751b62a125271bcfe94a5b8a1c4f235db"
+  },
+  "model_sha256": "ca6e8fcd1ee77c092162d882f50da603cf735dd75bcf2872b675ac0c5b9f2a30",
+  "probabilities_sha256": "6afe9dbf26735f142d651e0663db399ae6deb5da450c25f0ef57a1453d95233d"
+}

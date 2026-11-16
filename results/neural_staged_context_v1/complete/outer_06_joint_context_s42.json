@@ -1,0 +1,104 @@
+{
+  "study_fingerprint": "a70e20b15a04561509c789b13f647ad09b2e75c4d6375976e3b52da5c8b73bfc",
+  "arm": "joint_context",
+  "training_seed": 42,
+  "outer_fold": 6,
+  "inner_fold": 0,
+  "train_membership_sha256": "c541bec39be126155bba2cb472f1d1d5bbaf429253d9487cba15ba56e81680a8",
+  "query_membership_sha256": "8ea2abe8963d83c0b41ad489f5d0ac7a9db11cc51d8cb3ceb3910ce1756f5bd6",
+  "training_labels_sha256": "ee17f3cda188eb088123791e85e30baec715df0533794cecf88060f42249a0d5",
+  "train_beats": 49980,
+  "query_beats": 5883,
+  "patient_overlap": 0,
+  "phase": "adaptation",
+  "sequence_length": 4,
+  "final_epochs": 1,
+  "inner_choices": [
+    {
+      "inner_fold": 1,
+      "selected_epoch": 6,
+      "audit_sha256": "ae92ee760dc574c612a8b8dc769d66617ce060a5efd22d47b5e1aef95c9f58c2"
+    },
+    {
+      "inner_fold": 2,
+      "selected_epoch": 0,
+      "audit_sha256": "7dfda93171469be551d3f7a339c0b3892f2027d075df9cceecdbad70da62e1fd"
+    },
+    {
+      "inner_fold": 3,
+      "selected_epoch": 1,
+      "audit_sha256": "c9365c2e40af19ed8c773f2d8bda893ca4ad6c756f0416352d28c58c1fc0554d"
+    }
+  ],
+  "teacher_model_sha256": "4436a7f6bfdc0a609fcbe81320d9b55e202c812899be713b68e664658a6b0dd6",
+  "teacher_audit_sha256": "a498873ab3f9210c6f4b3d2010b0c69c82560f70b72cd5d2b681cd0c82ef2a76",
+  "teacher_selected_epoch": 8,
+  "fit": {
+    "phase": "adaptation",
+    "arm": "joint_context",
+    "seed": 500000051,
+    "initial_state_sha256": "a08a8187eba0d7bc4777fa4a0018c5cb99d8237b42d5360ca727f516f67af658",
+    "initial_morphology_sha256": "8b67ec207a2a75025458bf96fcde462c776a6f372bb83abb3f17700369c7f8ef",
+    "final_morphology_sha256": "f638b7fabfe857445a42cbcd16ef6ec413f51b5276db20bc2990f9df1e21cae2",
+    "parameter_count": 88693,
+    "trainable_parameter_count": 88693,
+    "normalization": {
+      "wave": {
+        "wave_mean_": [
+          0.01120141800493002,
+          0.013089556246995926,
+          -0.00027124598273076117
+        ],
+        "wave_scale_": [
+          0.4145702123641968,
+          0.7829012274742126,
+          0.43308913707733154
+        ],
+        "stat_mean_": [],
+        "stat_scale_": []
+      },
+      "rr_mean_seconds": 0.8170679109942733,
+      "rr_scale_seconds": 0.3033656537221029,
+      "training_patients": 148,
+      "fit_beats": 49980,
+      "valid_rr": 49629
+    },
+    "initial_validation_macro_f1": null,
+    "best_validation_macro_f1": null,
+    "selected_epoch": 1,
+    "history": [
+      {
+        "epoch": 1,
+        "training_loss": 0.2995581238064915,
+        "gate_mean": 0.025853861414361745,
+        "morphology_sha256": "f638b7fabfe857445a42cbcd16ef6ec413f51b5276db20bc2990f9df1e21cae2",
+        "window_plan_sha256": "c114d741b7aa206177c907538a0d9849affdf1deb3dd1fc8ebfe355f0ba5d8dc",
+        "token_order_sha256": "88445cc24fb91490caa13dc986f6a9c6ff56b91d495f23aea9b1ce49e363d484",
+        "windows": 2048,
+        "valid_beat_presentations": 8192,
+        "nominal_beat_slots": 8192,
+        "nonidentity_window_orders": 0,
+        "direct_token_order_sha256": "88445cc24fb91490caa13dc986f6a9c6ff56b91d495f23aea9b1ce49e363d484"
+      }
+    ],
+    "patient_overlap": 0,
+    "train_patients": 148,
+    "validation_patients": 0,
+    "direct_dropout_enabled": false,
+    "fresh_optimizer": true,
+    "optimizer_steps": 64
+  },
+  "coverage": {
+    "query_patients": 16,
+    "query_records": 40,
+    "query_beats": 5883,
+    "windows": 1484,
+    "coverage_sha256": "64db30d85ff6ad8b22c230d22fe647d528b4d9e94297998a46edc6ddcea5a5b8",
+    "plan_sha256": "8c926ac44e60c78f6d82eaf4a95b56374157d1708da3f6b44bb8b2d9a330a33c",
+    "all_beats_exactly_once": true,
+    "token_order_sha256": "cc163ef39f5d47f327c4d829d0af3cd8341a1f6ef66e4b538f025c5b3f2a1940",
+    "direct_token_order_sha256": "cc163ef39f5d47f327c4d829d0af3cd8341a1f6ef66e4b538f025c5b3f2a1940"
+  },
+  "model_sha256": "7185ec66e011e52292df161b6c341eb5030a54414977f934b320069a3a3cb68f",
+  "probabilities_sha256": "eef471f33341f61959b03d6fcef0c4fc9735d05dc18885b12433068b163941e1"
+}

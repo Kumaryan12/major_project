@@ -1,0 +1,143 @@
+{
+  "study_fingerprint": "a70e20b15a04561509c789b13f647ad09b2e75c4d6375976e3b52da5c8b73bfc",
+  "arm": "frozen_shuffled",
+  "training_seed": 2026,
+  "outer_fold": 7,
+  "inner_fold": 0,
+  "train_membership_sha256": "00342eb087792122a3c64f359be47681ec832bbcfb874a75d17fe54f33967bd7",
+  "query_membership_sha256": "75bb8d3e8114a7713bbd520050e7e9ec583a2192657da86030df3c1fd10f4f0c",
+  "training_labels_sha256": "40233ca72d08901099447c4b5f68cc15fd4f57a6023d4cd666988f6b4dc20cf0",
+  "train_beats": 50459,
+  "query_beats": 5404,
+  "patient_overlap": 0,
+  "phase": "adaptation",
+  "sequence_length": 4,
+  "final_epochs": 4,
+  "inner_choices": [
+    {
+      "inner_fold": 1,
+      "selected_epoch": 6,
+      "audit_sha256": "e9a180f021adfe74d37257dad16b6f25a3fbb69fecd6a5cfff9134077d65e43f"
+    },
+    {
+      "inner_fold": 2,
+      "selected_epoch": 4,
+      "audit_sha256": "c71d0e58e978a2dba0240c2e7528d68e45a9ee6d8b24554c0948d934aaccb2d9"
+    },
+    {
+      "inner_fold": 3,
+      "selected_epoch": 0,
+      "audit_sha256": "18702eebdb6fd177681c4f318ab582ba9d310265536dddd973ae2fc861651e58"
+    }
+  ],
+  "teacher_model_sha256": "0b2fc31cd2138f9939e2de4f724fee7f98d7a62e5765e4fdcc08aa41aa35d1b7",
+  "teacher_audit_sha256": "afcbdb9008b09c47503a0d64d0fad5be9646408f163388e31a6c808905bc6f52",
+  "teacher_selected_epoch": 3,
+  "fit": {
+    "phase": "adaptation",
+    "arm": "frozen_shuffled",
+    "seed": 500002036,
+    "initial_state_sha256": "2cbd77041391f6a7059f02bf43e3904e58334e8b7fedecff6b02da1f5ec2ec68",
+    "initial_morphology_sha256": "15a2788ff68a749cfa602489915f902b612b4f1e275cc0b66d09a7f8d191a22b",
+    "final_morphology_sha256": "15a2788ff68a749cfa602489915f902b612b4f1e275cc0b66d09a7f8d191a22b",
+    "parameter_count": 88693,
+    "trainable_parameter_count": 10495,
+    "normalization": {
+      "wave": {
+        "wave_mean_": [
+          0.010830376297235489,
+          0.011844094842672348,
+          -0.00011866739805554971
+        ],
+        "wave_scale_": [
+          0.41530561447143555,
+          0.772788941860199,
+          0.43913787603378296
+        ],
+        "stat_mean_": [],
+        "stat_scale_": []
+      },
+      "rr_mean_seconds": 0.817875427749033,
+      "rr_scale_seconds": 0.2893117344805557,
+      "training_patients": 148,
+      "fit_beats": 50459,
+      "valid_rr": 50107
+    },
+    "initial_validation_macro_f1": null,
+    "best_validation_macro_f1": null,
+    "selected_epoch": 4,
+    "history": [
+      {
+        "epoch": 1,
+        "training_loss": 0.7012194562703371,
+        "gate_mean": 0.3062896554474719,
+        "morphology_sha256": "15a2788ff68a749cfa602489915f902b612b4f1e275cc0b66d09a7f8d191a22b",
+        "window_plan_sha256": "4ae149e91a1752a8c87a0d63b420db435981211e8b8e1552fb4adac3b3f6668a",
+        "token_order_sha256": "039a386530789a2bd73b1dccc7643c22603b014088a5709b7094326c73e2fa68",
+        "windows": 2048,
+        "valid_beat_presentations": 8192,
+        "nominal_beat_slots": 8192,
+        "nonidentity_window_orders": 1965,
+        "direct_token_order_sha256": "88445cc24fb91490caa13dc986f6a9c6ff56b91d495f23aea9b1ce49e363d484"
+      },
+      {
+        "epoch": 2,
+        "training_loss": 0.6527364747598767,
+        "gate_mean": 0.5394910844042897,
+        "morphology_sha256": "15a2788ff68a749cfa602489915f902b612b4f1e275cc0b66d09a7f8d191a22b",
+        "window_plan_sha256": "2aa6573169257ca09c0a3bab7df30b2c0e2644e5d29306e5f5d02b6ab5e757e6",
+        "token_order_sha256": "38faf37f775c8e60f423be33e096687e75495e89da257d0ecb983c738766533c",
+        "windows": 2048,
+        "valid_beat_presentations": 8192,
+        "nominal_beat_slots": 8192,
+        "nonidentity_window_orders": 1947,
+        "direct_token_order_sha256": "88445cc24fb91490caa13dc986f6a9c6ff56b91d495f23aea9b1ce49e363d484"
+      },
+      {
+        "epoch": 3,
+        "training_loss": 0.6603932902216911,
+        "gate_mean": 0.6184549732133746,
+        "morphology_sha256": "15a2788ff68a749cfa602489915f902b612b4f1e275cc0b66d09a7f8d191a22b",
+        "window_plan_sha256": "9515f4f2d543fec86e1e443434477425b8ee8ec50921595ebfbd0f9065e7ec26",
+        "token_order_sha256": "dc0af71e4e00fb849af17925bbc47c1d7d3d4f0bf75cc7835b594c7a7fc3b1e7",
+        "windows": 2048,
+        "valid_beat_presentations": 8192,
+        "nominal_beat_slots": 8192,
+        "nonidentity_window_orders": 1942,
+        "direct_token_order_sha256": "88445cc24fb91490caa13dc986f6a9c6ff56b91d495f23aea9b1ce49e363d484"
+      },
+      {
+        "epoch": 4,
+        "training_loss": 0.6500195469707251,
+        "gate_mean": 0.630471209064126,
+        "morphology_sha256": "15a2788ff68a749cfa602489915f902b612b4f1e275cc0b66d09a7f8d191a22b",
+        "window_plan_sha256": "e96b3bdaebc961f5e177910829be93055516525906c92af162ddce4917f6fdb7",
+        "token_order_sha256": "d84a6106eda1e300a244d6446947d073aa7838fb74f22ea7f23933485b992f17",
+        "windows": 2048,
+        "valid_beat_presentations": 8192,
+        "nominal_beat_slots": 8192,
+        "nonidentity_window_orders": 1971,
+        "direct_token_order_sha256": "88445cc24fb91490caa13dc986f6a9c6ff56b91d495f23aea9b1ce49e363d484"
+      }
+    ],
+    "patient_overlap": 0,
+    "train_patients": 148,
+    "validation_patients": 0,
+    "direct_dropout_enabled": false,
+    "fresh_optimizer": true,
+    "optimizer_steps": 256
+  },
+  "coverage": {
+    "query_patients": 16,
+    "query_records": 39,
+    "query_beats": 5404,
+    "windows": 1365,
+    "coverage_sha256": "b4f6ca857de9f5abd4354d68ce388958868268533da7e10905bfa761b2ec87fb",
+    "plan_sha256": "5e6b77cf6f7688f0804a34c048f6fb1865b00e3f4fb9ec1c73599c60ade7a3e3",
+    "all_beats_exactly_once": true,
+    "token_order_sha256": "ef36c2ab937bfcee0f7cb7a856f18d6d4dc58749c26443525447621e108f3ed7",
+    "direct_token_order_sha256": "7a56921e9f220eab92bfbf792266fa31b700211e2071d81c4fd6a729a472707f"
+  },
+  "model_sha256": "aaf6a87152114ae1aa48817e0e5e7a5aa4c1b1d43f6f57b695b42d1309023c17",
+  "probabilities_sha256": "218ccbec3654b3f09bd1cd11c056c5fc5cb427656c3753565eebc56dc5f8b9f0"
+}
