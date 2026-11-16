@@ -1,0 +1,27 @@
+seed: 42
+split_seed: 42
+training_seeds: [42, 123, 2026]
+paper_config: configs/paper.yaml
+beats_path: data/processed/beats.csv
+bank_dir: data/processed/neural_vcg_v1
+output_dir: results/neural_supervised_transfer_v1
+folds_path: configs/patient_folds.csv
+source_config: configs/supervised_source_pilot_v1.yaml
+overlap_config: configs/supervised_source_overlap_v1.yaml
+source_training_seed: 42
+classes: [AMI, ALMI, ASMI, IMI, ILMI, HC]
+arms: [scratch, source_certain, source_positive_intermediate]
+outer_splits: 10
+inner_splits: 3
+device: auto
+torch_threads: 2
+widths: [16, 32, 64]
+pool_bins: 4
+dropout: 0.2
+weight_decay: 0.01
+learning_rates: [0.001, 0.0001]
+batch_size: 128
+samples_per_epoch: 8192
+max_epochs: 25
+patience: 6
+bootstrap_draws: 5000
