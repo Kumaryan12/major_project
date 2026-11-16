@@ -96,7 +96,9 @@ def snapshot(root=ROOT):
             "staged_context":study_status(root,"results/neural_staged_context_v1","tmp/staged_context_v1_runner.json",
                 ["run_staged_context.py","mi_localization.staged_context_study","mi_localization.staged_context_report"],600,150),
             "rocket":study_status(root,"results/rocket_vcg_v1","tmp/rocket_vcg_v1_runner.json",
-                ["run_rocket_vcg.py","mi_localization.rocket_study","mi_localization.rocket_report"],840,120)}
+                ["run_rocket_vcg.py","mi_localization.rocket_study","mi_localization.rocket_report"],840,120),
+            "rocket_tabpfn":study_status(root,"results/rocket_tabpfn_v1","tmp/rocket_tabpfn_v1_runner.json",
+                ["run_rocket_tabpfn.py","mi_localization.rocket_tabpfn_study","mi_localization.rocket_tabpfn_report"],660,120)}
 
 
 def display(value):
@@ -105,14 +107,15 @@ def display(value):
     for key, title in (("signature", "SIGNATURE STUDY"), ("beat_lengths", "4 / 8 / 16 BEAT STUDY"),
                        ("residual_context", "DIRECT BEATS + GATED CONTEXT"),("neural_tensor_fusion","NEURAL + TENSOR FUSION"),
                        ("staged_context","STAGED MORPHOLOGY + FROZEN CONTEXT"),
-                       ("rocket","BOUNDED RANDOM-CONVOLUTION FEATURES")):
+                       ("rocket","BOUNDED RANDOM-CONVOLUTION FEATURES"),
+                       ("rocket_tabpfn","SELECTED CONVOLUTION FEATURES: RIDGE VS TABPFN")):
         row = value[key];p = row["progress"]
         print(f"\n{title}: {row['phase']}")
         if key=="neural_tensor_fusion":
             print(f"  Source contexts {row['source_contexts_verified']}/{row['planned_source_contexts']} | outer folds {row['completed_outer']}/{row['planned_outer']} | new fits: 0")
         else:print(f"  {'Phase fits/checkpoints' if key=='staged_context' else 'Fits'} {row['completed_fits']}/{row['planned_fits']} | outer evaluations {row['completed_outer']}/{row['planned_outer']}")
         print(f"  Worker {row['worker_pid']}: {row['worker_process']} | launcher {row['launcher_pid']}: {row['launcher_process']}")
-        fields = {k: p[k] for k in ("phase","arm", "training_seed", "sampling_seed", "transform_seed", "outer_fold", "inner_fold", "candidate_id", "sequence_length", "epoch", "max_epochs", "final_epochs","selected_neural_weight") if k in p}
+        fields = {k: p[k] for k in ("phase","arm", "learner", "training_seed", "sampling_seed", "transform_seed", "outer_fold", "inner_fold", "feature_budget", "candidate_id", "sequence_length", "epoch", "max_epochs", "final_epochs","selected_neural_weight") if k in p}
         if fields: print("  Current: "+", ".join(f"{k}={v}" for k, v in fields.items()))
         if "training_loss" in p: print(f"  Training loss: {p['training_loss']:.4f}")
         if "gate_mean" in p:
