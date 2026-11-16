@@ -8,6 +8,8 @@ This repository is an end-to-end, reproducible reimplementation of Zhang et al.,
 
 **Latest completed research:** [4/8/16 consecutive beats and RR timing](docs/chronological_lengths_plan.md). All 1,200 fits and 120 outer model restorations passed verification. Ordered+RR macro F1 was **0.524 ± 0.018**, versus shuffled+RR **0.533 ± 0.013**; the paired difference was −0.008 [−0.057,+0.039], a descriptive patient interval. Chronological order did not demonstrate a gain. Lengths 4/8/16 were selected inside training folds 18/11/1 times, not ranked by outer scores. See the [validated report](results/neural_chronological_lengths_v1/complete/REPORT.md). The historical ResNet reference remains 0.550 ± 0.040 under its different procedure. Local process status: `python scripts/live_status.py --watch`.
 
+**Diagnostic follow-up:** [patient errors, class confusions and training behavior](docs/chronological_diagnostics_findings.md), using saved outputs without new training. Equal-record reaggregation leaves the ResNet mean about 0.550; the largest ordered-model class losses are IMI/ILMI. A direct beat-classification path with residual context is the proposed next hypothesis, not a completed model.
+
 For an end-to-end explanation from the research problem through representations, training, patient-level evaluation and improvement opportunities, see the [pipeline overview](docs/PIPELINE_OVERVIEW.md).
 
 > Research code only. It is not a medical device and must not be used for clinical diagnosis.
