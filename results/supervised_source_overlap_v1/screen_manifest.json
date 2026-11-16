@@ -1,0 +1,57 @@
+{
+  "config": {
+    "source_config": "configs/supervised_source_pilot_v1.yaml",
+    "output_dir": "results/supervised_source_overlap_v1",
+    "cache_dir": "data/processed/supervised_source_overlap_v1",
+    "seed": 42,
+    "screen_rate": 250,
+    "query_seconds": 8,
+    "template_points": 66,
+    "candidate_counts": [
+      8,
+      16,
+      32
+    ],
+    "candidate_batch_size": 128,
+    "positive_controls": 20,
+    "mean_correlation_threshold": 0.995,
+    "minimum_lead_correlation": 0.98,
+    "minimum_active_leads": 6,
+    "minimum_lead_sd_mv": 1e-05,
+    "workers": 2
+  },
+  "provenance": {
+    "pilot_evidence": {
+      "report_manifest_sha256": "1e7d1827d985a309f28efd6f3669bbecb63ca1691c45ed93f4693d2973ce5a33",
+      "training_manifest_sha256": "e625be3a3d166a2ba27fc8a9a43a68ce222cdca0c6ab3ffa57b05a074e74e15c",
+      "summary_sha256": "6c37ffcb2faf0310c5e1f686ffad6619a5c37b401244a1515825f874ab08a589"
+    },
+    "source_bank_manifest_sha256": "d9aeffa0ff6b040093567c6b629a7457eb75a0a5e5bbfb9fb314e821ae01e808",
+    "source_training_patients": 4096,
+    "source_validation_patients": 1942,
+    "target": {
+      "patients": 164,
+      "records": 391,
+      "beats": 55863,
+      "data_files_present": 391,
+      "beats_sha256": "277e2f1498d54db23061c3bb60969f05ce506b941d9dfa7c07e835713950358b",
+      "folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625"
+    },
+    "selected_source_records": 7246
+  },
+  "source_inventory_sha256": "73362ccdfddff623a15f53bf63bc2faec638556c6a567fcc5db02d6cd07c6cb0",
+  "target_inventory_sha256": "41d015c525c2ac9d7d1e82518f8f47cce381e3527154d00833cf83781781e6a3",
+  "code_sha256": "2754486ff3f12948a5d5b47d2eb55f147f20fa3ca401c62309d566039a410bfb",
+  "numerical_code_sha256": "5d87cbd9fd3403d2fabdf536075a40ec1eccf694b05404d69b40bfcc7e5cf23f",
+  "signal_code_sha256": "b493f5a02fdea5e1c87f1d7d4db3e468409e5fd089e5e297725e10104bea858d",
+  "kors_code_sha256": "a926a837dd7344b6109cc22b655d7dd34b3f2784d2b025dd8e48bbeff7d9c979",
+  "claim_scope": "Expanded recording-copy screen only; no patient-identity clearance, PTB classification, localization gain or SOTA claim.",
+  "runtime": {
+    "numpy": "2.5.3",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "wfdb": "4.3.1",
+    "platform": "macOS-26.5-arm64-arm-64bit"
+  },
+  "screen_fingerprint": "2a1817f714aafa10f58108bb5ee5347978d423a8435e865ee5fd7dce88fb4ab9"
+}
