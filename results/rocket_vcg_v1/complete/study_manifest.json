@@ -1,0 +1,110 @@
+{
+  "config": {
+    "seed": 42,
+    "split_seed": 42,
+    "transform_seeds": [
+      42,
+      123,
+      2026
+    ],
+    "paper_config": "configs/paper.yaml",
+    "beats_path": "data/processed/beats.csv",
+    "bank_dir": "data/processed/neural_vcg_v1",
+    "sequence_bank_dir": "data/processed/chronological_vcg_v1",
+    "template_bank_dir": "data/processed/rocket_templates_v1",
+    "folds_path": "configs/patient_folds.csv",
+    "output_dir": "results/rocket_vcg_v1",
+    "classes": [
+      "AMI",
+      "ALMI",
+      "ASMI",
+      "IMI",
+      "ILMI",
+      "HC"
+    ],
+    "outer_splits": 10,
+    "inner_splits": 3,
+    "arms": [
+      "dct",
+      "multirocket",
+      "hydra",
+      "combined"
+    ],
+    "ridge_alphas": [
+      1.0,
+      100.0
+    ],
+    "dct_coefficients": 32,
+    "multirocket_dilations": 4,
+    "hydra_groups": 8,
+    "hydra_kernels": 8,
+    "chunk_size": 32,
+    "torch_threads": 2,
+    "bootstrap_draws": 5000
+  },
+  "bank": {
+    "bank_manifest": {
+      "scope": {
+        "source": {
+          "source": {
+            "fingerprint": "f44e31cff8230dc5ce971997f80ee0d0d921eb5f72a8ab75d0327692271192e7",
+            "files": {
+              "manifest.json": "b939ab2bf76e25d7569152ac60005f61b3fc99533b028a6413b1ee9b267f0b2c",
+              "waveforms.npy": "118fbfb2d8b2fbc2c32ba6449e301874cc1a79c7ad2d8692652129c224f91fba",
+              "y.npy": "e0aca562cb4beabb0d59119035baf5b997ffc678a0cd21822751f393339ef7f8",
+              "groups.npy": "729880b095d4a225551db982d107754df9ca442f0eafee2145a61cd5db963ab0"
+            },
+            "beats_sha256": "277e2f1498d54db23061c3bb60969f05ce506b941d9dfa7c07e835713950358b",
+            "paper_sha256": "5aea297dd03a5a214de3fc8142b77c58a9e9074e6dbf26288499f360e36892b0",
+            "n_beats": 55863,
+            "n_patients": 164,
+            "n_records": 391,
+            "shape": [
+              55863,
+              3,
+              651
+            ]
+          },
+          "metadata_manifest_sha256": "169f7a631ed8267cc8bc69d232aa5750a57a14ba23a469db48e43a8f448be223",
+          "metadata_sha256": "aad1348d454d7bb4509fb71456ce40426d3514b7bde077f77544ea268bad09a9",
+          "bank_fingerprint": "cdca321641ee810018c17efb2c42005e8a091779fc74fef238709cf9ceb5d263"
+        },
+        "code_sha256": "4cbd959e6674edb773d30d9a6445dc0823d58232ff3eda037760fb0627b8cf6a",
+        "numpy": "2.5.3",
+        "rule": "Every retained denoised beat enters its own recording's coordinate median; no beat selection, alignment, or unit normalization"
+      },
+      "templates_sha256": "af8165f1319254fe4d1b8ea6f990d516e747ece3f3732dd88014adfe38a561bb",
+      "n_beats": 55863,
+      "n_records": 391,
+      "n_patients": 164,
+      "shape": [
+        391,
+        3,
+        651
+      ],
+      "record_membership_sha256": "159f9a3f63b854a7e53b93526d8f1063ef00514f4d2f88e32cd6935cd757d4f1"
+    },
+    "manifest_sha256": "dc22221b63558437d063418b4a1a9c7729f59e3478e55bd99a64daf982d2c95a"
+  },
+  "folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625",
+  "code": {
+    "rocket_study.py": "058451bb2bf1b29092a51f3085631dbd72f05f2d65d03626be7d94236788d210",
+    "rocket_features.py": "bf0fb3cfb7a8d68a4aa9fcd1a30430ad453754cc0bd80d436e0e1d97fc386f5e",
+    "rocket_bank.py": "4cbd959e6674edb773d30d9a6445dc0823d58232ff3eda037760fb0627b8cf6a",
+    "hydra_multivariate.py": "ce7181887d8696f270c979b91f555ae4ed59607ddc5fea2701fe9a021c958c67",
+    "rocket_report.py": "97e83f18972e55de2ef36831e4a7396603e8d6b00d1cd87a85e1386fd5b4b987",
+    "benchmark.py": "8f1bb5168adfadec6e60e68cb256cf7dad240d3f7d6bb35fa54b47876f312589",
+    "bootstrap_code": "9b6daa7256056415ffbc540d6e340827f9bdf4947304311fa39a17bfb99c2c78"
+  },
+  "claim_scope": "Bounded record-template random-convolution development on repeatedly inspected PTB patient folds; no independent confirmation, exact upstream reproduction or established MI SOTA.",
+  "runtime": {
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "torch": "2.15.0",
+    "platform": "macOS-26.5-arm64-arm-64bit",
+    "device": "cpu",
+    "blas_threads": 1
+  },
+  "study_fingerprint": "b266d8d389f586e3bac239c825d5ddebc5be19b1b5a9d3efd1f075e96241b165"
+}
