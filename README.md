@@ -10,7 +10,7 @@ This repository is an end-to-end, reproducible reimplementation of Zhang et al.,
 
 **Diagnostic follow-up:** [patient errors, class confusions and training behavior](docs/chronological_diagnostics_findings.md), using saved outputs without new training. Equal-record reaggregation leaves the ResNet mean about 0.550; the largest ordered-model class losses are IMI/ILMI. This motivated the new direct-beat/residual-context experiment below.
 
-**New approved experiment:** [direct beat morphology plus gated context](docs/residual_context_plan.md). Six matched variants separate context, auxiliary beat supervision and shuffled order, with fixed four-beat windows and 720 planned nested fits / 180 outer restorations. Implementation and device checks precede full training; this is not yet a completed performance result. Monitor locally with `python scripts/live_status.py --watch`.
+**Active experiment:** [direct beat morphology plus gated context](docs/residual_context_plan.md). Six matched variants separate context, auxiliary beat supervision and shuffled order, with fixed four-beat windows and 720 planned nested fits / 180 outer restorations. All 217 tests and six real-data MPS smoke checks passed; full training launched on the originating Mac on **16 November 2026**. This is not yet a completed performance result. Monitor locally with `python scripts/live_status.py --watch`.
 
 For an end-to-end explanation from the research problem through representations, training, patient-level evaluation and improvement opportunities, see the [pipeline overview](docs/PIPELINE_OVERVIEW.md).
 

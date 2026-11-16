@@ -4,6 +4,8 @@ Implemented **16 November 2026**, following the completed [chronology diagnostic
 
 Validation before full launch: **217 tests passed** on macOS, including eight residual-context tests and actual tiny nested fit/restore/resume/tamper checks. The real-data **MPS GPU smoke passed for all six arms**, each with 88,693 registered parameters, matching initial states and restored predictions. Smoke outputs are implementation checks, not diagnostic performance. Windows has not been validated.
 
+**Full training launched on the originating Mac on 16 November 2026**, after implementation publication `f3e597f`. The first inner fit was observed actively advancing epochs. Use the live monitor for current state; this launch note does not establish completion or a final score.
+
 ## Hypothesis and fixed representation
 
 The preceding sequence recipe replaced direct beat classification with a 32-dimensional context head and did not improve the matched shuffled control. Retaining a direct morphology path and explicit beat supervision may make it easier to learn useful context without making every prediction depend on that bottleneck. This is a testable hypothesis, not an established cause of the earlier result.
