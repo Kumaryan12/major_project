@@ -66,4 +66,22 @@ The launcher uses an OS lock, reuses a matching passed smoke, runs full fits plu
 
 [Configuration](../configs/staged_context_v1.yaml). Fitted weights, per-patient probabilities and arrays remain local/ignored; aggregate metrics and hashed audits may be published. Do not edit pinned numerical code/config during a run or resume the older paused multiview sweep.
 
-Full study launched **16 November 2026, 14:10 IST**, from implementation commit `a8140ed`. Both launcher and worker were observed running and the first inner teacher completed an epoch. Final classification results are pending; saved PIDs are dated observations, so use the live monitor before restarting.
+Full study launched **16 November 2026, 14:10 IST**, from implementation commit `a8140ed`. Both launcher and worker were observed running and the first inner teacher completed an epoch. This launch observation is historical; training and verification subsequently completed in `a56fe23`. No worker/launcher was alive at completion review.
+
+## Completed outcome — 16 November 2026
+
+[Verified report](../results/neural_staged_context_v1/complete/REPORT.md) and [machine-readable summary](../results/neural_staged_context_v1/complete/summary.json), published automatically in `a56fe23`. All 600 phase checkpoints restored, including 150 outer models; all 120 matched checks and query-beat coverage passed. The completion review matched the current scope and rechecked all 600 checkpoint/probability artifact hashes without new training.
+
+| Procedure | Three-seed ensemble macro F1 | Zero-update outer adaptations |
+|---|---:|---:|
+| Morphology | 0.545112 | No second phase |
+| Continued morphology | 0.549550 | 23/30 |
+| Joint context | 0.559042 | 20/30 |
+| Frozen context | 0.563539 | 21/30 |
+| Frozen shuffled | 0.565056 | 18/30 |
+
+Frozen−morphology is +0.018428 [−0.021765,+0.061253]; frozen−joint +0.004498 [−0.044728,+0.053981]; frozen−shuffled −0.001517 [−0.021361,+0.017507]. These descriptive patient intervals all include zero. The frozen mean member F1 is 0.555054 ± 0.013390 versus teacher 0.550704 ± 0.027315; this is a different endpoint from ensemble F1 and SD across only three optimization seeds.
+
+The point improvement over the matched morphology ensemble does not establish a gain, and chronological order did not outperform its shuffled control. The historical 0.584570 ensemble remains a separate reference; this study did not exceed it. Inner selection selected epoch zero in 215/360 adaptation fits, leading to 82/120 outer adaptations with no gradient updates. In particular, only 9/30 frozen-context outer models adapted at all. This records frequent rejection of this adaptation recipe by inner validation; it does not prove temporal information is inherently useless or that more patients cannot help. AMI ensemble F1 rose from 0.286 to 0.400, while ALMI and IMI fell slightly, so class changes are mixed.
+
+No new training was started during completion review. Keep completed numerical code/config/results pinned, retain the prior reference, and require a separately declared hypothesis and matched controls for any follow-up.
