@@ -44,6 +44,7 @@ REPORTS = {
     "supervised_transfer": "results/neural_supervised_transfer_v1/complete/REPORT.md",
     "beat_distribution_pooling": "results/distribution_pooling_v1/complete/REPORT.md",
     "intact_base_convolution_distributions": "results/convolution_distribution_v1/complete/REPORT.md",
+    "linear_nonlinear_distribution_readouts": "results/distribution_kernel_v1/complete/REPORT.md",
 }
 
 
