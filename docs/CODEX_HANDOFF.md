@@ -40,6 +40,8 @@ The formal progress update covers completed work since that presentation, with *
 
 The **17 November illustrated revision** is the preferred presentation copy: [PowerPoint](../output/pptx/mi_progress_since_october_2026_illustrated.pptx), [PDF](../output/pdf/mi_progress_since_october_2026_illustrated.pdf), [updated speaking notes](progress_presentation_20261117_illustrated_notes.md). It contains **24 main slides and 11 backup slides**, adding a measured-VCG example, a clearly labeled ECG schematic, the completed patient-budget curve and source-only learning curves. All 20 original editable result tables, both editable charts and the original speaker-note evidence remain. [Image credits and hashes](../output/pptx/assets/progress_illustrated_20261117/credits.json) identify the unmodified CC BY-SA 4.0 ECG illustration. The source deck and pinned experiments remain unchanged. Authoring: `scripts/illustrate_progress_presentation_20261117.mjs`.
 
+The [slide-by-slide learning guide](progress_presentation_slide_by_slide_guide.md) explains all35illustrated slides, including terminology, suggested spoken passages and likely professor questions. It preserves the PDF's historical content and separately flags later completed transfer/distribution results and changed status labels. The PDF itself remains unchanged.
+
 ## 4. Completed evidence and lessons
 
 Use the links for exact controls, populations, seed policies and limitations. Do not present all table rows as a single interchangeable leaderboard.
