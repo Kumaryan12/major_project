@@ -19,7 +19,7 @@ The primary contrast is **plus_quantiles minus plus_spread**, using equal three-
 
 Keep all 164 patients, 391 recordings, 55,863 original beats, measured signed/amplitude-bearing Frank XYZ, original labels, cached R positions and `configs/patient_folds.csv`. No filtering, arbitrary physical rotation, unit-amplitude beat normalization, new patients, ECG, source-pretrained encoder or feature selection. Offline recording medians use only an examination's own signal.
 
-Read-only source: `configs/rocket_vcg_v1.yaml`, `results/rocket_vcg_v1/complete`, original `rocket_bank/features/study/report.py`. Source MultiRocket-style conventions differ from the historical method; multivariate HYDRA remains experimental. Preserve its GPL attribution and license. No completed study or integrity check is edited.
+Read-only source: `configs/rocket_vcg_v1.yaml`, `results/rocket_vcg_v1/complete`, original `rocket_bank/features/study/report.py`. Source MultiRocket-style conventions differ from the historical method; multivariate HYDRA remains experimental. Preserve its GPL attribution and license at `src/mi_localization/_vendor/hydra/README.md` and `src/mi_localization/_vendor/hydra/LICENSE`. No completed study or integrity check is edited.
 
 Source preflight independently reconstructs all 120 training feature transforms, restores 210 original combined-ridge contexts, repeats inner selection and reproduces the complete source metric bundle, including 0.584266 ensemble macro F1. Snapshot and recheck 1,023 source report/context/model/selection files. Read original caches only; redirect nonnumerical bank audits into the new namespace. A cache/dataset/platform/config change requires another namespace.
 
@@ -64,3 +64,5 @@ A real-data engineering smoke uses first two beats per recording from one inner 
 ```
 
 Runner: lock one local namespace, read-only source preflight, new study, independent report, verified aggregate publication, then exit. Monitor checks local PID commands and separates baseline replay, full extraction/fitting, independent replay and completion. Ctrl-C exits only the monitor. Fitted artifacts, record caches and individual predictions remain ignored. No numerical library changes or OpenMP override hacks. Python entry points are portable conveniences; Windows has not been validated and cannot resume Mac results under the same namespace.
+
+Launch: implementation `2dfd577`, 17 November 2026 02:09:36 IST, sleep inhibition enabled. Startup preflight independently repeated all 120 source transforms/210 baseline restorations before fitting. A dated 08:46 IST local command check confirmed full extraction/fitting, with 483/630 new classifiers and 92/120 contexts saved. These are partial progress counters; independent replay and final reporting remain pending. Use the live monitor rather than this dated snapshot.
