@@ -1,0 +1,31 @@
+paper_config: configs/paper.yaml
+beats_path: data/processed/beats.csv
+bank_dir: data/processed/neural_vcg_v1
+folds_path: configs/patient_folds.csv
+output_dir: results/local_timing_audit_v1
+classes: [AMI, ALMI, ASMI, IMI, ILMI, HC]
+outer_splits: 10
+seed: 42
+r_index: 250
+sampling_rate: 1000
+windows:
+  r_anchor: [-50, 70]
+  post_90_180: [90, 180]
+  post_180_270: [180, 270]
+  post_270_360: [270, 360]
+max_lag_ms: 24
+lag_step_ms: 2
+minimum_centered_rms_mv: 0.005
+minimum_score: 0.85
+peak_separation_ms: 8
+minimum_peak_gap: 0.002
+agreement_ms: 4
+minimum_local_ms: 8
+minimum_cross_reference_gain: 0.005
+control_delays_ms: [-16, -8, 8, 16]
+control_noise_mv: 0.001
+control_shape_change: 0.30
+minimum_control_accepted_fraction: 0.50
+minimum_control_accuracy_accepted: 0.90
+minimum_patient_support_fraction: 0.10
+minimum_supported_patient_fraction: 0.20
