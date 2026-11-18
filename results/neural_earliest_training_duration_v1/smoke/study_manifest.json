@@ -1,0 +1,127 @@
+{
+  "config": {
+    "source_root": "results/neural_later_recording_distillation_v1/complete",
+    "source_summary_sha256": "2c46a17e9c4b4ccbc13d04565adbb449c126cdba1059f2db0ff19d44af9503cd",
+    "source_manifest_sha256": "f6e2faa7f792a170582df0bda038683d12d133cc959cde871481332519a73f9b",
+    "output_dir": "results/neural_earliest_training_duration_v1",
+    "epochs": [
+      8,
+      16,
+      32
+    ],
+    "inner_splits": 3,
+    "smoke_epochs": [
+      1,
+      2,
+      3
+    ],
+    "smoke_samples_per_epoch": 128
+  },
+  "settings": {
+    "paper_config": "configs/paper.yaml",
+    "beats_path": "data/processed/beats.csv",
+    "bank_dir": "data/processed/neural_vcg_v1",
+    "ecg_bank_dir": "data/processed/paired_ecg_v1",
+    "folds_path": "configs/patient_folds.csv",
+    "classes": [
+      "AMI",
+      "ALMI",
+      "ASMI",
+      "IMI",
+      "ILMI",
+      "HC"
+    ],
+    "outer_splits": 10,
+    "seed": 42,
+    "training_seeds": [
+      42
+    ],
+    "source_raw_dir": "data/raw/ptb_native_expansion_v1",
+    "source_bank_dir": "data/processed/ptb_native_expansion_v1",
+    "source_audit_dir": "results/ptb_native_expansion_v1",
+    "native_output_dir": "results/neural_vcg_native_pretraining_v1",
+    "bridge_output_dir": "results/neural_vcg_ecg_bridge_v1",
+    "download_workers": 6,
+    "minimum_beats": 8,
+    "minimum_lead_sd_mv": 0.001,
+    "screen_rate": 100,
+    "screen_seconds": 6,
+    "template_points": 65,
+    "shortlist_size": 8,
+    "copy_mean_r": 0.9995,
+    "copy_min_r": 0.998,
+    "device": "auto",
+    "torch_threads": 2,
+    "widths": [
+      16,
+      32,
+      64
+    ],
+    "pool_bins": 4,
+    "dropout": 0.2,
+    "weight_decay": 0.01,
+    "learning_rate": 0.001,
+    "batch_size": 128,
+    "samples_per_epoch": 128,
+    "target_epochs": 3,
+    "pretrain_steps": 64,
+    "pretrain_learning_rate": 0.001,
+    "native_extra_fraction": 0.5,
+    "patch_samples": 21,
+    "masked_patches": 10,
+    "bridge_dct_coefficients": 12,
+    "bootstrap_draws": 5000,
+    "base_config": "configs/vcg_pretraining_pilots_v1.yaml",
+    "output_dir": "results/neural_later_recording_distillation_v1",
+    "teacher_splits": 3,
+    "teacher_seed": 42,
+    "shuffle_seed": 731,
+    "temperature": 2.0,
+    "distillation_weight": 1.0,
+    "smoke_epochs": 1,
+    "smoke_samples_per_epoch": 128,
+    "inner_splits": 3
+  },
+  "folds": [
+    1
+  ],
+  "smoke": true,
+  "bank": {
+    "fingerprint": "f44e31cff8230dc5ce971997f80ee0d0d921eb5f72a8ab75d0327692271192e7",
+    "files": {
+      "manifest.json": "b939ab2bf76e25d7569152ac60005f61b3fc99533b028a6413b1ee9b267f0b2c",
+      "waveforms.npy": "118fbfb2d8b2fbc2c32ba6449e301874cc1a79c7ad2d8692652129c224f91fba",
+      "y.npy": "e0aca562cb4beabb0d59119035baf5b997ffc678a0cd21822751f393339ef7f8",
+      "groups.npy": "729880b095d4a225551db982d107754df9ca442f0eafee2145a61cd5db963ab0"
+    },
+    "beats_sha256": "277e2f1498d54db23061c3bb60969f05ce506b941d9dfa7c07e835713950358b",
+    "paper_sha256": "5aea297dd03a5a214de3fc8142b77c58a9e9074e6dbf26288499f360e36892b0",
+    "n_beats": 55863,
+    "n_patients": 164,
+    "n_records": 391,
+    "shape": [
+      55863,
+      3,
+      651
+    ]
+  },
+  "headers_sha256": "b3b8a49fe139e0c5a77885bab56cac84eca91ce38f08f84985d87c2674ae734a",
+  "paired_membership_sha256": "dd9541f6f1e58e9f7acc904430b6509d79dd59f198777d052baca41731737510",
+  "original_verification_sha256": "43bf78c5165b68ffe45a2733c8399ed15e17585698307a9fd07f056ca7b65b6e",
+  "code_sha256": "b8a2bda08e1b8b2668c939b31882df903a09d270dab9d052829921732f4e0661",
+  "protocol_sha256": "86699f2dc0c98b4b10e06a761fce5a076e509265b3b469f508ccb5e1cd7bb4ba",
+  "dependencies": {
+    "mi_localization.later_recording_distillation": "afc13501c22d88d38a3d0669369efe28066899339cc43cb8a67861e2e406c213",
+    "mi_localization.benchmark": "8f1bb5168adfadec6e60e68cb256cf7dad240d3f7d6bb35fa54b47876f312589",
+    "mi_localization.preprocessing_study": "28e974b992c15ae70901c99554cd86801b6f3f28a4c9f437e8c6f9130e7d0bb6",
+    "mi_localization.neural": "7aa44cba432693dca59ccb2587d1f3bd2c5cee195ed74c4259c456de1fa56f97"
+  },
+  "runtime": {
+    "numpy": "2.5.3",
+    "torch": "2.15.0",
+    "sklearn": "1.9.1",
+    "platform": "macOS-26.5-arm64-arm-64bit",
+    "device": "mps"
+  },
+  "fingerprint": "d7d64ed6330516b7202ab7b499e34952fff8c543d9c2f99f5aeab43c3e7a5e32"
+}
