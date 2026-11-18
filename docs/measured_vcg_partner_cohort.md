@@ -18,6 +18,16 @@ For the current intake, export WFDB recordings with measured VX, VY, VZ at 1,000
 
 The intake records class/partition coverage and checks unique record paths, consistent patient labels and splits, finite measured XYZ, basic duration and variation, matching PTB directory IDs and exact decoded copies against locally available PTB signals. Partner adjudication, site independence and identity assurance remain separate tasks. Keep the intake receipt private until partner release terms permit aggregate reporting.
 
+## First pilot intake
+
+Use a de-identified feasibility batch of about 20–30 patients. Start with one representative recording per patient at the original duration and use stable pseudonyms for any repeat visits. Ask the partner for acquisition details, study timing where available and their evidence for region labels. Keep timing as a separate table keyed by the same pseudonyms if the partner supplies it. Agree on whether the batch is available for later development. Use the development partition for the intake smoke and for any batch already inspected during feasibility. A future locked evaluation uses separate patient IDs agreed with the partner before model feedback.
+
+The first intake receipt checks basic waveform eligibility and shows counts by label and review status. A real pilot can have partial class coverage. Confirm the native sampling rate and sign convention with the partner before conversion if the export differs from the currently supported WFDB format.
+
+The one-minute pilot-size smoke test processed 30 synthetic WFDB records and the manifest in 10,808,181 bytes. The existing PTB exact-waveform screen read 448 locally cached unique XYZ signals. Both passes reproduced the same intake receipt. This fixture measured storage and exercised the loader.
+
+## External evaluation
+
 Once a real cohort is available, freeze its receipt, model hashes and preprocessing before reading external outcomes. The target inference model should use the frozen measured XYZ inputs and patient pooling. Report external six-class patient macro F1, class F1, patient counts and uncertainty, keeping development scores explicitly separate. Real participant access, labels and an external score remain pending.
 
 The evaluation command loads one declared arm from a completed pilot and requires all 30 verified fold/seed checkpoints with their original training normalizers. It saves the model and cohort scope before inference, pools measured-XYZ probabilities across eligible beats and reports aggregate patient metrics. Choose the arm using development evidence and record it before the external run. Use a private output directory.

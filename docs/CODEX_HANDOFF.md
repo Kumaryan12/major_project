@@ -16,6 +16,8 @@ Last reviewed: **18 November 2026**, after independently completed supervised tr
 
 **Earliest-record convolution and compact data acquisition.** On the 145 dated patients, combined convolution .478122, DCT .461037, fixed-eight ResNet .521335. Combined minus ResNet −.043213 [−.150252,+.064770], no demonstrated gain. Restored 420 ridge fits, regenerated 120 feature contexts and reproduced all 30 source ResNet prediction blocks. Nineteen focused tests passed. CPU-only, two Torch threads, one BLAS thread, about 59 MiB of full-run output using cached waveforms. The run ended. Separately downloaded seven verified MI Imaging Challenge files totaling 6.48 MB for two cases with public MRI reference interpretations. These are a format/label fixture. A larger compatible external cohort remains pending access. [Convolution results](../results/earliest_record_convolution_v1/complete/REPORT.md) · [Data acquisition](measured_vcg_data_acquisition.md)
 
+**Pilot intake prepared.** Added the first 20–30-patient feasibility intake procedure. The private incoming folder and manifest header are ready locally. A smoke with 30 one-minute synthetic WFDB tracks used 10,808,181 bytes and produced the same intake receipt twice against 448 locally cached PTB XYZ signals. Five relevant tests passed. A draft requests an advisor introduction. Partner data access and adjudicated files remain pending. [Pilot intake](measured_vcg_partner_cohort.md)
+
 ## 1. Objective and current decisions
 
 Aryan Kumar and Kunal Maka are developing their major project under Dr Shivnarayan Patidar, NIT Goa: **Patient-Independent Localization of Myocardial Infarction from Vectorcardiographic Signals Using Tensor Decomposition and Machine Learning**.
