@@ -1,0 +1,18 @@
+raw_dir: data/raw/staffiii_v1
+bank_dir: data/processed/staffiii_pair_transfer_v1
+output_dir: results/neural_staffiii_pair_transfer_v1
+target_config: configs/vcg_pretraining_pilots_v1.yaml
+target_reference: configs/model_error_comparison_v1.yaml
+copy_screen_config: configs/supervised_source_overlap_v1.yaml
+windows_seconds: [[-20, -10], [30, 40]]
+excluded_source_patients: [1, 4, 5, 6, 89]
+clips_per_window: 4
+minimum_complete_beats: 4
+minimum_training_per_vessel: 5
+minimum_validation_per_vessel: 2
+source_seed: 42
+source_validation_fraction: 0.25
+source_epochs: 12
+updates_per_epoch: 8
+pairs_per_batch: 16
+download_workers: 12
