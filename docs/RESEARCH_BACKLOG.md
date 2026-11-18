@@ -12,8 +12,8 @@ This is the working queue for ideas that could improve six-class patient macro F
 | 6 | Transfer angiography-linked artery supervision from ACS-ECG | Source identified | Obtain and audit the small public metadata archive, then verify a waveform sample. |
 | 7 | Compare errors of the strongest saved convolution and waveform ensembles | Diagnostic complete | Keep both references. Defer fusion fitting after the equal blend scored below both. |
 | 8 | Preserve direction in a within-beat lead-delay tensor | Tested, no demonstrated gain | Signed features trailed both the sign-scrambled control and the baseline. |
-| 9 | Train the waveform ResNet on pooled patient probabilities | Proposed | Compare beat, patient and hybrid losses on identical patient bags. |
-| 10 | Average the four linear convolution readouts | Proposed | Reuse saved readouts to test a fixed equal average against the 0.603374 selector. |
+| 9 | Train the waveform ResNet on pooled patient probabilities | Implemented and smoke verified | Check full-run progress and the independently verified report. |
+| 10 | Average the four linear convolution readouts | Verified, gain uncertain | Keep the 0.603374 selector as the historical reference. |
 
 ## 1. Related MI subtypes share classifier weights
 
@@ -77,11 +77,15 @@ The CSE diagnostic study is a measured orthogonal archive lead, with access and 
 
 **Proposed comparison.** Use class- and patient-balanced bags with one prespecified beat count and identical beat draws across arms. Compare the mean of per-beat cross-entropies with cross-entropy on the mean beat probability. Include a fixed half-and-half loss as a secondary arm since the pooled objective can emphasize beats already supporting the correct class. Keep the optimizer, beat exposure and all-beat inference identical. Use all frozen folds and three declared seeds. The primary comparison is pooled versus matched beat loss, with the historical 0.601801 waveform and 0.603374 convolution ensemble scores shown as development references. Report paired patient uncertainty and per-class F1.
 
+**Implementation.** Eight beats per sampled patient bag with 90 declared fits. All three inner-only smoke models trained and restored. [Protocol and monitoring](patient_probability_loss_plan.md)
+
 ## 10. Fixed average of the linear convolution readouts
 
 **Hypothesis.** Averaging the linear predictions for morphology, mean, mean/spread and quantiles could reduce sensitivity to which representation wins in inner validation. The four representations share the same base features and may add little diversity.
 
 **Proposed comparison.** Replay all four fixed linear readouts for all frozen folds and three seeds. Take the equal probability average and compare it with the verified inner-selected linear procedure at 0.603374. Keep the existing inner regularization choices and probability conversion. Report the paired patient interval and per-class results. This uses the already fitted models and a fixed combination. [Kernel findings](distribution_kernel_findings.md)
+
+**Result.** Verified 120 saved outer probability files and reproduced every source arm, seed and selector metric. Equal average ensemble 0.586053 versus selector 0.603374, difference −0.017321 with descriptive paired 95% interval [−0.042859, +0.005133]. Zero new fits. [Verified comparison](../results/convolution_readout_average_v1/REPORT.md)
 
 ## Evidence already in hand
 
