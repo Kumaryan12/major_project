@@ -12,7 +12,7 @@ This is the working queue for ideas that could improve six-class patient macro F
 | 6 | Transfer angiography-linked artery supervision from ACS-ECG | Source identified | Obtain and audit the small public metadata archive, then verify a waveform sample. |
 | 7 | Compare errors of the strongest saved convolution and waveform ensembles | Diagnostic complete | Keep both references. Defer fusion fitting after the equal blend scored below both. |
 | 8 | Preserve direction in a within-beat lead-delay tensor | Tested, no demonstrated gain | Signed features trailed both the sign-scrambled control and the baseline. |
-| 9 | Train the waveform ResNet on pooled patient probabilities | Implemented and smoke verified | Check full-run progress and the independently verified report. |
+| 9 | Train the waveform ResNet on pooled patient probabilities | Verified, no demonstrated gain | Keep the historical waveform recipe. Both pooled objectives scored below the matched control. |
 | 10 | Average the four linear convolution readouts | Verified, gain uncertain | Keep the 0.603374 selector as the historical reference. |
 
 ## 1. Related MI subtypes share classifier weights
@@ -77,7 +77,7 @@ The CSE diagnostic study is a measured orthogonal archive lead, with access and 
 
 **Proposed comparison.** Use class- and patient-balanced bags with one prespecified beat count and identical beat draws across arms. Compare the mean of per-beat cross-entropies with cross-entropy on the mean beat probability. Include a fixed half-and-half loss as a secondary arm since the pooled objective can emphasize beats already supporting the correct class. Keep the optimizer, beat exposure and all-beat inference identical. Use all frozen folds and three declared seeds. The primary comparison is pooled versus matched beat loss, with the historical 0.601801 waveform and 0.603374 convolution ensemble scores shown as development references. Report paired patient uncertainty and per-class F1.
 
-**Implementation.** Eight beats per sampled patient bag with 90 declared fits. All three inner-only smoke models trained and restored. [Protocol and monitoring](patient_probability_loss_plan.md)
+**Result.** All 90 models and 30 matched fold and seed groups independently verified. Ensemble macro F1 was 0.510134 for beat CE, 0.469596 for patient CE and 0.460082 for hybrid CE. Patient CE minus matched beat CE was −0.040538 with descriptive paired 95% interval [−0.103712, +0.022126]. The eight-beat control also scored below the historical 0.601801 waveform using individual beat draws. The matched comparison isolates the loss under grouped sampling. [Protocol](patient_probability_loss_plan.md) · [Verified report](../results/neural_patient_probability_loss_v1/complete/REPORT.md)
 
 ## 10. Fixed average of the linear convolution readouts
 
