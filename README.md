@@ -4,6 +4,8 @@ This repository is an end-to-end, reproducible reimplementation of Zhang et al.,
 
 **New collaborator or Codex session:** start with [the project handoff](docs/CODEX_HANDOFF.md), [Windows setup](docs/WINDOWS_SETUP.md), and [the ready-to-paste Codex prompt](docs/CODEX_START_PROMPT.txt). Run `python scripts/project_status.py` for a read-only inventory of local artifacts and saved experiment state. The historical presentation below predates the neural and later tensor experiments; use the handoff's evidence links for current completed results.
 
+The [research backlog](docs/RESEARCH_BACKLOG.md) tracks proposed experiments, matched controls and decisions from completed tests.
+
 **Completed representation studies:** [ordered VCG path signatures](results/signature_vcg_v1/complete/REPORT.md) passed full verification but did not demonstrate a gain (signature3 mean 0.508 versus matched morphology 0.515). The [healthy-reference experiment](results/deviation_vcg_v1/complete/REPORT.md) also did not demonstrate a gain.
 
 **Completed chronology research:** [4/8/16 consecutive beats and RR timing](docs/chronological_lengths_plan.md). All 1,200 fits and 120 outer model restorations passed verification. Ordered+RR macro F1 was **0.524 ± 0.018**, versus shuffled+RR **0.533 ± 0.013**; the paired difference was −0.008 [−0.057,+0.039], a descriptive patient interval. Chronological order did not demonstrate a gain. Lengths 4/8/16 were selected inside training folds 18/11/1 times, not ranked by outer scores. See the [validated report](results/neural_chronological_lengths_v1/complete/REPORT.md). The historical ResNet reference remains 0.550 ± 0.040 under its different procedure. Local process status: `python scripts/live_status.py --watch`.
