@@ -1,0 +1,71 @@
+{
+  "config": {
+    "source_root": "results/neural_earliest_training_duration_v1/complete",
+    "source_summary_sha256": "8855298796063850526b5f00aed601d507509857a95225837e7cf3fc264e7092",
+    "duration_config": "configs/earliest_training_duration_v1.yaml",
+    "output_dir": "results/frozen_patient_readout_v1",
+    "ridge_alphas": [
+      1.0,
+      100.0
+    ],
+    "inner_splits": 3,
+    "device": "cpu",
+    "torch_threads": 2,
+    "batch_size": 128,
+    "bootstrap_draws": 5000,
+    "classes": [
+      "AMI",
+      "ALMI",
+      "ASMI",
+      "IMI",
+      "ILMI",
+      "HC"
+    ]
+  },
+  "smoke": true,
+  "folds": [
+    1
+  ],
+  "seeds": [
+    42
+  ],
+  "bank": {
+    "fingerprint": "f44e31cff8230dc5ce971997f80ee0d0d921eb5f72a8ab75d0327692271192e7",
+    "files": {
+      "manifest.json": "b939ab2bf76e25d7569152ac60005f61b3fc99533b028a6413b1ee9b267f0b2c",
+      "waveforms.npy": "118fbfb2d8b2fbc2c32ba6449e301874cc1a79c7ad2d8692652129c224f91fba",
+      "y.npy": "e0aca562cb4beabb0d59119035baf5b997ffc678a0cd21822751f393339ef7f8",
+      "groups.npy": "729880b095d4a225551db982d107754df9ca442f0eafee2145a61cd5db963ab0"
+    },
+    "beats_sha256": "277e2f1498d54db23061c3bb60969f05ce506b941d9dfa7c07e835713950358b",
+    "paper_sha256": "5aea297dd03a5a214de3fc8142b77c58a9e9074e6dbf26288499f360e36892b0",
+    "n_beats": 55863,
+    "n_patients": 164,
+    "n_records": 391,
+    "shape": [
+      55863,
+      3,
+      651
+    ]
+  },
+  "source_fingerprint": "823965a43bd3c6b2b6dd9aeecd6fe7049f8059d43b261dd8a19e6fc826146193",
+  "source_verification_sha256": "0f24be16f2b6de7582e2e056488930df8c8aecfce7992c90063e16d89957f49a",
+  "headers_sha256": "b3b8a49fe139e0c5a77885bab56cac84eca91ce38f08f84985d87c2674ae734a",
+  "code_sha256": "72c86f2828133bc262729dcc4602f710ad0d38d1acd5b3b14725d02e81424883",
+  "protocol_sha256": "b5ebb5407e194dc13bb25f439ee322db49024b465ae8325756a58d6079455fd2",
+  "folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625",
+  "dependencies": {
+    "mi_localization.later_recording_distillation": "afc13501c22d88d38a3d0669369efe28066899339cc43cb8a67861e2e406c213",
+    "mi_localization.earliest_training_duration": "b8a2bda08e1b8b2668c939b31882df903a09d270dab9d052829921732f4e0661",
+    "mi_localization.rocket_study": "058451bb2bf1b29092a51f3085631dbd72f05f2d65d03626be7d94236788d210",
+    "mi_localization.neural": "7aa44cba432693dca59ccb2587d1f3bd2c5cee195ed74c4259c456de1fa56f97"
+  },
+  "runtime": {
+    "numpy": "2.5.3",
+    "torch": "2.15.0",
+    "sklearn": "1.9.1",
+    "platform": "macOS-26.5-arm64-arm-64bit",
+    "device": "cpu"
+  },
+  "study_fingerprint": "2b78e1a6d404837f373c21b064d78f4360f37ae6cbe98e4048fabd500e68ee7a"
+}
