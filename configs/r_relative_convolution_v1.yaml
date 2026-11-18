@@ -1,0 +1,19 @@
+source_config: configs/rocket_vcg_v1.yaml
+historical_reference_config: configs/model_error_comparison_v1.yaml
+output_dir: results/r_relative_convolution_v1
+classes: [AMI, ALMI, ASMI, IMI, ILMI, HC]
+folds_path: configs/patient_folds.csv
+outer_splits: 10
+inner_splits: 3
+split_seed: 42
+seed: 42
+projection_seeds: [42, 123, 2026]
+ridge_alphas: [1.0, 100.0]
+r_index: 250
+windows_ms: [[-200, -64], [-64, 72], [72, 208], [208, 344]]
+dilations: [1, 4]
+kernels_per_window: 16
+kernel_selection_seed: 4143
+window_shuffle_seed: 7391
+torch_threads: 2
+bootstrap_draws: 5000

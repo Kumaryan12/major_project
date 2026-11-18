@@ -14,7 +14,7 @@ This is the working queue for ideas that could improve six-class patient macro F
 | 8 | Preserve direction in a within-beat lead-delay tensor | Tested, no demonstrated gain | Signed features trailed both the sign-scrambled control and the baseline. |
 | 9 | Train the waveform ResNet on pooled patient probabilities | Verified, no demonstrated gain | Keep the historical waveform recipe. Both pooled objectives scored below the matched control. |
 | 10 | Average the four linear convolution readouts | Verified, gain uncertain | Keep the 0.603374 selector as the historical reference. |
-| 11 | Pool convolution responses in fixed R-relative windows | Proposed | Compare aligned and position-shuffled windows with a matched global feature budget. |
+| 11 | Pool convolution responses in fixed R-relative windows | Implemented and smoke verified | Compare aligned and position-shuffled windows with a matched global feature budget. |
 | 12 | Separate MI detection and localization in a probabilistic readout | Proposed | Test a binary plus conditional subtype readout on cached patient features. |
 | 13 | Learn ECG changes from controlled balloon occlusion | Feasibility needed | Check annotated baseline and inflation pairs with comparable acquisition before fitting. |
 
@@ -99,6 +99,8 @@ The CSE diagnostic study is a measured orthogonal archive lead, with access and 
 **Hypothesis.** The convolution backbone already preserves some timing through the mean index of positive responses. Pooling response statistics within fixed regions before, near and after R could preserve more localization information than whole-beat pooling. Aggregate features from the existing measured XYZ recording templates before considering more expensive all-beat extraction. [Existing backbone](rocket_vcg_plan.md) · [Temporal ROCKET research](https://doi.org/10.1007/s10618-025-01162-y)
 
 **Proposed comparison.** Keep the verified full convolution base. Append a fixed feature budget in every extended arm. Compare R-aligned short-kernel summaries with the same summaries under independent position shuffles per record, and with the same width of extra whole-beat summaries. Freeze window boundaries and filter-count rules before fitting. Fit scaling and regularization inside patient partitions. Report all folds, three seeds, the paired contrast with the equal-width global control and comparison with the historical 0.603374 selector. AMI and ALMI F1 are prespecified descriptive checks.
+
+**Implementation.** Four equal-duration windows, two short dilations on raw and first-difference input, and signed response RMS features. The real inner-only smoke reconstructed all three contexts. [Protocol](r_relative_convolution_plan.md)
 
 ## 12. Probabilistic detection and localization readout
 
