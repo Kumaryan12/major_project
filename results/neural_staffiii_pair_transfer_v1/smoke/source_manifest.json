@@ -1,0 +1,60 @@
+{
+  "config": {
+    "raw_dir": "data/raw/staffiii_v1",
+    "bank_dir": "data/processed/staffiii_pair_transfer_v1",
+    "output_dir": "results/neural_staffiii_pair_transfer_v1",
+    "target_config": "configs/vcg_pretraining_pilots_v1.yaml",
+    "target_reference": "configs/model_error_comparison_v1.yaml",
+    "copy_screen_config": "configs/supervised_source_overlap_v1.yaml",
+    "windows_seconds": [
+      [
+        -20,
+        -10
+      ],
+      [
+        30,
+        40
+      ]
+    ],
+    "excluded_source_patients": [
+      1,
+      4,
+      5,
+      6,
+      89
+    ],
+    "clips_per_window": 4,
+    "minimum_complete_beats": 4,
+    "minimum_training_per_vessel": 5,
+    "minimum_validation_per_vessel": 2,
+    "source_seed": 42,
+    "source_validation_fraction": 0.25,
+    "source_epochs": 12,
+    "updates_per_epoch": 8,
+    "pairs_per_batch": 16,
+    "download_workers": 12
+  },
+  "smoke": true,
+  "bank_sha256": "80cfd3a28b9ad1addb0e078afb6788c12782218b932e35f8dad8332472d46b9e",
+  "norm": {
+    "mean": [
+      0.010214288718998432,
+      0.006839716341346502,
+      -0.004070363938808441
+    ],
+    "scale": [
+      0.18019644916057587,
+      0.1396147906780243,
+      0.15341980755329132
+    ],
+    "fit_records": 45,
+    "fit_patients": 45
+  },
+  "training_rows_sha256": "a3bd4007b01236aeac00b62a73e5cc4d83c95cf29cce65da8810dcc09a811d60",
+  "code_sha256": "d9c5efa3286c95dcd63ca3a4ea0b049ecd737a8f6d6f4e2fc45e4179b328a728",
+  "tool_code_sha256": "bbcc90ea15d6d150965b5c94dec368074672a8ed79484a681ba654383ab3eab9",
+  "neural_code_sha256": "7aa44cba432693dca59ccb2587d1f3bd2c5cee195ed74c4259c456de1fa56f97",
+  "target_config_sha256": "1f7e39a20dc5540f35e44f651986adccc046239d0dc4fe0fefeeb296bedeaf16",
+  "device": "mps",
+  "torch_version": "2.15.0"
+}
