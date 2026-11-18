@@ -18,7 +18,7 @@ The [research plan for 0.80–0.90](path_to_080_macro_f1.md) quantifies the curr
 | 10 | Average the four linear convolution readouts | Verified, gain uncertain | Keep the 0.603374 selector as the historical reference. |
 | 11 | Pool convolution responses in fixed R-relative windows | Verified, no demonstrated gain | Keep the frozen base and the historical selector reference. Aligned and shuffled scored nearly identically. |
 | 12 | Separate MI detection and localization in a probabilistic readout | Verified, gain uncertain | Preserve the .603374 selector reference. Hierarchical .586828 versus matched flat .562819. |
-| 13 | Learn ECG changes from controlled balloon occlusion | Feasibility needed | Check annotated baseline and inflation pairs with comparable acquisition before fitting. |
+| 13 | Learn ECG changes from controlled balloon occlusion | Timing feasibility checked | Verify waveform quality and vessel coverage before proposing a source fit. |
 
 ## 1. Related MI subtypes share classifier weights
 
@@ -120,7 +120,9 @@ The CSE diagnostic study is a measured orthogonal archive lead, with access and 
 
 **Hypothesis.** Within-patient baseline-to-occlusion ECG changes may reveal how waveform morphology responds to controlled ischemia. STAFF III includes 104 patients with timing annotations. This would be an ECG-assisted source experiment with measured XYZ as the sole target input at inference. [PhysioNet dataset](https://physionet.org/content/staffiii/1.0.0/)
 
-**Proposed comparison.** Audit exact annotated intervals, baseline acquisition setting, contrast events and usable vessel support. Split by patient before constructing pairs. Compare matched change supervision with a single-record source objective using the same patients and comparable exposure, with a target scratch control. The source task describes induced ischemia, and target performance must be measured separately.
+**Proposed comparison.** Audit exact annotated intervals, baseline acquisition setting, contrast events and usable vessel support. Split by patient before constructing pairs. Compare change supervision with a control that uses the same waveforms and exposure, with a target scratch control. The source task describes induced ischemia, and target performance must be measured separately.
+
+**Timing feasibility.** Checked all 142 published event files and matching headers. The same-record timing screen found 65 candidate recordings from 61 patients. The next signal check is decoded waveform quality, native vessel labels and per-vessel patient support. A matched source pilot could compare a shared encoder's during-minus-before embeddings with the mean of the same two embeddings, using identical pairs, heads and patient splits. Any transfer result would need a matched target scratch comparison. [Annotation check](EXTERNAL_DATA_SHORTLIST.md#staff-iii-timing-check)
 
 ## Evidence already in hand
 

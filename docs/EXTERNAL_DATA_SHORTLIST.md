@@ -30,3 +30,11 @@ Of the remaining OMI recordings, 96 have no acute artery group and 139 name mult
 The completed pilot independently re-decoded all 2,481 selected raw recordings and used 1,822 source training and 456 source validation patients. Its matched transfer arms reached .570389 and .580730 measured-XYZ patient macro F1, with .601801 for scratch. ACS-ECG's `AMI` means acute MI, while our six-class `AMI` means anterior MI. Vessel labels stayed native to the source task, and the PTB territory labels and frozen folds stayed fixed. [Verified report](../results/neural_acs_artery_transfer_v1/complete/REPORT.md)
 
 The primary prospect for independent six-class validation is still a partner cohort with measured Frank XYZ and compatible adjudication. The intake and evaluation tools are already available. [Partner cohort protocol](measured_vcg_partner_cohort.md)
+
+## STAFF III timing check
+
+On 18 November 2026, checked all 142 WFDB event annotations and their 142 matching headers against the publisher's v1.0.0 SHA-256 inventory. The inventory file SHA-256 is `e4c71aa1b47b8fd17b1549b5f650770df63f4cb795388d129c6ca78cd7a78269`. The annotations contained 152 inflation markers, 152 deflation markers and 210 contrast markers across 104 patient prefixes. All checked headers report nine stored channels at 1 kHz, including I, II and V1–V6. [Versioned dataset and annotations](https://physionet.org/content/staffiii/1.0.0/)
+
+For the first annotated inflation in each file, check that the same recording contains 10-second windows at [−20, −10) seconds and [+30, +40) seconds relative to its marker. Require the latter window to end by the next inflation or deflation marker and reject a recorded contrast marker anywhere in [−20, +40). Of 142 recordings, 74 had too little time before inflation and three failed the recorded contrast check. The remaining 65 recordings represent 61 patient prefixes.
+
+These are timing candidates. Waveform quality, vessel support and possible procedural effects still need review. Injections can be unannotated, and a file can start later in a procedure. Limb leads use the Mason–Likar placement. Any encoder transfer would be an ECG-assisted extension with separate source validation and measured Frank XYZ as the sole target inference input. [Dataset protocol](https://physionet.org/content/staffiii/1.0.0/)
