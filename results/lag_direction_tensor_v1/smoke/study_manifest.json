@@ -1,0 +1,120 @@
+{
+  "config": {
+    "source_config": "configs/convolution_distribution_v1.yaml",
+    "expected_source_fingerprint": "ac4d08070ac72d70597e0935e9732ecd7423e6bd8ff81090fe1a99dc164fd37d",
+    "expected_source_summary_sha256": "d0210b510333feb433f55d50f89cf6798137ac97fc27810894163339dba2dceb",
+    "output_dir": "results/lag_direction_tensor_v1",
+    "classes": [
+      "AMI",
+      "ALMI",
+      "ASMI",
+      "IMI",
+      "ILMI",
+      "HC"
+    ],
+    "folds_path": "configs/patient_folds.csv",
+    "outer_splits": 10,
+    "inner_splits": 3,
+    "split_seed": 42,
+    "seed": 42,
+    "projection_seeds": [
+      42,
+      123,
+      2026
+    ],
+    "ridge_alphas": [
+      1.0,
+      100.0
+    ],
+    "representations": [
+      "baseline",
+      "plus_mean",
+      "plus_spread",
+      "plus_quantiles"
+    ],
+    "r_index": 250,
+    "windows_ms": [
+      [
+        -200,
+        -90
+      ],
+      [
+        -70,
+        70
+      ],
+      [
+        70,
+        180
+      ],
+      [
+        180,
+        340
+      ]
+    ],
+    "lags_ms": [
+      4,
+      12,
+      24,
+      48
+    ],
+    "auxiliary_weight": 0.25,
+    "scale_relative_floor": 0.1,
+    "scale_absolute_floor": 1e-10,
+    "sign_seed_offset": 9217,
+    "torch_threads": 2,
+    "bootstrap_draws": 5000
+  },
+  "source": {
+    "source_fingerprint": "ac4d08070ac72d70597e0935e9732ecd7423e6bd8ff81090fe1a99dc164fd37d",
+    "source_summary_sha256": "d0210b510333feb433f55d50f89cf6798137ac97fc27810894163339dba2dceb",
+    "verified_snapshot_sha256": "c9b64cd81fc15973554baff6e5237338371b56baa1941b135aaba8e123d763f9",
+    "protected_file_count": 90429,
+    "source_config_sha256": "a28e5c809ded9d85141a2e119eff39210b4fae06dd82ad0fac0711ebf9d25e8d",
+    "patient_ids_sha256": "6a60d0062e9a0e1f3d4233873b521f9fedc6f705c92f911fe157990cc43a515f",
+    "labels_sha256": "96ec7019e4de5ec90d3d68c60cde28c72a35ecd3f08a8b9e1832503abff6bab2",
+    "folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625",
+    "claim": "Reuse independently verified upstream caches; no waveform re-extraction or new raw-signal validation"
+  },
+  "encoded": {
+    "record_vectors": {
+      "magnitude": "6b1343a9e697fcc675e66e60ff24ad097d03369bd592975370e3f1021dd5b56d",
+      "signed": "7677eb1a2dab227ca2eeb53d04f924a2e2bb4386dd92fca849986bfbd532a539",
+      "42": "e4e849b8aa1e50d303a0837fccea4bf159ab7f029d58a8826c5eaf61f25f6739",
+      "123": "579ef637ca230096997b2b9d3c3693f14b728f063403fe8d0c61f748dee1b324",
+      "2026": "811cceaf7de78cf3583b2149138ecaf781ade7fc45a7c1adc7028f82a2b6b870"
+    },
+    "sign_sequences": {
+      "42": "7e3acbabae31dd26e4978de14078e018510d08814bb407e219055434c27a7ef4",
+      "123": "edc8194a6c2bf07ae68c46834f2bbfd7addea3e2ed4697817092596df54d938b",
+      "2026": "dccf4255c7accc9c6c2c04b1cf14d4cd630df50f5a4c2c7cb7718325ce8dc609"
+    },
+    "records": 357,
+    "beats": 51073,
+    "auxiliary_dimensions": 144
+  },
+  "smoke": true,
+  "runtime": {
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "torch": "2.15.0",
+    "joblib": "1.6.0",
+    "platform": "macOS-26.5-arm64-arm-64bit",
+    "device": "cpu",
+    "blas_threads": 1
+  },
+  "code": {
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/benchmark.py": "8f1bb5168adfadec6e60e68cb256cf7dad240d3f7d6bb35fa54b47876f312589",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/distribution_kernel_source.py": "ef5983a0e11f5459c32eb4406b34dddf22407e12f0c6fee0862631705ebedc59",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/distribution_kernel_model.py": "35578142ee69a3647ff364289a17833abb962116fe2587ebc5ecc33e74f182bb",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/distribution_score_correction.py": "1ce0b2bea138b9c40c3863c05afe90e27e3a3932c366d0a0c5b1e92c0f1c759c",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/distribution_study.py": "e2cf03e3711a8f397ec14d782ba8ca299878b98a4bc134cd6c2cb86fc57bf92f",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/lag_direction_features.py": "3dc9d8885969a4db9a760cb91eb50832271639d1499e9f33c9ee84cf6a398b41",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/chronology_bank.py": "88ef4fdcbd2ca0b116c76dbc12cf954e8b0474eb86c17cfbd38b376437dee864",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/regularization.py": "b1692068f880746d0e91059392d58940fbb15ef8d476c304309fc5d6cff05a65",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/lag_direction_study.py": "db416917ad099d9159be15f14454e0e3431c956e733a1a99c9d61eb0288f3c62",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/lag_direction_report.py": "135cbe5595b1eed84235b2426ae8b20b504837b01579f662f528abd759148c2f",
+    "scripts/run_lag_direction_tensor.py": "1120282cc2763f73940a948efe708d76b8dec3c17b3b47b8db94af6ede81d5ad"
+  },
+  "study_fingerprint": "c9a391d44e6c605befba564e58dce872fa154d45e027379190040fc839d411f6"
+}

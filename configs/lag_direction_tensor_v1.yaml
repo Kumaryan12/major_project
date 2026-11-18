@@ -1,0 +1,22 @@
+source_config: configs/convolution_distribution_v1.yaml
+expected_source_fingerprint: ac4d08070ac72d70597e0935e9732ecd7423e6bd8ff81090fe1a99dc164fd37d
+expected_source_summary_sha256: d0210b510333feb433f55d50f89cf6798137ac97fc27810894163339dba2dceb
+output_dir: results/lag_direction_tensor_v1
+classes: [AMI, ALMI, ASMI, IMI, ILMI, HC]
+folds_path: configs/patient_folds.csv
+outer_splits: 10
+inner_splits: 3
+split_seed: 42
+seed: 42
+projection_seeds: [42, 123, 2026]
+ridge_alphas: [1.0, 100.0]
+representations: [baseline, plus_mean, plus_spread, plus_quantiles]
+r_index: 250
+windows_ms: [[-200, -90], [-70, 70], [70, 180], [180, 340]]
+lags_ms: [4, 12, 24, 48]
+auxiliary_weight: 0.25
+scale_relative_floor: 0.10
+scale_absolute_floor: 1.0e-10
+sign_seed_offset: 9217
+torch_threads: 2
+bootstrap_draws: 5000

@@ -11,6 +11,7 @@ This is the working queue for ideas that could improve six-class patient macro F
 | 5 | Learn from matched simulated infarct perturbations | Feasibility needed | Confirm that matched anatomy and disease-change runs exist before downloading or building a model. |
 | 6 | Transfer angiography-linked artery supervision from ACS-ECG | Source identified | Obtain and audit the small public metadata archive, then verify a waveform sample. |
 | 7 | Compare errors of the strongest saved convolution and waveform ensembles | Diagnostic complete | Keep both references. Defer fusion fitting after the equal blend scored below both. |
+| 8 | Preserve direction in a within-beat lead-delay tensor | In progress | Compare signed lead interactions with magnitude-only and sign-scrambled controls. |
 
 ## 1. Related MI subtypes share classifier weights
 
@@ -59,6 +60,12 @@ The CSE diagnostic study is a measured orthogonal archive lead, with access and 
 ## 7. Convolution and waveform prediction overlap
 
 **Result.** Reconstructed the verified convolution and waveform ensembles at 0.603374 and 0.601801. The convolution model alone was correct on 19 patients, the waveform model alone on 16, and both missed 36. The fixed equal blend scored 0.582209, a difference of −0.021165 [−0.087770, +0.043554] versus convolution. The waveform ensemble's higher anterior MI F1 was weakened by blending. The diagnostic supports keeping the two component references and gives no demonstrated reason to prioritize a tuned fusion. [Protocol](model_error_comparison_plan.md) · [Verified comparison](../results/model_error_comparison_v1/REPORT.md)
+
+## 8. Within-beat lead direction
+
+**Hypothesis.** Local signed interactions between measured XYZ leads may offer information beyond the convolution representation. Compute lag covariance in four R-relative windows at four time delays. The antisymmetric entries flip sign when the time direction is reversed.
+
+**Controls and result to record.** Keep the full convolution base and the symmetric entries fixed across the three tensor arms. Compare signed, absolute and sign-scrambled entries at the same feature width. Use patient-nested tuning and report whether the signed arm improves both over magnitude and over the original convolution reference. [Protocol](lag_direction_tensor_plan.md)
 
 ## Evidence already in hand
 
