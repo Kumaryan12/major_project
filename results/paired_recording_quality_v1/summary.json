@@ -1,0 +1,209 @@
+{
+  "complete": true,
+  "diagnostic_only": true,
+  "model_fits": 0,
+  "patients": 79,
+  "verified_prediction_blocks": 30,
+  "draws": 256,
+  "seeds": [
+    42,
+    123,
+    2026
+  ],
+  "folds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "earliest_macro_f1": 0.46160239130878966,
+  "later_macro_f1": 0.5574846342995318,
+  "provenance": {
+    "matched_summary_sha256": "64f09179ab7060a238d6f16c271e3f1578ad7c45827bdadd8b2b2232b7f777dc",
+    "verified_artifacts_sha256": "9e747a4e30ba8db59ab3d8472fe5a4ded047df9ff4b0284092df2a2e1abf1658",
+    "raw_records_sha256": "50dac137ff2187a72c8cd6f497faa17672bf4484b10f918f38810b55d2769a63",
+    "code_sha256": "7489e35177d8adddca7a325f99a55db1f03e1fa3525d689b991d171202b2ec9d",
+    "protocol_sha256": "62a273bcc2eb01b8556e1f58b48f77170f729c3f94c1e1cd0d0e1ad0d4328888"
+  },
+  "changes": {
+    "drift_mv": {
+      "earliest_median": 0.05786422211998656,
+      "later_median": 0.041229955852361624,
+      "later_minus_earliest_mean": -0.031203819086657883,
+      "interval": [
+        -0.06723733655170325,
+        -0.0004118797649890748
+      ],
+      "higher": 38,
+      "lower": 41,
+      "equal": 0
+    },
+    "adc_rail_fraction": {
+      "earliest_median": 0.0,
+      "later_median": 0.0,
+      "later_minus_earliest_mean": 0.0,
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "higher": 0,
+      "lower": 0,
+      "equal": 79
+    },
+    "r_disagreement_fraction": {
+      "earliest_median": 0.0,
+      "later_median": 0.0,
+      "later_minus_earliest_mean": 0.000998967810522152,
+      "interval": [
+        -0.0011706388449367088,
+        0.0033054013795490475
+      ],
+      "higher": 19,
+      "lower": 15,
+      "equal": 45
+    },
+    "relative_denoising_change": {
+      "earliest_median": 0.039105300383839726,
+      "later_median": 0.03731553529279634,
+      "later_minus_earliest_mean": -0.001203683139684533,
+      "interval": [
+        -0.003837296009115936,
+        0.0014998612409866437
+      ],
+      "higher": 38,
+      "lower": 41,
+      "equal": 0
+    },
+    "unusual_rr_fraction": {
+      "earliest_median": 0.0,
+      "later_median": 0.0,
+      "later_minus_earliest_mean": 0.008353710270368693,
+      "interval": [
+        0.00019532598978739822,
+        0.01869723255049398
+      ],
+      "higher": 25,
+      "lower": 15,
+      "equal": 39
+    }
+  },
+  "associations": {
+    "decrease_drift_mv": {
+      "patients": 79,
+      "rho": -0.02209645861320023,
+      "interval": [
+        -0.23519438946011806,
+        0.1853552170462934
+      ],
+      "finite_draws": 5000
+    },
+    "decrease_adc_rail_fraction": {
+      "patients": 79,
+      "rho": null,
+      "interval": null,
+      "finite_draws": 0
+    },
+    "decrease_r_disagreement_fraction": {
+      "patients": 79,
+      "rho": 0.05948704957134734,
+      "interval": [
+        -0.1746885758138854,
+        0.2898511759565321
+      ],
+      "finite_draws": 5000
+    },
+    "decrease_relative_denoising_change": {
+      "patients": 79,
+      "rho": -0.19720145297402325,
+      "interval": [
+        -0.40735306149085215,
+        0.023879273847471183
+      ],
+      "finite_draws": 5000
+    },
+    "decrease_unusual_rr_fraction": {
+      "patients": 79,
+      "rho": -0.07547816082360405,
+      "interval": [
+        -0.2766802641014597,
+        0.13452987494329255
+      ],
+      "finite_draws": 5000
+    },
+    "days_between_recordings": {
+      "patients": 79,
+      "rho": -0.032764233726064046,
+      "interval": [
+        -0.22904074576529598,
+        0.16460896171196404
+      ],
+      "finite_draws": 5000
+    },
+    "days_from_documented_infarct_to_earliest": {
+      "patients": 74,
+      "rho": 0.07113237230647766,
+      "interval": [
+        -0.1404338068800318,
+        0.2896564440426449
+      ],
+      "finite_draws": 5000
+    }
+  },
+  "companion": {
+    "decrease_drift_mv": {
+      "patients": 79,
+      "rho": 0.060710808179162606,
+      "interval": [
+        -0.1766369073080508,
+        0.2722646217601161
+      ],
+      "finite_draws": 5000
+    },
+    "decrease_r_disagreement_fraction": {
+      "patients": 79,
+      "rho": 0.0618203220966827,
+      "interval": [
+        -0.1690152057876494,
+        0.28931830316401314
+      ],
+      "finite_draws": 5000
+    }
+  },
+  "class_results": {
+    "AMI": {
+      "patients": 11,
+      "later_minus_earliest_accuracy": 0.4694602272727273
+    },
+    "ALMI": {
+      "patients": 9,
+      "later_minus_earliest_accuracy": -0.2144097222222222
+    },
+    "ASMI": {
+      "patients": 19,
+      "later_minus_earliest_accuracy": 0.04666940789473684
+    },
+    "IMI": {
+      "patients": 22,
+      "later_minus_earliest_accuracy": -0.06587357954545454
+    },
+    "ILMI": {
+      "patients": 13,
+      "later_minus_earliest_accuracy": 0.29086538461538464
+    },
+    "HC": {
+      "patients": 5,
+      "later_minus_earliest_accuracy": 0.2
+    }
+  },
+  "later_minus_earliest_accuracy": 0.09434335443037975,
+  "records_with_rail_samples": {
+    "earliest": 0,
+    "later": 0
+  }
+}
