@@ -38,7 +38,7 @@ def combine_probabilities(mi, conditional, subtype_codes, healthy):
 
 def fit_logit(x, labels, weights, query, setting, config):
     # A common per-patient regularization convention keeps C comparable across nodes.
-    model = LogisticRegression(C=setting, solver='lbfgs', max_iter=config['max_iterations'], tol=config['tolerance'])
+    model = LogisticRegression(C=setting, solver='newton-cg', max_iter=config['max_iterations'], tol=config['tolerance'])
     with warnings.catch_warnings():
         warnings.simplefilter('error', ConvergenceWarning)
         model.fit(x, labels, sample_weight=weights / weights.mean())
