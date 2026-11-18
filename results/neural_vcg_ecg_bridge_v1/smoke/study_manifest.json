@@ -1,0 +1,126 @@
+{
+  "config": {
+    "paper_config": "configs/paper.yaml",
+    "beats_path": "data/processed/beats.csv",
+    "bank_dir": "data/processed/neural_vcg_v1",
+    "ecg_bank_dir": "data/processed/paired_ecg_v1",
+    "folds_path": "configs/patient_folds.csv",
+    "classes": [
+      "AMI",
+      "ALMI",
+      "ASMI",
+      "IMI",
+      "ILMI",
+      "HC"
+    ],
+    "outer_splits": 10,
+    "seed": 42,
+    "training_seeds": [
+      42,
+      123,
+      2026
+    ],
+    "source_raw_dir": "data/raw/ptb_native_expansion_v1",
+    "source_bank_dir": "data/processed/ptb_native_expansion_v1",
+    "source_audit_dir": "results/ptb_native_expansion_v1",
+    "native_output_dir": "results/neural_vcg_native_pretraining_v1",
+    "bridge_output_dir": "results/neural_vcg_ecg_bridge_v1",
+    "download_workers": 6,
+    "minimum_beats": 8,
+    "minimum_lead_sd_mv": 0.001,
+    "screen_rate": 100,
+    "screen_seconds": 6,
+    "template_points": 65,
+    "shortlist_size": 8,
+    "copy_mean_r": 0.9995,
+    "copy_min_r": 0.998,
+    "device": "auto",
+    "torch_threads": 2,
+    "widths": [
+      16,
+      32,
+      64
+    ],
+    "pool_bins": 4,
+    "dropout": 0.2,
+    "weight_decay": 0.01,
+    "learning_rate": 0.001,
+    "batch_size": 16,
+    "samples_per_epoch": 32,
+    "target_epochs": 1,
+    "pretrain_steps": 2,
+    "pretrain_learning_rate": 0.001,
+    "native_extra_fraction": 0.5,
+    "patch_samples": 21,
+    "masked_patches": 10,
+    "bridge_dct_coefficients": 12,
+    "bootstrap_draws": 5000,
+    "max_epochs": 1
+  },
+  "mode": "bridge",
+  "smoke": true,
+  "bank": {
+    "fingerprint": "f44e31cff8230dc5ce971997f80ee0d0d921eb5f72a8ab75d0327692271192e7",
+    "files": {
+      "manifest.json": "b939ab2bf76e25d7569152ac60005f61b3fc99533b028a6413b1ee9b267f0b2c",
+      "waveforms.npy": "118fbfb2d8b2fbc2c32ba6449e301874cc1a79c7ad2d8692652129c224f91fba",
+      "y.npy": "e0aca562cb4beabb0d59119035baf5b997ffc678a0cd21822751f393339ef7f8",
+      "groups.npy": "729880b095d4a225551db982d107754df9ca442f0eafee2145a61cd5db963ab0"
+    },
+    "beats_sha256": "277e2f1498d54db23061c3bb60969f05ce506b941d9dfa7c07e835713950358b",
+    "paper_sha256": "5aea297dd03a5a214de3fc8142b77c58a9e9074e6dbf26288499f360e36892b0",
+    "n_beats": 55863,
+    "n_patients": 164,
+    "n_records": 391,
+    "shape": [
+      55863,
+      3,
+      651
+    ]
+  },
+  "source": {
+    "target": {
+      "fingerprint": "f44e31cff8230dc5ce971997f80ee0d0d921eb5f72a8ab75d0327692271192e7",
+      "files": {
+        "manifest.json": "b939ab2bf76e25d7569152ac60005f61b3fc99533b028a6413b1ee9b267f0b2c",
+        "waveforms.npy": "118fbfb2d8b2fbc2c32ba6449e301874cc1a79c7ad2d8692652129c224f91fba",
+        "y.npy": "e0aca562cb4beabb0d59119035baf5b997ffc678a0cd21822751f393339ef7f8",
+        "groups.npy": "729880b095d4a225551db982d107754df9ca442f0eafee2145a61cd5db963ab0"
+      },
+      "beats_sha256": "277e2f1498d54db23061c3bb60969f05ce506b941d9dfa7c07e835713950358b",
+      "paper_sha256": "5aea297dd03a5a214de3fc8142b77c58a9e9074e6dbf26288499f360e36892b0",
+      "n_beats": 55863,
+      "n_patients": 164,
+      "n_records": 391,
+      "shape": [
+        55863,
+        3,
+        651
+      ]
+    },
+    "ecg_manifest_sha256": "78cf5c9c910eca5063336fa3b3f416c2478b0cca04c9bfe76f394176fe06fed9",
+    "ecg_fingerprint": "42d9c18dcd9a9ae11563bce1bf129109c166d4e5d3cdc0e62fd6ae87f9ac529c",
+    "ecg_waveforms_sha256": "0946fdf7889e7af8ed0f9b7be12c1221a5b43ecb7c8d96b3a097596c3bb4ecac"
+  },
+  "folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625",
+  "code": {
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/neural.py": "7aa44cba432693dca59ccb2587d1f3bd2c5cee195ed74c4259c456de1fa56f97",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/regularization.py": "b1692068f880746d0e91059392d58940fbb15ef8d476c304309fc5d6cff05a65",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/transfer.py": "28e5ebcfddaa8c45e2d307b95f4b4788b99e46c2a07d5002934cd59c4e5a6902",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/benchmark.py": "8f1bb5168adfadec6e60e68cb256cf7dad240d3f7d6bb35fa54b47876f312589",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/preprocessing_study.py": "28e974b992c15ae70901c99554cd86801b6f3f28a4c9f437e8c6f9130e7d0bb6",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/vcg_expansion_bank.py": "febd4b30ce1632f5abc7c854a457eeaeb31c4dc8f8013d4ab77454f8b34379c8",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/masked_pretraining.py": "969376f24ab15f2eac45ff913ea63cfe04e87a5c852ac3f7485285bb73dd58de",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/paired_bank.py": "546b5e16161ec82c978259ea61e8eadd2e51b1ec5db65ec9cc8f262f69a74b19",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/vcg_pretraining_study.py": "af30417959efadb29cd08bc0662504db08adb803ba5b5c6ab947e1c61d157750",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/vcg_pretraining_report.py": "af5ab4b5505241ddfd9db5a9f0496083f1f5a7e08dec46eebc64b2068dcebebd"
+  },
+  "runtime": {
+    "torch": "2.15.0",
+    "numpy": "2.5.3",
+    "sklearn": "1.9.1",
+    "device": "mps",
+    "platform": "macOS-26.5-arm64-arm-64bit"
+  },
+  "fingerprint": "6c5db72dfd6c250199db7566ce65f37d7891bb6cd3ec55b027c4b28a52e36b87"
+}

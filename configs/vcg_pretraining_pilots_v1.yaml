@@ -1,0 +1,40 @@
+paper_config: configs/paper.yaml
+beats_path: data/processed/beats.csv
+bank_dir: data/processed/neural_vcg_v1
+ecg_bank_dir: data/processed/paired_ecg_v1
+folds_path: configs/patient_folds.csv
+classes: [AMI, ALMI, ASMI, IMI, ILMI, HC]
+outer_splits: 10
+seed: 42
+training_seeds: [42, 123, 2026]
+source_raw_dir: data/raw/ptb_native_expansion_v1
+source_bank_dir: data/processed/ptb_native_expansion_v1
+source_audit_dir: results/ptb_native_expansion_v1
+native_output_dir: results/neural_vcg_native_pretraining_v1
+bridge_output_dir: results/neural_vcg_ecg_bridge_v1
+download_workers: 6
+minimum_beats: 8
+minimum_lead_sd_mv: 0.001
+screen_rate: 100
+screen_seconds: 6
+template_points: 65
+shortlist_size: 8
+copy_mean_r: 0.9995
+copy_min_r: 0.998
+device: auto
+torch_threads: 2
+widths: [16, 32, 64]
+pool_bins: 4
+dropout: 0.2
+weight_decay: 0.01
+learning_rate: 0.001
+batch_size: 128
+samples_per_epoch: 2048
+target_epochs: 8
+pretrain_steps: 64
+pretrain_learning_rate: 0.001
+native_extra_fraction: 0.5
+patch_samples: 21
+masked_patches: 10
+bridge_dct_coefficients: 12
+bootstrap_draws: 5000
