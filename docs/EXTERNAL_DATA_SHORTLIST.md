@@ -10,10 +10,23 @@ Reviewed 18 November 2026. The current PTB cohort supports controlled developmen
 | CSE diagnostic study | Published evidence of simultaneously recorded orthogonal XYZ at 500 Hz in 1,220 clinically validated adults, with broad anterior, inferior and combined MI categories. | Best archive lead for additional measured orthogonal data. No public paired waveform and case-label download located. First verify acquisition geometry, access to waveforms and per-case labels, use terms, and overlap. Its published categories allow only a separate coarse task. [Original CSE diagnostic study](https://www.nejm.org/doi/full/10.1056/NEJM199112193252503) |
 | PhysioNet/CinC 2007 MI imaging | Four cases with Frank XYZ as an averaged 2 kHz beat within a body-surface map. Reference MRI ground truth is publicly supplied for the two training cases. | Small waveform and localization sanity check. Insufficient labeled coverage for six-class training or benchmark evaluation. [Challenge data](https://physionet.org/content/challenge-2007/1.0.0/) |
 
-## First ACS-ECG check
+## ACS-ECG metadata check
 
-The official v1 repository API lists `CSV.zip` at 296,769 bytes, `ECG_median_data.zip` at 140,340,429 bytes and `ECG_row_data.zip` at 1,277,577,332 bytes. The metadata file is listed, but its public file link returned HTTP 403 from this environment and the publisher routes returned an empty response. The row-level archive contents, waveforms and usable label counts have not been checked. The dataset and its paper each have their own license. [Release metadata](https://api.figshare.com/v2/articles/29925314/versions/1)
+The official v1 API download for `CSV.zip` succeeded on 18 November 2026. All 296,769 bytes match the published MD5 `1cb46279c0e68e6512bd39214fc56528`. The local SHA-256 is `675a57e90eea1175259301293812ec0a23c73f83ec7fb352a8309f05843d0005`. The archive is stored locally under ignored raw data. The API also lists median and raw waveform archives. Waveform review is pending. [Release metadata](https://api.figshare.com/v2/articles/29925314/versions/1)
 
-First obtain the small metadata archive and check the published hash. Confirm repeated visits, source train/test patient separation, ECG-to-angiography timing, omissions, acute/chronic/multivessel coverage and the number of patients with a single usable artery label. Review a small waveform sample before full extraction. If the source is usable, compare the same source sample and training budget with and without artery supervision. Keep the angiographic labels native. ACS-ECG's `AMI` means acute MI, while our six-class `AMI` means anterior MI. Vessel codes and the target's myocardial territory codes describe different endpoints. [Data dictionary in the descriptor](https://pmc.ncbi.nlm.nih.gov/articles/PMC13347058/)
+The labeled training CSV contains 17,960 ECGs from 17,018 patients, including 855 with multiple ECGs. The released test CSV contains 1,995 ECGs from 1,891 patients and omits the diagnosis and vessel columns. Patient IDs and waveform IDs are disjoint across the two files. Source model selection can use a patient-disjoint split within the labeled release.
+
+Among 1,151 labeled acute occlusion MI (`OMI = 1`) recordings from 1,139 patients, 916 recordings from 913 patients have exactly one acute artery group. The counts below follow Table 2, using segment value 1 for acute occlusion and value 2 for chronic occlusion. Count a group as acute when any of its segments has value 1. Keep left main separate, and aggregate branches into their parent groups. [Data dictionary in the descriptor](https://pmc.ncbi.nlm.nih.gov/articles/PMC13347058/#Tab2)
+
+| Single acute group | Segment codes | Recordings | Patients |
+|---|---|---:|---:|
+| LM | LM | 5 | 5 |
+| LAD | PLAD, MLAD, DLAD, DB | 347 | 347 |
+| LCX | PLCX, MLCX, DLCX, OM | 209 | 209 |
+| RCA | PRCA, MRCA, DRCA | 355 | 354 |
+
+Of the remaining OMI recordings, 96 have no acute artery group and 139 name multiple acute groups. There are 13 recordings with an acute segment code outside `OMI = 1`, and 116 OMI recordings have a coexisting chronic segment code. Two patients have different single-artery labels across ECGs. The labeled OMI ECG-to-angiography interval ranges from 43 to 10,066 minutes, with a median of 474 minutes. These counts are metadata feasibility evidence. Check timing and ambiguous annotations before locking the source target.
+
+Next, decode a small waveform sample and verify lead order, units, ECG-to-metadata alignment and the existing Kors-derived XYZ transport. If feasible, compare an OMI objective with the same objective plus artery supervision on identical source recordings. Include a target-only scratch control and match target training conditions. Evaluate the extension on measured XYZ alone at inference. ACS-ECG's `AMI` means acute MI, while our six-class `AMI` means anterior MI. Vessel labels stay native to the source task, and the PTB territory labels and frozen folds stay fixed. [Existing source preprocessing](source_pretraining_plan.md)
 
 The primary prospect for independent six-class validation is still a partner cohort with measured Frank XYZ and compatible adjudication. The intake and evaluation tools are already available. [Partner cohort protocol](measured_vcg_partner_cohort.md)

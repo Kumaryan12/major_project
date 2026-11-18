@@ -9,7 +9,7 @@ This is the working queue for ideas that could improve six-class patient macro F
 | 3 | Use documented region mentions from additional native patients | Tested, gain uncertain | True mentions scored above shuffled and below matched scratch. Retain the documented control results. |
 | 4 | Obtain an independent measured XYZ cohort with reviewed labels | Awaiting cohort | Identify a partner, agree on label evidence and freeze patient assignments. |
 | 5 | Learn from matched simulated infarct perturbations | Feasibility needed | Confirm that matched anatomy and disease-change runs exist before downloading or building a model. |
-| 6 | Transfer angiography-linked artery supervision from ACS-ECG | Source identified | Obtain and audit the small public metadata archive, then verify a waveform sample. |
+| 6 | Transfer angiography-linked artery supervision from ACS-ECG | Metadata checked | Verify a waveform sample and source artery label eligibility before training. |
 | 7 | Compare errors of the strongest saved convolution and waveform ensembles | Diagnostic complete | Keep both references. Defer fusion fitting after the equal blend scored below both. |
 | 8 | Preserve direction in a within-beat lead-delay tensor | Tested, no demonstrated gain | Signed features trailed both the sign-scrambled control and the baseline. |
 | 9 | Train the waveform ResNet on pooled patient probabilities | Verified, no demonstrated gain | Keep the historical waveform recipe. Both pooled objectives scored below the matched control. |
@@ -55,9 +55,9 @@ The CSE diagnostic study is a measured orthogonal archive lead, with access and 
 
 ## 6. Angiography-linked pretraining from ACS-ECG
 
-**Hypothesis.** Pretraining on native coronary artery labels may transfer more localization information to measured XYZ than reconstruction or a broad ECG diagnosis objective. ACS-ECG's publication describes real recordings from 18,909 patients with angiography-linked labels. The release metadata is public. The metadata archive download could not be verified from this environment.
+**Hypothesis.** Pretraining on native coronary artery labels may transfer more localization information to measured XYZ than reconstruction or a broad ECG diagnosis objective. The publisher's metadata archive passed its checksum and has 913 patients with at least one OMI recording in a single acute artery group. The released test CSV omits diagnostic labels. [Metadata audit](EXTERNAL_DATA_SHORTLIST.md#acs-ecg-metadata-check)
 
-**Controls and result to record.** Verify the label archive, patient grouping, acute and chronic annotations, actual vessel support and waveform alignment. Then compare equal source exposure with and without the artery objective and a matched target-only scratch model. Preserve the measured XYZ endpoint, and use the original artery categories for the source. [External data shortlist](EXTERNAL_DATA_SHORTLIST.md)
+**Controls and result to record.** Check waveform alignment and prespecify handling of recordings with missing, multivessel or inconsistent artery annotations. Then compare equal source exposure with and without the artery objective and a matched target-only scratch model. Preserve the measured XYZ endpoint and use source artery groups for the auxiliary task. [External data shortlist](EXTERNAL_DATA_SHORTLIST.md)
 
 ## 7. Convolution and waveform prediction overlap
 
