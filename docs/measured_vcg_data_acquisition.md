@@ -20,6 +20,8 @@ Publisher base `https://physionet.org/files/challenge-2007/1.0.0/`. The TXT file
 
 ## Larger cohorts to ask about
 
+**Updated search, 19 November.** A new primary-paper lead describes the historical Louvain archive of 2,810 patients with simultaneous ECG and measured Frank XYZ. The CSE literature also supplies an explicit access-request route. Current custody, release permission and label compatibility remain unresolved. See the [ranked acquisition action plan](data_acquisition_action_plan_20261119.md) and [unsent enquiries](data_access_request_templates_20261119.md). No additional patient waveforms were acquired in that search.
+
 | Lead | Evidence and access |
 |---|---|
 | Glasgow MALT cohort | The primary study describes four selected participants from a 38-patient cohort with body-surface mapping and delayed-enhancement MRI. The public challenge supplies four waveform cases and two public reference interpretations. Ask whether additional paired data and recorded or reproducibly reconstructed orthogonal leads can be released. The published cohort concerns chronic scar. [Primary report](https://pmc.ncbi.nlm.nih.gov/articles/PMC4646064/) |
