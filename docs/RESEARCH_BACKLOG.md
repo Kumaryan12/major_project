@@ -17,7 +17,7 @@ The [research plan for 0.80–0.90](path_to_080_macro_f1.md) quantifies the curr
 | 9 | Train the waveform ResNet on pooled patient probabilities | Verified, no demonstrated gain | Keep the historical waveform recipe. Both pooled objectives scored below the matched control. |
 | 10 | Average the four linear convolution readouts | Verified, gain uncertain | Keep the 0.603374 selector as the historical reference. |
 | 11 | Pool convolution responses in fixed R-relative windows | Verified, no demonstrated gain | Keep the frozen base and the historical selector reference. Aligned and shuffled scored nearly identically. |
-| 12 | Separate MI detection and localization in a probabilistic readout | Implemented and smoke verified | Compare full results against flat logistic and the historical selector. |
+| 12 | Separate MI detection and localization in a probabilistic readout | Verified, gain uncertain | Preserve the .603374 selector reference. Hierarchical .586828 versus matched flat .562819. |
 | 13 | Learn ECG changes from controlled balloon occlusion | Feasibility needed | Check annotated baseline and inflation pairs with comparable acquisition before fitting. |
 
 ## 1. Related MI subtypes share classifier weights
@@ -113,6 +113,8 @@ The CSE diagnostic study is a measured orthogonal archive lead, with access and 
 **Proposed comparison.** Train both stages inside the same patient partition using the cached convolution features. Compare with a flat six-class multinomial logistic model using the same data, feature widths and training-only tuning budget, and show the existing ridge reference. Outer evaluation includes all patients and all six classes. Report within-MI errors and healthy-control errors to show whether the new readout helps localization and how it changes detection.
 
 **Implementation.** Both procedures share the recorded historical representation choice for each outer fold and feature seed and use the same three-value C grid. [Protocol](probabilistic_subtype_plan.md)
+
+**Result.** All 600 procedures and 120 matched contexts replayed. Hierarchical minus flat +.024010 [−.001207,+.056060]. The historical selector remains .603374. The hierarchical procedure reduced within-MI confusions by one and MI-to-HC errors by two compared with flat logistic. [Verified report](../results/probabilistic_subtype_v1/complete/REPORT.md)
 
 ## 13. Paired ECG changes during coronary balloon occlusion
 
