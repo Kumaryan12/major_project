@@ -1,0 +1,55 @@
+{
+  "complete": true,
+  "bank_receipt_sha256": "cb928d88c382fd5b685616bd93aa927cf0ceed878bb5416fdef61e91ef68480a",
+  "source_manifest_sha256": "4fc9b47e67f3ad1a355122c983bb2d974e217815eeca31a621bd0c19fc70d49e",
+  "source_bank": {
+    "dropped": {},
+    "duplicate_groups": 0,
+    "ledger_sha256": "3a2a0eaad0de49222efc9f378c4f14e1a3af7026f2aa1be5c8dbe5b22b0f67cc",
+    "train": {
+      "records": 12,
+      "patients": 10,
+      "omi_positive_records": 8,
+      "artery_patients": {
+        "LAD": 2,
+        "LCX": 2,
+        "RCA": 2
+      }
+    },
+    "validation": {
+      "records": 10,
+      "patients": 10,
+      "omi_positive_records": 8,
+      "artery_patients": {
+        "LAD": 2,
+        "LCX": 2,
+        "RCA": 2
+      }
+    }
+  },
+  "smoke": true,
+  "source_epochs": 1,
+  "models": 2,
+  "matched_sampling": true,
+  "fits": {
+    "omi": {
+      "metrics": {
+        "omi_average_precision": 0.9472222222222222,
+        "omi_prevalence": 0.8
+      },
+      "encoder_weights_sha256": "17501c0637c5b564cb742fca66bfd334a2193b202aa4dc4f75c9c9e5c701d3d3",
+      "encoder_file_sha256": "74baf24d54dd7d9ddfcbd948cf3382f787aee7b31192813e0359110f001b1b0f",
+      "audit_file_sha256": "da62b02dd5a1a36e67ffdfa13c7239da7bb5af096bb2ce0a46476803936f900a"
+    },
+    "omi_artery": {
+      "metrics": {
+        "omi_average_precision": 0.975,
+        "omi_prevalence": 0.8,
+        "artery_macro_f1": 0.3
+      },
+      "encoder_weights_sha256": "6e3b67d9268687c58ec5f9b04c5013d66cca065367a072462a3dd4813103bb4b",
+      "encoder_file_sha256": "5a6ef814d32937698a048fe905043140b20211c4d32991ae7d17ac6b28ce7c8f",
+      "audit_file_sha256": "77f53329b1465c92ca56f7c5861b4ea7721506357505d956c155373b3e84c459"
+    }
+  }
+}

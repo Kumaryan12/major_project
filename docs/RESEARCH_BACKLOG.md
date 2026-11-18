@@ -9,7 +9,7 @@ This is the working queue for ideas that could improve six-class patient macro F
 | 3 | Use documented region mentions from additional native patients | Tested, gain uncertain | True mentions scored above shuffled and below matched scratch. Retain the documented control results. |
 | 4 | Obtain an independent measured XYZ cohort with reviewed labels | Awaiting cohort | Identify a partner, agree on label evidence and freeze patient assignments. |
 | 5 | Learn from matched simulated infarct perturbations | Feasibility needed | Confirm that matched anatomy and disease-change runs exist before downloading or building a model. |
-| 6 | Transfer angiography-linked artery supervision from ACS-ECG | Study implemented | Check the waveform bank, copy screen and matched transfer report. |
+| 6 | Transfer angiography-linked artery supervision from ACS-ECG | Verified, gain uncertain | Keep the original measured-XYZ references. The artery objective trailed matched scratch. |
 | 7 | Compare errors of the strongest saved convolution and waveform ensembles | Diagnostic complete | Keep both references. Defer fusion fitting after the equal blend scored below both. |
 | 8 | Preserve direction in a within-beat lead-delay tensor | Tested, no demonstrated gain | Signed features trailed both the sign-scrambled control and the baseline. |
 | 9 | Train the waveform ResNet on pooled patient probabilities | Verified, no demonstrated gain | Keep the historical waveform recipe. Both pooled objectives scored below the matched control. |
@@ -60,6 +60,8 @@ The CSE diagnostic study is a measured orthogonal archive lead, with access and 
 **Controls and result to record.** Check waveform alignment and prespecify handling of recordings with missing, multivessel or inconsistent artery annotations. Then compare equal source exposure with and without the artery objective and a matched target-only scratch model. Preserve the measured XYZ endpoint and use source artery groups for the auxiliary task. [External data shortlist](EXTERNAL_DATA_SHORTLIST.md)
 
 **Implementation.** Verified two small raw WFDB samples against their metadata references. The bounded pipeline prepares and independently replays the source bank and copy screen, restores both source models, then trains and restores all 90 measured-XYZ target fits. [Protocol and monitoring](acs_artery_transfer_plan.md)
+
+**Result.** OMI-only .570389, OMI-plus-artery .580730, scratch .601801 patient ensemble macro F1. Artery minus OMI +.010341 with descriptive paired 95% interval [−.066726,+.085396]. Both fixed source models, all 90 target fits and all 30 matched contexts replayed. Source validation artery macro F1 .615503 is a separate source endpoint. [Verified report](../results/neural_acs_artery_transfer_v1/complete/REPORT.md)
 
 ## 7. Convolution and waveform prediction overlap
 
