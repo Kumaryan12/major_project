@@ -1,0 +1,113 @@
+{
+  "config": {
+    "paper_config": "configs/paper.yaml",
+    "beats_path": "data/processed/beats.csv",
+    "bank_dir": "data/processed/neural_vcg_v1",
+    "ecg_bank_dir": "data/processed/paired_ecg_v1",
+    "folds_path": "configs/patient_folds.csv",
+    "classes": [
+      "AMI",
+      "ALMI",
+      "ASMI",
+      "IMI",
+      "ILMI",
+      "HC"
+    ],
+    "outer_splits": 10,
+    "seed": 42,
+    "training_seeds": [
+      42,
+      123,
+      2026
+    ],
+    "source_raw_dir": "data/raw/ptb_native_expansion_v1",
+    "source_bank_dir": "data/processed/ptb_native_expansion_v1",
+    "source_audit_dir": "results/ptb_native_expansion_v1",
+    "native_output_dir": "results/neural_vcg_native_pretraining_v1",
+    "bridge_output_dir": "results/neural_vcg_ecg_bridge_v1",
+    "download_workers": 6,
+    "minimum_beats": 8,
+    "minimum_lead_sd_mv": 0.001,
+    "screen_rate": 100,
+    "screen_seconds": 6,
+    "template_points": 65,
+    "shortlist_size": 8,
+    "copy_mean_r": 0.9995,
+    "copy_min_r": 0.998,
+    "device": "auto",
+    "torch_threads": 2,
+    "widths": [
+      16,
+      32,
+      64
+    ],
+    "pool_bins": 4,
+    "dropout": 0.2,
+    "weight_decay": 0.01,
+    "learning_rate": 0.001,
+    "batch_size": 128,
+    "samples_per_epoch": 2048,
+    "target_epochs": 8,
+    "pretrain_steps": 64,
+    "pretrain_learning_rate": 0.001,
+    "native_extra_fraction": 0.5,
+    "patch_samples": 21,
+    "masked_patches": 10,
+    "bridge_dct_coefficients": 12,
+    "bootstrap_draws": 5000,
+    "output_dir": "results/neural_patient_probability_loss_v1",
+    "beats_per_bag": 8
+  },
+  "smoke": false,
+  "weights": {
+    "beat_ce": 0.0,
+    "patient_ce": 1.0,
+    "hybrid_ce": 0.5
+  },
+  "bank": {
+    "fingerprint": "f44e31cff8230dc5ce971997f80ee0d0d921eb5f72a8ab75d0327692271192e7",
+    "files": {
+      "manifest.json": "b939ab2bf76e25d7569152ac60005f61b3fc99533b028a6413b1ee9b267f0b2c",
+      "waveforms.npy": "118fbfb2d8b2fbc2c32ba6449e301874cc1a79c7ad2d8692652129c224f91fba",
+      "y.npy": "e0aca562cb4beabb0d59119035baf5b997ffc678a0cd21822751f393339ef7f8",
+      "groups.npy": "729880b095d4a225551db982d107754df9ca442f0eafee2145a61cd5db963ab0"
+    },
+    "beats_sha256": "277e2f1498d54db23061c3bb60969f05ce506b941d9dfa7c07e835713950358b",
+    "paper_sha256": "5aea297dd03a5a214de3fc8142b77c58a9e9074e6dbf26288499f360e36892b0",
+    "n_beats": 55863,
+    "n_patients": 164,
+    "n_records": 391,
+    "shape": [
+      55863,
+      3,
+      651
+    ]
+  },
+  "folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625",
+  "waveform_summary_sha256": "6e999927aef6f39d50d6a772accfe4459334ddb2bebf09c3c499a1618b9a91aa",
+  "waveform_reference_macro_f1": 0.6018006625994999,
+  "convolution_reference_macro_f1": 0.603374,
+  "runtime": {
+    "numpy": "2.5.3",
+    "sklearn": "1.9.1",
+    "torch": "2.15.0",
+    "device": "mps",
+    "platform": "macOS-26.5-arm64-arm-64bit"
+  },
+  "code": {
+    "benchmark.py": "8f1bb5168adfadec6e60e68cb256cf7dad240d3f7d6bb35fa54b47876f312589",
+    "contrastive.py": "923971952e03edf76d7aa63df6a1daa485e93fafa37d12979a661c5a5cb32c1c",
+    "masked_pretraining.py": "969376f24ab15f2eac45ff913ea63cfe04e87a5c852ac3f7485285bb73dd58de",
+    "model_error_comparison.py": "b3e8cec270d7d43477f839501c404a63f2e64249b980a13c380f23c68de993c0",
+    "multiview_bank.py": "266416ac888ded715d3ad4abff35933bc59d15a5be6b93fa3febc76a75c58fc9",
+    "neural.py": "7aa44cba432693dca59ccb2587d1f3bd2c5cee195ed74c4259c456de1fa56f97",
+    "patient_probability_report.py": "3044224b9b22792b75da7367a989239bbb1a50c24712f4f02b4242e421379fad",
+    "preprocessing_study.py": "28e974b992c15ae70901c99554cd86801b6f3f28a4c9f437e8c6f9130e7d0bb6",
+    "regularization.py": "b1692068f880746d0e91059392d58940fbb15ef8d476c304309fc5d6cff05a65",
+    "residual_context_report.py": "9b6daa7256056415ffbc540d6e340827f9bdf4947304311fa39a17bfb99c2c78",
+    "transfer.py": "28e5ebcfddaa8c45e2d307b95f4b4788b99e46c2a07d5002934cd59c4e5a6902",
+    "patient_probability_loss.py": "bc4e29f694f29b929e1945db8712db174b92f5a4d607547c8253f3a826022086",
+    "run_patient_probability_loss.py": "ff5321c5395407c631262e840bbd43bceca9580de20600a931b37a476c58a905"
+  },
+  "fingerprint": "df66f7c38f33da3f92f8298b8b2b6fe1becd506a3969e00634fe532cd58050cd"
+}
