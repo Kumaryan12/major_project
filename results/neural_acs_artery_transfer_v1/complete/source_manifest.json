@@ -1,0 +1,103 @@
+{
+  "config": {
+    "target_config": "configs/vcg_pretraining_pilots_v1.yaml",
+    "target_reference": "configs/model_error_comparison_v1.yaml",
+    "raw_archive": "data/raw/acs_ecg_v1/ECG_row_data.zip",
+    "metadata_archive": "data/raw/acs_ecg_v1/CSV.zip",
+    "bank_dir": "data/processed/acs_ecg_v1",
+    "output_dir": "results/neural_acs_artery_transfer_v1",
+    "negative_patients": 1139,
+    "validation_fraction": 0.2,
+    "beats_per_record": 4,
+    "source_seed": 42,
+    "source_epochs": 12,
+    "source_batch_size": 32,
+    "source_samples_per_epoch": 2048,
+    "artery_weight": 0.5,
+    "minimum_artery_training_patients": 30,
+    "copy_screen_config": "configs/supervised_source_overlap_v1.yaml"
+  },
+  "target_settings": {
+    "paper_config": "configs/paper.yaml",
+    "beats_path": "data/processed/beats.csv",
+    "bank_dir": "data/processed/neural_vcg_v1",
+    "ecg_bank_dir": "data/processed/paired_ecg_v1",
+    "folds_path": "configs/patient_folds.csv",
+    "classes": [
+      "AMI",
+      "ALMI",
+      "ASMI",
+      "IMI",
+      "ILMI",
+      "HC"
+    ],
+    "outer_splits": 10,
+    "seed": 42,
+    "training_seeds": [
+      42,
+      123,
+      2026
+    ],
+    "source_raw_dir": "data/raw/ptb_native_expansion_v1",
+    "source_bank_dir": "data/processed/ptb_native_expansion_v1",
+    "source_audit_dir": "results/ptb_native_expansion_v1",
+    "native_output_dir": "results/neural_vcg_native_pretraining_v1",
+    "bridge_output_dir": "results/neural_vcg_ecg_bridge_v1",
+    "download_workers": 6,
+    "minimum_beats": 8,
+    "minimum_lead_sd_mv": 0.001,
+    "screen_rate": 100,
+    "screen_seconds": 6,
+    "template_points": 65,
+    "shortlist_size": 8,
+    "copy_mean_r": 0.9995,
+    "copy_min_r": 0.998,
+    "device": "auto",
+    "torch_threads": 2,
+    "widths": [
+      16,
+      32,
+      64
+    ],
+    "pool_bins": 4,
+    "dropout": 0.2,
+    "weight_decay": 0.01,
+    "learning_rate": 0.001,
+    "batch_size": 128,
+    "samples_per_epoch": 2048,
+    "target_epochs": 8,
+    "pretrain_steps": 64,
+    "pretrain_learning_rate": 0.001,
+    "native_extra_fraction": 0.5,
+    "patch_samples": 21,
+    "masked_patches": 10,
+    "bridge_dct_coefficients": 12,
+    "bootstrap_draws": 5000
+  },
+  "bank_receipt_sha256": "db14863290fb98113e0c71627ab228462cad7c8126cb493f3d77c4431441bf0a",
+  "smoke": false,
+  "numpy": "2.5.3",
+  "torch": "2.15.0",
+  "device": "mps",
+  "code": {
+    "acs_ecg_bank.py": "2dfd890d9fb30359d9f7876d6c15d5484cf8754c2a133eb45200ccf83abfa088",
+    "benchmark.py": "8f1bb5168adfadec6e60e68cb256cf7dad240d3f7d6bb35fa54b47876f312589",
+    "neural.py": "7aa44cba432693dca59ccb2587d1f3bd2c5cee195ed74c4259c456de1fa56f97",
+    "supervised_source_train.py": "bbcc90ea15d6d150965b5c94dec368074672a8ed79484a681ba654383ab3eab9",
+    "acs_artery_pretraining.py": "1d237036371e6b07d0cb6f1f6da3eb71f66ce49400b989c2a7c444a789b15fef"
+  },
+  "normalizer": {
+    "mean": [
+      0.013269503600895405,
+      0.011308788321912289,
+      -0.00949161034077406
+    ],
+    "scale": [
+      0.9584638476371765,
+      0.8300759196281433,
+      0.7650415301322937
+    ],
+    "fit_records": 1990,
+    "fit_patients": 1822
+  }
+}

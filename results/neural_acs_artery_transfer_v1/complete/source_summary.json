@@ -1,0 +1,69 @@
+{
+  "complete": true,
+  "bank_receipt_sha256": "db14863290fb98113e0c71627ab228462cad7c8126cb493f3d77c4431441bf0a",
+  "source_manifest_sha256": "60057b4e634145dbe29abb0721775270741a92720a9d1a0e800620bbdad27a17",
+  "source_bank": {
+    "dropped": {},
+    "duplicate_groups": 0,
+    "ledger_sha256": "3a73714b58208e21c9c1538f9203527bcdefe8911e08844a5a3dfb771cce542a",
+    "train": {
+      "records": 1990,
+      "patients": 1822,
+      "omi_positive_records": 921,
+      "artery_patients": {
+        "LAD": 277,
+        "LCX": 166,
+        "RCA": 282
+      }
+    },
+    "validation": {
+      "records": 491,
+      "patients": 456,
+      "omi_positive_records": 230,
+      "artery_patients": {
+        "LAD": 69,
+        "LCX": 41,
+        "RCA": 71
+      }
+    },
+    "recording_copy_screen": {
+      "checked_source_records": 2481,
+      "checked_target_records": 391,
+      "shortlist_size": 8,
+      "known_copy_controls": 20,
+      "continuous_comparisons": 19848,
+      "candidates": 0,
+      "encoded_matches": 0,
+      "insufficient_lead_pairs": 0,
+      "passed": true,
+      "patient_identity_cleared": false,
+      "target_inventory_sha256": "0131f6eb621424daaa95ad44ec8b180141f4def2e89796d56c32b8c9b37236b6",
+      "comparisons_sha256": "b34f227f0c18008c2bc9c54cbeff87c95dd7e03ac7511996c91172e5eec2bba8"
+    }
+  },
+  "smoke": false,
+  "source_epochs": 12,
+  "models": 2,
+  "matched_sampling": true,
+  "fits": {
+    "omi": {
+      "metrics": {
+        "omi_average_precision": 0.8134213977477005,
+        "omi_prevalence": 0.4780701754385965
+      },
+      "encoder_weights_sha256": "8db371fee5bd44af169b901b8f56c1b7b294011c4d24613c06f92425a8aa3044",
+      "encoder_file_sha256": "ff3d4a9f09cb59df731d2ec697c59ef403b277e784ba94543dd15c14a3a57423",
+      "audit_file_sha256": "0485cf0b9be88df7234ff3479c51c04ff45abd3192a7908def23e34d8672f637"
+    },
+    "omi_artery": {
+      "metrics": {
+        "omi_average_precision": 0.8744990647900655,
+        "omi_prevalence": 0.4780701754385965,
+        "artery_macro_f1": 0.615502594480415
+      },
+      "encoder_weights_sha256": "33a51c8b5c6ce55a3614eca3f304e5c7930735d68903facf01e9f92ce1f3458f",
+      "encoder_file_sha256": "93de58ce3c870e2fde712a499a4c1ab4dd8d4bb624e9b74b9a3844e393e85ba3",
+      "audit_file_sha256": "9f28f7c40d61f2eed1ef6c091be776420541bfb6b001536f0ed9333834372436"
+    }
+  }
+}
