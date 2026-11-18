@@ -111,7 +111,7 @@ def fit_fold(bank, cfg, scope, root, seed, fold, train, query, eligible, verify,
 
 def waveform_reference(root, data, fold, seed, train, query, hashes):
     name = f'fold{fold:02d}_seed{seed}_supervised'
-    folder = root / name
+    folder = root / 'review' / name
     audit = replay.checked_json(folder / 'audit.json', hashes[name])
     selected = data['earliest']
     groups = data['groups'][selected]
