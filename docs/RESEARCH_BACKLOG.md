@@ -4,8 +4,8 @@ This is the working queue for ideas that could improve six-class patient macro F
 
 | ID | Idea | Status | Next decision |
 |---|---|---|---|
-| 1 | Share classifier weights across related MI subtypes | In progress | Compare a region graph against ordinary ridge and a relabeled graph. |
-| 2 | Preserve waveform shape and timing in separate tensor channels | Proposed | Audit whether local timing variation after R is measurable before full feature extraction. |
+| 1 | Share classifier weights across related MI subtypes | Tested, gain uncertain | Keep the matched ridge reference. Record the result before considering further graph work. |
+| 2 | Preserve waveform shape and timing in separate tensor channels | Next candidate | Audit whether local timing variation after R is measurable before full feature extraction. |
 | 3 | Use documented region mentions from additional native patients | Proposed | Review the source annotations for the 14 candidate patients before building partial labels. |
 | 4 | Obtain an independent measured XYZ cohort with reviewed labels | Awaiting cohort | Identify a partner, agree on label evidence and freeze patient assignments. |
 | 5 | Learn from matched simulated infarct perturbations | Feasibility needed | Confirm that matched anatomy and disease-change runs exist before downloading or building a model. |
@@ -15,6 +15,8 @@ This is the working queue for ideas that could improve six-class patient macro F
 **Hypothesis.** Linking classifiers that share a region in their label names can stabilize estimates for small classes. The classes retain individual decision scores. The graph regularizes the final classifier, whereas the earlier territory study put an auxiliary loss on the neural encoder.
 
 **Controls and result to record.** Run ordinary class-balanced ridge, ridge with the declared region graph, and ridge with the same graph relabeled among MI classes. Keep the full baseline features and the same nested folds. Advance the idea only if it improves patient macro F1 against ridge and the relabeled graph supports the proposed mechanism. Keep all seed and class results. [Protocol](subtype_graph_plan.md) · [Earlier territory loss](territory_vcg_plan.md)
+
+**Result.** The subtype graph reached **0.591424** ensemble macro F1 versus **0.584266** for ordinary ridge and **0.582026** for the relabeled graph. Both differences involving the subtype graph have intervals that include zero. Anterior MI stayed at 0.344828 while anterolateral MI fell from 0.482759 to 0.466667. Verification replayed 120 feature contexts and all declared candidates. The original ridge remains the matched reference. [Findings](subtype_graph_findings.md) · [Validated report](../results/subtype_graph_v1/complete/REPORT.md)
 
 ## 2. Shape and timing tensor
 
