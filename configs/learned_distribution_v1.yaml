@@ -1,0 +1,29 @@
+source_config: configs/convolution_distribution_v1.yaml
+expected_source_fingerprint: ac4d08070ac72d70597e0935e9732ecd7423e6bd8ff81090fe1a99dc164fd37d
+expected_source_summary_sha256: d0210b510333feb433f55d50f89cf6798137ac97fc27810894163339dba2dceb
+teacher_config: configs/staged_context_v1.yaml
+expected_teacher_fingerprint: a70e20b15a04561509c789b13f647ad09b2e75c4d6375976e3b52da5c8b73bfc
+expected_teacher_summary_sha256: 393b362e393efb6182ee54354febbcc2d16ef3825651a13b4f4faed70c5c72c9
+output_dir: results/learned_distribution_v1
+classes: [AMI, ALMI, ASMI, IMI, ILMI, HC]
+folds_path: configs/patient_folds.csv
+outer_splits: 10
+inner_splits: 3
+split_seed: 42
+seed: 42
+projection_seeds: [42, 123, 2026]
+ridge_alphas: [1.0, 100.0]
+representations: [baseline, plus_mean, plus_spread, plus_quantiles]
+arms: [baseline, plus_mean, plus_spread, plus_quantiles]
+projections: 16
+quantiles: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+projection_seed_offset: 8123
+branch_scale_floor: 0.00000001
+embedding_batch_size: 128
+device: cpu
+torch_threads: 2
+teacher_probability_rtol: 0.00001
+teacher_probability_atol: 0.000001
+embedding_replay_rtol: 0.000001
+embedding_replay_atol: 0.0000001
+bootstrap_draws: 5000
