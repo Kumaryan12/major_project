@@ -6,7 +6,7 @@ This is the working queue for ideas that could improve six-class patient macro F
 |---|---|---|---|
 | 1 | Share classifier weights across related MI subtypes | Tested, gain uncertain | Keep the matched ridge reference. Record the result before considering further graph work. |
 | 2 | Preserve waveform shape and timing in separate tensor channels | Audited, tensor deferred | No post-R window passed the support gate. Revisit with a stronger way to distinguish timing from shape. |
-| 3 | Use documented region mentions from additional native patients | Next candidate | Review the source annotations for the 14 candidate patients before building partial labels. |
+| 3 | Use documented region mentions from additional native patients | In progress | The audit found 13 usable patients. Compare target-only controls with true and shuffled positive mentions. |
 | 4 | Obtain an independent measured XYZ cohort with reviewed labels | Awaiting cohort | Identify a partner, agree on label evidence and freeze patient assignments. |
 | 5 | Learn from matched simulated infarct perturbations | Feasibility needed | Confirm that matched anatomy and disease-change runs exist before downloading or building a model. |
 | 6 | Transfer angiography-linked artery supervision from ACS-ECG | Source identified | Obtain and audit the small public metadata archive, then verify a waveform sample. |
@@ -32,7 +32,7 @@ This is the working queue for ideas that could improve six-class patient macro F
 
 **Hypothesis.** Additional measured-XYZ patients may help more when they carry location information. Fourteen screened source patient IDs have consistent parsed MI-location mentions outside the six target classes. Review the original evidence before treating these as region targets. Mask ambiguous or unmentioned regions.
 
-**Controls and result to record.** Compare target-only learning with the same architecture and training budget using additional waveforms with or without reviewed region supervision. Keep the six-class target endpoint fixed and document the set of eligible source patients. [Native audit and pilot](vcg_pretraining_pilots_findings.md)
+**Controls and result to record.** Compare target CE, target descriptor supervision and two source supervision arms with true or shuffled positive mentions. Keep the six-class target endpoint fixed. The audit reproduced all 34 source records for the 14 candidates. Thirteen patients have at least one supported region mention. [Native partial-label protocol](native_partial_labels_plan.md) · [Earlier native pilot](vcg_pretraining_pilots_findings.md)
 
 ## 4. Independent measured XYZ cohort
 

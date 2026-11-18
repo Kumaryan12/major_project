@@ -1,0 +1,170 @@
+{
+  "config": {
+    "paper_config": "configs/paper.yaml",
+    "beats_path": "data/processed/beats.csv",
+    "bank_dir": "data/processed/neural_vcg_v1",
+    "ecg_bank_dir": "data/processed/paired_ecg_v1",
+    "folds_path": "configs/patient_folds.csv",
+    "classes": [
+      "AMI",
+      "ALMI",
+      "ASMI",
+      "IMI",
+      "ILMI",
+      "HC"
+    ],
+    "outer_splits": 10,
+    "seed": 42,
+    "training_seeds": [
+      42,
+      123,
+      2026
+    ],
+    "source_raw_dir": "data/raw/ptb_native_expansion_v1",
+    "source_bank_dir": "data/processed/ptb_native_expansion_v1",
+    "source_audit_dir": "results/ptb_native_expansion_v1",
+    "native_output_dir": "results/neural_vcg_native_pretraining_v1",
+    "bridge_output_dir": "results/neural_vcg_ecg_bridge_v1",
+    "download_workers": 6,
+    "minimum_beats": 8,
+    "minimum_lead_sd_mv": 0.001,
+    "screen_rate": 100,
+    "screen_seconds": 6,
+    "template_points": 65,
+    "shortlist_size": 8,
+    "copy_mean_r": 0.9995,
+    "copy_min_r": 0.998,
+    "device": "auto",
+    "torch_threads": 2,
+    "widths": [
+      16,
+      32,
+      64
+    ],
+    "pool_bins": 4,
+    "dropout": 0.2,
+    "weight_decay": 0.01,
+    "learning_rate": 0.001,
+    "batch_size": 16,
+    "samples_per_epoch": 32,
+    "target_epochs": 1,
+    "pretrain_steps": 64,
+    "pretrain_learning_rate": 0.001,
+    "native_extra_fraction": 0.5,
+    "patch_samples": 21,
+    "masked_patches": 10,
+    "bridge_dct_coefficients": 12,
+    "bootstrap_draws": 5000,
+    "base_config": "configs/vcg_pretraining_pilots_v1.yaml",
+    "output_dir": "results/neural_native_partial_labels_v1",
+    "target_descriptor_weight": 0.2,
+    "source_positive_weight": 0.2,
+    "source_beats_per_patient_per_update": 1,
+    "expected_source_patients_with_location": 14,
+    "expected_supported_source_patients": 13,
+    "native_source_regions": {
+      "IPLMI": [
+        "inferior",
+        "posterior",
+        "lateral"
+      ],
+      "PLMI": [
+        "posterior",
+        "lateral"
+      ],
+      "LMI": [
+        "lateral"
+      ],
+      "PMI": [
+        "posterior"
+      ],
+      "IPMI": [
+        "inferior",
+        "posterior"
+      ],
+      "ASLMI": [
+        "anterior",
+        "septal",
+        "lateral"
+      ]
+    }
+  },
+  "smoke": true,
+  "bank": {
+    "fingerprint": "f44e31cff8230dc5ce971997f80ee0d0d921eb5f72a8ab75d0327692271192e7",
+    "files": {
+      "manifest.json": "b939ab2bf76e25d7569152ac60005f61b3fc99533b028a6413b1ee9b267f0b2c",
+      "waveforms.npy": "118fbfb2d8b2fbc2c32ba6449e301874cc1a79c7ad2d8692652129c224f91fba",
+      "y.npy": "e0aca562cb4beabb0d59119035baf5b997ffc678a0cd21822751f393339ef7f8",
+      "groups.npy": "729880b095d4a225551db982d107754df9ca442f0eafee2145a61cd5db963ab0"
+    },
+    "beats_sha256": "277e2f1498d54db23061c3bb60969f05ce506b941d9dfa7c07e835713950358b",
+    "paper_sha256": "5aea297dd03a5a214de3fc8142b77c58a9e9074e6dbf26288499f360e36892b0",
+    "n_beats": 55863,
+    "n_patients": 164,
+    "n_records": 391,
+    "shape": [
+      55863,
+      3,
+      651
+    ]
+  },
+  "source_audit": {
+    "native_audit_fingerprint": "1d3cb25db3386da9766c455d1dd9d10d09efe97c7bcae8e6527306b778edda51",
+    "native_bank_manifest_sha256": "479c45348511a2ac8b647ffa17caffd8db4ef1911b2fd2ac085bad30ffc7b8ae",
+    "record_qc_sha256": "ca701133047ab09b48ebcb08a231b863717401f97557ff4e5e2d9cffe3685e94",
+    "confirmed_header_sha256": "9534ba0932589e0b4445a06139a049aa3a96ed557e291fd15fef76c11bca4019",
+    "original_source_codes": {
+      "IPLMI": 8,
+      "LMI": 1,
+      "PLMI": 2,
+      "PMI": 1,
+      "IPMI": 1,
+      "ASLMI": 1
+    },
+    "supported_source_codes": {
+      "IPLMI": 8,
+      "LMI": 1,
+      "PLMI": 2,
+      "IPMI": 1,
+      "ASLMI": 1
+    },
+    "patients_with_consistent_location": 14,
+    "patients_with_usable_mentions": 13,
+    "patients_with_no_shared_region": 1,
+    "conflicting_candidate_patients": 0,
+    "reproduced_records": 34,
+    "reproduced_beats": 4644,
+    "supervised_source_beats": 4215,
+    "region_patient_counts": {
+      "anterior": 1,
+      "inferior": 9,
+      "lateral": 12,
+      "septal": 1
+    },
+    "source_row_sha256": "1799121cf36b125030c73485db6f6347721ff1ed74235de18b42ce8f70af4093",
+    "observed_tags_sha256": "6f8db080df901eb0e3c7943a5597241afc5038e436cd365069af33a55cc07526"
+  },
+  "folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625",
+  "runtime": {
+    "numpy": "2.5.3",
+    "torch": "2.15.0",
+    "device": "mps",
+    "platform": "macOS-26.5-arm64-arm-64bit"
+  },
+  "code": {
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/benchmark.py": "8f1bb5168adfadec6e60e68cb256cf7dad240d3f7d6bb35fa54b47876f312589",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/labels.py": "fdfeb3aa5781bcb55079ce49b4ebce1406bdbf4347c66ccc6565b1b94d1d5a60",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/masked_pretraining.py": "969376f24ab15f2eac45ff913ea63cfe04e87a5c852ac3f7485285bb73dd58de",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/native_partial_source.py": "eaa056da6ed47c0bb3639a78cd2ede821ea9617312f6a0e766ac80b375cf634a",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/neural.py": "7aa44cba432693dca59ccb2587d1f3bd2c5cee195ed74c4259c456de1fa56f97",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/preprocessing_study.py": "28e974b992c15ae70901c99554cd86801b6f3f28a4c9f437e8c6f9130e7d0bb6",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/regularization.py": "b1692068f880746d0e91059392d58940fbb15ef8d476c304309fc5d6cff05a65",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/territory_study.py": "bda6de54734dd570d273aa88bbaf4304b890bc5bb160b2b7bf270dee11cbbf93",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/vcg_expansion_bank.py": "febd4b30ce1632f5abc7c854a457eeaeb31c4dc8f8013d4ab77454f8b34379c8",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/native_partial_labels.py": "dba310f85522975b4e60a09605449a951d976e46324f00d5b62569b84a868d57",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/native_partial_report.py": "8b427b55dbf6a6c0b61e8bbba9b8d1c17561d7b1de55a51d2ca6950723767e57",
+    "scripts/run_native_partial_labels.py": "c41cfb5bd2af1bcef4f2d68816df9f2a9a933abec3f5763fde2c0dac9d49433c"
+  },
+  "fingerprint": "df4fe82136880324dedec59f274822a449d18d5079395b94e83518c3deec7d94"
+}
