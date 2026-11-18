@@ -14,6 +14,9 @@ This is the working queue for ideas that could improve six-class patient macro F
 | 8 | Preserve direction in a within-beat lead-delay tensor | Tested, no demonstrated gain | Signed features trailed both the sign-scrambled control and the baseline. |
 | 9 | Train the waveform ResNet on pooled patient probabilities | Verified, no demonstrated gain | Keep the historical waveform recipe. Both pooled objectives scored below the matched control. |
 | 10 | Average the four linear convolution readouts | Verified, gain uncertain | Keep the 0.603374 selector as the historical reference. |
+| 11 | Pool convolution responses in fixed R-relative windows | Proposed | Compare aligned and position-shuffled windows with a matched global feature budget. |
+| 12 | Separate MI detection and localization in a probabilistic readout | Proposed | Test a binary plus conditional subtype readout on cached patient features. |
+| 13 | Learn ECG changes from controlled balloon occlusion | Feasibility needed | Check annotated baseline and inflation pairs with comparable acquisition before fitting. |
 
 ## 1. Related MI subtypes share classifier weights
 
@@ -90,6 +93,24 @@ The CSE diagnostic study is a measured orthogonal archive lead, with access and 
 **Proposed comparison.** Replay all four fixed linear readouts for all frozen folds and three seeds. Take the equal probability average and compare it with the verified inner-selected linear procedure at 0.603374. Keep the existing inner regularization choices and probability conversion. Report the paired patient interval and per-class results. This uses the already fitted models and a fixed combination. [Kernel findings](distribution_kernel_findings.md)
 
 **Result.** Verified 120 saved outer probability files and reproduced every source arm, seed and selector metric. Equal average ensemble 0.586053 versus selector 0.603374, difference −0.017321 with descriptive paired 95% interval [−0.042859, +0.005133]. Zero new fits. [Verified comparison](../results/convolution_readout_average_v1/REPORT.md)
+
+## 11. R-relative window pooling for convolution features
+
+**Hypothesis.** The convolution backbone already preserves some timing through the mean index of positive responses. Pooling response statistics within fixed regions before, near and after R could preserve more localization information than whole-beat pooling. Aggregate features from the existing measured XYZ recording templates before considering more expensive all-beat extraction. [Existing backbone](rocket_vcg_plan.md) · [Temporal ROCKET research](https://doi.org/10.1007/s10618-025-01162-y)
+
+**Proposed comparison.** Keep the verified full convolution base. Append a fixed feature budget in every extended arm. Compare R-aligned short-kernel summaries with the same summaries under independent position shuffles per record, and with the same width of extra whole-beat summaries. Freeze window boundaries and filter-count rules before fitting. Fit scaling and regularization inside patient partitions. Report all folds, three seeds, the paired contrast with the equal-width global control and comparison with the historical 0.603374 selector. AMI and ALMI F1 are prespecified descriptive checks.
+
+## 12. Probabilistic detection and localization readout
+
+**Hypothesis.** A readout specialized to the five MI subtypes can focus on subtype distinctions after a binary readout estimates MI versus HC. For each subtype, multiply its conditional probability by the estimated probability of MI, while retaining the binary HC probability. [Separate detection and localization in ECG research](https://pubmed.ncbi.nlm.nih.gov/38599223/)
+
+**Proposed comparison.** Train both stages inside the same patient partition using the cached convolution features. Compare with a flat six-class multinomial logistic model using the same data, feature widths and training-only tuning budget, and show the existing ridge reference. Outer evaluation includes all patients and all six classes. Report within-MI errors and healthy-control errors to show whether the new readout helps localization and how it changes detection.
+
+## 13. Paired ECG changes during coronary balloon occlusion
+
+**Hypothesis.** Within-patient baseline-to-occlusion ECG changes may reveal how waveform morphology responds to controlled ischemia. STAFF III includes 104 patients with timing annotations. This would be an ECG-assisted source experiment with measured XYZ as the sole target input at inference. [PhysioNet dataset](https://physionet.org/content/staffiii/1.0.0/)
+
+**Proposed comparison.** Audit exact annotated intervals, baseline acquisition setting, contrast events and usable vessel support. Split by patient before constructing pairs. Compare matched change supervision with a single-record source objective using the same patients and comparable exposure, with a target scratch control. The source task describes induced ischemia, and target performance must be measured separately.
 
 ## Evidence already in hand
 
