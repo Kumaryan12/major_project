@@ -1,0 +1,16 @@
+target_config: configs/vcg_pretraining_pilots_v1.yaml
+target_reference: configs/model_error_comparison_v1.yaml
+raw_archive: data/raw/acs_ecg_v1/ECG_row_data.zip
+metadata_archive: data/raw/acs_ecg_v1/CSV.zip
+bank_dir: data/processed/acs_ecg_v1
+output_dir: results/neural_acs_artery_transfer_v1
+negative_patients: 1139
+validation_fraction: 0.20
+beats_per_record: 4
+source_seed: 42
+source_epochs: 12
+source_batch_size: 32
+source_samples_per_epoch: 2048
+artery_weight: 0.5
+minimum_artery_training_patients: 30
+copy_screen_config: configs/supervised_source_overlap_v1.yaml
