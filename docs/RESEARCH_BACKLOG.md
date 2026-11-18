@@ -17,7 +17,7 @@ The [research plan for 0.80–0.90](path_to_080_macro_f1.md) quantifies the curr
 | 9 | Train the waveform ResNet on pooled patient probabilities | Verified, no demonstrated gain | Keep the historical waveform recipe. Both pooled objectives scored below the matched control. |
 | 10 | Average the four linear convolution readouts | Verified, gain uncertain | Keep the 0.603374 selector as the historical reference. |
 | 11 | Pool convolution responses in fixed R-relative windows | Verified, no demonstrated gain | Keep the frozen base and the historical selector reference. Aligned and shuffled scored nearly identically. |
-| 12 | Separate MI detection and localization in a probabilistic readout | Proposed | Test a binary plus conditional subtype readout on cached patient features. |
+| 12 | Separate MI detection and localization in a probabilistic readout | Implemented and smoke verified | Compare full results against flat logistic and the historical selector. |
 | 13 | Learn ECG changes from controlled balloon occlusion | Feasibility needed | Check annotated baseline and inflation pairs with comparable acquisition before fitting. |
 
 ## 1. Related MI subtypes share classifier weights
@@ -111,6 +111,8 @@ The CSE diagnostic study is a measured orthogonal archive lead, with access and 
 **Hypothesis.** A readout specialized to the five MI subtypes can focus on subtype distinctions after a binary readout estimates MI versus HC. For each subtype, multiply its conditional probability by the estimated probability of MI, while retaining the binary HC probability. [Separate detection and localization in ECG research](https://pubmed.ncbi.nlm.nih.gov/38599223/)
 
 **Proposed comparison.** Train both stages inside the same patient partition using the cached convolution features. Compare with a flat six-class multinomial logistic model using the same data, feature widths and training-only tuning budget, and show the existing ridge reference. Outer evaluation includes all patients and all six classes. Report within-MI errors and healthy-control errors to show whether the new readout helps localization and how it changes detection.
+
+**Implementation.** Both procedures share the recorded historical representation choice for each outer fold and feature seed and use the same three-value C grid. [Protocol](probabilistic_subtype_plan.md)
 
 ## 13. Paired ECG changes during coronary balloon occlusion
 
