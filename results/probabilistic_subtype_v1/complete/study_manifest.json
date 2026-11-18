@@ -1,0 +1,70 @@
+{
+  "config": {
+    "source_config": "configs/convolution_distribution_v1.yaml",
+    "expected_source_fingerprint": "ac4d08070ac72d70597e0935e9732ecd7423e6bd8ff81090fe1a99dc164fd37d",
+    "expected_source_summary_sha256": "d0210b510333feb433f55d50f89cf6798137ac97fc27810894163339dba2dceb",
+    "historical_reference_config": "configs/model_error_comparison_v1.yaml",
+    "output_dir": "results/probabilistic_subtype_v1",
+    "classes": [
+      "AMI",
+      "ALMI",
+      "ASMI",
+      "IMI",
+      "ILMI",
+      "HC"
+    ],
+    "representations": [
+      "baseline",
+      "plus_mean",
+      "plus_spread",
+      "plus_quantiles"
+    ],
+    "folds_path": "configs/patient_folds.csv",
+    "outer_splits": 10,
+    "inner_splits": 3,
+    "split_seed": 42,
+    "projection_seeds": [
+      42,
+      123,
+      2026
+    ],
+    "ridge_alphas": [
+      1.0,
+      100.0
+    ],
+    "logistic_c": [
+      0.001,
+      0.01,
+      0.1
+    ],
+    "max_iterations": 1000,
+    "tolerance": 1e-06,
+    "torch_threads": 2,
+    "bootstrap_draws": 5000,
+    "bootstrap_seed": 42
+  },
+  "source": {
+    "source_fingerprint": "ac4d08070ac72d70597e0935e9732ecd7423e6bd8ff81090fe1a99dc164fd37d",
+    "source_summary_sha256": "d0210b510333feb433f55d50f89cf6798137ac97fc27810894163339dba2dceb",
+    "verified_snapshot_sha256": "c9b64cd81fc15973554baff6e5237338371b56baa1941b135aaba8e123d763f9",
+    "protected_file_count": 90429,
+    "source_config_sha256": "a28e5c809ded9d85141a2e119eff39210b4fae06dd82ad0fac0711ebf9d25e8d",
+    "patient_ids_sha256": "6a60d0062e9a0e1f3d4233873b521f9fedc6f705c92f911fe157990cc43a515f",
+    "labels_sha256": "96ec7019e4de5ec90d3d68c60cde28c72a35ecd3f08a8b9e1832503abff6bab2",
+    "folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625",
+    "claim": "Reuse independently verified upstream caches; no waveform re-extraction or new raw-signal validation"
+  },
+  "smoke": false,
+  "historical_summary_sha256": "579d0a6ca728c030d2a851481d43e8e20b8fa768675fbb249f4e2add530bb74f",
+  "historical_manifest_sha256": "db7a7c0673326c76c7fe35478f2762c13e25ac5d14e7c6e48bba1e9a93d6006b",
+  "code": {
+    "probabilistic_subtype.py": "4b16042abcd6589716ba47f612467de955bdcfe97aa16f7c558170f65a99d252",
+    "run_probabilistic_subtype.py": "abefda7d55eea6979331ebe31feffa56e4b0dfd4abe169b126115be13a5150d1",
+    "distribution_kernel_source.py": "ef5983a0e11f5459c32eb4406b34dddf22407e12f0c6fee0862631705ebedc59",
+    "distribution_score_correction.py": "1ce0b2bea138b9c40c3863c05afe90e27e3a3932c366d0a0c5b1e92c0f1c759c",
+    "benchmark.py": "8f1bb5168adfadec6e60e68cb256cf7dad240d3f7d6bb35fa54b47876f312589",
+    "model_error_comparison.py": "b3e8cec270d7d43477f839501c404a63f2e64249b980a13c380f23c68de993c0",
+    "residual_context_report.py": "9b6daa7256056415ffbc540d6e340827f9bdf4947304311fa39a17bfb99c2c78"
+  },
+  "fingerprint": "60476cad4cde8efd4cfc47f14514baa31d9877a75c087538d17a06faf1487b82"
+}
