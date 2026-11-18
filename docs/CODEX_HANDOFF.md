@@ -18,6 +18,8 @@ Last reviewed: **18 November 2026**, after independently completed supervised tr
 
 **Pilot intake prepared.** Added the first 20–30-patient feasibility intake procedure. The private incoming folder and manifest header are ready locally. A smoke with 30 one-minute synthetic WFDB tracks used 10,808,181 bytes and produced the same intake receipt twice against 448 locally cached PTB XYZ signals. Five relevant tests passed. A draft requests an advisor introduction. Partner data access and adjudicated files remain pending. [Pilot intake](measured_vcg_partner_cohort.md)
 
+**19 November research direction.** The [next readout experiments](next_readout_experiments.md) prioritize comparing 256 temporal-bin features with 64 final ResNet embeddings using a standalone patient ridge readout, then a shared shrinkage distance head and a bounded macro-F1 decision rule. Existing distribution studies tested different feature/head combinations. Training-only feasibility restored one inner epoch-eight checkpoint on 98 fitting patients and verified finite outputs. No new classifier or neural model was fitted. The all-record .60 and earliest-record .52 references remain distinct endpoints.
+
 ## 1. Objective and current decisions
 
 Aryan Kumar and Kunal Maka are developing their major project under Dr Shivnarayan Patidar, NIT Goa: **Patient-Independent Localization of Myocardial Infarction from Vectorcardiographic Signals Using Tensor Decomposition and Machine Learning**.

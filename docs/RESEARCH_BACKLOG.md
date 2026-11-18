@@ -19,6 +19,7 @@ The [research plan for 0.80–0.90](path_to_080_macro_f1.md) quantifies the curr
 | 11 | Pool convolution responses in fixed R-relative windows | Verified, no demonstrated gain | Keep the frozen base and the historical selector reference. Aligned and shuffled scored nearly identically. |
 | 12 | Separate MI detection and localization in a probabilistic readout | Verified, gain uncertain | Preserve the .603374 selector reference. Hierarchical .586828 versus matched flat .562819. |
 | 13 | Learn ECG changes from controlled balloon occlusion | Verified, no demonstrated target gain | Retain primary measured XYZ references. Source change learning did not improve the target point score. |
+| 14 | Refit patient readouts before and after the ResNet bottleneck | Proposed, training-only feature feasibility checked | Compare 256- and 64-feature ridge heads against the original waveform model. [Detailed shortlist](next_readout_experiments.md) |
 
 ## 1. Related MI subtypes share classifier weights
 
@@ -127,6 +128,12 @@ The CSE diagnostic study is a measured orthogonal archive lead, with access and 
 **Implementation.** Retrieve the paired clips, check source support and waveform overlap, independently replay matched mean/change source encoders, then run scratch and both transfers with the frozen measured-XYZ patient evaluation. [Protocol](staffiii_pair_transfer_plan.md)
 
 **Result.** The held-out source vessel F1 was .772339 with change and .541176 with mean. Target ensembles were .539589 change, .555118 mean and .601801 scratch. Primary change−mean −.015528 [−.083389,+.051662]. Both source models, all 90 target models and all 30 matched groups independently replayed. The two tasks have distinct endpoints. [Verified target report](../results/neural_staffiii_pair_transfer_v1/complete/REPORT.md)
+
+## 14. Patient readouts before and after the ResNet bottleneck
+
+**Hypothesis.** The four pooled temporal bins may retain subtype information suppressed by the 256-to-64 dense mapping. A standalone patient head may use that information with fewer fitted parameters than a new encoder.
+
+**Status.** Restored one exact inner-partition epoch-eight checkpoint and checked finite 256- and 64-feature vectors on 196 fitting beats from 98 patients. New classifier fitting and a full experiment are proposed. [Design, controls and literature](next_readout_experiments.md)
 
 ## Evidence already in hand
 
