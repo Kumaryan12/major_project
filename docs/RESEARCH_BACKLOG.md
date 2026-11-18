@@ -9,6 +9,7 @@ This is the working queue for ideas that could improve six-class patient macro F
 | 3 | Use documented region mentions from additional native patients | Next candidate | Review the source annotations for the 14 candidate patients before building partial labels. |
 | 4 | Obtain an independent measured XYZ cohort with reviewed labels | Awaiting cohort | Identify a partner, agree on label evidence and freeze patient assignments. |
 | 5 | Learn from matched simulated infarct perturbations | Feasibility needed | Confirm that matched anatomy and disease-change runs exist before downloading or building a model. |
+| 6 | Transfer angiography-linked artery supervision from ACS-ECG | Source identified | Obtain and audit the small public metadata archive, then verify a waveform sample. |
 
 ## 1. Related MI subtypes share classifier weights
 
@@ -38,11 +39,19 @@ This is the working queue for ideas that could improve six-class patient macro F
 
 **Controls and result to record.** Confirm clinical label evidence and signal format, reserve the patient test set before choosing the final model, and record the frozen arm and hashes. Report patient-level metrics with uncertainty. The synthetic integration check exercised intake and inference. Real recordings and label review are pending. [Partner protocol and tooling](measured_vcg_partner_cohort.md)
 
+The CSE diagnostic study is a measured orthogonal archive lead, with access and label coverage still to verify. [External data shortlist](EXTERNAL_DATA_SHORTLIST.md)
+
 ## 5. Matched synthetic infarct perturbations
 
 **Hypothesis.** Comparing signals from the same simulated anatomy with controlled disease changes could teach features that are less sensitive to anatomy. The first step is to verify that the required matched cases exist and that native simulated labels and acquisition scope are understood.
 
 **Controls and result to record.** Split by anatomy. Compare matched disease-change supervision with ordinary synthetic source training and target-only scratch. Use native source labels and report the target transfer result separately. [Earlier simulation design notes](research_frontiers_20261116.md)
+
+## 6. Angiography-linked pretraining from ACS-ECG
+
+**Hypothesis.** Pretraining on native coronary artery labels may transfer more localization information to measured XYZ than reconstruction or a broad ECG diagnosis objective. ACS-ECG's publication describes real recordings from 18,909 patients with angiography-linked labels. The release metadata is public. The metadata archive download could not be verified from this environment.
+
+**Controls and result to record.** Verify the label archive, patient grouping, acute and chronic annotations, actual vessel support and waveform alignment. Then compare equal source exposure with and without the artery objective and a matched target-only scratch model. Preserve the measured XYZ endpoint, and use the original artery categories for the source. [External data shortlist](EXTERNAL_DATA_SHORTLIST.md)
 
 ## Evidence already in hand
 
