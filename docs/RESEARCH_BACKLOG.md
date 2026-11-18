@@ -11,7 +11,7 @@ This is the working queue for ideas that could improve six-class patient macro F
 | 5 | Learn from matched simulated infarct perturbations | Feasibility needed | Confirm that matched anatomy and disease-change runs exist before downloading or building a model. |
 | 6 | Transfer angiography-linked artery supervision from ACS-ECG | Source identified | Obtain and audit the small public metadata archive, then verify a waveform sample. |
 | 7 | Compare errors of the strongest saved convolution and waveform ensembles | Diagnostic complete | Keep both references. Defer fusion fitting after the equal blend scored below both. |
-| 8 | Preserve direction in a within-beat lead-delay tensor | In progress | Compare signed lead interactions with magnitude-only and sign-scrambled controls. |
+| 8 | Preserve direction in a within-beat lead-delay tensor | Tested, no demonstrated gain | Signed features trailed both the sign-scrambled control and the baseline. |
 
 ## 1. Related MI subtypes share classifier weights
 
@@ -66,6 +66,8 @@ The CSE diagnostic study is a measured orthogonal archive lead, with access and 
 **Hypothesis.** Local signed interactions between measured XYZ leads may offer information beyond the convolution representation. Compute lag covariance in four R-relative windows at four time delays. The antisymmetric entries flip sign when the time direction is reversed.
 
 **Controls and result to record.** Keep the full convolution base and the symmetric entries fixed across the three tensor arms. Compare signed, absolute and sign-scrambled entries at the same feature width. Use patient-nested tuning and report whether the signed arm improves both over magnitude and over the original convolution reference. [Protocol](lag_direction_tensor_plan.md)
+
+**Result.** Signed 0.531364, magnitude 0.517919, sign scrambled 0.546633 and baseline 0.584266. The primary difference was +0.013444 [−0.027522, +0.054415]. All three signed members were below their matched scrambled and baseline members. Replayed all 120 contexts and all declared models. [Findings](lag_direction_tensor_findings.md)
 
 ## Evidence already in hand
 
