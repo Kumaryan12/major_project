@@ -1,0 +1,82 @@
+{
+  "config": {
+    "source_config": "configs/convolution_distribution_v1.yaml",
+    "expected_source_fingerprint": "ac4d08070ac72d70597e0935e9732ecd7423e6bd8ff81090fe1a99dc164fd37d",
+    "expected_source_summary_sha256": "d0210b510333feb433f55d50f89cf6798137ac97fc27810894163339dba2dceb",
+    "learned_config": "configs/learned_distribution_v1.yaml",
+    "expected_learned_fingerprint": "2914f5881139b81e3bc68e7ced499ea343b0a23b99647901c736315533b6e0c0",
+    "expected_learned_summary_sha256": "252f3beab5e6e7d168e3152f5f528df0c93eac564c665033acff0968f664bde5",
+    "output_dir": "results/distribution_score_correction_v1",
+    "classes": [
+      "AMI",
+      "ALMI",
+      "ASMI",
+      "IMI",
+      "ILMI",
+      "HC"
+    ],
+    "folds_path": "configs/patient_folds.csv",
+    "outer_splits": 10,
+    "inner_splits": 3,
+    "split_seed": 42,
+    "seed": 42,
+    "projection_seeds": [
+      42,
+      123,
+      2026
+    ],
+    "ridge_alphas": [
+      1.0,
+      100.0
+    ],
+    "representations": [
+      "baseline",
+      "plus_mean",
+      "plus_spread",
+      "plus_quantiles"
+    ],
+    "penalty_ratios": [
+      null,
+      1.0,
+      0.1
+    ],
+    "torch_threads": 2,
+    "bootstrap_draws": 5000
+  },
+  "runtime": {
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "torch": "2.15.0",
+    "joblib": "1.6.0",
+    "platform": "macOS-26.5-arm64-arm-64bit",
+    "device": "cpu",
+    "blas_threads": 1
+  },
+  "convolution": {
+    "source_fingerprint": "ac4d08070ac72d70597e0935e9732ecd7423e6bd8ff81090fe1a99dc164fd37d",
+    "source_summary_sha256": "d0210b510333feb433f55d50f89cf6798137ac97fc27810894163339dba2dceb",
+    "verified_snapshot_sha256": "c9b64cd81fc15973554baff6e5237338371b56baa1941b135aaba8e123d763f9",
+    "protected_file_count": 90429,
+    "source_config_sha256": "a28e5c809ded9d85141a2e119eff39210b4fae06dd82ad0fac0711ebf9d25e8d",
+    "patient_ids_sha256": "6a60d0062e9a0e1f3d4233873b521f9fedc6f705c92f911fe157990cc43a515f",
+    "labels_sha256": "96ec7019e4de5ec90d3d68c60cde28c72a35ecd3f08a8b9e1832503abff6bab2",
+    "folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625",
+    "claim": "Reuse independently verified upstream caches; no waveform re-extraction or new raw-signal validation"
+  },
+  "learned_fingerprint": "2914f5881139b81e3bc68e7ced499ea343b0a23b99647901c736315533b6e0c0",
+  "learned_verification_sha256": "3a32e29429d5b900006048b72bf1756e94d7c57208e6e6590a457dd8b8ed8fb4",
+  "code": {
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/distribution_score_correction.py": "1ce0b2bea138b9c40c3863c05afe90e27e3a3932c366d0a0c5b1e92c0f1c759c",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/distribution_score_correction_report.py": "9b460d2b092529e5c54484ecc48db27d2bcb646624871c2d0994345ef70f0490",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/distribution_kernel_source.py": "ef5983a0e11f5459c32eb4406b34dddf22407e12f0c6fee0862631705ebedc59",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/distribution_study.py": "e2cf03e3711a8f397ec14d782ba8ca299878b98a4bc134cd6c2cb86fc57bf92f",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/benchmark.py": "8f1bb5168adfadec6e60e68cb256cf7dad240d3f7d6bb35fa54b47876f312589",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/multiview_bank.py": "266416ac888ded715d3ad4abff35933bc59d15a5be6b93fa3febc76a75c58fc9",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/neural.py": "7aa44cba432693dca59ccb2587d1f3bd2c5cee195ed74c4259c456de1fa56f97",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/signal_audit.py": "0c9faa7bd2a496d57958ee54f95cbe56f4333ba5ac4a9d317efe90fff90d4dda",
+    "/Users/aryansatyendrakumar/Projects/Major_Project/src/mi_localization/residual_context_report.py": "9b6daa7256056415ffbc540d6e340827f9bdf4947304311fa39a17bfb99c2c78",
+    "scripts/run_distribution_score_correction.py": "8513a01463a0ee3c0fc08f459f4fcca8cbd15258997f580e1bc604be46909603"
+  },
+  "study_fingerprint": "94c3277feb77037dd335c2df78a64817187d15012ad166cc58e7f250da6f68a8"
+}
