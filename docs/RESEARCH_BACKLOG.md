@@ -2,6 +2,8 @@
 
 This is the working queue for ideas that could improve six-class patient macro F1 on measured Frank XYZ or strengthen the evidence for the project. Change statuses as results arrive. Work through one idea at a time so we can tell what made a difference. Use the frozen patient folds for PTB development, and keep independent validation separate. [Project handoff](CODEX_HANDOFF.md)
 
+The [research plan for 0.80–0.90](path_to_080_macro_f1.md) quantifies the current error budget and prioritizes the subtype readout, blinded review and independently labeled measured-XYZ data.
+
 | ID | Idea | Status | Next decision |
 |---|---|---|---|
 | 1 | Share classifier weights across related MI subtypes | Tested, gain uncertain | Keep the matched ridge reference. Record the result before considering further graph work. |
