@@ -10,6 +10,7 @@ This is the working queue for ideas that could improve six-class patient macro F
 | 4 | Obtain an independent measured XYZ cohort with reviewed labels | Awaiting cohort | Identify a partner, agree on label evidence and freeze patient assignments. |
 | 5 | Learn from matched simulated infarct perturbations | Feasibility needed | Confirm that matched anatomy and disease-change runs exist before downloading or building a model. |
 | 6 | Transfer angiography-linked artery supervision from ACS-ECG | Source identified | Obtain and audit the small public metadata archive, then verify a waveform sample. |
+| 7 | Compare errors of the strongest saved convolution and waveform ensembles | Diagnostic complete | Keep both references. Defer fusion fitting after the equal blend scored below both. |
 
 ## 1. Related MI subtypes share classifier weights
 
@@ -52,6 +53,10 @@ The CSE diagnostic study is a measured orthogonal archive lead, with access and 
 **Hypothesis.** Pretraining on native coronary artery labels may transfer more localization information to measured XYZ than reconstruction or a broad ECG diagnosis objective. ACS-ECG's publication describes real recordings from 18,909 patients with angiography-linked labels. The release metadata is public. The metadata archive download could not be verified from this environment.
 
 **Controls and result to record.** Verify the label archive, patient grouping, acute and chronic annotations, actual vessel support and waveform alignment. Then compare equal source exposure with and without the artery objective and a matched target-only scratch model. Preserve the measured XYZ endpoint, and use the original artery categories for the source. [External data shortlist](EXTERNAL_DATA_SHORTLIST.md)
+
+## 7. Convolution and waveform prediction overlap
+
+**Result.** Reconstructed the verified convolution and waveform ensembles at 0.603374 and 0.601801. The convolution model alone was correct on 19 patients, the waveform model alone on 16, and both missed 36. The fixed equal blend scored 0.582209, a difference of −0.021165 [−0.087770, +0.043554] versus convolution. The waveform ensemble's higher anterior MI F1 was weakened by blending. The diagnostic supports keeping the two component references and gives no demonstrated reason to prioritize a tuned fusion. [Protocol](model_error_comparison_plan.md) · [Verified comparison](../results/model_error_comparison_v1/REPORT.md)
 
 ## Evidence already in hand
 
