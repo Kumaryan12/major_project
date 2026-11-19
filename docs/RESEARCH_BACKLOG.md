@@ -20,7 +20,7 @@ The [research plan for 0.80–0.90](path_to_080_macro_f1.md) quantifies the curr
 | 12 | Separate MI detection and localization in a probabilistic readout | Verified, gain uncertain | Preserve the .603374 selector reference. Hierarchical .586828 versus matched flat .562819. |
 | 13 | Learn ECG changes from controlled balloon occlusion | Verified, no demonstrated target gain | Retain primary measured XYZ references. Source change learning did not improve the target point score. |
 | 14 | Refit patient readouts before and after the ResNet bottleneck | Verified; no demonstrated compression-bypass gain | Ridge64 .535691 versus original .521335, uncertain secondary gain; ridge256 .501020. [Findings](frozen_patient_readout_findings.md) |
-| 15 | Shared-covariance distance head on frozen64 patient features | Authorized and launched | Compare ridge, centroid and inner-selected shrinkage Mahalanobis; preserve the .535691 matched reference. [Protocol](frozen_distance_readout_plan.md) · [Monitor](frozen_distance_readout_run.md) |
+| 15 | Shared-covariance distance head on frozen64 patient features | Verified; no demonstrated gain | Ridge .535691, centroid .507770, Mahalanobis .507181; preserve the matched ridge reference. [Findings](frozen_distance_readout_findings.md) |
 
 ## 1. Related MI subtypes share classifier weights
 
@@ -140,7 +140,7 @@ The CSE diagnostic study is a measured orthogonal archive lead, with access and 
 
 **Hypothesis.** Equal-class within-subtype covariance can identify feature directions that vary across patients of the same subtype. A regularized Mahalanobis classifier may use the frozen 64-feature representation differently from ridge or Euclidean centroids. Its benefit on measured-XYZ localization remains untested.
 
-**Status.** Authorized, implemented and launched on 19 November. Same exact-partition epoch-eight encoders, patient-level scales, folds and three seeds as item14. Primary: Mahalanobis−ridge; covariance control: Mahalanobis−centroid. Fixed lambda [1,.9,.5], inner selection only, full-shrinkage identity check. Six focused tests, real inner-only fitting/restoration smoke and all 376 tests passed. Requires 420 new distance head restorations, 210 source ridge restorations and 120 independent feature reconstructions before reporting macro F1. No further experiment is queued. [Protocol](frozen_distance_readout_plan.md) · [Monitoring](frozen_distance_readout_run.md)
+**Result.** Completed independently and published in `ee8aeca9`: 420 distance heads, 210 source ridge heads, 120 feature contexts and 104 identity controls replayed, source baseline metrics exact and all 1,444 source files unchanged. On 145 dated earliest-record patients, ensembles ridge .535691, centroid .507770, Mahalanobis .507181. Primary Mahalanobis−ridge −.028510 [−.088700,+.031304]; covariance control −.000589 [−.041155,+.038686], no demonstrated gains. AMI F1 .4286→.2963 under Mahalanobis. Inner lambda1/.9/.5 choices 14/12/4 are overlapping decisions. Mean members .523619/.470648/.481357 remain separate from ensembles. All ten folds and three seeds retained, zero encoder updates, all 376 tests and real inner-only smoke passed before launch. Runner exited successfully; no further experiment is queued. Preserve completed numerical scopes. [Findings](frozen_distance_readout_findings.md) · [Verified report](../results/frozen_distance_readout_v1/complete/REPORT.md) · [Protocol](frozen_distance_readout_plan.md)
 
 ## Evidence already in hand
 

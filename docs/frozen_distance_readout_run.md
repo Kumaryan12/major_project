@@ -2,6 +2,8 @@
 
 [Fixed protocol](frozen_distance_readout_plan.md) · [Configuration](../configs/frozen_distance_readout_v1.yaml). This comparison restores the completed ridge64 baseline and fits equal-prior centroid and shared-covariance Mahalanobis heads. The 64-feature encoders and their exact inner/outer fitting patients remain fixed. This is a classifier study with zero neural weight updates.
 
+**Completed 19 November at 13:15:08 IST, published in `ee8aeca9`.** All 420 new heads, 210 source ridge heads, 120 feature contexts and 104 identity checks replayed. Primary ensembles: ridge .535691, centroid .507770, Mahalanobis .507181. Mahalanobis−ridge −.028510 [−.088700,+.031304], no demonstrated gain. The one-shot launcher exited with code 0 and stopped; no follow-up is queued. [Findings](frozen_distance_readout_findings.md) · [Verified report](../results/frozen_distance_readout_v1/complete/REPORT.md). The launch notes below are historical; no restart is needed to read results.
+
 Full fitting launched on the originating Mac on 19 November 2026 at 11:47:30 IST, from implementation `b1916616`. The worker and launcher commands were checked alive. This dated launch note does not establish current activity or completed performance.
 
 The primary comparison is Mahalanobis−ridge on the same 145 dated earliest-record patients. The verified ridge reference is .535691. The 164-patient fallback sensitivity also uses one selected record per patient. Neither is the historical all-record .60 benchmark.
