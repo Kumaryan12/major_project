@@ -4,6 +4,8 @@ Implementation: `c40fbaf7`. [Fixed protocol](frozen_patient_readout_plan.md) · 
 
 The full CPU run started on the originating Mac on 19 November 2026. The launcher first fits the patient classifiers, then starts a separate verification process. No following experiment is queued. The encoders are already trained: this stage fits new patient-level ridge classifiers on their frozen features. It does not update neural weights. The inner-only fitting/restoration smoke, six focused tests and the full 371-test macOS suite passed. These checks are implementation evidence, not a completed study or a score improvement.
 
+**Verification restart, 19 November at 09:47 IST.** All 420 classifier audits and 120 feature contexts were saved, but the previous verifier had stopped after its first completed fold. At the user's request, restarted only `--verify` with unchanged numerical code, protocol and saved fitting artifacts. The verifier replays from fold 1; it does not resume a partially accumulated verification receipt. The local one-shot macOS launch job has `KeepAlive=false` and sleep inhibition while running. It is loaded from ignored `tmp/`, without a login-start installation. It stops after this verification pass. This dated note is not evidence that replay has completed.
+
 From the repository root, monitor local command-checked progress:
 
 ```sh
@@ -15,6 +17,8 @@ Read the log:
 ```sh
 tail -f tmp/frozen_patient_readout_v1.log
 ```
+
+The original log above is preserved. The current restart log is `tmp/frozen_patient_readout_verify_restart_20261119T041714Z.log`; local launch details are in ignored `tmp/frozen_patient_readout_verification_restart.json`.
 
 Windows uses `.venv\Scripts\python.exe` instead. A clone does not contain the originating computer's checkpoints or control its processes. The recorded CPU runtime and source hashes must match for a completed-fit resume.
 
