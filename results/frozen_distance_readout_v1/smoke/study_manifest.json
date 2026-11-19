@@ -1,0 +1,72 @@
+{
+  "config": {
+    "source_config": "configs/frozen_patient_readout_v1.yaml",
+    "source_root": "results/frozen_patient_readout_v1/complete",
+    "source_summary_sha256": "c82b9a775ad3aa2ae4e268796b1af80b479099ded4c49bcf6144175588b5084a",
+    "output_dir": "results/frozen_distance_readout_v1",
+    "shrinkages": [
+      1.0,
+      0.9,
+      0.5
+    ],
+    "trace_floor": 1e-12,
+    "eigenvalue_floor": 1e-06,
+    "score_divisor": 128.0,
+    "inner_splits": 3,
+    "device": "cpu",
+    "torch_threads": 2,
+    "bootstrap_draws": 5000,
+    "classes": [
+      "AMI",
+      "ALMI",
+      "ASMI",
+      "IMI",
+      "ILMI",
+      "HC"
+    ]
+  },
+  "smoke": true,
+  "source_fingerprint": "cca8f03d0e3636427daa01aa037ec1e68f05d3bb8148830799e8fa5c081e2753",
+  "source_custody_sha256": "33a1d5902538a94a033adabae64c2717d35b3744b6545639ece7d26fdeed6205",
+  "code_sha256": "ca9d3f3bba3f6969c2fd76f54aac5d7b83f3373b05f54a4927651303fc007402",
+  "model_sha256": "fb1100b21b3181fbd1e79fde34403a4422f57c4c746af2cd97330e72b417c94a",
+  "protocol_sha256": "53b4e27dd09236e8a6708783b82cc8ef6e355c80f461e71762bf250fc3520c13",
+  "folds_sha256": "aa5aae028595064c761c91713acd4408d13b9b9106da26292f8fa982ea43d625",
+  "bank": {
+    "fingerprint": "f44e31cff8230dc5ce971997f80ee0d0d921eb5f72a8ab75d0327692271192e7",
+    "files": {
+      "manifest.json": "b939ab2bf76e25d7569152ac60005f61b3fc99533b028a6413b1ee9b267f0b2c",
+      "waveforms.npy": "118fbfb2d8b2fbc2c32ba6449e301874cc1a79c7ad2d8692652129c224f91fba",
+      "y.npy": "e0aca562cb4beabb0d59119035baf5b997ffc678a0cd21822751f393339ef7f8",
+      "groups.npy": "729880b095d4a225551db982d107754df9ca442f0eafee2145a61cd5db963ab0"
+    },
+    "beats_sha256": "277e2f1498d54db23061c3bb60969f05ce506b941d9dfa7c07e835713950358b",
+    "paper_sha256": "5aea297dd03a5a214de3fc8142b77c58a9e9074e6dbf26288499f360e36892b0",
+    "n_beats": 55863,
+    "n_patients": 164,
+    "n_records": 391,
+    "shape": [
+      55863,
+      3,
+      651
+    ]
+  },
+  "dependencies": {
+    "mi_localization.frozen_patient_readout": "72c86f2828133bc262729dcc4602f710ad0d38d1acd5b3b14725d02e81424883",
+    "mi_localization.later_recording_distillation": "afc13501c22d88d38a3d0669369efe28066899339cc43cb8a67861e2e406c213",
+    "mi_localization.earliest_training_duration": "b8a2bda08e1b8b2668c939b31882df903a09d270dab9d052829921732f4e0661",
+    "mi_localization.rocket_study": "058451bb2bf1b29092a51f3085631dbd72f05f2d65d03626be7d94236788d210",
+    "mi_localization.neural": "7aa44cba432693dca59ccb2587d1f3bd2c5cee195ed74c4259c456de1fa56f97",
+    "mi_localization.benchmark": "8f1bb5168adfadec6e60e68cb256cf7dad240d3f7d6bb35fa54b47876f312589",
+    "mi_localization.model_error_comparison": "b3e8cec270d7d43477f839501c404a63f2e64249b980a13c380f23c68de993c0"
+  },
+  "runtime": {
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "torch": "2.15.0",
+    "platform": "macOS-26.5-arm64-arm-64bit",
+    "device": "cpu"
+  },
+  "study_fingerprint": "18b00c9daaf23d03c3b5c8f32ed62d1e6198f015b158f861d7552e8738446e5e"
+}
