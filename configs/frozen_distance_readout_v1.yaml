@@ -1,0 +1,12 @@
+source_config: configs/frozen_patient_readout_v1.yaml
+source_root: results/frozen_patient_readout_v1/complete
+source_summary_sha256: c82b9a775ad3aa2ae4e268796b1af80b479099ded4c49bcf6144175588b5084a
+output_dir: results/frozen_distance_readout_v1
+shrinkages: [1.0, 0.9, 0.5]
+trace_floor: 1.0e-12
+eigenvalue_floor: 1.0e-6
+score_divisor: 128.0
+inner_splits: 3
+device: cpu
+torch_threads: 2
+bootstrap_draws: 5000
