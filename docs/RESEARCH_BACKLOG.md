@@ -19,7 +19,7 @@ The [research plan for 0.80–0.90](path_to_080_macro_f1.md) quantifies the curr
 | 11 | Pool convolution responses in fixed R-relative windows | Verified, no demonstrated gain | Keep the frozen base and the historical selector reference. Aligned and shuffled scored nearly identically. |
 | 12 | Separate MI detection and localization in a probabilistic readout | Verified, gain uncertain | Preserve the .603374 selector reference. Hierarchical .586828 versus matched flat .562819. |
 | 13 | Learn ECG changes from controlled balloon occlusion | Verified, no demonstrated target gain | Retain primary measured XYZ references. Source change learning did not improve the target point score. |
-| 14 | Refit patient readouts before and after the ResNet bottleneck | Authorized; full fit and verification launched | Compare 256- and 64-feature ridge heads against the original waveform model. [Fixed protocol](frozen_patient_readout_plan.md) · [Monitor](frozen_patient_readout_run.md) |
+| 14 | Refit patient readouts before and after the ResNet bottleneck | Verified; no demonstrated compression-bypass gain | Ridge64 .535691 versus original .521335, uncertain secondary gain; ridge256 .501020. [Findings](frozen_patient_readout_findings.md) |
 
 ## 1. Related MI subtypes share classifier weights
 
@@ -133,7 +133,7 @@ The CSE diagnostic study is a measured orthogonal archive lead, with access and 
 
 **Hypothesis.** The four pooled temporal bins may retain subtype information suppressed by the 256-to-64 dense mapping. A standalone patient head may use that information with fewer fitted parameters than a new encoder.
 
-**Status.** The user approved experiment 1. The exact-partition inner-only smoke fitted and restored four heads and replayed the original query beat probabilities. The full 420-head/120-context CPU comparison and subsequent independent verification have been launched. No final score is available yet. All neural weights remain frozen. The source cohort and endpoint remain the original 145 dated earliest-record patients; the historical all-record .60 reference is separate. [Fixed protocol](frozen_patient_readout_plan.md) · [Monitoring](frozen_patient_readout_run.md) · [Design, controls and literature](next_readout_experiments.md)
+**Result.** Independently verified all 420 ridge heads and 120 frozen epoch-eight encoder contexts, all ten folds and three seeds. On 145 dated earliest-record patients, original .521335, mean logits .517351, ridge64 .535691 and ridge256 .501020. Ridge256−ridge64 −.034671 [−.094647,+.021065]; ridge256−original −.020315 [−.081297,+.037948]. Secondary ridge64−original +.014356 [−.046053,+.080129] is uncertain. Original baseline metrics reproduce exactly, with zero encoder updates. All 371 tests and the inner-only fitting/restoration smoke passed. The runner finished; no follow-up is queued. Preserve all numerical scopes. The historical all-record .60 reference is a different endpoint. [Findings](frozen_patient_readout_findings.md) · [Verified report](../results/frozen_patient_readout_v1/complete/REPORT.md) · [Protocol](frozen_patient_readout_plan.md)
 
 ## Evidence already in hand
 

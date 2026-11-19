@@ -2,6 +2,8 @@
 
 Reviewed 19 November 2026. This research decision follows the completed duration, single-record convolution and recording-quality studies. No classifier fit or new training sweep was started in this review.
 
+**Subsequent outcome, 19 November.** Experiment 1 was authorized and completed independently: original .521335, mean logits .517351, ridge64 .535691, ridge256 .501020 on the 145-patient primary endpoint. The proposed pre-compression gain was not demonstrated; the secondary ridge64 gain remains uncertain. All 420 heads and 120 feature contexts replayed. Experiments 2 and 3 below remain proposals and no follow-up is queued. [Findings](frozen_patient_readout_findings.md).
+
 ## Why revisit the readout
 
 The strongest all-record development procedures remain selected convolution .603374 and waveform ensemble .601801 over 164 patients. The current single-record supervised reference is .521335 over 145 date-eligible patients. More optimization reduced training loss without reliably improving that endpoint. Replacing this single-record waveform model with fixed convolution features scored .478122. These observations support testing how the waveform representation is used for patient classification. [Duration result](../results/neural_earliest_training_duration_v1/complete/REPORT.md) · [Single-record convolution](../results/earliest_record_convolution_v1/complete/REPORT.md)
