@@ -1,5 +1,7 @@
 # External data shortlist for measured VCG infarct localization
 
+**19 November open-release update.** A fresh [open-dataset review](open_dataset_review_20261119.md) verifies SPH metadata (260 MI-statement ECGs /242 patients), MIMIC, MedalCare and LUDB as distinct source options. It separates download-ready material from CODE-II-open's unresolved release links and HEEDB's credentialed access. Only about 1 MB of SPH metadata/dictionary were downloaded and checksum-verified; no new signal bank or source fit was started. The older source evidence below remains unchanged.
+
 Reviewed 18 November 2026. The current PTB cohort supports controlled development experiments with patient-disjoint folds. Its 55,863 beats come from 164 patients, including 17 anterior and 16 anterolateral cases. The ResNet learning curve rose from 0.472 to 0.550 mean patient macro F1 as training grew from about 113 to 148 patients. This supports seeking more patients for training and a separate cohort for validation. It does not determine how many patients are needed or forecast an attainable score. [Learning curve](../results/neural_learning_curve_v1/complete/REPORT.md)
 
 | Dataset | What is available | Project use |
