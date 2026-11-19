@@ -2,7 +2,9 @@
 
 Reviewed 19 November 2026. This research decision follows the completed duration, single-record convolution and recording-quality studies. No classifier fit or new training sweep was started in this review.
 
-**Subsequent outcome, 19 November.** Experiment 1 was authorized and completed independently: original .521335, mean logits .517351, ridge64 .535691, ridge256 .501020 on the 145-patient primary endpoint. The proposed pre-compression gain was not demonstrated; the secondary ridge64 gain remains uncertain. All 420 heads and 120 feature contexts replayed. Experiments 2 and 3 below remain proposals and no follow-up is queued. [Findings](frozen_patient_readout_findings.md).
+**Subsequent outcome, 19 November.** Experiment 1 was authorized and completed independently: original .521335, mean logits .517351, ridge64 .535691, ridge256 .501020 on the 145-patient primary endpoint. The proposed pre-compression gain was not demonstrated; the secondary ridge64 gain remains uncertain. All 420 heads and 120 feature contexts replayed. At that completion review, experiments 2 and 3 remained proposals. [Findings](frozen_patient_readout_findings.md).
+
+**Later authorization, 19 November.** The user approved experiment 2. Its fixed [distance-readout protocol](frozen_distance_readout_plan.md) and [execution instructions](frozen_distance_readout_run.md) supersede only that proposed study's earlier boundary. Implementation `b1916616`, all 376 tests and the real-data inner-only fitting/restoration smoke passed; full fit/independent replay launched at 11:47:30 IST. Experiment 3, the decision offsets, and any all-record follow-up remain unstarted.
 
 ## Why revisit the readout
 

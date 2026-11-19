@@ -2,6 +2,8 @@
 
 [Fixed protocol](frozen_distance_readout_plan.md) · [Configuration](../configs/frozen_distance_readout_v1.yaml). This comparison restores the completed ridge64 baseline and fits equal-prior centroid and shared-covariance Mahalanobis heads. The 64-feature encoders and their exact inner/outer fitting patients remain fixed. This is a classifier study with zero neural weight updates.
 
+Full fitting launched on the originating Mac on 19 November 2026 at 11:47:30 IST, from implementation `b1916616`. The worker and launcher commands were checked alive. This dated launch note does not establish current activity or completed performance.
+
 The primary comparison is Mahalanobis−ridge on the same 145 dated earliest-record patients. The verified ridge reference is .535691. The 164-patient fallback sensitivity also uses one selected record per patient. Neither is the historical all-record .60 benchmark.
 
 Inventory: 420 new distance heads, 210 restored source ridge heads, 120 independently reconstructed feature contexts, at least 90 full-shrinkage identity controls and 60 new outer heads. The real-data inner-only smoke restored both source ridge candidates and all four distance candidates and passed its identity control. All 1,444 source files remained unchanged. Six focused tests passed, including query-label isolation, class-balanced residual covariance, analytic distance probabilities, degenerate features and corrupted-file rejection. The full macOS suite passed all 376 tests before launch.
