@@ -6,6 +6,7 @@ This is the local fallback for this host, where Artifact Tool is unavailable.
 from __future__ import annotations
 
 import copy
+import argparse
 import hashlib
 import json
 import re
@@ -157,6 +158,19 @@ def diagram(tree, template, kind):
         connector(tree, 225, 144, 323, 144)
         connector(tree, 570, 144, 668, 144)
         label("Patient pooling and training-only ridge readout", 90, 226, 780)
+    elif kind == "pipeline":
+        for text, x in [("Measured\nXYZ",50),("Waveforms\nor tensors",280),("Training-only\nmodel fit",510),("Patient\nmacro F1",740)]:
+            box(text,x,108,170)
+        for x1,x2 in [(225,273),(455,503),(685,733)]:
+            connector(tree,x1,144,x2,144)
+        label("Fixed patient folds and independent result replay",65,228,830)
+    elif kind == "multiview":
+        box("Raw signal\nR",65,104,230)
+        box("Denoised signal\nD",365,104,230)
+        box("Recording median\nM",665,104,230)
+        connector(tree,300,140,358,140)
+        connector(tree,600,140,658,140)
+        label("R = D + (R−D)          D = M + (D−M)",70,224,820)
 
 
 def notes_readable(notes):
@@ -167,6 +181,14 @@ def notes_readable(notes):
 
 
 def main():
+    global BUILD, FINAL, PDF
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--build-dir', type=Path, default=BUILD)
+    parser.add_argument('--pptx', type=Path, default=FINAL)
+    parser.add_argument('--pdf', type=Path, default=PDF)
+    parser.add_argument('--guide', type=Path, default=ROOT/'docs/progress_update_20261120_presenter_guide.md')
+    args = parser.parse_args()
+    BUILD, FINAL, PDF = args.build_dir.resolve(), args.pptx.resolve(), args.pdf.resolve()
     meta = json.loads((BUILD / "metadata.json").read_text())
     with ZipFile(BUILD / "candidate.pptx") as z:
         parts = {name: z.read(name) for name in z.namelist()}
@@ -205,6 +227,12 @@ def main():
                 xf.find("a:ext", NS).attrib.update(cx=pt(870), cy=pt(spec["chartH"]))
             elif "diagram" in spec:
                 end = 310 if spec["diagram"] == "visits" else 300
+            if "image" in spec:
+                picture = tree.find('p:pic', NS)
+                xf = picture.find('p:spPr/a:xfrm', NS)
+                x_img,y_img,w_img,h_img = spec['imageBox']
+                xf.find('a:off', NS).attrib.update(x=pt(x_img),y=pt(y_img))
+                xf.find('a:ext', NS).attrib.update(cx=pt(w_img),cy=pt(h_img))
             count = len(spec["lines"])
             h = min(120 if spec.get("side") else 77 if spec.get("sideLeft") else 82, (510-end)/count) if count else 0
             x = 685 if spec.get("side") else 50
@@ -286,13 +314,17 @@ def main():
         for name,data in parts.items():
             z.writestr(name,data)
     # Readable presenter guide also lives beside the project documentation.
-    guide = ["# Presentation update, 20 November 2026\n", "34 main slides and 12 appendix slides. Based on the illustrated 17 November deck. All study results are completed development evidence. The original presentation and numerical study artifacts are unchanged.\n", "The deck has no footer notes or slide-number fragments. Evidence and image attribution are in presenter notes. The appendix preserves detailed matched comparisons.\n"]
+    main_count = sum(not s.get('backup', False) for s in meta['slides'])
+    appendix_count = len(meta['slides'])-main_count
+    scope = meta.get('scopeDescription') or 'Based on the illustrated 17 November deck.'
+    guide = ["# Presentation update, 20 November 2026\n", f"{main_count} main slides and {appendix_count} appendix slides. {scope} All study results are development evidence. The original presentation and numerical study artifacts are unchanged.\n", "The deck has no footer notes or slide-number fragments. Evidence and image attribution are in presenter notes. The appendix preserves detailed matched comparisons.\n"]
     for i,spec in enumerate(meta["slides"],1):
         guide.append(f"## {i}. {spec['title']}\n")
         guide.extend(line+"\n" for line in spec["lines"])
         guide.append("\nPresenter notes\n\n"+notes_readable(spec["notes"])+"\n")
         guide.append("\nEvidence\n\n"+"\n".join("- "+s for s in spec["sources"])+"\n")
-    (ROOT/"docs/progress_update_20261120_presenter_guide.md").write_text("\n".join(guide))
+    args.guide.parent.mkdir(parents=True, exist_ok=True)
+    args.guide.write_text("\n".join(guide))
     export = f'''tell application "Keynote"
 set d to open POSIX file "{FINAL}"
 export d to POSIX file "{PDF}" as PDF

@@ -5,6 +5,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
 const root=process.cwd();
 const build=path.join(root,'tmp/presentations/progress_20261116');
 const ppt=path.join(root,'output/pptx/mi_progress_since_october_2026.pptx');
@@ -345,6 +346,8 @@ print(out)
 `;
  const r=spawnSync(path.join(root,'.venv/bin/python'),['-c',py],{cwd:root,encoding:'utf8'});if(r.status!==0)throw new Error(r.stderr);console.log(r.stdout);
 }
+export {slides};
+if(process.argv[1] && path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
 const stage=process.argv[2];
 if(stage==='prepare')prepare();
 else if(stage==='build')run('/usr/bin/osascript',[path.join(build,'build.applescript')]);
@@ -354,3 +357,4 @@ else if(stage==='pdf'){
  const f=path.join(build,'export.applescript');
  fs.writeFileSync(f,`tell application "Keynote"\nset d to open POSIX file ${q(ppt)}\nexport d to POSIX file ${q(pdf)} as PDF\nclose d saving no\nend tell`);run('/usr/bin/osascript',[f]);
 }else throw new Error('Expected prepare, build, finalize or pdf');
+}

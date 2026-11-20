@@ -5,6 +5,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
 const root=process.cwd(), build=path.join(root,'tmp/presentations/update_20261120');
 fs.mkdirSync(build,{recursive:true});
 const slides=[];
@@ -328,7 +329,10 @@ const notesByTitle={
 for(const slide of slides)if(notesByTitle[slide.title])slide.notes=notesByTitle[slide.title];
 
 const q=v=>typeof v==='string'?'"'+v.replaceAll('\\','\\\\').replaceAll('"','\\"')+'"':Array.isArray(v)?'{'+v.map(q).join(', ')+'}':String(v);
-function prepare(){
+export {slides};
+export function prepare({slideSpecs=slides,buildDir=build,scopeDescription}={}){
+ const slides=slideSpecs,build=buildDir;
+ fs.mkdirSync(build,{recursive:true});
  const a=['tell application "Keynote"','set d to make new document with properties {document theme:theme "Basic White",width:960,height:540}'];
  function text(t,x,y,w,h,size=23,bold=false){a.push('tell s',`set t to make new text item with properties {object text:${q(t)},position:{${x},${y}},width:${w},height:${h}}`,`set font of object text of t to ${q(bold?'TimesNewRomanPS-BoldMT':'TimesNewRomanPSMT')}`,`set size of object text of t to ${size}`,'set color of object text of t to {0,0,0}','end tell');}
  slides.forEach((p,i)=>{
@@ -349,12 +353,14 @@ function prepare(){
  });
  a.push(`save d in POSIX file ${q(path.join(build,'native.key'))}`,`export d to POSIX file ${q(path.join(build,'candidate.pptx'))} as Microsoft PowerPoint`,'close d saving no','end tell');
  fs.writeFileSync(path.join(build,'build.applescript'),a.join('\n'));
- fs.writeFileSync(path.join(build,'metadata.json'),JSON.stringify({slides},null,2));
+ fs.writeFileSync(path.join(build,'metadata.json'),JSON.stringify({slides,scopeDescription},null,2));
  console.log(`Prepared ${slides.length} slides: ${slides.filter(x=>!x.backup).length} main, ${slides.filter(x=>x.backup).length} appendix.`);
 }
 const run=(cmd,args)=>{const r=spawnSync(cmd,args,{cwd:root,encoding:'utf8',maxBuffer:4*1024*1024});if(r.status!==0)throw new Error(r.stderr||r.stdout);if(r.stdout)process.stdout.write(r.stdout);};
+if(process.argv[1] && path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
 if(process.argv[2]==='prepare')prepare();
 else if(process.argv[2]==='build')run('osascript',[path.join(build,'build.applescript')]);
 else if(process.argv[2]==='finish')run('.venv/bin/python',['scripts/finalize_progress_update_20261120.py']);
 else if(process.argv[2]==='pdf')run('osascript',[path.join(build,'export_pdf.applescript')]);
 else console.log('Use prepare, build, finish or pdf.');
+}
